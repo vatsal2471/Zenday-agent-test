@@ -3,627 +3,554 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Zenday — Your clients' books. Current every morning.</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<title>Zenday — The AI that closes your clients' books.</title>
+<meta name="description" content="Zenday's AI categorizes transactions, reconciles accounts, and chases missing documents overnight. Your team reviews in minutes. For accounting firms on QuickBooks and Xero." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-  .text-balance { text-wrap: balance; }
-  .from-bg { background: linear-gradient(to bottom, #F0EEFF, #F7F5FF, #ffffff); }
+  :root {
+    --bg: #FBF9F4;
+    --bg-alt: #F4F0E4;
+    --bg-dark: #1A1A1A;
+    --ink: #1A1A1A;
+    --ink-soft: #525252;
+    --ink-faint: #8A8680;
+    --line: #E8E1D0;
+    --line-soft: #EFEBDE;
+    --accent: #2D4A3A;
+    --accent-hover: #3D5D48;
+    --green: #7A9B6E;
+    --amber: #C89A4A;
+    --coral: #C27A6E;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", -apple-system, sans-serif;
+    --mono: "JetBrains Mono", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  .narrow { max-width: 720px; margin: 0 auto; padding: 0 28px; }
+
+  /* ====== NAV ====== */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(251,249,244,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav-in { max-width: 1180px; margin: 0 auto; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: var(--serif); font-weight: 500; font-size: 20px; letter-spacing: -0.01em; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .logo-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 14px; color: var(--ink-soft); text-decoration: none; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-cta { font-size: 14px; font-weight: 500; padding: 8px 16px; background: var(--ink); color: var(--bg); border-radius: 6px; text-decoration: none; }
+  .nav-cta:hover { background: var(--accent); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* ====== HERO ====== */
+  .hero { padding: 160px 0 80px; text-align: center; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 1px solid var(--line); background: var(--bg-alt); border-radius: 100px; font-size: 12px; font-family: var(--mono); color: var(--ink-soft); margin-bottom: 28px; }
+  .hero-eyebrow .pulse { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+  h1.hero-h { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 7.5vw, 88px); line-height: 0.98; letter-spacing: -0.035em; margin-bottom: 28px; font-variation-settings: "SOFT" 50; }
+  h1.hero-h em { font-style: italic; color: var(--accent); font-variation-settings: "SOFT" 80, "WONK" 1; }
+  .hero-lede { font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 600px; margin: 0 auto 40px; }
+  .cta-group { display: flex; gap: 14px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: var(--bg); padding: 14px 26px; border-radius: 8px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .btn-secondary { color: var(--ink); padding: 14px 20px; font-size: 15px; font-weight: 500; text-decoration: none; }
+  .btn-secondary:hover { color: var(--accent); }
+  .hero-note { margin-top: 20px; font-size: 13px; color: var(--ink-faint); font-family: var(--mono); }
+
+  /* ====== PRODUCT SCREEN ====== */
+  .product { padding: 40px 0 80px; }
+  .frame { max-width: 1100px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 0 rgba(26,26,26,0.02), 0 50px 100px -40px rgba(26,26,26,0.18); }
+  .frame-chrome { display: flex; align-items: center; gap: 8px; padding: 12px 18px; border-bottom: 1px solid var(--line); background: #FDFCF8; }
+  .chrome-dots { display: flex; gap: 6px; }
+  .chrome-dots span { width: 11px; height: 11px; border-radius: 50%; background: #E8E1D0; }
+  .chrome-url { flex: 1; text-align: center; font-size: 12px; color: var(--ink-faint); font-family: var(--mono); }
+
+  .roster-head { padding: 26px 32px 20px; display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 1px solid var(--line); gap: 20px; }
+  .roster-title { font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: -0.02em; }
+  .roster-sub { font-size: 13px; color: var(--ink-faint); margin-top: 2px; }
+  .roster-legend { display: flex; gap: 18px; font-size: 12px; color: var(--ink-soft); font-family: var(--mono); white-space: nowrap; }
+  .roster-legend span { display: flex; align-items: center; gap: 6px; }
+  .dot-g { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .dot-y { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); }
+  .dot-r { width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
+
+  .roster-summary { padding: 12px 32px; background: #F7F3E8; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); font-family: var(--mono); letter-spacing: -0.01em; }
+
+  .roster-cols { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.5fr 0.6fr; gap: 16px; padding: 12px 32px; font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--line); }
+  .roster-row { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.5fr 0.6fr; gap: 16px; padding: 16px 32px; border-bottom: 1px solid var(--line-soft); font-size: 14px; align-items: center; transition: background 0.2s; }
+  .roster-row:hover { background: #FDFCF8; }
+  .roster-row:last-child { border-bottom: none; }
+  .roster-row .client { font-weight: 500; }
+  .roster-row .status { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+  .roster-row .asof, .roster-row .needs { font-size: 13px; color: var(--ink-soft); }
+  .roster-row .txns { text-align: right; font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
+  .status-current { color: #5C7A52; }
+  .status-waiting { color: #A07A3E; }
+  .status-review { color: #9B5E52; }
+
+  @media (max-width: 720px) {
+    .roster-cols, .roster-row { grid-template-columns: 1.5fr 1fr 0.8fr; padding: 12px 18px; }
+    .roster-cols .c3, .roster-cols .c4, .roster-row .asof, .roster-row .needs { display: none; }
+    .roster-head { flex-direction: column; padding: 18px; }
+    .roster-summary { padding: 10px 18px; font-size: 11px; }
+  }
+
+  /* ====== SECTION BASE ====== */
+  .section { padding: 120px 0; }
+  .section-dark { background: var(--bg-dark); color: var(--bg); }
+  .section-alt { background: var(--bg-alt); }
+  .eyebrow { text-align: center; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 24px; }
+  .section-dark .eyebrow { color: rgba(251,249,244,0.5); }
+  .section-h { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 5.5vw, 60px); line-height: 1.02; letter-spacing: -0.03em; text-align: center; max-width: 760px; margin: 0 auto 24px; }
+  .section-h em { font-style: italic; color: var(--accent); font-variation-settings: "SOFT" 80; }
+  .section-dark .section-h em { color: #B8CBB2; }
+  .section-sub { text-align: center; max-width: 560px; margin: 0 auto 60px; font-size: 17px; color: var(--ink-soft); line-height: 1.55; }
+  .section-dark .section-sub { color: rgba(251,249,244,0.7); }
+
+  /* ====== FEATURE ROWS ====== */
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; padding: 80px 0; border-top: 1px solid var(--line); }
+  .feature:first-of-type { border-top: none; padding-top: 20px; }
+  .feature.reverse .feature-copy { order: 2; }
+  .feature-label { font-family: var(--mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .feature-label .num { background: var(--accent); color: var(--bg); padding: 2px 8px; border-radius: 3px; font-size: 10px; font-weight: 600; }
+  .feature h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.5vw, 40px); line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 20px; }
+  .feature h3 em { font-style: italic; color: var(--accent); }
+  .feature p.lede { font-size: 17px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 28px; }
+  .feature-list { list-style: none; }
+  .feature-list li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; font-size: 15px; color: var(--ink); border-bottom: 1px solid var(--line-soft); }
+  .feature-list li:last-child { border-bottom: none; }
+  .feature-list li::before { content: "→"; color: var(--accent); font-weight: 500; flex-shrink: 0; }
+
+  .feature-visual { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px; box-shadow: 0 30px 60px -30px rgba(26,26,26,0.12); }
+  @media (max-width: 820px) {
+    .feature { grid-template-columns: 1fr; gap: 40px; padding: 60px 0; }
+    .feature.reverse .feature-copy { order: 1; }
+  }
+
+  /* ====== FEATURE VISUALS ====== */
+  .viz-label { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+  .viz-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #FDFCF8; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; }
+  .viz-row .v-left { display: flex; flex-direction: column; gap: 2px; }
+  .viz-row .v-name { font-size: 14px; font-weight: 500; }
+  .viz-row .v-sub { font-size: 12px; color: var(--ink-faint); }
+  .viz-row .v-right { display: flex; align-items: center; gap: 10px; }
+  .viz-conf { font-family: var(--mono); font-size: 12px; font-weight: 500; }
+  .viz-conf-high { color: #5C7A52; }
+  .viz-conf-low { color: #9B5E52; }
+  .viz-badge { font-size: 10px; padding: 3px 8px; border-radius: 4px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em; }
+  .viz-badge-auto { background: #E8F0E2; color: #4A6B3F; }
+  .viz-badge-review { background: #F5E3DE; color: #8F4E42; }
+
+  .email-mock { background: #FDFCF8; border: 1px solid var(--line); border-radius: 8px; padding: 18px; font-size: 13px; line-height: 1.55; }
+  .email-from { font-size: 11px; color: var(--ink-faint); font-family: var(--mono); margin-bottom: 10px; }
+  .email-subj { font-weight: 500; margin-bottom: 10px; }
+  .email-body { color: var(--ink-soft); }
+  .email-actions { display: flex; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .email-btn { font-size: 12px; padding: 6px 12px; border-radius: 6px; font-family: var(--sans); font-weight: 500; }
+  .email-btn-primary { background: var(--accent); color: var(--bg); }
+  .email-btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--ink-soft); }
+
+  .rule-item { padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; background: #FDFCF8; }
+  .rule-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .rule-vendor { font-weight: 500; font-size: 14px; }
+  .rule-stat { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+  .rule-cat { font-size: 12px; color: var(--ink-soft); }
+  .rule-cat strong { color: var(--accent); font-weight: 500; }
+
+  .report-viz { font-family: var(--serif); }
+  .report-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 10px; }
+  .report-h { font-size: 16px; font-weight: 500; }
+  .report-date { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+  .report-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 13px; color: var(--ink-soft); }
+  .report-row .rn { color: var(--ink); }
+  .report-row.tot { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 6px; font-weight: 500; color: var(--ink); }
+  .report-row .amt { font-family: var(--mono); }
+
+  /* ====== WORKS WITH ====== */
+  .works { padding: 100px 0; text-align: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg); }
+  .works h3 { font-family: var(--serif); font-size: 32px; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .works p { color: var(--ink-soft); max-width: 480px; margin: 0 auto 40px; }
+  .logos { display: flex; justify-content: center; align-items: center; gap: 48px; flex-wrap: wrap; }
+  .int { font-family: var(--sans); font-weight: 600; font-size: 18px; color: var(--ink-soft); }
+
+  /* ====== FOUNDER ====== */
+  .founder { padding: 140px 0; background: var(--bg); }
+  .founder-inner { max-width: 660px; margin: 0 auto; padding: 0 28px; }
+  .founder-letter p { font-family: var(--serif); font-size: 21px; line-height: 1.55; margin-bottom: 24px; letter-spacing: -0.015em; }
+  .founder-letter p:first-of-type::first-letter { font-size: 72px; line-height: 0.85; float: left; padding: 6px 10px 0 0; color: var(--accent); font-weight: 500; font-family: var(--serif); }
+  .sig { display: flex; align-items: center; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .sig-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 18px; font-weight: 500; }
+  .sig-name { font-family: var(--serif); font-size: 17px; font-weight: 500; }
+  .sig-role { font-size: 13px; color: var(--ink-soft); font-family: var(--mono); }
+
+  /* ====== MATH ====== */
+  .math-body { max-width: 780px; margin: 0 auto; text-align: center; }
+  .math-line { font-family: var(--serif); font-size: 22px; line-height: 1.6; margin-bottom: 16px; color: rgba(251,249,244,0.85); }
+  .math-line strong { color: var(--bg); font-weight: 500; }
+  .math-divider { width: 36px; height: 1px; background: rgba(251,249,244,0.2); margin: 22px auto; }
+
+  /* ====== START ====== */
+  .start { padding: 140px 0; text-align: center; }
+  .start h2 { font-family: var(--serif); font-size: clamp(40px, 6vw, 64px); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; }
+  .start p { font-size: 18px; color: var(--ink-soft); max-width: 460px; margin: 0 auto 40px; }
+  .start-form { display: flex; max-width: 460px; margin: 0 auto; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; transition: border-color 0.2s; }
+  .start-form:focus-within { border-color: var(--ink); }
+  .start-form input { flex: 1; padding: 16px 20px; border: 0; background: transparent; font-family: var(--sans); font-size: 15px; outline: none; }
+  .start-form button { background: var(--accent); color: var(--bg); border: 0; padding: 16px 28px; font-family: var(--sans); font-size: 14px; font-weight: 500; cursor: pointer; }
+  .start-form button:hover { background: var(--accent-hover); }
+  .start-fine { margin-top: 20px; font-size: 13px; color: var(--ink-faint); font-family: var(--mono); }
+  @media (max-width: 520px) { .start-form { flex-direction: column; } }
+
+  /* ====== FOOTER ====== */
+  footer { border-top: 1px solid var(--line); padding: 40px 28px; text-align: center; font-size: 13px; color: var(--ink-faint); }
+  .foot-logo { font-family: var(--serif); font-size: 15px; color: var(--ink); margin-bottom: 8px; }
+  .foot-tag { font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 14px; margin-bottom: 20px; }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: var(--ink); }
 </style>
 </head>
-<body class="bg-white text-gray-900">
+<body>
 
 <!-- ============ NAV ============ -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
-  <div class="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
-    <div class="flex items-center gap-8">
-      <a href="#" class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-[#5B5FF6] flex items-center justify-center">
-          <span class="text-xs font-bold text-white">Z</span>
-        </div>
-        <span class="text-sm font-bold">zenday</span>
-      </a>
-      <div class="hidden md:flex items-center gap-6">
-        <a href="#how-it-works" class="text-[13px] text-gray-500 hover:text-gray-900">How It Works</a>
-        <a href="#ai-engine" class="text-[13px] text-gray-500 hover:text-gray-900">AI Engine</a>
-        <a href="#pricing" class="text-[13px] text-gray-500 hover:text-gray-900">Pricing</a>
-        <a href="#faq" class="text-[13px] text-gray-500 hover:text-gray-900">FAQ</a>
-      </div>
+<nav>
+  <div class="nav-in">
+    <a href="#" class="logo"><span class="logo-dot"></span>zenday</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Product</a>
+      <a href="#pricing">Pricing</a>
     </div>
-    <div class="hidden md:flex items-center gap-2">
-      <a href="#demo" class="text-[13px] text-gray-500 hover:text-gray-900 px-4 py-1.5">Watch Demo</a>
-      <a href="#pricing" class="text-[13px] px-5 py-2 rounded-full bg-[#5B5FF6] hover:bg-[#4A4EE5] text-white font-medium">Try Your First Client Free</a>
+    <div class="nav-right">
+      <a href="#start" class="nav-cta">Start free →</a>
     </div>
   </div>
 </nav>
 
 <!-- ============ HERO ============ -->
-<section class="pt-24 pb-14 px-5 from-bg">
-  <div class="max-w-3xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-rose-200 shadow-sm mb-6">
-      <span class="text-xs font-semibold text-rose-600">87% of accountants work weekends during close</span>
-    </div>
-
-    <h1 class="text-3xl md:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.1] mb-4 text-balance">
-      Your clients' books.
-      <span class="bg-gradient-to-r from-[#5B5FF6] to-[#8B5CF6] bg-clip-text text-transparent">Current every morning.</span>
-    </h1>
-
-    <p class="text-sm md:text-[15px] text-gray-500 max-w-xl mx-auto mb-7 leading-relaxed">
-      Zenday's AI categorizes transactions, chases missing documents, and reconciles accounts — overnight.
-      You log in, review what it did in 5 minutes, and move on. Month-end becomes a non-event.
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow"><span class="pulse"></span>AI bookkeeping for accounting firms</div>
+    <h1 class="hero-h">The AI that closes<br/>your clients' <em>books.</em></h1>
+    <p class="hero-lede">
+      Zenday categorizes transactions, reconciles accounts, and chases missing documents &mdash; overnight, on every client. Your team reviews what it did in a few minutes each morning.
     </p>
-
-    <div class="flex items-center justify-center gap-3 mb-3">
-      <a href="#pricing" class="px-6 py-2.5 rounded-full bg-[#5B5FF6] hover:bg-[#4A4EE5] text-white text-sm font-semibold shadow-md shadow-[#5B5FF6]/20">Try your first client free</a>
-      <a href="#demo" class="px-6 py-2.5 rounded-full border border-gray-200 bg-white hover:border-[#5B5FF6]/30 text-sm font-medium text-gray-600 shadow-sm">Watch 5-min demo</a>
+    <div class="cta-group">
+      <a href="#start" class="btn-primary">Start with one client free →</a>
+      <a href="#how" class="btn-secondary">See how it works</a>
     </div>
-    <p class="text-xs text-gray-400">$15/client/month after trial. No credit card required.</p>
+    <p class="hero-note">$15 / client / month  ·  Works with QuickBooks &amp; Xero  ·  No credit card</p>
   </div>
+</section>
 
-  <!-- Roster view -->
-  <div class="max-w-4xl mx-auto mt-10">
-    <div class="rounded-xl overflow-hidden border border-gray-200/80 shadow-2xl shadow-[#5B5FF6]/10 bg-white">
-      <div class="flex items-center gap-2 px-4 py-2 border-b border-gray-100 bg-gray-50/80">
-        <div class="flex gap-1.5">
-          <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></div>
-          <div class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></div>
-          <div class="w-2.5 h-2.5 rounded-full bg-[#28CA41]"></div>
-        </div>
-        <div class="flex-1 flex justify-center">
-          <div class="px-8 py-0.5 rounded bg-gray-100 text-[10px] text-gray-400">app.getzenday.com</div>
-        </div>
+<!-- ============ HERO PRODUCT SCREEN ============ -->
+<section class="product" id="how">
+  <div class="container">
+    <div class="frame">
+      <div class="frame-chrome">
+        <div class="chrome-dots"><span></span><span></span><span></span></div>
+        <div class="chrome-url">app.getzenday.com</div>
+        <div style="width:56px;"></div>
       </div>
 
-      <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+      <div class="roster-head">
         <div>
-          <p class="text-sm font-semibold">Good morning, Vatsal</p>
-          <p class="text-xs text-gray-400">Tuesday, April 12 — 6 clients managed by Zenday AI</p>
+          <div class="roster-title">Good morning.</div>
+          <div class="roster-sub">Tuesday, April 14 — six clients managed overnight</div>
         </div>
-        <div class="hidden md:flex items-center gap-4 text-xs text-gray-500">
-          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 4 current</span>
-          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> 1 waiting</span>
-          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-500"></span> 1 needs review</span>
-        </div>
-      </div>
-
-      <div class="px-6 py-3 bg-[#5B5FF6]/5 border-b border-[#5B5FF6]/10">
-        <p class="text-xs text-[#5B5FF6] font-medium">Last night: 199 transactions coded across 6 clients. 3 need your review. 1 client question sent automatically.</p>
-      </div>
-
-      <div class="hidden md:grid grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-4 px-6 py-2 text-[10px] font-medium text-gray-400 uppercase tracking-wider border-b border-gray-50">
-        <span>Client</span><span>Status</span><span>Books as of</span><span>Needs you</span><span class="text-right">Txns</span>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 border-b border-gray-50 items-center">
-        <span class="text-sm font-medium">Acme Design Co</span>
-        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-emerald-50 flex items-center justify-center"><span class="text-emerald-500 text-xs">✓</span></div><span class="text-xs font-medium text-emerald-500">Current</span></div>
-        <span class="text-xs text-gray-500">Yesterday</span><span class="text-xs text-gray-500">—</span><span class="text-xs text-gray-400 md:text-right">34</span>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 border-b border-gray-50 items-center">
-        <span class="text-sm font-medium">Summit Group LLC</span>
-        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-emerald-50 flex items-center justify-center"><span class="text-emerald-500 text-xs">✓</span></div><span class="text-xs font-medium text-emerald-500">Current</span></div>
-        <span class="text-xs text-gray-500">Yesterday</span><span class="text-xs text-gray-500">—</span><span class="text-xs text-gray-400 md:text-right">21</span>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 border-b border-gray-50 items-center">
-        <span class="text-sm font-medium">Nova Digital Inc</span>
-        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-amber-50 flex items-center justify-center"><span class="text-amber-500 text-xs">⏱</span></div><span class="text-xs font-medium text-amber-500">Waiting</span></div>
-        <span class="text-xs text-gray-500">3 days ago</span><span class="text-xs text-gray-500">1 question sent</span><span class="text-xs text-gray-400 md:text-right">45</span>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 border-b border-gray-50 items-center">
-        <span class="text-sm font-medium">Brightpath Consulting</span>
-        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-rose-50 flex items-center justify-center"><span class="text-rose-500 text-xs">!</span></div><span class="text-xs font-medium text-rose-500">Review</span></div>
-        <span class="text-xs text-gray-500">2 days ago</span><span class="text-xs text-gray-500">3 exceptions</span><span class="text-xs text-gray-400 md:text-right">28</span>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 border-b border-gray-50 items-center">
-        <span class="text-sm font-medium">Lakeside Properties</span>
-        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-emerald-50 flex items-center justify-center"><span class="text-emerald-500 text-xs">✓</span></div><span class="text-xs font-medium text-emerald-500">Current</span></div>
-        <span class="text-xs text-gray-500">Yesterday</span><span class="text-xs text-gray-500">—</span><span class="text-xs text-gray-400 md:text-right">19</span>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 items-center">
-        <span class="text-sm font-medium">Ember Creative Studio</span>
-        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-emerald-50 flex items-center justify-center"><span class="text-emerald-500 text-xs">✓</span></div><span class="text-xs font-medium text-emerald-500">Current</span></div>
-        <span class="text-xs text-gray-500">Yesterday</span><span class="text-xs text-gray-500">—</span><span class="text-xs text-gray-400 md:text-right">52</span>
-      </div>
-
-      <div class="px-6 py-3 bg-gray-50/50 text-xs text-gray-400">
-        Your daily review: ~5 minutes. Weekend work this month: 0 hours.
-      </div>
-    </div>
-    <p class="text-center text-[10px] text-gray-400 mt-3">This is your morning on Zenday. Every morning.</p>
-  </div>
-</section>
-
-<!-- ============ PROBLEM ============ -->
-<section class="py-14 px-5 bg-white">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10">
-      <h2 class="text-2xl md:text-[38px] font-bold tracking-tight leading-tight mb-3 text-balance">You already know the problem.</h2>
-      <p class="text-sm text-gray-500 max-w-xl mx-auto">The accounting talent crisis is real. The month-end grind is unsustainable. And the last generation of AI tools let you down.</p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="p-6 rounded-xl border border-gray-100 bg-gray-50/50">
-        <div class="w-10 h-10 rounded-lg bg-rose-50 flex items-center justify-center mb-4"><span class="text-rose-500 text-xl">⏰</span></div>
-        <h3 class="text-[15px] font-bold mb-2">You work weekends during close.</h3>
-        <p class="text-[13px] text-gray-500 leading-relaxed">87% of accountants work overtime every month-end. The crunch never ends because the process is fundamentally batch-based. You're doing in 5 days what should happen continuously.</p>
-      </div>
-      <div class="p-6 rounded-xl border border-gray-100 bg-gray-50/50">
-        <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center mb-4"><span class="text-amber-500 text-xl">👤</span></div>
-        <h3 class="text-[15px] font-bold mb-2">You can't hire. Nobody's applying.</h3>
-        <p class="text-[13px] text-gray-500 leading-relaxed">300,000+ accountants quit since 2020. CPA candidates down 32%. Average time-to-fill: 73 days. Your offshore team just turned over — again. You're training a replacement for the third time.</p>
-      </div>
-      <div class="p-6 rounded-xl border border-gray-100 bg-gray-50/50">
-        <div class="w-10 h-10 rounded-lg bg-violet-50 flex items-center justify-center mb-4"><span class="text-violet-500 text-xl">⚠</span></div>
-        <h3 class="text-[15px] font-bold mb-2">AI bookkeeping keeps failing.</h3>
-        <p class="text-[13px] text-gray-500 leading-relaxed">ScaleFactor, Bench, Botkeeper — $300M+ in venture capital burned. They used humans behind the curtain and called it AI. You're right to be skeptical. But the technology has changed.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ============ HOW IT WORKS ============ -->
-<section id="how-it-works" class="py-14 px-5 bg-gray-50">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10">
-      <h2 class="text-2xl md:text-[38px] font-bold tracking-tight leading-tight mb-3 text-balance">How it actually works.</h2>
-      <p class="text-sm text-gray-500 max-w-xl mx-auto">Not a feature tour. This is what your first 30 days look like.</p>
-    </div>
-
-    <div class="space-y-4">
-      <div class="bg-white rounded-xl border border-gray-200 p-6 md:p-8">
-        <div class="flex items-start gap-5">
-          <div class="hidden md:flex w-12 h-12 rounded-xl bg-[#5B5FF6]/10 items-center justify-center shrink-0"><span class="text-[#5B5FF6] text-xl">🔗</span></div>
-          <div class="flex-1">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-[10px] font-bold text-[#5B5FF6] tracking-widest uppercase">01</span>
-              <span class="text-[10px] text-gray-400 tracking-wider uppercase">2 minutes</span>
-            </div>
-            <h3 class="text-lg font-bold mb-2">Connect one client's QBO</h3>
-            <p class="text-[13px] text-gray-500 leading-relaxed mb-3">Pick your messiest client. The one that stresses you out. Connect their QuickBooks via Plaid. Zenday pulls their chart of accounts and 3 months of transaction history.</p>
-            <p class="text-[12px] text-gray-400 leading-relaxed italic">Zenday builds a vendor dictionary, learns categorization patterns, and creates an AI brain specific to this client. No two clients share data.</p>
-          </div>
+        <div class="roster-legend">
+          <span><span class="dot-g"></span>4 current</span>
+          <span><span class="dot-y"></span>1 waiting</span>
+          <span><span class="dot-r"></span>1 to review</span>
         </div>
       </div>
 
-      <div class="bg-white rounded-xl border border-gray-200 p-6 md:p-8">
-        <div class="flex items-start gap-5">
-          <div class="hidden md:flex w-12 h-12 rounded-xl bg-[#5B5FF6]/10 items-center justify-center shrink-0"><span class="text-[#5B5FF6] text-xl">🌙</span></div>
-          <div class="flex-1">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-[10px] font-bold text-[#5B5FF6] tracking-widest uppercase">02</span>
-              <span class="text-[10px] text-gray-400 tracking-wider uppercase">While you sleep</span>
-            </div>
-            <h3 class="text-lg font-bold mb-2">Zenday works overnight</h3>
-            <p class="text-[13px] text-gray-500 leading-relaxed mb-3">New bank transactions arrive via Plaid. Zenday categorizes them, matches receipts, flags anomalies, and drafts chase messages for missing documents — all before your morning coffee.</p>
-            <p class="text-[12px] text-gray-400 leading-relaxed italic">Every categorization gets a confidence score. High confidence (95%+) = auto-posted (if you enable it). Low confidence = flagged for your review. The AI knows what it doesn't know.</p>
-          </div>
-        </div>
+      <div class="roster-summary">
+        Last night · 199 transactions coded across 6 clients · 3 need your review · 1 client question sent
       </div>
 
-      <div class="bg-white rounded-xl border border-gray-200 p-6 md:p-8">
-        <div class="flex items-start gap-5">
-          <div class="hidden md:flex w-12 h-12 rounded-xl bg-[#5B5FF6]/10 items-center justify-center shrink-0"><span class="text-[#5B5FF6] text-xl">☀️</span></div>
-          <div class="flex-1">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-[10px] font-bold text-[#5B5FF6] tracking-widest uppercase">03</span>
-              <span class="text-[10px] text-gray-400 tracking-wider uppercase">Every morning</span>
-            </div>
-            <h3 class="text-lg font-bold mb-2">You review in 5 minutes</h3>
-            <p class="text-[13px] text-gray-500 leading-relaxed mb-3">Open Zenday. See the roster. 4 clients green (current). 1 yellow (waiting on client response). 1 red (3 exceptions need your judgment). Handle the red items. Done.</p>
-            <p class="text-[12px] text-gray-400 leading-relaxed italic">One-click approve. One-click override. One-click "ask client." The AI learns from every correction and gets better next time.</p>
-          </div>
-        </div>
+      <div class="roster-cols">
+        <span>Client</span><span>Status</span><span class="c3">Books as of</span><span class="c4">Needs you</span><span style="text-align:right;">Txns</span>
       </div>
 
-      <div class="bg-white rounded-xl border border-gray-200 p-6 md:p-8">
-        <div class="flex items-start gap-5">
-          <div class="hidden md:flex w-12 h-12 rounded-xl bg-[#5B5FF6]/10 items-center justify-center shrink-0"><span class="text-[#5B5FF6] text-xl">📅</span></div>
-          <div class="flex-1">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-[10px] font-bold text-[#5B5FF6] tracking-widest uppercase">04</span>
-              <span class="text-[10px] text-gray-400 tracking-wider uppercase">Day 1 of next month</span>
-            </div>
-            <h3 class="text-lg font-bold mb-2">Month-end is a non-event</h3>
-            <p class="text-[13px] text-gray-500 leading-relaxed mb-3">The books were closed every day this month. On the 1st, Zenday generates the financial package — P&L, balance sheet, cash flow. You review and send to the client. No crunch. No weekend.</p>
-            <p class="text-[12px] text-gray-400 leading-relaxed italic">Your clients think you hired 10 new staff. You didn't. You connected Zenday.</p>
-          </div>
-        </div>
+      <div class="roster-row">
+        <span class="client">Acme Design Co.</span>
+        <span class="status status-current"><span class="dot-g"></span>Current</span>
+        <span class="asof">Yesterday</span><span class="needs">—</span>
+        <span class="txns">34</span>
+      </div>
+      <div class="roster-row">
+        <span class="client">Summit Group</span>
+        <span class="status status-current"><span class="dot-g"></span>Current</span>
+        <span class="asof">Yesterday</span><span class="needs">—</span>
+        <span class="txns">21</span>
+      </div>
+      <div class="roster-row">
+        <span class="client">Nova Digital Inc.</span>
+        <span class="status status-waiting"><span class="dot-y"></span>Waiting</span>
+        <span class="asof">3 days ago</span><span class="needs">Question sent</span>
+        <span class="txns">45</span>
+      </div>
+      <div class="roster-row">
+        <span class="client">Brightpath Consulting</span>
+        <span class="status status-review"><span class="dot-r"></span>Review</span>
+        <span class="asof">2 days ago</span><span class="needs">3 exceptions</span>
+        <span class="txns">28</span>
+      </div>
+      <div class="roster-row">
+        <span class="client">Lakeside Properties</span>
+        <span class="status status-current"><span class="dot-g"></span>Current</span>
+        <span class="asof">Yesterday</span><span class="needs">—</span>
+        <span class="txns">19</span>
+      </div>
+      <div class="roster-row">
+        <span class="client">Ember Creative Studio</span>
+        <span class="status status-current"><span class="dot-g"></span>Current</span>
+        <span class="asof">Yesterday</span><span class="needs">—</span>
+        <span class="txns">52</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ AI ENGINE ============ -->
-<section id="ai-engine" class="py-14 px-5 bg-[#5B5FF6] text-white">
-  <div class="max-w-5xl mx-auto">
-    <div class="text-center mb-8">
-      <h2 class="text-2xl md:text-[38px] font-bold tracking-tight leading-tight mb-2">The AI Close Engine.</h2>
-      <p class="text-white/60 text-sm max-w-lg mx-auto">Not AI features bolted onto practice management. A purpose-built AI that does the bookkeeping work and asks you to approve.</p>
+<!-- ============ FEATURES ============ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="eyebrow">What Zenday does</div>
+    <h2 class="section-h">Your junior accountant, <em>rebuilt as AI.</em></h2>
+    <p class="section-sub">Five things that used to eat your Tuesday. Now they happen overnight, on every client, with full transparency on every decision.</p>
+
+    <!-- Feature 1 -->
+    <div class="feature">
+      <div class="feature-copy">
+        <div class="feature-label"><span class="num">01</span>Overnight bookkeeping</div>
+        <h3>Bank feeds <em>categorized by sunrise.</em></h3>
+        <p class="lede">Zenday pulls new transactions through Plaid or your QuickBooks connection, reads the vendor, matches it against the client's chart of accounts, and posts the entry &mdash; with a confidence score you can see.</p>
+        <ul class="feature-list">
+          <li>Works on every assigned client, every night, automatically</li>
+          <li>Confidence threshold is yours to set &mdash; auto-post above 95%, review below</li>
+          <li>Handles splits, multi-currency, and intercompany transactions</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="viz-label">Last night · Acme Design Co.</div>
+        <div class="viz-row">
+          <div class="v-left"><span class="v-name">Office Depot</span><span class="v-sub">Office Supplies · $2,340.00</span></div>
+          <div class="v-right"><span class="viz-conf viz-conf-high">97%</span><span class="viz-badge viz-badge-auto">Posted</span></div>
+        </div>
+        <div class="viz-row">
+          <div class="v-left"><span class="v-name">DoorDash</span><span class="v-sub">Meals &amp; Entertainment · $87.50</span></div>
+          <div class="v-right"><span class="viz-conf viz-conf-high">94%</span><span class="viz-badge viz-badge-auto">Posted</span></div>
+        </div>
+        <div class="viz-row">
+          <div class="v-left"><span class="v-name">Adobe Creative Cloud</span><span class="v-sub">Software · $59.99</span></div>
+          <div class="v-right"><span class="viz-conf viz-conf-high">99%</span><span class="viz-badge viz-badge-auto">Posted</span></div>
+        </div>
+        <div class="viz-row">
+          <div class="v-left"><span class="v-name">Wire · ACH Transfer</span><span class="v-sub">Unknown · $15,000.00</span></div>
+          <div class="v-right"><span class="viz-conf viz-conf-low">34%</span><span class="viz-badge viz-badge-review">Review</span></div>
+        </div>
+      </div>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-2 mb-10">
-      <button class="tab-btn active flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium bg-white text-[#5B5FF6] shadow-lg" data-tab="categorize">🧠 AI Categorization</button>
-      <button class="tab-btn flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium bg-white/15 text-white/80 border border-white/20" data-tab="confidence">🛡️ Confidence Scoring</button>
-      <button class="tab-btn flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium bg-white/15 text-white/80 border border-white/20" data-tab="chase">💬 Client Chase</button>
-      <button class="tab-btn flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium bg-white/15 text-white/80 border border-white/20" data-tab="close">📊 Close Deliverable</button>
-      <button class="tab-btn flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium bg-white/15 text-white/80 border border-white/20" data-tab="reconcile">🔄 Reconciliation</button>
+    <!-- Feature 2 -->
+    <div class="feature reverse">
+      <div class="feature-copy">
+        <div class="feature-label"><span class="num">02</span>Morning review</div>
+        <h3>Approve what's ready. <em>Handle what isn't.</em></h3>
+        <p class="lede">Open Zenday in the morning. See what the AI did, why it did it, and what it wasn't sure about. Approve, override, or ask the client &mdash; one click each.</p>
+        <ul class="feature-list">
+          <li>Every AI decision shows its reasoning and confidence</li>
+          <li>Bulk approve what's high-confidence, drill into what isn't</li>
+          <li>Typical daily review: five minutes across twenty clients</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="viz-label">Review queue · Brightpath Consulting</div>
+        <div class="viz-row" style="align-items:flex-start;">
+          <div class="v-left"><span class="v-name">Wire · ACH Transfer</span><span class="v-sub">$15,000 · Mar 12</span><span class="v-sub" style="margin-top:4px;color:var(--ink-soft);">AI: Not enough signal to classify. Typical vendor pattern not matched.</span></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px;">
+          <button style="padding:8px 14px;background:var(--accent);color:var(--bg);border:0;border-radius:6px;font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;">Approve</button>
+          <button style="padding:8px 14px;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:6px;font-family:var(--sans);font-size:12px;cursor:pointer;">Re-categorize</button>
+          <button style="padding:8px 14px;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:6px;font-family:var(--sans);font-size:12px;cursor:pointer;">Ask client</button>
+        </div>
+      </div>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8 items-start">
-      <div>
-        <div id="tab-categorize" class="tab-content">
-          <h3 class="text-xl md:text-2xl font-bold mb-3 leading-tight">Categorizes transactions with 90%+ accuracy. Learns from every correction.</h3>
-          <p class="text-white/60 text-[13px] leading-relaxed mb-5">Zenday reads vendor names, infers categories from transaction descriptions, applies your chart of accounts, and handles the long tail of ambiguous transactions. Every override trains the AI for next time.</p>
-          <div class="space-y-2">
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Per-client AI brain — no cross-client data sharing</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Learns vendor patterns: DoorDash → Meals after 3 corrections</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Handles multi-currency, split transactions, intercompany</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Confidence scoring on every categorization (you see the number)</span></div>
-          </div>
+    <!-- Feature 3 -->
+    <div class="feature">
+      <div class="feature-copy">
+        <div class="feature-label"><span class="num">03</span>Learned rules</div>
+        <h3>It learns <em>your firm's way.</em></h3>
+        <p class="lede">Every time you correct the AI, it remembers &mdash; for that client, in that context, with that vendor. Each client gets its own brain. No cross-client data sharing. Ever.</p>
+        <ul class="feature-list">
+          <li>Override rate drops from 10% to under 2% by the third month</li>
+          <li>Per-client rules: one client's "meals" isn't another's</li>
+          <li>Rules are visible and editable &mdash; you stay in control</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="viz-label">Learned rules · Nova Digital Inc.</div>
+        <div class="rule-item">
+          <div class="rule-top"><span class="rule-vendor">DoorDash</span><span class="rule-stat">Confirmed 14×</span></div>
+          <div class="rule-cat">→ <strong>Meals &amp; Entertainment</strong></div>
         </div>
-        <div id="tab-confidence" class="tab-content hidden">
-          <h3 class="text-xl md:text-2xl font-bold mb-3 leading-tight">The AI knows what it doesn't know. That's how you trust it.</h3>
-          <p class="text-white/60 text-[13px] leading-relaxed mb-5">Every transaction gets a confidence score from 0 to 100. Above 95% = auto-posted (if you enable it). Below 95% = goes to your review queue. You decide the threshold. You control the autonomy.</p>
-          <div class="space-y-2">
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Adjustable confidence threshold per client</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Review queue shows AI reasoning for every flagged item</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">One-click approve, override, or ask-client</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Override rate drops from ~10% in month 1 to &lt;2% by month 3</span></div>
-          </div>
+        <div class="rule-item">
+          <div class="rule-top"><span class="rule-vendor">AWS · Amazon Web Services</span><span class="rule-stat">Confirmed 42×</span></div>
+          <div class="rule-cat">→ <strong>Cloud Infrastructure (COGS)</strong></div>
         </div>
-        <div id="tab-chase" class="tab-content hidden">
-          <h3 class="text-xl md:text-2xl font-bold mb-3 leading-tight">Missing receipt? Zenday already asked for it.</h3>
-          <p class="text-white/60 text-[13px] leading-relaxed mb-5">When a document is missing or a question needs answering, the AI drafts a contextual chase message — not a template. You approve with one click. Escalating cadence: day 3, day 7, day 14.</p>
-          <div class="space-y-2">
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Context-aware drafts: "Hi Sarah, missing receipt for $2,340 at Office Depot"</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">One-click approve via email or client portal</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Automatic escalation cadence</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Tracks response status and updates the roster</span></div>
-          </div>
+        <div class="rule-item">
+          <div class="rule-top"><span class="rule-vendor">Upwork</span><span class="rule-stat">Confirmed 7×</span></div>
+          <div class="rule-cat">→ <strong>Contract Labor</strong></div>
         </div>
-        <div id="tab-close" class="tab-content hidden">
-          <h3 class="text-xl md:text-2xl font-bold mb-3 leading-tight">Month-end package generated on day 1. Not day 15.</h3>
-          <p class="text-white/60 text-[13px] leading-relaxed mb-5">Because books are continuously closed, Zenday generates the monthly financial package — P&L, balance sheet, cash flow — on the first of the next month. You review, add notes, and send.</p>
-          <div class="space-y-2">
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">P&L, balance sheet, cash flow auto-generated</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Variance analysis: this month vs. last, flagged changes</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">One-click send to client via portal or email</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Branded deliverable with your firm's logo</span></div>
-          </div>
-        </div>
-        <div id="tab-reconcile" class="tab-content hidden">
-          <h3 class="text-xl md:text-2xl font-bold mb-3 leading-tight">Reconciled to the penny. Every day.</h3>
-          <p class="text-white/60 text-[13px] leading-relaxed mb-5">Zenday matches categorized transactions to bank balances via Plaid. Discrepancies are flagged immediately — not discovered during month-end crunch.</p>
-          <div class="space-y-2">
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Daily reconciliation against real bank balances</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Discrepancies flagged in real time, not at month-end</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Auto-match for clear items, flag for ambiguous ones</span></div>
-            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Reconciliation status visible on the client roster</span></div>
+      </div>
+    </div>
+
+    <!-- Feature 4 -->
+    <div class="feature reverse">
+      <div class="feature-copy">
+        <div class="feature-label"><span class="num">04</span>Client chase</div>
+        <h3>Missing receipts, <em>handled for you.</em></h3>
+        <p class="lede">When a transaction needs a document or a question needs an answer, Zenday drafts a contextual message to the client. You approve with one click. It follows up on day 3, 7, and 14 &mdash; politely.</p>
+        <ul class="feature-list">
+          <li>Messages are drafted specifically &mdash; not templates</li>
+          <li>Sent via email or client portal, your call</li>
+          <li>Tracks response and updates the roster automatically</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="email-mock">
+          <div class="email-from">Draft to: sarah@acmedesign.com · AI-generated</div>
+          <div class="email-subj">Quick question — March 12 receipt</div>
+          <div class="email-body">Hi Sarah,<br/><br/>Quick one for the books — we have a $2,340 charge at Office Depot on March 12 that needs a receipt. Could you upload it to the client portal, or reply with a photo?<br/><br/>Thanks,<br/>Zenday on behalf of your firm</div>
+          <div class="email-actions">
+            <button class="email-btn email-btn-primary">Send</button>
+            <button class="email-btn email-btn-ghost">Edit</button>
+            <button class="email-btn email-btn-ghost">Skip</button>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Review queue preview -->
-      <div class="rounded-xl border border-white/20 bg-white/5 p-5">
-        <div class="text-[10px] uppercase tracking-widest text-white/30 mb-4">Live preview — Review queue</div>
-        <div class="flex items-center justify-between py-2.5 border-b border-white/10">
-          <div class="flex-1">
-            <div class="flex items-center gap-2"><span class="text-[13px] text-white/90 font-medium">Office Depot</span><span class="text-[11px] text-white/40">$2,340.00</span></div>
-            <span class="text-[11px] text-white/40">Office Supplies</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-[11px] font-medium text-emerald-300">97%</span>
-            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300">Auto</span>
-          </div>
+    <!-- Feature 5 -->
+    <div class="feature">
+      <div class="feature-copy">
+        <div class="feature-label"><span class="num">05</span>Reports ready</div>
+        <h3>Monthly package <em>on day one.</em></h3>
+        <p class="lede">Because the books were current all month, the month-end deliverable &mdash; P&amp;L, balance sheet, cash flow &mdash; is waiting for you on the 1st. Add a note, review the variance analysis, send it to the client.</p>
+        <ul class="feature-list">
+          <li>Auto-generated on the first of the month</li>
+          <li>Variance analysis with the biggest month-over-month changes flagged</li>
+          <li>One-click send, branded with your firm's logo</li>
+        </ul>
+      </div>
+      <div class="feature-visual report-viz">
+        <div class="report-top">
+          <div class="report-h">March 2026 · Income Statement</div>
+          <div class="report-date">Ready Apr 1</div>
         </div>
-        <div class="flex items-center justify-between py-2.5 border-b border-white/10">
-          <div class="flex-1">
-            <div class="flex items-center gap-2"><span class="text-[13px] text-white/90 font-medium">DoorDash</span><span class="text-[11px] text-white/40">$87.50</span></div>
-            <span class="text-[11px] text-white/40">Meals & Entertainment</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-[11px] font-medium text-emerald-300">92%</span>
-            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300">Auto</span>
-          </div>
+        <div class="report-row"><span class="rn">Revenue</span><span class="amt">$384,200</span></div>
+        <div class="report-row"><span class="rn">Cost of Goods Sold</span><span class="amt">(118,450)</span></div>
+        <div class="report-row"><span class="rn">Operating Expenses</span><span class="amt">(142,800)</span></div>
+        <div class="report-row tot"><span class="rn">Net Income</span><span class="amt">$122,950</span></div>
+        <div style="margin-top:14px;padding:10px 12px;background:#FDF8EC;border:1px solid #EBD9A8;border-radius:6px;font-size:12px;color:#7A5F2A;font-family:var(--sans);">
+          <strong style="color:#5E4619;">Noted:</strong> OpEx up 18% MoM &mdash; driven by $8.4K in new contractor spend.
         </div>
-        <div class="flex items-center justify-between py-2.5">
-          <div class="flex-1">
-            <div class="flex items-center gap-2"><span class="text-[13px] text-white/90 font-medium">Unknown Transfer</span><span class="text-[11px] text-white/40">$15,000.00</span></div>
-            <span class="text-[11px] text-white/40">—</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-[11px] font-medium text-rose-300">34%</span>
-            <span class="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300">Review</span>
-          </div>
-        </div>
-        <p class="text-[10px] text-white/25 mt-3">2 transactions auto-posted. 1 needs your 10-second review.</p>
       </div>
     </div>
   </div>
 </section>
-<!-- ============ TRUST ============ -->
-<section class="py-14 px-5 bg-white">
-  <div class="max-w-4xl mx-auto">
-    <div class="max-w-2xl mx-auto text-center mb-12">
-      <div class="w-16 h-16 rounded-full bg-[#5B5FF6]/10 flex items-center justify-center mx-auto mb-4">
-        <span class="text-xl font-bold text-[#5B5FF6]">V</span>
-      </div>
-      <h2 class="text-2xl md:text-[32px] font-bold tracking-tight leading-tight mb-4">Built by a firm owner who was tired of the same grind.</h2>
-      <p class="text-sm text-gray-500 leading-relaxed mb-4">
-        "I run my own CPA firm. I've spent 15 years doing bookkeeping, close, and advisory.
-        I built Zenday because I was tired of working weekends on month-end close,
-        tired of training offshore teams that quit, and tired of tools that promise AI
-        but deliver spreadsheets. Zenday runs my own firm's books. If it breaks, I'm the first to know."
-      </p>
-      <p class="text-xs text-gray-400">— Vatsal, Founder & CPA Firm Owner</p>
-    </div>
 
-    <div class="rounded-xl border border-gray-200 bg-gray-50/50 p-8 mb-8">
-      <h3 class="text-lg font-bold text-center mb-2">After Bench and Botkeeper, you're right to be skeptical.</h3>
-      <p class="text-sm text-gray-500 text-center max-w-xl mx-auto mb-6">
-        $300M+ in venture capital burned on AI bookkeeping companies that used humans behind the curtain.
-        Zenday is different — and we can prove it, because every AI action is visible.
-      </p>
-      <div class="grid md:grid-cols-3 gap-5">
-        <div class="text-center p-4">
-          <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center mx-auto mb-3"><span class="text-emerald-600 text-lg">👁️</span></div>
-          <h4 class="text-[13px] font-bold mb-1">Every action visible</h4>
-          <p class="text-[11px] text-gray-500 leading-relaxed">See exactly what the AI did, why it chose that category, and what confidence score it assigned. No black box.</p>
-        </div>
-        <div class="text-center p-4">
-          <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mx-auto mb-3"><span class="text-blue-600 text-lg">↩️</span></div>
-          <h4 class="text-[13px] font-bold mb-1">Every action reversible</h4>
-          <p class="text-[11px] text-gray-500 leading-relaxed">One-click undo on any AI categorization. Full audit trail. Nothing is permanent until you say so.</p>
-        </div>
-        <div class="text-center p-4">
-          <div class="w-10 h-10 rounded-lg bg-violet-50 flex items-center justify-center mx-auto mb-3"><span class="text-violet-600 text-lg">🛡️</span></div>
-          <h4 class="text-[13px] font-bold mb-1">No humans behind the curtain</h4>
-          <p class="text-[11px] text-gray-500 leading-relaxed">Pure AI. No offshore team pretending to be a bot. When Zenday categorizes a transaction, it's the AI — not a person in Manila.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="rounded-xl border-2 border-[#5B5FF6]/20 bg-[#5B5FF6]/5 p-8 text-center">
-      <h3 class="text-lg font-bold mb-2">Try it on one client. Keep everything else.</h3>
-      <p class="text-sm text-gray-500 max-w-lg mx-auto mb-4">
-        You don't have to switch from Karbon, Double, or your offshore team. Pick one client.
-        Connect their QBO. Zenday runs alongside your existing setup for 30 days.
-        Compare the results yourself.
-      </p>
-      <a href="#pricing" class="inline-flex px-6 py-2.5 rounded-full bg-[#5B5FF6] hover:bg-[#4A4EE5] text-white text-sm font-semibold shadow-md shadow-[#5B5FF6]/20">Start with one client — free</a>
+<!-- ============ WORKS WITH ============ -->
+<section class="works">
+  <div class="container">
+    <h3>Works with the tools you already use.</h3>
+    <p>Connect your clients' QuickBooks or Xero in under two minutes. Zenday reads the ledger, posts categorized entries, and stays in sync.</p>
+    <div class="logos">
+      <div class="int">QuickBooks</div>
+      <div class="int">Xero</div>
+      <div class="int">Plaid</div>
+      <div class="int">Gmail</div>
+      <div class="int">Outlook</div>
     </div>
   </div>
 </section>
 
-<!-- ============ PRICING ============ -->
-<section id="pricing" class="py-14 px-5 bg-gray-50">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10">
-      <h2 class="text-2xl md:text-[38px] font-bold tracking-tight mb-3">$15 per client per month.</h2>
-      <p class="text-sm text-gray-500 max-w-lg mx-auto">Your first client is free for 30 days. No credit card required. That's $15 to never work a weekend on that client's books again.</p>
-    </div>
+<!-- ============ FOUNDER ============ -->
+<section class="founder">
+  <div class="founder-inner">
+    <div class="eyebrow">From the founder</div>
+    <h2 class="section-h" style="margin-bottom:48px;">Built inside a <em>working CPA firm.</em></h2>
 
-    <div class="grid md:grid-cols-2 gap-6 mb-10">
-      <div class="p-6 rounded-2xl border-2 border-[#5B5FF6] bg-white shadow-lg shadow-[#5B5FF6]/10">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-sm font-bold">Zenday Continuous Close</h3>
-          <div><span class="text-3xl font-bold">$15</span><span class="text-sm text-gray-400">/client/mo</span></div>
-        </div>
-        <p class="text-[11px] text-gray-400 mb-5">Everything your firm needs to keep one client's books continuously closed.</p>
-        <a href="#" class="block w-full text-center py-2.5 rounded-full bg-[#5B5FF6] hover:bg-[#4A4EE5] text-white text-[13px] font-medium mb-5">Start Free — First Client on Us</a>
-        <div class="space-y-2.5">
-          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">AI transaction categorization with confidence scoring</span></div>
-          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Per-client AI brain that learns from your corrections</span></div>
-          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Automated client chase for missing documents</span></div>
-          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Daily bank reconciliation via Plaid</span></div>
-          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Multi-client roster dashboard</span></div>
-          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Monthly financial package generation (P&L, BS, CF)</span></div>
-          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Variance analysis and anomaly detection</span></div>
-          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Full audit trail — every AI action logged</span></div>
-          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">QuickBooks Online + Xero integration</span></div>
-          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Unlimited team members</span></div>
-        </div>
-      </div>
+    <div class="founder-letter">
+      <p>Zenday runs my firm's books. Every night. If something breaks, I'm the first one who knows &mdash; because I'm the one closing the books the next morning.</p>
 
-      <div class="p-6 rounded-2xl border border-gray-200 bg-white">
-        <h3 class="text-sm font-bold mb-4">What you pay now vs. Zenday</h3>
-        <p class="text-[11px] text-gray-400 mb-5">For a firm with 30 bookkeeping clients:</p>
+      <p>The work of bookkeeping is the easiest work to give to an AI. Categorization. Reconciliation. Chasing missing documents. These are pattern-matching tasks that a good model handles overnight, on every client, with full transparency on every decision.</p>
 
-        <div class="mb-6">
-          <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-3">Your current monthly cost</div>
-          <div class="space-y-2">
-            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Close management tool</span><span class="text-[12px] font-medium">$300</span></div>
-            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Offshore bookkeeper #1</span><span class="text-[12px] font-medium">$1,500</span></div>
-            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Offshore bookkeeper #2</span><span class="text-[12px] font-medium">$1,500</span></div>
-            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Weekend hours (your time)</span><span class="text-[12px] font-medium">20+ hrs</span></div>
-            <div class="flex items-center justify-between pt-2 border-t border-gray-200">
-              <span class="text-[12px] font-bold">Total</span>
-              <span class="text-[12px] font-bold text-rose-600">$3,300/mo + weekends</span>
-            </div>
-          </div>
-        </div>
+      <p>What I couldn't give up was judgment. So Zenday doesn't pretend to have it. It shows me what it did, flags what it wasn't sure about, and waits for me to weigh in on the rest. The same rhythm I had with a junior accountant &mdash; except this one doesn't sleep and remembers every correction I've ever made.</p>
 
+      <p>Every feature ships because it made my own Tuesday morning better. If it doesn't, it doesn't ship.</p>
+
+      <div class="sig">
+        <div class="sig-avatar">V</div>
         <div>
-          <div class="text-[10px] font-bold text-[#5B5FF6] uppercase tracking-wider mb-3">With Zenday</div>
-          <div class="space-y-2">
-            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Zenday (30 clients × $15)</span><span class="text-[12px] font-medium">$450</span></div>
-            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Offshore team</span><span class="text-[12px] font-medium text-gray-400 line-through">$3,000</span></div>
-            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Weekend hours</span><span class="text-[12px] font-medium text-emerald-600">0 hours</span></div>
-            <div class="flex items-center justify-between pt-2 border-t border-gray-200">
-              <span class="text-[12px] font-bold">Total</span>
-              <span class="text-[12px] font-bold text-emerald-600">$450/mo + zero weekends</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-5 p-3 rounded-lg bg-emerald-50 border border-emerald-100">
-          <p class="text-[12px] text-emerald-700 font-medium text-center">Save $2,850/month. Eliminate weekend work entirely.</p>
+          <div class="sig-name">Vatsal</div>
+          <div class="sig-role">Founder · CPA</div>
         </div>
       </div>
     </div>
-
-    <div class="grid md:grid-cols-3 gap-6 pt-6 border-t border-gray-200">
-      <div class="text-center"><h4 class="text-[11px] font-bold mb-1">No Credit Card Required</h4><p class="text-[10px] text-gray-400 leading-relaxed">Start your free trial with no payment details.</p></div>
-      <div class="text-center"><h4 class="text-[11px] font-bold mb-1">Cancel Anytime</h4><p class="text-[10px] text-gray-400 leading-relaxed">No contracts. Remove a client whenever you want.</p></div>
-      <div class="text-center"><h4 class="text-[11px] font-bold mb-1">Keep Your Existing Tools</h4><p class="text-[10px] text-gray-400 leading-relaxed">Zenday runs alongside Karbon, Double, and Gmail.</p></div>
-    </div>
   </div>
 </section>
 
-<!-- ============ DEMO ============ -->
-<section id="demo" class="py-14 px-5 bg-white">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-8">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#5B5FF6]/10 border border-[#5B5FF6]/20 mb-3">
-        <span class="text-[#5B5FF6]">▶</span>
-        <span class="text-[11px] font-semibold text-[#5B5FF6]">5-Minute Demo</span>
+<!-- ============ MATH ============ -->
+<section class="section section-dark" id="pricing">
+  <div class="container">
+    <div class="eyebrow">Pricing</div>
+    <h2 class="section-h">Fifteen dollars <em>a client, a month.</em></h2>
+    <p class="section-sub">One price. Every feature. No seat counts, no transaction limits, no setup fees.</p>
+
+    <div class="math-body">
+      <p class="math-line">A firm with <strong>30 clients</strong> pays <strong>$450</strong> a month.</p>
+      <div class="math-divider"></div>
+      <p class="math-line">Less than an hour of senior-accountant time.</p>
+      <div class="math-divider"></div>
+      <p class="math-line">All 30 clients' books, <strong>current every morning.</strong></p>
+      <div class="math-divider"></div>
+      <p class="math-line" style="font-style:italic;">The first client is <strong>free for 30 days</strong>.</p>
+
+      <div style="margin-top:60px;">
+        <a href="#start" class="btn-primary" style="background:var(--bg);color:var(--ink);">Start with one client free →</a>
       </div>
-      <h2 class="text-2xl md:text-[38px] font-bold tracking-tight text-balance">See what your morning looks like on Zenday.</h2>
-      <p class="text-sm text-gray-500 mt-2 max-w-lg mx-auto">A real walkthrough of bank feed automation, AI categorization, close management, and financial reporting.</p>
-    </div>
-    <div class="rounded-xl overflow-hidden border border-gray-200 shadow-xl shadow-[#5B5FF6]/5">
-      <iframe src="https://clueso.site/embed/beho7uz3vte8xsno?autoplay=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-full aspect-video border-0" title="zenday Product Demo"></iframe>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
-      <div class="text-center p-3 rounded-lg bg-gray-50 border border-gray-100"><span class="text-[11px] font-bold text-[#5B5FF6]">0:00</span><p class="text-[11px] text-gray-500 mt-0.5">Bank Feed Setup</p></div>
-      <div class="text-center p-3 rounded-lg bg-gray-50 border border-gray-100"><span class="text-[11px] font-bold text-[#5B5FF6]">1:30</span><p class="text-[11px] text-gray-500 mt-0.5">AI Categorization</p></div>
-      <div class="text-center p-3 rounded-lg bg-gray-50 border border-gray-100"><span class="text-[11px] font-bold text-[#5B5FF6]">3:00</span><p class="text-[11px] text-gray-500 mt-0.5">Close Dashboard</p></div>
-      <div class="text-center p-3 rounded-lg bg-gray-50 border border-gray-100"><span class="text-[11px] font-bold text-[#5B5FF6]">4:00</span><p class="text-[11px] text-gray-500 mt-0.5">Financial Reports</p></div>
-    </div>
-    <div class="text-center mt-8">
-      <a href="#pricing" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#5B5FF6] hover:bg-[#4A4EE5] text-white text-sm font-semibold shadow-md shadow-[#5B5FF6]/20">Ready? Try your first client free</a>
-    </div>
-  </div>
-</section>
-<!-- ============ FAQ ============ -->
-<section id="faq" class="py-14 px-5 bg-gray-50">
-  <div class="max-w-2xl mx-auto">
-    <h2 class="text-2xl md:text-[38px] font-bold tracking-tight text-center mb-8 text-balance">Questions firm owners actually ask.</h2>
-    <div class="space-y-2">
-      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
-        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[13px] font-medium pr-4">How is Zenday different from Keeper/Double, Client Hub, or Karbon?</span>
-          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">Those are tools where your team does the work. Zenday is an AI that does the work and asks your team to approve. You don't use Zenday — you oversee it, the same way you'd oversee a junior accountant. The difference: this junior works 24/7, never quits, and gets better every month.</div>
-      </details>
-
-      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
-        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[13px] font-medium pr-4">Is this actually AI or are there humans behind the curtain?</span>
-          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">Pure AI. No offshore team pretending to be a bot. When Zenday categorizes a transaction, it's the AI — powered by Claude. Every action is logged with a confidence score and full reasoning. We built Zenday specifically because we were tired of companies like Botkeeper and Bench disguising human labor as automation.</div>
-      </details>
-
-      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
-        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[13px] font-medium pr-4">What happens when the AI gets something wrong?</span>
-          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">Every categorization has a confidence score. Low-confidence items go to your review queue — they're never auto-posted without your approval. When you override the AI, it learns. DoorDash miscategorized once? You correct it. It never makes the same mistake again. Override rates typically drop from ~10% in month 1 to under 2% by month 3.</div>
-      </details>
-
-      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
-        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[13px] font-medium pr-4">Do I have to switch from Karbon or Double?</span>
-          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">No. Zenday runs alongside your existing tools. Keep Karbon for task management. Keep Double for whatever you use it for. Keep Gmail. Zenday only needs a connection to your client's QuickBooks or Xero. It doesn't replace your practice management — it replaces the manual bookkeeping work.</div>
-      </details>
-
-      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
-        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[13px] font-medium pr-4">What integrations does Zenday support?</span>
-          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">QuickBooks Online and Xero for the ledger. Plaid for direct bank feeds (faster than QBO's built-in bank feed). Email integration for client communication. More integrations are coming based on firm requests.</div>
-      </details>
-
-      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
-        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[13px] font-medium pr-4">How does per-client pricing work?</span>
-          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">$15 per client per month. You only pay for clients actively managed by Zenday. Add or remove clients anytime. Your first client is free for 30 days — no credit card required. A firm with 30 clients pays $450/month, which typically replaces $3,000+ in offshore costs plus weekend work.</div>
-      </details>
-
-      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
-        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[13px] font-medium pr-4">Is my clients' data safe?</span>
-          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">Yes. Enterprise-grade encryption in transit and at rest. Each client gets an isolated AI brain — no data is shared across clients. Full audit trail on every action. SOC 2 compliance in progress. Your clients' financial data is treated with the same care you'd expect from your own firm.</div>
-      </details>
-
-      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
-        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[13px] font-medium pr-4">How long does it take to set up?</span>
-          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">About 2 minutes per client. Connect QuickBooks via OAuth, select the client, and Zenday starts working. It pulls 3 months of transaction history, builds vendor rules, and begins processing new transactions overnight. By tomorrow morning, you'll see your first AI-categorized review queue.</div>
-      </details>
-
-      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
-        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
-          <span class="text-[13px] font-medium pr-4">What if Zenday shuts down like Bench or Botkeeper?</span>
-          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
-        </summary>
-        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">Your data lives in your QuickBooks/Xero — not in Zenday. We categorize and post transactions to YOUR ledger. If Zenday disappeared tomorrow, your books are intact in QBO/Xero exactly as they were. Nothing is locked in our platform. Additionally, Zenday is built by a firm owner who uses it daily for their own firm — this isn't a VC-funded experiment, it's a tool the founder depends on.</div>
-      </details>
     </div>
   </div>
 </section>
 
-<!-- ============ FINAL CTA ============ -->
-<section class="py-14 px-5 bg-[#5B5FF6] text-white">
-  <div class="max-w-3xl mx-auto text-center">
-    <h2 class="text-2xl md:text-[42px] font-bold tracking-tight leading-tight mb-3 text-balance">What if you never worked a weekend on close again?</h2>
-    <p class="text-white/60 text-sm mb-7 max-w-lg mx-auto leading-relaxed">Connect one client. See your books current tomorrow morning. Compare to your existing process. Decide for yourself.</p>
-    <div class="flex items-center justify-center gap-3">
-      <a href="#pricing" class="px-6 py-2.5 rounded-full bg-white hover:bg-gray-50 text-[#5B5FF6] text-sm font-bold shadow-lg">Try Your First Client Free</a>
-      <a href="#demo" class="px-6 py-2.5 rounded-full border border-white/30 hover:border-white/50 text-sm font-medium text-white/80">Watch Demo</a>
-    </div>
-    <p class="text-white/30 text-xs mt-4">$15/client/month after trial. No credit card. Cancel anytime.</p>
+<!-- ============ START ============ -->
+<section class="start" id="start">
+  <div class="container">
+    <div class="eyebrow">Start</div>
+    <h2>Try one client.<br/>See tomorrow morning.</h2>
+    <p>Connect a QuickBooks or Xero client. Wait one night. Open Zenday with your coffee.</p>
+
+    <form class="start-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText = '✓ Check your inbox';">
+      <input type="email" placeholder="your@firm.com" required />
+      <button type="submit">Start →</button>
+    </form>
+    <p class="start-fine">30 days · one client · no credit card · no sales call</p>
   </div>
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer class="py-6 px-5 border-t border-gray-100 bg-white">
-  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-2">
-      <div class="w-5 h-5 rounded bg-[#5B5FF6] flex items-center justify-center"><span class="text-[9px] font-bold text-white">Z</span></div>
-      <span class="text-xs font-bold">zenday</span>
-      <span class="text-[10px] text-gray-400 ml-2">AI-powered continuous close for accounting firms</span>
-    </div>
-    <div class="flex items-center gap-6 text-[10px] text-gray-400">
-      <a href="#" class="hover:text-gray-600">Privacy</a>
-      <a href="#" class="hover:text-gray-600">Terms</a>
-      <a href="#" class="hover:text-gray-600">Security</a>
-      <span>2026 Zenday. All rights reserved.</span>
-    </div>
-  </div>
+<footer>
+  <div class="foot-logo"><span style="display:inline-block;width:5px;height:5px;background:var(--accent);border-radius:50%;margin-right:8px;vertical-align:middle;"></span>zenday</div>
+  <div class="foot-tag">The AI that closes your clients' books.</div>
+  <div>© 2026 zenday · <a href="#">Security</a> · <a href="#">Privacy</a> · <a href="#">Terms</a></div>
 </footer>
-
-<script>
-  // AI Engine tab switching
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const tabContents = document.querySelectorAll('.tab-content');
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
-      tabBtns.forEach(b => {
-        b.classList.remove('bg-white', 'text-[#5B5FF6]', 'shadow-lg');
-        b.classList.add('bg-white/15', 'text-white/80', 'border', 'border-white/20');
-      });
-      btn.classList.add('bg-white', 'text-[#5B5FF6]', 'shadow-lg');
-      btn.classList.remove('bg-white/15', 'text-white/80', 'border', 'border-white/20');
-      tabContents.forEach(c => {
-        if (c.id === 'tab-' + target) c.classList.remove('hidden');
-        else c.classList.add('hidden');
-      });
-    });
-  });
-</script>
 
 </body>
 </html>
