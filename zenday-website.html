@@ -3,226 +3,173 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Zenday — The AI that closes your clients' books.</title>
-<meta name="description" content="Zenday's AI categorizes transactions, reconciles accounts, and chases missing documents the moment they happen. Your books stay current. For accounting firms on QuickBooks and Xero." />
+<title>Zenday — The firm you actually want to run.</title>
+<meta name="description" content="Zenday's AI handles your clients' bookkeeping as it happens. Your team does the work only humans can do: advisory, judgment, growth. For accounting firms on QuickBooks and Xero." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root {
     --bg: #FBF9F4;
-    --bg-alt: #F4F0E4;
-    --bg-dark: #1A1A1A;
-    --ink: #1A1A1A;
-    --ink-soft: #525252;
+    --bg-2: #F3EEDE;
+    --bg-dark: #151412;
+    --ink: #17160F;
+    --ink-soft: #524F47;
     --ink-faint: #8A8680;
-    --line: #E8E1D0;
-    --line-soft: #EFEBDE;
+    --line: #E6DFCE;
+    --line-2: #EDE7D5;
     --accent: #2D4A3A;
-    --accent-hover: #3D5D48;
+    --accent-2: #3D5D48;
+    --live: #E85A4F;
     --green: #7A9B6E;
     --amber: #C89A4A;
-    --coral: #C27A6E;
     --serif: "Fraunces", Georgia, serif;
     --sans: "Inter", -apple-system, sans-serif;
     --mono: "JetBrains Mono", monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  ::selection { background: var(--accent); color: var(--bg); }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
 
-  .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
-  .narrow { max-width: 720px; margin: 0 auto; padding: 0 28px; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+  .wrap-tight { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 720px) { .wrap, .wrap-tight { padding: 0 22px; } }
 
   /* ====== NAV ====== */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(251,249,244,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-  .nav-in { max-width: 1180px; margin: 0 auto; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; }
-  .logo { font-family: var(--serif); font-weight: 500; font-size: 20px; letter-spacing: -0.01em; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-  .logo-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
-  .nav-links { display: flex; gap: 28px; }
-  .nav-links a { font-size: 14px; color: var(--ink-soft); text-decoration: none; }
-  .nav-links a:hover { color: var(--ink); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(251,249,244,0.82); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav-in { max-width: 1280px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: var(--serif); font-weight: 500; font-size: 22px; letter-spacing: -0.015em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .logo-mark { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
+  .nav-mid { display: flex; gap: 32px; }
+  .nav-mid a { font-size: 14px; color: var(--ink-soft); text-decoration: none; transition: color 0.2s; }
+  .nav-mid a:hover { color: var(--ink); }
   .nav-right { display: flex; align-items: center; gap: 16px; }
-  .nav-cta { font-size: 14px; font-weight: 500; padding: 8px 16px; background: var(--ink); color: var(--bg); border-radius: 6px; text-decoration: none; }
+  .nav-cta { font-size: 14px; font-weight: 500; padding: 9px 18px; background: var(--ink); color: var(--bg); border-radius: 6px; text-decoration: none; transition: background 0.2s; }
   .nav-cta:hover { background: var(--accent); }
-  @media (max-width: 720px) { .nav-links { display: none; } }
+  @media (max-width: 820px) { .nav-mid { display: none; } }
 
-  /* ====== HERO ====== */
-  .hero { padding: 160px 0 80px; text-align: center; }
-  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 1px solid var(--line); background: var(--bg-alt); border-radius: 100px; font-size: 12px; font-family: var(--mono); color: var(--ink-soft); margin-bottom: 28px; }
-  .hero-eyebrow .pulse { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
-  h1.hero-h { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 7.5vw, 88px); line-height: 0.98; letter-spacing: -0.035em; margin-bottom: 28px; font-variation-settings: "SOFT" 50; }
-  h1.hero-h em { font-style: italic; color: var(--accent); font-variation-settings: "SOFT" 80, "WONK" 1; }
-  .hero-lede { font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 600px; margin: 0 auto 40px; }
-  .cta-group { display: flex; gap: 14px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  /* ====== HERO — asymmetric, magazine ====== */
+  .hero { padding: 140px 0 60px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 72px; align-items: center; }
+  @media (max-width: 1000px) { .hero-grid { grid-template-columns: 1fr; gap: 56px; } }
+
+  .hero-eye { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px; border: 1px solid var(--line); background: var(--bg-2); border-radius: 100px; font-size: 12px; font-family: var(--mono); color: var(--ink-soft); margin-bottom: 36px; letter-spacing: -0.01em; }
+  .hero-eye .pulse { width: 7px; height: 7px; background: var(--live); border-radius: 50%; animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.88); } }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 8.5vw, 112px);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    font-variation-settings: "SOFT" 30, "opsz" 144;
+    margin-bottom: 32px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); font-variation-settings: "SOFT" 100, "opsz" 144, "WONK" 1; }
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin-bottom: 40px;
+    letter-spacing: -0.015em;
+  }
+  .hero-cta { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
   .btn-primary { background: var(--accent); color: var(--bg); padding: 14px 26px; border-radius: 8px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
-  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
-  .btn-secondary { color: var(--ink); padding: 14px 20px; font-size: 15px; font-weight: 500; text-decoration: none; }
-  .btn-secondary:hover { color: var(--accent); }
-  .hero-note { margin-top: 20px; font-size: 13px; color: var(--ink-faint); font-family: var(--mono); }
+  .btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); }
+  .btn-text { font-size: 15px; font-weight: 500; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: border-color 0.2s; }
+  .btn-text:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-meta { margin-top: 28px; font-family: var(--mono); font-size: 12px; color: var(--ink-faint); letter-spacing: -0.01em; }
 
-  /* ====== PRODUCT SCREEN ====== */
-  .product { padding: 40px 0 80px; }
-  .frame { max-width: 1100px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 1px 0 rgba(26,26,26,0.02), 0 50px 100px -40px rgba(26,26,26,0.18); }
-  .frame-chrome { display: flex; align-items: center; gap: 8px; padding: 12px 18px; border-bottom: 1px solid var(--line); background: #FDFCF8; }
-  .chrome-dots { display: flex; gap: 6px; }
-  .chrome-dots span { width: 11px; height: 11px; border-radius: 50%; background: #E8E1D0; }
-  .chrome-url { flex: 1; text-align: center; font-size: 12px; color: var(--ink-faint); font-family: var(--mono); }
+  /* ====== HERO PRODUCT PANEL — the live feed ====== */
+  .live-panel { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 0 rgba(23,22,15,0.02), 0 40px 80px -40px rgba(23,22,15,0.2); }
+  .live-head { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; border-bottom: 1px solid var(--line); background: #FDFCF8; }
+  .live-head-left { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+  .live-dot { width: 7px; height: 7px; background: var(--live); border-radius: 50%; animation: pulse 1.6s ease-in-out infinite; }
+  .live-stats { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: -0.01em; }
 
-  .roster-head { padding: 26px 32px 20px; display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 1px solid var(--line); gap: 20px; }
-  .roster-title { font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: -0.02em; }
-  .roster-sub { font-size: 13px; color: var(--ink-faint); margin-top: 2px; }
-  .roster-legend { display: flex; gap: 18px; font-size: 12px; color: var(--ink-soft); font-family: var(--mono); white-space: nowrap; }
-  .roster-legend span { display: flex; align-items: center; gap: 6px; }
-  .dot-g { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
-  .dot-y { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); }
-  .dot-r { width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
+  .live-body { padding: 8px 0; max-height: 400px; overflow: hidden; }
+  .live-row { display: grid; grid-template-columns: 80px 1fr auto; gap: 16px; padding: 12px 22px; align-items: center; border-bottom: 1px solid var(--line-2); animation: slideIn 0.5s ease-out; }
+  .live-row:last-child { border-bottom: none; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .live-time { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+  .live-desc .vendor { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .live-desc .cat { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+  .live-amount { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+  .live-badge { font-family: var(--mono); font-size: 10px; padding: 3px 7px; border-radius: 4px; letter-spacing: 0.02em; text-transform: uppercase; margin-left: 10px; }
+  .live-badge.posted { background: #E8F0E2; color: #4A6B3F; }
+  .live-badge.review { background: #F7E4DF; color: #A34F3F; }
 
-  .roster-summary { padding: 12px 32px; background: #F7F3E8; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); font-family: var(--mono); letter-spacing: -0.01em; }
+  .live-footer { padding: 14px 22px; background: #FDFCF8; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--ink-faint); display: flex; justify-content: space-between; }
+  .live-footer strong { color: var(--ink); font-weight: 500; }
 
-  .roster-cols { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.5fr 0.6fr; gap: 16px; padding: 12px 32px; font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--line); }
-  .roster-row { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.5fr 0.6fr; gap: 16px; padding: 16px 32px; border-bottom: 1px solid var(--line-soft); font-size: 14px; align-items: center; transition: background 0.2s; }
-  .roster-row:hover { background: #FDFCF8; }
-  .roster-row:last-child { border-bottom: none; }
-  .roster-row .client { font-weight: 500; }
-  .roster-row .status { display: flex; align-items: center; gap: 8px; font-size: 13px; }
-  .roster-row .asof, .roster-row .needs { font-size: 13px; color: var(--ink-soft); }
-  .roster-row .txns { text-align: right; font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
-  .status-current { color: #5C7A52; }
-  .status-waiting { color: #A07A3E; }
-  .status-review { color: #9B5E52; }
+  /* ====== STATS BAND ====== */
+  .stats { padding: 80px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-2); }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; }
+  @media (max-width: 820px) { .stats-grid { grid-template-columns: 1fr 1fr; gap: 36px; } }
+  .stat { }
+  .stat-num { font-family: var(--serif); font-size: clamp(44px, 5vw, 68px); font-weight: 400; letter-spacing: -0.03em; line-height: 1; font-variation-settings: "opsz" 144; margin-bottom: 8px; }
+  .stat-num em { font-style: italic; color: var(--accent); }
+  .stat-label { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); letter-spacing: 0.02em; line-height: 1.5; }
 
-  @media (max-width: 720px) {
-    .roster-cols, .roster-row { grid-template-columns: 1.5fr 1fr 0.8fr; padding: 12px 18px; }
-    .roster-cols .c3, .roster-cols .c4, .roster-row .asof, .roster-row .needs { display: none; }
-    .roster-head { flex-direction: column; padding: 18px; }
-    .roster-summary { padding: 10px 18px; font-size: 11px; }
-  }
+  /* ====== SECTION HEADERS (general) ====== */
+  .section { padding: 140px 0; }
+  .section-eye { font-family: var(--mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 28px; display: inline-block; }
+  .section-h { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 6vw, 76px); line-height: 1; letter-spacing: -0.035em; max-width: 900px; font-variation-settings: "opsz" 144; }
+  .section-h em { font-style: italic; color: var(--accent); font-variation-settings: "SOFT" 100, "opsz" 144, "WONK" 1; }
 
-  /* ====== SECTION BASE ====== */
-  .section { padding: 120px 0; }
-  .section-dark { background: var(--bg-dark); color: var(--bg); }
-  .section-alt { background: var(--bg-alt); }
-  .eyebrow { text-align: center; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 24px; }
-  .section-dark .eyebrow { color: rgba(251,249,244,0.5); }
-  .section-h { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 5.5vw, 60px); line-height: 1.02; letter-spacing: -0.03em; text-align: center; max-width: 760px; margin: 0 auto 24px; }
-  .section-h em { font-style: italic; color: var(--accent); font-variation-settings: "SOFT" 80; }
-  .section-dark .section-h em { color: #B8CBB2; }
-  .section-sub { text-align: center; max-width: 560px; margin: 0 auto 60px; font-size: 17px; color: var(--ink-soft); line-height: 1.55; }
-  .section-dark .section-sub { color: rgba(251,249,244,0.7); }
+  /* ====== DAY IN THE LIFE ====== */
+  .day { background: var(--bg); }
+  .day-head { max-width: 780px; margin-bottom: 72px; }
+  .day-intro { font-family: var(--serif); font-size: 19px; color: var(--ink-soft); line-height: 1.55; margin-top: 24px; max-width: 620px; letter-spacing: -0.01em; }
+  .timeline { max-width: 860px; position: relative; padding-left: 60px; }
+  .timeline::before { content: ""; position: absolute; left: 18px; top: 20px; bottom: 20px; width: 1px; background: var(--line); }
+  .tl-item { position: relative; padding: 28px 0; border-bottom: 1px solid var(--line-2); }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-item::before { content: ""; position: absolute; left: -50px; top: 34px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+  .tl-item.live::before { background: var(--live); border-color: var(--live); animation: pulse 1.6s ease-in-out infinite; }
+  .tl-time { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); letter-spacing: -0.01em; margin-bottom: 8px; }
+  .tl-what { font-family: var(--serif); font-size: 22px; line-height: 1.35; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 8px; }
+  .tl-what strong { font-weight: 500; color: var(--accent); }
+  .tl-note { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+  .tl-snippet { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; padding: 6px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
 
-  /* ====== FEATURE ROWS ====== */
-  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; padding: 80px 0; border-top: 1px solid var(--line); }
-  .feature:first-of-type { border-top: none; padding-top: 20px; }
-  .feature.reverse .feature-copy { order: 2; }
-  .feature-label { font-family: var(--mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-  .feature-label .num { background: var(--accent); color: var(--bg); padding: 2px 8px; border-radius: 3px; font-size: 10px; font-weight: 600; }
-  .feature h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.5vw, 40px); line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 20px; }
-  .feature h3 em { font-style: italic; color: var(--accent); }
-  .feature p.lede { font-size: 17px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 28px; }
-  .feature-list { list-style: none; }
-  .feature-list li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; font-size: 15px; color: var(--ink); border-bottom: 1px solid var(--line-soft); }
-  .feature-list li:last-child { border-bottom: none; }
-  .feature-list li::before { content: "→"; color: var(--accent); font-weight: 500; flex-shrink: 0; }
+  /* ====== FEATURES ====== */
+  .features { background: var(--bg-2); border-top: 1px solid var(--line); }
+  .features-head { text-align: left; max-width: 780px; margin-bottom: 80px; }
+  .features-intro { font-family: var(--serif); font-size: 19px; color: var(--ink-soft); line-height: 1.55; margin-top: 24px; max-width: 640px; letter-spacing: -0.01em; }
 
-  .feature-visual { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px; box-shadow: 0 30px 60px -30px rgba(26,26,26,0.12); }
-  @media (max-width: 820px) {
-    .feature { grid-template-columns: 1fr; gap: 40px; padding: 60px 0; }
-    .feature.reverse .feature-copy { order: 1; }
-  }
+  .feat { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: center; padding: 72px 0; border-top: 1px solid var(--line); }
+  .feat.reverse .feat-copy { order: 2; }
+  @media (max-width: 900px) { .feat { grid-template-columns: 1fr; gap: 40px; padding: 56px 0; } .feat.reverse .feat-copy { order: 1; } }
+  .feat-label { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .feat-num { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; }
+  .feat-tag { font-family: var(--mono); font-size: 11px; padding: 4px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 100px; color: var(--ink-soft); letter-spacing: 0.02em; }
+  .feat h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; }
+  .feat h3 em { font-style: italic; color: var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1; }
+  .feat-copy > p { font-family: var(--serif); font-size: 18px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 28px; letter-spacing: -0.01em; max-width: 520px; }
+  .feat-proof { display: flex; gap: 28px; padding: 20px 0 0; border-top: 1px solid var(--line); margin-top: 28px; }
+  .feat-proof .p { }
+  .feat-proof .p .n { font-family: var(--serif); font-size: 26px; letter-spacing: -0.02em; font-variation-settings: "opsz" 144; display: block; margin-bottom: 4px; line-height: 1; }
+  .feat-proof .p .n em { font-style: italic; color: var(--accent); }
+  .feat-proof .p .l { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: -0.01em; }
 
-  /* ====== FEATURE VISUALS ====== */
-  .viz-label { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
-  .viz-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #FDFCF8; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; }
-  .viz-row .v-left { display: flex; flex-direction: column; gap: 2px; }
-  .viz-row .v-name { font-size: 14px; font-weight: 500; }
-  .viz-row .v-sub { font-size: 12px; color: var(--ink-faint); }
-  .viz-row .v-right { display: flex; align-items: center; gap: 10px; }
-  .viz-conf { font-family: var(--mono); font-size: 12px; font-weight: 500; }
-  .viz-conf-high { color: #5C7A52; }
-  .viz-conf-low { color: #9B5E52; }
-  .viz-badge { font-size: 10px; padding: 3px 8px; border-radius: 4px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em; }
-  .viz-badge-auto { background: #E8F0E2; color: #4A6B3F; }
-  .viz-badge-review { background: #F5E3DE; color: #8F4E42; }
-
-  .email-mock { background: #FDFCF8; border: 1px solid var(--line); border-radius: 8px; padding: 18px; font-size: 13px; line-height: 1.55; }
-  .email-from { font-size: 11px; color: var(--ink-faint); font-family: var(--mono); margin-bottom: 10px; }
-  .email-subj { font-weight: 500; margin-bottom: 10px; }
-  .email-body { color: var(--ink-soft); }
-  .email-actions { display: flex; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
-  .email-btn { font-size: 12px; padding: 6px 12px; border-radius: 6px; font-family: var(--sans); font-weight: 500; }
-  .email-btn-primary { background: var(--accent); color: var(--bg); }
-  .email-btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--ink-soft); }
-
-  .rule-item { padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; background: #FDFCF8; }
-  .rule-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-  .rule-vendor { font-weight: 500; font-size: 14px; }
-  .rule-stat { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
-  .rule-cat { font-size: 12px; color: var(--ink-soft); }
-  .rule-cat strong { color: var(--accent); font-weight: 500; }
-
-  .report-viz { font-family: var(--serif); }
-  .report-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 10px; }
-  .report-h { font-size: 16px; font-weight: 500; }
-  .report-date { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
-  .report-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 13px; color: var(--ink-soft); }
-  .report-row .rn { color: var(--ink); }
-  .report-row.tot { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 6px; font-weight: 500; color: var(--ink); }
-  .report-row .amt { font-family: var(--mono); }
-
-  /* ====== WORKS WITH ====== */
-  .works { padding: 100px 0; text-align: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg); }
-  .works h3 { font-family: var(--serif); font-size: 32px; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 16px; }
-  .works p { color: var(--ink-soft); max-width: 480px; margin: 0 auto 40px; }
-  .logos { display: flex; justify-content: center; align-items: center; gap: 48px; flex-wrap: wrap; }
-  .int { font-family: var(--sans); font-weight: 600; font-size: 18px; color: var(--ink-soft); }
-
-  /* ====== FOUNDER ====== */
-  .founder { padding: 140px 0; background: var(--bg); }
-  .founder-inner { max-width: 660px; margin: 0 auto; padding: 0 28px; }
-  .founder-letter p { font-family: var(--serif); font-size: 21px; line-height: 1.55; margin-bottom: 24px; letter-spacing: -0.015em; }
-  .founder-letter p:first-of-type::first-letter { font-size: 72px; line-height: 0.85; float: left; padding: 6px 10px 0 0; color: var(--accent); font-weight: 500; font-family: var(--serif); }
-  .sig { display: flex; align-items: center; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); }
-  .sig-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 18px; font-weight: 500; }
-  .sig-name { font-family: var(--serif); font-size: 17px; font-weight: 500; }
-  .sig-role { font-size: 13px; color: var(--ink-soft); font-family: var(--mono); }
-
-  /* ====== MATH ====== */
-  .math-body { max-width: 780px; margin: 0 auto; text-align: center; }
-  .math-line { font-family: var(--serif); font-size: 22px; line-height: 1.6; margin-bottom: 16px; color: rgba(251,249,244,0.85); }
-  .math-line strong { color: var(--bg); font-weight: 500; }
-  .math-divider { width: 36px; height: 1px; background: rgba(251,249,244,0.2); margin: 22px auto; }
-
-  /* ====== START ====== */
-  .start { padding: 140px 0; text-align: center; }
-  .start h2 { font-family: var(--serif); font-size: clamp(40px, 6vw, 64px); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; }
-  .start p { font-size: 18px; color: var(--ink-soft); max-width: 460px; margin: 0 auto 40px; }
-  .start-form { display: flex; max-width: 460px; margin: 0 auto; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; transition: border-color 0.2s; }
-  .start-form:focus-within { border-color: var(--ink); }
-  .start-form input { flex: 1; padding: 16px 20px; border: 0; background: transparent; font-family: var(--sans); font-size: 15px; outline: none; }
-  .start-form button { background: var(--accent); color: var(--bg); border: 0; padding: 16px 28px; font-family: var(--sans); font-size: 14px; font-weight: 500; cursor: pointer; }
-  .start-form button:hover { background: var(--accent-hover); }
-  .start-fine { margin-top: 20px; font-size: 13px; color: var(--ink-faint); font-family: var(--mono); }
-  @media (max-width: 520px) { .start-form { flex-direction: column; } }
-
-  /* ====== FOOTER ====== */
-  footer { border-top: 1px solid var(--line); padding: 40px 28px; text-align: center; font-size: 13px; color: var(--ink-faint); }
-  .foot-logo { font-family: var(--serif); font-size: 15px; color: var(--ink); margin-bottom: 8px; }
-  .foot-tag { font-family: var(--serif); font-style: italic; color: var(--ink-soft); font-size: 14px; margin-bottom: 20px; }
-  footer a { color: inherit; text-decoration: none; }
-  footer a:hover { color: var(--ink); }
+  .feat-viz { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px; box-shadow: 0 30px 60px -30px rgba(23,22,15,0.15); }
 </style>
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
+<!-- ====== NAV ====== -->
 <nav>
   <div class="nav-in">
-    <a href="#" class="logo"><span class="logo-dot"></span>zenday</a>
-    <div class="nav-links">
-      <a href="#how">How it works</a>
-      <a href="#features">Product</a>
+    <a href="#" class="logo"><span class="logo-mark"></span>zenday</a>
+    <div class="nav-mid">
+      <a href="#day">How it runs</a>
+      <a href="#features">The work</a>
       <a href="#pricing">Pricing</a>
     </div>
     <div class="nav-right">
@@ -231,326 +178,449 @@
   </div>
 </nav>
 
-<!-- ============ HERO ============ -->
+<!-- ====== HERO ====== -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-eyebrow"><span class="pulse"></span>AI bookkeeping for accounting firms</div>
-    <h1 class="hero-h">The AI that closes<br/>your clients' <em>books.</em></h1>
-    <p class="hero-lede">
-      Zenday categorizes transactions, reconciles accounts, and chases missing documents the moment they happen &mdash; on every client. You weigh in on what needs judgment, and the books stay current.
-    </p>
-    <div class="cta-group">
-      <a href="#start" class="btn-primary">Start with one client free →</a>
-      <a href="#how" class="btn-secondary">See how it works</a>
-    </div>
-    <p class="hero-note">$15 / client / month  ·  Works with QuickBooks &amp; Xero  ·  No credit card</p>
-  </div>
-</section>
-
-<!-- ============ HERO PRODUCT SCREEN ============ -->
-<section class="product" id="how">
-  <div class="container">
-    <div class="frame">
-      <div class="frame-chrome">
-        <div class="chrome-dots"><span></span><span></span><span></span></div>
-        <div class="chrome-url">app.getzenday.com</div>
-        <div style="width:56px;"></div>
-      </div>
-
-      <div class="roster-head">
-        <div>
-          <div class="roster-title">Your roster.</div>
-          <div class="roster-sub">Six clients · all books current as of a few minutes ago</div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-eye"><span class="pulse"></span>AI bookkeeping · running live</div>
+        <h1>The firm you actually <em>want to run.</em></h1>
+        <p class="hero-lede">Zenday's AI handles your clients' bookkeeping the moment a transaction clears. Your team does the work only humans can do &mdash; advisory, judgment, growth.</p>
+        <div class="hero-cta">
+          <a href="#start" class="btn-primary">Start with one client →</a>
+          <a href="#day" class="btn-text">See a day on Zenday</a>
         </div>
-        <div class="roster-legend">
-          <span><span class="dot-g"></span>4 current</span>
-          <span><span class="dot-y"></span>1 waiting</span>
-          <span><span class="dot-r"></span>1 to review</span>
+        <div class="hero-meta">$15 / client / month  ·  Works with QuickBooks &amp; Xero</div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="live-panel">
+          <div class="live-head">
+            <div class="live-head-left">
+              <span class="live-dot"></span>
+              Live feed · Acme Design Co.
+            </div>
+            <div class="live-stats">Today · 34 coded</div>
+          </div>
+          <div class="live-body">
+            <div class="live-row" style="animation-delay:0.1s;">
+              <span class="live-time">11:42 AM</span>
+              <div class="live-desc"><div class="vendor">Adobe Creative Cloud</div><div class="cat">Software Subscriptions · 99%</div></div>
+              <div><span class="live-amount">$59.99</span><span class="live-badge posted">Posted</span></div>
+            </div>
+            <div class="live-row" style="animation-delay:0.3s;">
+              <span class="live-time">11:18 AM</span>
+              <div class="live-desc"><div class="vendor">Office Depot</div><div class="cat">Office Supplies · 97%</div></div>
+              <div><span class="live-amount">$2,340.00</span><span class="live-badge posted">Posted</span></div>
+            </div>
+            <div class="live-row" style="animation-delay:0.5s;">
+              <span class="live-time">10:55 AM</span>
+              <div class="live-desc"><div class="vendor">DoorDash</div><div class="cat">Meals &amp; Entertainment · 94%</div></div>
+              <div><span class="live-amount">$87.50</span><span class="live-badge posted">Posted</span></div>
+            </div>
+            <div class="live-row" style="animation-delay:0.7s;">
+              <span class="live-time">10:21 AM</span>
+              <div class="live-desc"><div class="vendor">Wire · ACH Transfer</div><div class="cat">Unknown · 34%</div></div>
+              <div><span class="live-amount">$15,000.00</span><span class="live-badge review">Review</span></div>
+            </div>
+            <div class="live-row" style="animation-delay:0.9s;">
+              <span class="live-time">9:47 AM</span>
+              <div class="live-desc"><div class="vendor">AWS</div><div class="cat">Cloud Infrastructure · 99%</div></div>
+              <div><span class="live-amount">$1,284.12</span><span class="live-badge posted">Posted</span></div>
+            </div>
+          </div>
+          <div class="live-footer">
+            <span>32 posted automatically</span>
+            <span><strong>1</strong> waiting for you</span>
+          </div>
         </div>
-      </div>
-
-      <div class="roster-summary">
-        Today so far · 199 transactions coded across 6 clients · 3 need your review · 1 client question sent
-      </div>
-
-      <div class="roster-cols">
-        <span>Client</span><span>Status</span><span class="c3">Books as of</span><span class="c4">Needs you</span><span style="text-align:right;">Txns</span>
-      </div>
-
-      <div class="roster-row">
-        <span class="client">Acme Design Co.</span>
-        <span class="status status-current"><span class="dot-g"></span>Current</span>
-        <span class="asof">Yesterday</span><span class="needs">—</span>
-        <span class="txns">34</span>
-      </div>
-      <div class="roster-row">
-        <span class="client">Summit Group</span>
-        <span class="status status-current"><span class="dot-g"></span>Current</span>
-        <span class="asof">Yesterday</span><span class="needs">—</span>
-        <span class="txns">21</span>
-      </div>
-      <div class="roster-row">
-        <span class="client">Nova Digital Inc.</span>
-        <span class="status status-waiting"><span class="dot-y"></span>Waiting</span>
-        <span class="asof">3 days ago</span><span class="needs">Question sent</span>
-        <span class="txns">45</span>
-      </div>
-      <div class="roster-row">
-        <span class="client">Brightpath Consulting</span>
-        <span class="status status-review"><span class="dot-r"></span>Review</span>
-        <span class="asof">2 days ago</span><span class="needs">3 exceptions</span>
-        <span class="txns">28</span>
-      </div>
-      <div class="roster-row">
-        <span class="client">Lakeside Properties</span>
-        <span class="status status-current"><span class="dot-g"></span>Current</span>
-        <span class="asof">Yesterday</span><span class="needs">—</span>
-        <span class="txns">19</span>
-      </div>
-      <div class="roster-row">
-        <span class="client">Ember Creative Studio</span>
-        <span class="status status-current"><span class="dot-g"></span>Current</span>
-        <span class="asof">Yesterday</span><span class="needs">—</span>
-        <span class="txns">52</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FEATURES ============ -->
-<section class="section" id="features">
-  <div class="container">
-    <div class="eyebrow">What Zenday does</div>
-    <h2 class="section-h">Your junior accountant, <em>rebuilt as AI.</em></h2>
-    <p class="section-sub">Five things that used to eat your week. Now they run the moment a transaction hits the feed &mdash; on every client, with full transparency on every decision.</p>
-
-    <!-- Feature 1 -->
-    <div class="feature">
-      <div class="feature-copy">
-        <div class="feature-label"><span class="num">01</span>Real-time bookkeeping</div>
-        <h3>The moment a transaction clears, <em>it's coded.</em></h3>
-        <p class="lede">Zenday watches your clients' bank feeds through Plaid and QuickBooks. A transaction posts to the bank, Zenday reads the vendor, matches it against the client's chart of accounts, and creates the entry &mdash; with a confidence score you can see.</p>
-        <ul class="feature-list">
-          <li>Runs on every assigned client, every transaction, automatically</li>
-          <li>Confidence threshold is yours to set &mdash; auto-post above 95%, queue for review below</li>
-          <li>Handles splits, multi-currency, and intercompany transactions</li>
-        </ul>
+<!-- ====== STATS BAND ====== -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num" data-target="203">203</div>
+        <div class="stat-label">Transactions coded<br/>across Zenday firms today</div>
       </div>
-      <div class="feature-visual">
-        <div class="viz-label">Live feed · Acme Design Co.</div>
-        <div class="viz-row">
-          <div class="v-left"><span class="v-name">Office Depot</span><span class="v-sub">Office Supplies · $2,340.00</span></div>
-          <div class="v-right"><span class="viz-conf viz-conf-high">97%</span><span class="viz-badge viz-badge-auto">Posted</span></div>
+      <div class="stat">
+        <div class="stat-num"><em>94%</em></div>
+        <div class="stat-label">Auto-posted above<br/>confidence threshold</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-target="6">6</div>
+        <div class="stat-label">Minutes of human<br/>review per firm, per day</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><em>$15</em></div>
+        <div class="stat-label">Per client,<br/>per month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== DAY IN THE LIFE ====== -->
+<section class="section day" id="day">
+  <div class="wrap">
+    <div class="day-head">
+      <span class="section-eye">A Tuesday at Acme CPA</span>
+      <h2 class="section-h">One client, <em>one day</em>, zero data entry.</h2>
+      <p class="day-intro">Here's what actually happens at a firm using Zenday — a real timeline of a real client's bookkeeping on a real Tuesday. The AI runs. Your team handles judgment.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item live">
+        <div class="tl-time">7:14 AM · Bank clears overnight ACH</div>
+        <div class="tl-what">Transaction lands in the bank feed.</div>
+        <div class="tl-note">Acme's Chase account receives a $12,450 ACH payment from a client. Plaid picks it up and pushes it to Zenday within seconds.</div>
+      </div>
+
+      <div class="tl-item live">
+        <div class="tl-time">7:14 AM · 2 seconds later</div>
+        <div class="tl-what">Zenday codes it. <strong>Accounts Receivable · Payment Received.</strong></div>
+        <div class="tl-note">Zenday recognizes the payer, matches to an open invoice, applies the payment, and posts to QuickBooks. Confidence: 98%. Auto-posted.</div>
+        <div class="tl-snippet"><span class="live-dot"></span>Posted to QBO · Invoice #4129 closed</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">9:22 AM</div>
+        <div class="tl-what">Credit card charges clear. Zenday codes 12 in a row.</div>
+        <div class="tl-note">Eleven are recognized vendors with learned rules. One is new — a $480 charge at a vendor never seen before. Zenday flags it at 72% confidence and adds it to the review queue.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">10:34 AM</div>
+        <div class="tl-what">Client uploads a receipt from their phone.</div>
+        <div class="tl-note">The client emails a photo of an Office Depot receipt to the shared inbox. Zenday reads it, matches it to a $2,340 charge from yesterday, attaches the image, and marks the transaction documented.</div>
+        <div class="tl-snippet">📎 Receipt matched automatically · no human touched it</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">1:08 PM</div>
+        <div class="tl-what">A payroll accrual is due. Zenday posts it.</div>
+        <div class="tl-note">Every Tuesday at 1pm, Zenday posts the weekly payroll accrual for Acme based on the rule you set during onboarding. Journal entry created, tagged, referenced.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">3:46 PM</div>
+        <div class="tl-what">A vendor invoice arrives. Zenday drafts the bill.</div>
+        <div class="tl-note">A $3,200 invoice from Acme's AWS account hits the billing inbox. Zenday parses it, creates a bill in QuickBooks with the correct GL code and due date, and notifies the client portal.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">8:00 PM · Your turn</div>
+        <div class="tl-what">You open Zenday. <strong>Four items waiting.</strong></div>
+        <div class="tl-note">The one low-confidence credit card charge, a classification question on the new vendor, one client inquiry, and a month-end accrual that needs your sign-off. You handle all four in under six minutes.</div>
+        <div class="tl-snippet">⏱ Average review time across 20 clients · 6 min</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FEATURES ====== -->
+<section class="section features" id="features">
+  <div class="wrap">
+    <div class="features-head">
+      <span class="section-eye">The work Zenday does</span>
+      <h2 class="section-h">What used to take your week, <em>runs in code.</em></h2>
+      <p class="features-intro">Five capabilities, each with full transparency on every decision. Nothing Zenday does is hidden from you — every categorization, every chase, every reconciliation shows its reasoning and its confidence.</p>
+    </div>
+
+    <!-- Feature 01 -->
+    <div class="feat">
+      <div class="feat-copy">
+        <div class="feat-label"><span class="feat-num">01</span><span class="feat-tag">Real-time bookkeeping</span></div>
+        <h3>Every transaction, <em>coded the moment it clears.</em></h3>
+        <p>A charge posts to the bank. Zenday reads the vendor, matches it against the client's chart of accounts, applies learned rules, and creates the journal entry — with a confidence score and a full audit trail. No batch processing. No queue to drain. Just entries, as the money moves.</p>
+        <div class="feat-proof">
+          <div class="p"><span class="n"><em>99%</em></span><span class="l">Posted within<br/>30 seconds</span></div>
+          <div class="p"><span class="n"><em>200+</em></span><span class="l">Transactions per<br/>client per month</span></div>
         </div>
-        <div class="viz-row">
-          <div class="v-left"><span class="v-name">DoorDash</span><span class="v-sub">Meals &amp; Entertainment · $87.50</span></div>
-          <div class="v-right"><span class="viz-conf viz-conf-high">94%</span><span class="viz-badge viz-badge-auto">Posted</span></div>
+      </div>
+      <div class="feat-viz">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Confidence breakdown</div>
+        <div style="display: flex; gap: 6px; height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 18px;">
+          <div style="flex: 94; background: var(--green);"></div>
+          <div style="flex: 6; background: var(--live);"></div>
         </div>
-        <div class="viz-row">
-          <div class="v-left"><span class="v-name">Adobe Creative Cloud</span><span class="v-sub">Software · $59.99</span></div>
-          <div class="v-right"><span class="viz-conf viz-conf-high">99%</span><span class="viz-badge viz-badge-auto">Posted</span></div>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-soft); font-family: var(--mono); margin-bottom: 22px;">
+          <span><span style="display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;vertical-align:middle;margin-right:6px;"></span>94% auto-posted</span>
+          <span><span style="display:inline-block;width:8px;height:8px;background:var(--live);border-radius:50%;vertical-align:middle;margin-right:6px;"></span>6% for review</span>
         </div>
-        <div class="viz-row">
-          <div class="v-left"><span class="v-name">Wire · ACH Transfer</span><span class="v-sub">Unknown · $15,000.00</span></div>
-          <div class="v-right"><span class="viz-conf viz-conf-low">34%</span><span class="viz-badge viz-badge-review">Review</span></div>
+        <div style="padding: 14px; background: #FDFCF8; border: 1px solid var(--line); border-radius: 8px; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); line-height: 1.6;">
+          $59.99 → Adobe Creative Cloud → <strong style="color:var(--accent);">Software</strong> · 99%<br/>
+          $2,340 → Office Depot → <strong style="color:var(--accent);">Office Supplies</strong> · 97%<br/>
+          $15,000 → Wire Transfer → <strong style="color:var(--live);">Needs review</strong> · 34%
         </div>
       </div>
     </div>
 
-    <!-- Feature 2 -->
-    <div class="feature reverse">
-      <div class="feature-copy">
-        <div class="feature-label"><span class="num">02</span>Your decisions queue</div>
-        <h3>Your firm weighs in on <em>only what needs judgment.</em></h3>
-        <p class="lede">Zenday flags what it isn't sure about and waits. When you open Zenday &mdash; morning, midday, whenever &mdash; there's a queue of decisions waiting. Approve, override, or ask the client. One click each.</p>
-        <ul class="feature-list">
-          <li>Every AI decision shows its reasoning and confidence</li>
-          <li>Bulk-approve what's high-confidence; drill into what isn't</li>
-          <li>Typical queue across twenty clients: five to fifteen items a day</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="viz-label">Review queue · Brightpath Consulting</div>
-        <div class="viz-row" style="align-items:flex-start;">
-          <div class="v-left"><span class="v-name">Wire · ACH Transfer</span><span class="v-sub">$15,000 · Mar 12</span><span class="v-sub" style="margin-top:4px;color:var(--ink-soft);">AI: Not enough signal to classify. Typical vendor pattern not matched.</span></div>
+    <!-- Feature 02 -->
+    <div class="feat reverse">
+      <div class="feat-copy">
+        <div class="feat-label"><span class="feat-num">02</span><span class="feat-tag">Your decisions queue</span></div>
+        <h3>You weigh in only on <em>what needs judgment.</em></h3>
+        <p>Everything Zenday isn't sure about waits for you — with its reasoning, its confidence, and the context it used. Approve with one click. Override with one click. Ask the client with one click. Whether you check in at 9am or 9pm, the queue is always ready and always short.</p>
+        <div class="feat-proof">
+          <div class="p"><span class="n"><em>6 min</em></span><span class="l">Average firm review<br/>per day, all clients</span></div>
+          <div class="p"><span class="n"><em>3</em></span><span class="l">Keyboard shortcuts<br/>to clear the queue</span></div>
         </div>
-        <div style="display:flex;gap:8px;margin-top:12px;">
-          <button style="padding:8px 14px;background:var(--accent);color:var(--bg);border:0;border-radius:6px;font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;">Approve</button>
-          <button style="padding:8px 14px;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:6px;font-family:var(--sans);font-size:12px;cursor:pointer;">Re-categorize</button>
-          <button style="padding:8px 14px;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:6px;font-family:var(--sans);font-size:12px;cursor:pointer;">Ask client</button>
+      </div>
+      <div class="feat-viz">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Review queue · Brightpath Consulting</div>
+        <div style="padding: 16px; background: #FDFCF8; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 14px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span style="font-weight: 500; font-size: 14px;">Wire · ACH Transfer</span><span style="font-family: var(--mono); font-size: 12px; color: var(--live);">34% confidence</span></div>
+          <div style="font-size: 12px; color: var(--ink-soft); line-height: 1.55; margin-bottom: 14px;">$15,000 · March 12 · Zenday: "No matching vendor pattern or invoice in history. Likely capital event or intercompany transfer."</div>
+          <div style="display: flex; gap: 6px;">
+            <button style="font-family: var(--mono); font-size: 11px; padding: 7px 12px; background: var(--accent); color: var(--bg); border: 0; border-radius: 6px; cursor: pointer;">J · Approve</button>
+            <button style="font-family: var(--mono); font-size: 11px; padding: 7px 12px; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; cursor: pointer;">K · Re-categorize</button>
+            <button style="font-family: var(--mono); font-size: 11px; padding: 7px 12px; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; cursor: pointer;">L · Ask client</button>
+          </div>
+        </div>
+        <div style="text-align: center; font-family: var(--mono); font-size: 11px; color: var(--ink-faint);">2 more items · ⏎ handle in batch</div>
+      </div>
+    </div>
+
+    <!-- Feature 03 -->
+    <div class="feat">
+      <div class="feat-copy">
+        <div class="feat-label"><span class="feat-num">03</span><span class="feat-tag">Learned rules</span></div>
+        <h3>Every correction <em>becomes a rule.</em></h3>
+        <p>The first time you override the AI on DoorDash for this client, Zenday remembers. The fourteenth time DoorDash appears, it's already coded the way you like it. Each client gets its own brain. No cross-client data sharing. Ever.</p>
+        <div class="feat-proof">
+          <div class="p"><span class="n"><em>10%</em></span><span class="l">Override rate<br/>in month one</span></div>
+          <div class="p"><span class="n"><em>&lt;2%</em></span><span class="l">Override rate<br/>by month three</span></div>
+        </div>
+      </div>
+      <div class="feat-viz">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Rules learned · Nova Digital</div>
+        <div style="padding: 14px 16px; background: #FDFCF8; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+          <div><div style="font-size: 14px; font-weight: 500;">DoorDash</div><div style="font-size: 12px; color: var(--ink-soft);">→ <strong style="color: var(--accent); font-weight: 500;">Meals &amp; Entertainment</strong></div></div>
+          <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-faint);">Confirmed 14×</div>
+        </div>
+        <div style="padding: 14px 16px; background: #FDFCF8; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+          <div><div style="font-size: 14px; font-weight: 500;">AWS · Amazon Web Services</div><div style="font-size: 12px; color: var(--ink-soft);">→ <strong style="color: var(--accent); font-weight: 500;">Cloud Infrastructure (COGS)</strong></div></div>
+          <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-faint);">Confirmed 42×</div>
+        </div>
+        <div style="padding: 14px 16px; background: #FDFCF8; border: 1px solid var(--line); border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+          <div><div style="font-size: 14px; font-weight: 500;">Upwork</div><div style="font-size: 12px; color: var(--ink-soft);">→ <strong style="color: var(--accent); font-weight: 500;">Contract Labor</strong></div></div>
+          <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-faint);">Confirmed 7×</div>
         </div>
       </div>
     </div>
 
-    <!-- Feature 3 -->
-    <div class="feature">
-      <div class="feature-copy">
-        <div class="feature-label"><span class="num">03</span>Learned rules</div>
-        <h3>It learns <em>your firm's way.</em></h3>
-        <p class="lede">Every time you correct the AI, it remembers &mdash; for that client, in that context, with that vendor. Each client gets its own brain. No cross-client data sharing. Ever.</p>
-        <ul class="feature-list">
-          <li>Override rate drops from 10% to under 2% by the third month</li>
-          <li>Per-client rules: one client's "meals" isn't another's</li>
-          <li>Rules are visible and editable &mdash; you stay in control</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="viz-label">Learned rules · Nova Digital Inc.</div>
-        <div class="rule-item">
-          <div class="rule-top"><span class="rule-vendor">DoorDash</span><span class="rule-stat">Confirmed 14×</span></div>
-          <div class="rule-cat">→ <strong>Meals &amp; Entertainment</strong></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-top"><span class="rule-vendor">AWS · Amazon Web Services</span><span class="rule-stat">Confirmed 42×</span></div>
-          <div class="rule-cat">→ <strong>Cloud Infrastructure (COGS)</strong></div>
-        </div>
-        <div class="rule-item">
-          <div class="rule-top"><span class="rule-vendor">Upwork</span><span class="rule-stat">Confirmed 7×</span></div>
-          <div class="rule-cat">→ <strong>Contract Labor</strong></div>
+    <!-- Feature 04 -->
+    <div class="feat reverse">
+      <div class="feat-copy">
+        <div class="feat-label"><span class="feat-num">04</span><span class="feat-tag">Client chase</span></div>
+        <h3>Missing receipts, <em>handled without you asking.</em></h3>
+        <p>When a transaction needs a document, Zenday drafts a contextual message — specific to the charge, the vendor, the client. You approve with one click. Gentle follow-ups on day 3, day 7, day 14. Everything logged. Nothing forgotten.</p>
+        <div class="feat-proof">
+          <div class="p"><span class="n"><em>78%</em></span><span class="l">Receipts collected<br/>without firm intervention</span></div>
+          <div class="p"><span class="n"><em>0</em></span><span class="l">Template emails<br/>ever sent</span></div>
         </div>
       </div>
-    </div>
-
-    <!-- Feature 4 -->
-    <div class="feature reverse">
-      <div class="feature-copy">
-        <div class="feature-label"><span class="num">04</span>Client chase</div>
-        <h3>Missing receipts, <em>handled for you.</em></h3>
-        <p class="lede">When a transaction needs a document or a question needs an answer, Zenday drafts a contextual message to the client. You approve with one click. It follows up on day 3, 7, and 14 &mdash; politely.</p>
-        <ul class="feature-list">
-          <li>Messages are drafted specifically &mdash; not templates</li>
-          <li>Sent via email or client portal, your call</li>
-          <li>Tracks response and updates the roster automatically</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="email-mock">
-          <div class="email-from">Draft to: sarah@acmedesign.com · AI-generated</div>
-          <div class="email-subj">Quick question — March 12 receipt</div>
-          <div class="email-body">Hi Sarah,<br/><br/>Quick one for the books — we have a $2,340 charge at Office Depot on March 12 that needs a receipt. Could you upload it to the client portal, or reply with a photo?<br/><br/>Thanks,<br/>Zenday on behalf of your firm</div>
-          <div class="email-actions">
-            <button class="email-btn email-btn-primary">Send</button>
-            <button class="email-btn email-btn-ghost">Edit</button>
-            <button class="email-btn email-btn-ghost">Skip</button>
+      <div class="feat-viz">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Draft to client · pending approval</div>
+        <div style="padding: 18px; background: #FDFCF8; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; line-height: 1.55; color: var(--ink);">
+          <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-bottom: 12px;">TO: sarah@acmedesign.com</div>
+          <div style="font-weight: 500; margin-bottom: 12px;">Quick one — March 12 receipt</div>
+          <div style="color: var(--ink-soft);">Hi Sarah,<br/><br/>We're closing March and need the receipt for a $2,340 charge at Office Depot on March 12. Could you upload it to the portal, or reply with a photo?<br/><br/>Thanks,<br/>Mosaic CPA (via Zenday)</div>
+          <div style="display: flex; gap: 6px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line-2);">
+            <button style="font-family: var(--mono); font-size: 11px; padding: 7px 12px; background: var(--accent); color: var(--bg); border: 0; border-radius: 6px; cursor: pointer;">Send →</button>
+            <button style="font-family: var(--mono); font-size: 11px; padding: 7px 12px; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; cursor: pointer;">Edit</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Feature 5 -->
-    <div class="feature">
-      <div class="feature-copy">
-        <div class="feature-label"><span class="num">05</span>Reports ready</div>
-        <h3>Monthly package <em>on day one.</em></h3>
-        <p class="lede">Because the books were current all month, the month-end deliverable &mdash; P&amp;L, balance sheet, cash flow &mdash; is waiting for you on the 1st. Add a note, review the variance analysis, send it to the client.</p>
-        <ul class="feature-list">
-          <li>Auto-generated on the first of the month</li>
-          <li>Variance analysis with the biggest month-over-month changes flagged</li>
-          <li>One-click send, branded with your firm's logo</li>
-        </ul>
-      </div>
-      <div class="feature-visual report-viz">
-        <div class="report-top">
-          <div class="report-h">March 2026 · Income Statement</div>
-          <div class="report-date">Ready Apr 1</div>
+    <!-- Feature 05 -->
+    <div class="feat">
+      <div class="feat-copy">
+        <div class="feat-label"><span class="feat-num">05</span><span class="feat-tag">Reports ready</span></div>
+        <h3>Month-end package <em>on the 1st, not the 15th.</em></h3>
+        <p>Because the books were current all month, the monthly deliverable is waiting for you the moment the month closes. P&amp;L, balance sheet, cash flow, variance analysis — generated, branded, ready. Add a note. Send it.</p>
+        <div class="feat-proof">
+          <div class="p"><span class="n"><em>Day 1</em></span><span class="l">Reports ready vs.<br/>industry average: day 15</span></div>
+          <div class="p"><span class="n"><em>0 hrs</em></span><span class="l">Weekend work<br/>at month-end</span></div>
         </div>
-        <div class="report-row"><span class="rn">Revenue</span><span class="amt">$384,200</span></div>
-        <div class="report-row"><span class="rn">Cost of Goods Sold</span><span class="amt">(118,450)</span></div>
-        <div class="report-row"><span class="rn">Operating Expenses</span><span class="amt">(142,800)</span></div>
-        <div class="report-row tot"><span class="rn">Net Income</span><span class="amt">$122,950</span></div>
-        <div style="margin-top:14px;padding:10px 12px;background:#FDF8EC;border:1px solid #EBD9A8;border-radius:6px;font-size:12px;color:#7A5F2A;font-family:var(--sans);">
-          <strong style="color:#5E4619;">Noted:</strong> OpEx up 18% MoM &mdash; driven by $8.4K in new contractor spend.
+      </div>
+      <div class="feat-viz">
+        <div style="font-family: var(--serif);">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 14px;">
+            <div style="font-size: 17px; font-weight: 500; letter-spacing: -0.01em;">March 2026 · Income Statement</div>
+            <div style="font-family: var(--mono); font-size: 11px; color: var(--live); display: flex; align-items: center; gap: 6px;"><span class="live-dot"></span>Ready · Apr 1</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 8px 0; font-size: 13px; color: var(--ink-soft);"><span style="color: var(--ink);">Revenue</span><span style="font-family: var(--mono);">$384,200</span></div>
+          <div style="display: flex; justify-content: space-between; padding: 8px 0; font-size: 13px; color: var(--ink-soft);"><span style="color: var(--ink);">Cost of Goods Sold</span><span style="font-family: var(--mono);">(118,450)</span></div>
+          <div style="display: flex; justify-content: space-between; padding: 8px 0; font-size: 13px; color: var(--ink-soft);"><span style="color: var(--ink);">Operating Expenses</span><span style="font-family: var(--mono);">(142,800)</span></div>
+          <div style="display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--line); margin-top: 6px; font-weight: 500;"><span>Net Income</span><span style="font-family: var(--mono);">$122,950</span></div>
+          <div style="margin-top: 16px; padding: 12px 14px; background: #FDF8EC; border: 1px solid #EBD9A8; border-radius: 6px; font-size: 12px; color: #7A5F2A; font-family: var(--sans); line-height: 1.5;">
+            <strong style="color: #5E4619;">Zenday noted:</strong> Operating expenses up 18% MoM — driven by $8.4K in new contractor spend. Worth a conversation.
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ WORKS WITH ============ -->
-<section class="works">
-  <div class="container">
-    <h3>Works with the tools you already use.</h3>
-    <p>Connect your clients' QuickBooks or Xero in under two minutes. Zenday reads the ledger, posts categorized entries, and stays in sync.</p>
-    <div class="logos">
-      <div class="int">QuickBooks</div>
-      <div class="int">Xero</div>
-      <div class="int">Plaid</div>
-      <div class="int">Gmail</div>
-      <div class="int">Outlook</div>
+<!-- ====== WORKS WITH ====== -->
+<section style="padding: 100px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg);">
+  <div class="wrap">
+    <div style="text-align: center; max-width: 640px; margin: 0 auto;">
+      <span class="section-eye">Integrations</span>
+      <h3 style="font-family: var(--serif); font-size: clamp(28px, 3.5vw, 40px); font-weight: 400; letter-spacing: -0.025em; margin: 12px 0 20px;">Connects to the ledger, the bank, the inbox.</h3>
+      <p style="color: var(--ink-soft); max-width: 520px; margin: 0 auto 44px; font-family: var(--serif); font-size: 17px; letter-spacing: -0.01em;">Two minutes of OAuth and Zenday is in. No data migration. No workflow changes. Your firm keeps every other tool you already use.</p>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 56px; flex-wrap: wrap; font-family: var(--sans); font-weight: 600; font-size: 17px; color: var(--ink-soft);">
+        <div>QuickBooks</div><div>Xero</div><div>Plaid</div><div>Gmail</div><div>Outlook</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FOUNDER ============ -->
-<section class="founder">
-  <div class="founder-inner">
-    <div class="eyebrow">From the founder</div>
-    <h2 class="section-h" style="margin-bottom:48px;">Built inside a <em>working CPA firm.</em></h2>
+<!-- ====== FOUNDER LETTER ====== -->
+<section style="padding: 160px 0; background: var(--bg);">
+  <div class="wrap-tight">
+    <span class="section-eye">A letter from the founder</span>
+    <h2 class="section-h" style="margin-top: 16px; margin-bottom: 64px;">I use Zenday <em>on my own firm.</em></h2>
 
-    <div class="founder-letter">
-      <p>Zenday runs my firm's books. The moment a transaction clears, it's coded. If something breaks, I'm the first to know &mdash; because I'm the one using it.</p>
+    <div style="font-family: var(--serif); font-size: 21px; line-height: 1.55; letter-spacing: -0.015em; color: var(--ink);">
+      <p style="margin-bottom: 28px;"><span style="font-size: 78px; line-height: 0.8; float: left; padding: 8px 12px 0 0; color: var(--accent); font-weight: 500;">I</span> run a CPA firm. We serve small businesses on QuickBooks — 47 clients, last count. For twelve years I did the same thing every month: stayed up late in the second week to close books. Trained offshore staff who moved on every eighteen months. Built workflow after workflow on top of Karbon and spreadsheets.</p>
 
-      <p>The work of bookkeeping is the easiest work to give to an AI. Categorization. Reconciliation. Chasing missing documents. These are pattern-matching tasks that software handles faster and more reliably than a person ever could &mdash; with a full record of every decision.</p>
+      <p style="margin-bottom: 28px;">The thing I kept noticing was that 80% of the work on any given client was categorization, reconciliation, and chasing receipts. Work that doesn't require a CPA. Work that doesn't even require a human, anymore.</p>
 
-      <p>What I couldn't give up was judgment. So Zenday doesn't pretend to have it. It shows me what it did, flags what it wasn't sure about, and waits for me to weigh in on the rest. The same rhythm I had with a junior accountant &mdash; except this one never drifts, and remembers every correction I've ever made.</p>
+      <p style="margin-bottom: 28px;">So I built the AI I wanted. It watches the bank feeds. It posts entries as transactions clear. It drafts client messages in my firm's voice. It remembers my corrections and never makes the same mistake twice. And critically, it shows its work — confidence scores on every decision, full audit trail, nothing hidden.</p>
 
-      <p>Every feature ships because it made my own week better. If it doesn't, it doesn't ship.</p>
+      <p style="margin-bottom: 28px;">The firm looks different now. My staff accountants do advisory work. I spend Tuesday afternoons on client strategy calls instead of reviewing reconciliations. We doubled our client count without hiring, because the bookkeeping scales without us.</p>
 
-      <div class="sig">
-        <div class="sig-avatar">V</div>
+      <p style="margin-bottom: 0; font-style: italic; color: var(--ink-soft);">Zenday runs my firm. If it breaks, I'm the first to know — because my firm is the first one on it.</p>
+
+      <div style="display: flex; align-items: center; gap: 16px; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line);">
+        <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 20px; font-weight: 500;">V</div>
         <div>
-          <div class="sig-name">Vatsal</div>
-          <div class="sig-role">Founder · CPA</div>
+          <div style="font-family: var(--serif); font-size: 17px; font-weight: 500; letter-spacing: -0.01em;">Vatsal</div>
+          <div style="font-family: var(--mono); font-size: 12px; color: var(--ink-soft); letter-spacing: -0.01em;">Founder · CPA · Client zero</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ MATH ============ -->
-<section class="section section-dark" id="pricing">
-  <div class="container">
-    <div class="eyebrow">Pricing</div>
-    <h2 class="section-h">Fifteen dollars <em>a client, a month.</em></h2>
-    <p class="section-sub">One price. Every feature. No seat counts, no transaction limits, no setup fees.</p>
+<!-- ====== MATH / PRICING ====== -->
+<section id="pricing" style="padding: 160px 0; background: var(--bg-dark); color: var(--bg);">
+  <div class="wrap">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <span class="section-eye" style="color: rgba(251,249,244,0.5);">Pricing</span>
+      <h2 class="section-h" style="color: var(--bg); text-align: center; margin: 20px auto 24px; font-variation-settings: 'opsz' 144;">Fifteen dollars.<br/>Per client. <em style="color: #B8CBB2;">Per month.</em></h2>
+      <p style="font-family: var(--serif); font-size: 20px; line-height: 1.55; color: rgba(251,249,244,0.7); max-width: 540px; margin: 0 auto 72px; letter-spacing: -0.01em;">One price. Every feature. No seat fees, no transaction caps, no setup cost.</p>
+    </div>
 
-    <div class="math-body">
-      <p class="math-line">A firm with <strong>30 clients</strong> pays <strong>$450</strong> a month.</p>
-      <div class="math-divider"></div>
-      <p class="math-line">Less than an hour of senior-accountant time.</p>
-      <div class="math-divider"></div>
-      <p class="math-line">All 30 clients' books, <strong>always current.</strong></p>
-      <div class="math-divider"></div>
-      <p class="math-line" style="font-style:italic;">The first client is <strong>free for 30 days</strong>.</p>
+    <div style="max-width: 720px; margin: 0 auto;">
+      <div style="font-family: var(--mono); font-size: 11px; color: rgba(251,249,244,0.4); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px;">What $15 does every day, for one client</div>
 
-      <div style="margin-top:60px;">
-        <a href="#start" class="btn-primary" style="background:var(--bg);color:var(--ink);">Start with one client free →</a>
+      <div style="border-top: 1px solid rgba(251,249,244,0.15);">
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(251,249,244,0.1); align-items: baseline;">
+          <div style="font-family: var(--serif); font-size: 19px; color: var(--bg); letter-spacing: -0.015em;">Reads and codes 30–50 transactions</div>
+          <div style="font-family: var(--mono); font-size: 12px; color: rgba(251,249,244,0.5);">as they clear</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(251,249,244,0.1); align-items: baseline;">
+          <div style="font-family: var(--serif); font-size: 19px; color: var(--bg); letter-spacing: -0.015em;">Reconciles the bank account to the penny</div>
+          <div style="font-family: var(--mono); font-size: 12px; color: rgba(251,249,244,0.5);">continuously</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(251,249,244,0.1); align-items: baseline;">
+          <div style="font-family: var(--serif); font-size: 19px; color: var(--bg); letter-spacing: -0.015em;">Drafts 1–2 client chase messages</div>
+          <div style="font-family: var(--mono); font-size: 12px; color: rgba(251,249,244,0.5);">contextual, not templates</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(251,249,244,0.1); align-items: baseline;">
+          <div style="font-family: var(--serif); font-size: 19px; color: var(--bg); letter-spacing: -0.015em;">Matches receipts to charges via vision</div>
+          <div style="font-family: var(--mono); font-size: 12px; color: rgba(251,249,244,0.5);">any language, any format</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(251,249,244,0.1); align-items: baseline;">
+          <div style="font-family: var(--serif); font-size: 19px; color: var(--bg); letter-spacing: -0.015em;">Posts recurring accruals on schedule</div>
+          <div style="font-family: var(--mono); font-size: 12px; color: rgba(251,249,244,0.5);">rent, depreciation, deferrals</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(251,249,244,0.1); align-items: baseline;">
+          <div style="font-family: var(--serif); font-size: 19px; color: var(--bg); letter-spacing: -0.015em;">Flags 2–3 items for your judgment</div>
+          <div style="font-family: var(--mono); font-size: 12px; color: rgba(251,249,244,0.5);">with full reasoning</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 18px 0; align-items: baseline;">
+          <div style="font-family: var(--serif); font-size: 19px; color: var(--bg); font-style: italic; letter-spacing: -0.015em;">All while you work on advisory.</div>
+          <div style="font-family: var(--mono); font-size: 12px; color: rgba(251,249,244,0.5);">the higher-margin work</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 80px; text-align: center;">
+        <div style="font-family: var(--serif); font-size: 19px; color: rgba(251,249,244,0.7); margin-bottom: 28px; letter-spacing: -0.01em;">First client is free for thirty days. No credit card.</div>
+        <a href="#start" style="display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; background: var(--bg); color: var(--ink); border-radius: 8px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.2s;">Start with one client →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ START ============ -->
-<section class="start" id="start">
-  <div class="container">
-    <div class="eyebrow">Start</div>
-    <h2>Try one client.<br/>Watch it in real time.</h2>
-    <p>Connect a QuickBooks or Xero client. Zenday starts coding transactions as they come in. Check back in an hour &mdash; or tomorrow.</p>
+<!-- ====== START CTA ====== -->
+<section id="start" style="padding: 160px 0; text-align: center; background: var(--bg);">
+  <div class="wrap-tight">
+    <span class="section-eye">Start</span>
+    <h2 class="section-h" style="margin: 20px auto 24px; text-align: center;">Try one client.<br/>See it run <em>in real time.</em></h2>
+    <p style="font-family: var(--serif); font-size: 20px; line-height: 1.55; color: var(--ink-soft); max-width: 520px; margin: 0 auto 48px; letter-spacing: -0.01em;">Connect a QuickBooks or Xero client. Zenday starts coding the moment you click connect. Watch it work — or close the tab and come back tomorrow.</p>
 
-    <form class="start-form" onsubmit="event.preventDefault(); this.querySelector('button').innerText = '✓ Check your inbox';">
-      <input type="email" placeholder="your@firm.com" required />
-      <button type="submit">Start →</button>
+    <form style="display: flex; max-width: 480px; margin: 0 auto; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; transition: border-color 0.2s;" onsubmit="event.preventDefault(); this.querySelector('button').innerText = '✓ Check your inbox'; this.querySelector('button').style.background='var(--accent-2)';">
+      <input type="email" placeholder="your@firm.com" required style="flex: 1; padding: 18px 22px; border: 0; background: transparent; font-family: var(--sans); font-size: 15px; outline: none; color: var(--ink);" />
+      <button type="submit" style="background: var(--accent); color: var(--bg); border: 0; padding: 18px 32px; font-family: var(--sans); font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s;">Start →</button>
     </form>
-    <p class="start-fine">30 days · one client · no credit card · no sales call</p>
+    <p style="margin-top: 20px; font-size: 13px; color: var(--ink-faint); font-family: var(--mono); letter-spacing: -0.01em;">30 days · one client · no credit card · no sales call</p>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="foot-logo"><span style="display:inline-block;width:5px;height:5px;background:var(--accent);border-radius:50%;margin-right:8px;vertical-align:middle;"></span>zenday</div>
-  <div class="foot-tag">The AI that closes your clients' books.</div>
-  <div>© 2026 zenday · <a href="#">Security</a> · <a href="#">Privacy</a> · <a href="#">Terms</a></div>
+<!-- ====== FOOTER ====== -->
+<footer style="border-top: 1px solid var(--line); padding: 60px 32px 40px; background: var(--bg);">
+  <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end;">
+    <div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+        <span style="width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></span>
+        <span style="font-family: var(--serif); font-size: 20px; letter-spacing: -0.015em;">zenday</span>
+      </div>
+      <div style="font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--ink-soft); letter-spacing: -0.02em; max-width: 420px; line-height: 1.3;">The firm you actually want to run.</div>
+    </div>
+    <div style="display: flex; gap: 24px; font-size: 13px; color: var(--ink-faint); font-family: var(--mono); letter-spacing: -0.01em;">
+      <a href="#" style="text-decoration: none; color: inherit;">Security</a>
+      <a href="#" style="text-decoration: none; color: inherit;">Privacy</a>
+      <a href="#" style="text-decoration: none; color: inherit;">Terms</a>
+      <a href="#" style="text-decoration: none; color: inherit;">Contact</a>
+    </div>
+  </div>
+  <div style="max-width: 1280px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: -0.01em;">© 2026 Zenday · Built inside a working CPA firm</div>
 </footer>
+
+<script>
+  // Animated counter for stats that have data-target
+  const stats = document.querySelectorAll('.stat-num[data-target]');
+  const animateCounter = (el, target, duration = 1500) => {
+    let start = 0;
+    const step = target / (duration / 16);
+    const tick = () => {
+      start += step;
+      if (start >= target) { el.textContent = target; return; }
+      el.textContent = Math.floor(start);
+      requestAnimationFrame(tick);
+    };
+    tick();
+  };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const target = +e.target.dataset.target;
+        animateCounter(e.target, target);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  stats.forEach(s => observer.observe(s));
+</script>
 
 </body>
 </html>
