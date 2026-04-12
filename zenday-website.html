@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zenday — Your clients' books. Current every morning.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .text-balance { text-wrap: balance; }
+  .from-bg { background: linear-gradient(to bottom, #F0EEFF, #F7F5FF, #ffffff); }
+</style>
+</head>
+<body class="bg-white text-gray-900">
+
+<!-- ============ NAV ============ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-8">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-[#5B5FF6] flex items-center justify-center">
+          <span class="text-xs font-bold text-white">Z</span>
+        </div>
+        <span class="text-sm font-bold">zenday</span>
+      </a>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#how-it-works" class="text-[13px] text-gray-500 hover:text-gray-900">How It Works</a>
+        <a href="#ai-engine" class="text-[13px] text-gray-500 hover:text-gray-900">AI Engine</a>
+        <a href="#pricing" class="text-[13px] text-gray-500 hover:text-gray-900">Pricing</a>
+        <a href="#faq" class="text-[13px] text-gray-500 hover:text-gray-900">FAQ</a>
+      </div>
+    </div>
+    <div class="hidden md:flex items-center gap-2">
+      <a href="#demo" class="text-[13px] text-gray-500 hover:text-gray-900 px-4 py-1.5">Watch Demo</a>
+      <a href="#pricing" class="text-[13px] px-5 py-2 rounded-full bg-[#5B5FF6] hover:bg-[#4A4EE5] text-white font-medium">Try Your First Client Free</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="pt-24 pb-14 px-5 from-bg">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-rose-200 shadow-sm mb-6">
+      <span class="text-xs font-semibold text-rose-600">87% of accountants work weekends during close</span>
+    </div>
+
+    <h1 class="text-3xl md:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.1] mb-4 text-balance">
+      Your clients' books.
+      <span class="bg-gradient-to-r from-[#5B5FF6] to-[#8B5CF6] bg-clip-text text-transparent">Current every morning.</span>
+    </h1>
+
+    <p class="text-sm md:text-[15px] text-gray-500 max-w-xl mx-auto mb-7 leading-relaxed">
+      Zenday's AI categorizes transactions, chases missing documents, and reconciles accounts — overnight.
+      You log in, review what it did in 5 minutes, and move on. Month-end becomes a non-event.
+    </p>
+
+    <div class="flex items-center justify-center gap-3 mb-3">
+      <a href="#pricing" class="px-6 py-2.5 rounded-full bg-[#5B5FF6] hover:bg-[#4A4EE5] text-white text-sm font-semibold shadow-md shadow-[#5B5FF6]/20">Try your first client free</a>
+      <a href="#demo" class="px-6 py-2.5 rounded-full border border-gray-200 bg-white hover:border-[#5B5FF6]/30 text-sm font-medium text-gray-600 shadow-sm">Watch 5-min demo</a>
+    </div>
+    <p class="text-xs text-gray-400">$15/client/month after trial. No credit card required.</p>
+  </div>
+
+  <!-- Roster view -->
+  <div class="max-w-4xl mx-auto mt-10">
+    <div class="rounded-xl overflow-hidden border border-gray-200/80 shadow-2xl shadow-[#5B5FF6]/10 bg-white">
+      <div class="flex items-center gap-2 px-4 py-2 border-b border-gray-100 bg-gray-50/80">
+        <div class="flex gap-1.5">
+          <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-[#28CA41]"></div>
+        </div>
+        <div class="flex-1 flex justify-center">
+          <div class="px-8 py-0.5 rounded bg-gray-100 text-[10px] text-gray-400">app.getzenday.com</div>
+        </div>
+      </div>
+
+      <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+        <div>
+          <p class="text-sm font-semibold">Good morning, Vatsal</p>
+          <p class="text-xs text-gray-400">Tuesday, April 12 — 6 clients managed by Zenday AI</p>
+        </div>
+        <div class="hidden md:flex items-center gap-4 text-xs text-gray-500">
+          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 4 current</span>
+          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> 1 waiting</span>
+          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-rose-500"></span> 1 needs review</span>
+        </div>
+      </div>
+
+      <div class="px-6 py-3 bg-[#5B5FF6]/5 border-b border-[#5B5FF6]/10">
+        <p class="text-xs text-[#5B5FF6] font-medium">Last night: 199 transactions coded across 6 clients. 3 need your review. 1 client question sent automatically.</p>
+      </div>
+
+      <div class="hidden md:grid grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-4 px-6 py-2 text-[10px] font-medium text-gray-400 uppercase tracking-wider border-b border-gray-50">
+        <span>Client</span><span>Status</span><span>Books as of</span><span>Needs you</span><span class="text-right">Txns</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 border-b border-gray-50 items-center">
+        <span class="text-sm font-medium">Acme Design Co</span>
+        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-emerald-50 flex items-center justify-center"><span class="text-emerald-500 text-xs">✓</span></div><span class="text-xs font-medium text-emerald-500">Current</span></div>
+        <span class="text-xs text-gray-500">Yesterday</span><span class="text-xs text-gray-500">—</span><span class="text-xs text-gray-400 md:text-right">34</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 border-b border-gray-50 items-center">
+        <span class="text-sm font-medium">Summit Group LLC</span>
+        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-emerald-50 flex items-center justify-center"><span class="text-emerald-500 text-xs">✓</span></div><span class="text-xs font-medium text-emerald-500">Current</span></div>
+        <span class="text-xs text-gray-500">Yesterday</span><span class="text-xs text-gray-500">—</span><span class="text-xs text-gray-400 md:text-right">21</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 border-b border-gray-50 items-center">
+        <span class="text-sm font-medium">Nova Digital Inc</span>
+        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-amber-50 flex items-center justify-center"><span class="text-amber-500 text-xs">⏱</span></div><span class="text-xs font-medium text-amber-500">Waiting</span></div>
+        <span class="text-xs text-gray-500">3 days ago</span><span class="text-xs text-gray-500">1 question sent</span><span class="text-xs text-gray-400 md:text-right">45</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 border-b border-gray-50 items-center">
+        <span class="text-sm font-medium">Brightpath Consulting</span>
+        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-rose-50 flex items-center justify-center"><span class="text-rose-500 text-xs">!</span></div><span class="text-xs font-medium text-rose-500">Review</span></div>
+        <span class="text-xs text-gray-500">2 days ago</span><span class="text-xs text-gray-500">3 exceptions</span><span class="text-xs text-gray-400 md:text-right">28</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 border-b border-gray-50 items-center">
+        <span class="text-sm font-medium">Lakeside Properties</span>
+        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-emerald-50 flex items-center justify-center"><span class="text-emerald-500 text-xs">✓</span></div><span class="text-xs font-medium text-emerald-500">Current</span></div>
+        <span class="text-xs text-gray-500">Yesterday</span><span class="text-xs text-gray-500">—</span><span class="text-xs text-gray-400 md:text-right">19</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1.5fr_0.5fr] gap-2 md:gap-4 px-6 py-3 items-center">
+        <span class="text-sm font-medium">Ember Creative Studio</span>
+        <div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-emerald-50 flex items-center justify-center"><span class="text-emerald-500 text-xs">✓</span></div><span class="text-xs font-medium text-emerald-500">Current</span></div>
+        <span class="text-xs text-gray-500">Yesterday</span><span class="text-xs text-gray-500">—</span><span class="text-xs text-gray-400 md:text-right">52</span>
+      </div>
+
+      <div class="px-6 py-3 bg-gray-50/50 text-xs text-gray-400">
+        Your daily review: ~5 minutes. Weekend work this month: 0 hours.
+      </div>
+    </div>
+    <p class="text-center text-[10px] text-gray-400 mt-3">This is your morning on Zenday. Every morning.</p>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="py-14 px-5 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-[38px] font-bold tracking-tight leading-tight mb-3 text-balance">You already know the problem.</h2>
+      <p class="text-sm text-gray-500 max-w-xl mx-auto">The accounting talent crisis is real. The month-end grind is unsustainable. And the last generation of AI tools let you down.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="p-6 rounded-xl border border-gray-100 bg-gray-50/50">
+        <div class="w-10 h-10 rounded-lg bg-rose-50 flex items-center justify-center mb-4"><span class="text-rose-500 text-xl">⏰</span></div>
+        <h3 class="text-[15px] font-bold mb-2">You work weekends during close.</h3>
+        <p class="text-[13px] text-gray-500 leading-relaxed">87% of accountants work overtime every month-end. The crunch never ends because the process is fundamentally batch-based. You're doing in 5 days what should happen continuously.</p>
+      </div>
+      <div class="p-6 rounded-xl border border-gray-100 bg-gray-50/50">
+        <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center mb-4"><span class="text-amber-500 text-xl">👤</span></div>
+        <h3 class="text-[15px] font-bold mb-2">You can't hire. Nobody's applying.</h3>
+        <p class="text-[13px] text-gray-500 leading-relaxed">300,000+ accountants quit since 2020. CPA candidates down 32%. Average time-to-fill: 73 days. Your offshore team just turned over — again. You're training a replacement for the third time.</p>
+      </div>
+      <div class="p-6 rounded-xl border border-gray-100 bg-gray-50/50">
+        <div class="w-10 h-10 rounded-lg bg-violet-50 flex items-center justify-center mb-4"><span class="text-violet-500 text-xl">⚠</span></div>
+        <h3 class="text-[15px] font-bold mb-2">AI bookkeeping keeps failing.</h3>
+        <p class="text-[13px] text-gray-500 leading-relaxed">ScaleFactor, Bench, Botkeeper — $300M+ in venture capital burned. They used humans behind the curtain and called it AI. You're right to be skeptical. But the technology has changed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how-it-works" class="py-14 px-5 bg-gray-50">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-[38px] font-bold tracking-tight leading-tight mb-3 text-balance">How it actually works.</h2>
+      <p class="text-sm text-gray-500 max-w-xl mx-auto">Not a feature tour. This is what your first 30 days look like.</p>
+    </div>
+
+    <div class="space-y-4">
+      <div class="bg-white rounded-xl border border-gray-200 p-6 md:p-8">
+        <div class="flex items-start gap-5">
+          <div class="hidden md:flex w-12 h-12 rounded-xl bg-[#5B5FF6]/10 items-center justify-center shrink-0"><span class="text-[#5B5FF6] text-xl">🔗</span></div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-[10px] font-bold text-[#5B5FF6] tracking-widest uppercase">01</span>
+              <span class="text-[10px] text-gray-400 tracking-wider uppercase">2 minutes</span>
+            </div>
+            <h3 class="text-lg font-bold mb-2">Connect one client's QBO</h3>
+            <p class="text-[13px] text-gray-500 leading-relaxed mb-3">Pick your messiest client. The one that stresses you out. Connect their QuickBooks via Plaid. Zenday pulls their chart of accounts and 3 months of transaction history.</p>
+            <p class="text-[12px] text-gray-400 leading-relaxed italic">Zenday builds a vendor dictionary, learns categorization patterns, and creates an AI brain specific to this client. No two clients share data.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-gray-200 p-6 md:p-8">
+        <div class="flex items-start gap-5">
+          <div class="hidden md:flex w-12 h-12 rounded-xl bg-[#5B5FF6]/10 items-center justify-center shrink-0"><span class="text-[#5B5FF6] text-xl">🌙</span></div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-[10px] font-bold text-[#5B5FF6] tracking-widest uppercase">02</span>
+              <span class="text-[10px] text-gray-400 tracking-wider uppercase">While you sleep</span>
+            </div>
+            <h3 class="text-lg font-bold mb-2">Zenday works overnight</h3>
+            <p class="text-[13px] text-gray-500 leading-relaxed mb-3">New bank transactions arrive via Plaid. Zenday categorizes them, matches receipts, flags anomalies, and drafts chase messages for missing documents — all before your morning coffee.</p>
+            <p class="text-[12px] text-gray-400 leading-relaxed italic">Every categorization gets a confidence score. High confidence (95%+) = auto-posted (if you enable it). Low confidence = flagged for your review. The AI knows what it doesn't know.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-gray-200 p-6 md:p-8">
+        <div class="flex items-start gap-5">
+          <div class="hidden md:flex w-12 h-12 rounded-xl bg-[#5B5FF6]/10 items-center justify-center shrink-0"><span class="text-[#5B5FF6] text-xl">☀️</span></div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-[10px] font-bold text-[#5B5FF6] tracking-widest uppercase">03</span>
+              <span class="text-[10px] text-gray-400 tracking-wider uppercase">Every morning</span>
+            </div>
+            <h3 class="text-lg font-bold mb-2">You review in 5 minutes</h3>
+            <p class="text-[13px] text-gray-500 leading-relaxed mb-3">Open Zenday. See the roster. 4 clients green (current). 1 yellow (waiting on client response). 1 red (3 exceptions need your judgment). Handle the red items. Done.</p>
+            <p class="text-[12px] text-gray-400 leading-relaxed italic">One-click approve. One-click override. One-click "ask client." The AI learns from every correction and gets better next time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-gray-200 p-6 md:p-8">
+        <div class="flex items-start gap-5">
+          <div class="hidden md:flex w-12 h-12 rounded-xl bg-[#5B5FF6]/10 items-center justify-center shrink-0"><span class="text-[#5B5FF6] text-xl">📅</span></div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-[10px] font-bold text-[#5B5FF6] tracking-widest uppercase">04</span>
+              <span class="text-[10px] text-gray-400 tracking-wider uppercase">Day 1 of next month</span>
+            </div>
+            <h3 class="text-lg font-bold mb-2">Month-end is a non-event</h3>
+            <p class="text-[13px] text-gray-500 leading-relaxed mb-3">The books were closed every day this month. On the 1st, Zenday generates the financial package — P&L, balance sheet, cash flow. You review and send to the client. No crunch. No weekend.</p>
+            <p class="text-[12px] text-gray-400 leading-relaxed italic">Your clients think you hired 10 new staff. You didn't. You connected Zenday.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AI ENGINE ============ -->
+<section id="ai-engine" class="py-14 px-5 bg-[#5B5FF6] text-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl md:text-[38px] font-bold tracking-tight leading-tight mb-2">The AI Close Engine.</h2>
+      <p class="text-white/60 text-sm max-w-lg mx-auto">Not AI features bolted onto practice management. A purpose-built AI that does the bookkeeping work and asks you to approve.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-2 mb-10">
+      <button class="tab-btn active flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium bg-white text-[#5B5FF6] shadow-lg" data-tab="categorize">🧠 AI Categorization</button>
+      <button class="tab-btn flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium bg-white/15 text-white/80 border border-white/20" data-tab="confidence">🛡️ Confidence Scoring</button>
+      <button class="tab-btn flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium bg-white/15 text-white/80 border border-white/20" data-tab="chase">💬 Client Chase</button>
+      <button class="tab-btn flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium bg-white/15 text-white/80 border border-white/20" data-tab="close">📊 Close Deliverable</button>
+      <button class="tab-btn flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium bg-white/15 text-white/80 border border-white/20" data-tab="reconcile">🔄 Reconciliation</button>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      <div>
+        <div id="tab-categorize" class="tab-content">
+          <h3 class="text-xl md:text-2xl font-bold mb-3 leading-tight">Categorizes transactions with 90%+ accuracy. Learns from every correction.</h3>
+          <p class="text-white/60 text-[13px] leading-relaxed mb-5">Zenday reads vendor names, infers categories from transaction descriptions, applies your chart of accounts, and handles the long tail of ambiguous transactions. Every override trains the AI for next time.</p>
+          <div class="space-y-2">
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Per-client AI brain — no cross-client data sharing</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Learns vendor patterns: DoorDash → Meals after 3 corrections</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Handles multi-currency, split transactions, intercompany</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Confidence scoring on every categorization (you see the number)</span></div>
+          </div>
+        </div>
+        <div id="tab-confidence" class="tab-content hidden">
+          <h3 class="text-xl md:text-2xl font-bold mb-3 leading-tight">The AI knows what it doesn't know. That's how you trust it.</h3>
+          <p class="text-white/60 text-[13px] leading-relaxed mb-5">Every transaction gets a confidence score from 0 to 100. Above 95% = auto-posted (if you enable it). Below 95% = goes to your review queue. You decide the threshold. You control the autonomy.</p>
+          <div class="space-y-2">
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Adjustable confidence threshold per client</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Review queue shows AI reasoning for every flagged item</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">One-click approve, override, or ask-client</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Override rate drops from ~10% in month 1 to &lt;2% by month 3</span></div>
+          </div>
+        </div>
+        <div id="tab-chase" class="tab-content hidden">
+          <h3 class="text-xl md:text-2xl font-bold mb-3 leading-tight">Missing receipt? Zenday already asked for it.</h3>
+          <p class="text-white/60 text-[13px] leading-relaxed mb-5">When a document is missing or a question needs answering, the AI drafts a contextual chase message — not a template. You approve with one click. Escalating cadence: day 3, day 7, day 14.</p>
+          <div class="space-y-2">
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Context-aware drafts: "Hi Sarah, missing receipt for $2,340 at Office Depot"</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">One-click approve via email or client portal</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Automatic escalation cadence</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Tracks response status and updates the roster</span></div>
+          </div>
+        </div>
+        <div id="tab-close" class="tab-content hidden">
+          <h3 class="text-xl md:text-2xl font-bold mb-3 leading-tight">Month-end package generated on day 1. Not day 15.</h3>
+          <p class="text-white/60 text-[13px] leading-relaxed mb-5">Because books are continuously closed, Zenday generates the monthly financial package — P&L, balance sheet, cash flow — on the first of the next month. You review, add notes, and send.</p>
+          <div class="space-y-2">
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">P&L, balance sheet, cash flow auto-generated</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Variance analysis: this month vs. last, flagged changes</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">One-click send to client via portal or email</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Branded deliverable with your firm's logo</span></div>
+          </div>
+        </div>
+        <div id="tab-reconcile" class="tab-content hidden">
+          <h3 class="text-xl md:text-2xl font-bold mb-3 leading-tight">Reconciled to the penny. Every day.</h3>
+          <p class="text-white/60 text-[13px] leading-relaxed mb-5">Zenday matches categorized transactions to bank balances via Plaid. Discrepancies are flagged immediately — not discovered during month-end crunch.</p>
+          <div class="space-y-2">
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Daily reconciliation against real bank balances</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Discrepancies flagged in real time, not at month-end</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Auto-match for clear items, flag for ambiguous ones</span></div>
+            <div class="flex items-start gap-2"><span class="text-emerald-300 mt-0.5">✓</span><span class="text-[13px] text-white/80">Reconciliation status visible on the client roster</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review queue preview -->
+      <div class="rounded-xl border border-white/20 bg-white/5 p-5">
+        <div class="text-[10px] uppercase tracking-widest text-white/30 mb-4">Live preview — Review queue</div>
+        <div class="flex items-center justify-between py-2.5 border-b border-white/10">
+          <div class="flex-1">
+            <div class="flex items-center gap-2"><span class="text-[13px] text-white/90 font-medium">Office Depot</span><span class="text-[11px] text-white/40">$2,340.00</span></div>
+            <span class="text-[11px] text-white/40">Office Supplies</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-medium text-emerald-300">97%</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300">Auto</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between py-2.5 border-b border-white/10">
+          <div class="flex-1">
+            <div class="flex items-center gap-2"><span class="text-[13px] text-white/90 font-medium">DoorDash</span><span class="text-[11px] text-white/40">$87.50</span></div>
+            <span class="text-[11px] text-white/40">Meals & Entertainment</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-medium text-emerald-300">92%</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300">Auto</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between py-2.5">
+          <div class="flex-1">
+            <div class="flex items-center gap-2"><span class="text-[13px] text-white/90 font-medium">Unknown Transfer</span><span class="text-[11px] text-white/40">$15,000.00</span></div>
+            <span class="text-[11px] text-white/40">—</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-medium text-rose-300">34%</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300">Review</span>
+          </div>
+        </div>
+        <p class="text-[10px] text-white/25 mt-3">2 transactions auto-posted. 1 needs your 10-second review.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ TRUST ============ -->
+<section class="py-14 px-5 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <div class="max-w-2xl mx-auto text-center mb-12">
+      <div class="w-16 h-16 rounded-full bg-[#5B5FF6]/10 flex items-center justify-center mx-auto mb-4">
+        <span class="text-xl font-bold text-[#5B5FF6]">V</span>
+      </div>
+      <h2 class="text-2xl md:text-[32px] font-bold tracking-tight leading-tight mb-4">Built by a firm owner who was tired of the same grind.</h2>
+      <p class="text-sm text-gray-500 leading-relaxed mb-4">
+        "I run my own CPA firm. I've spent 15 years doing bookkeeping, close, and advisory.
+        I built Zenday because I was tired of working weekends on month-end close,
+        tired of training offshore teams that quit, and tired of tools that promise AI
+        but deliver spreadsheets. Zenday runs my own firm's books. If it breaks, I'm the first to know."
+      </p>
+      <p class="text-xs text-gray-400">— Vatsal, Founder & CPA Firm Owner</p>
+    </div>
+
+    <div class="rounded-xl border border-gray-200 bg-gray-50/50 p-8 mb-8">
+      <h3 class="text-lg font-bold text-center mb-2">After Bench and Botkeeper, you're right to be skeptical.</h3>
+      <p class="text-sm text-gray-500 text-center max-w-xl mx-auto mb-6">
+        $300M+ in venture capital burned on AI bookkeeping companies that used humans behind the curtain.
+        Zenday is different — and we can prove it, because every AI action is visible.
+      </p>
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="text-center p-4">
+          <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center mx-auto mb-3"><span class="text-emerald-600 text-lg">👁️</span></div>
+          <h4 class="text-[13px] font-bold mb-1">Every action visible</h4>
+          <p class="text-[11px] text-gray-500 leading-relaxed">See exactly what the AI did, why it chose that category, and what confidence score it assigned. No black box.</p>
+        </div>
+        <div class="text-center p-4">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center mx-auto mb-3"><span class="text-blue-600 text-lg">↩️</span></div>
+          <h4 class="text-[13px] font-bold mb-1">Every action reversible</h4>
+          <p class="text-[11px] text-gray-500 leading-relaxed">One-click undo on any AI categorization. Full audit trail. Nothing is permanent until you say so.</p>
+        </div>
+        <div class="text-center p-4">
+          <div class="w-10 h-10 rounded-lg bg-violet-50 flex items-center justify-center mx-auto mb-3"><span class="text-violet-600 text-lg">🛡️</span></div>
+          <h4 class="text-[13px] font-bold mb-1">No humans behind the curtain</h4>
+          <p class="text-[11px] text-gray-500 leading-relaxed">Pure AI. No offshore team pretending to be a bot. When Zenday categorizes a transaction, it's the AI — not a person in Manila.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-xl border-2 border-[#5B5FF6]/20 bg-[#5B5FF6]/5 p-8 text-center">
+      <h3 class="text-lg font-bold mb-2">Try it on one client. Keep everything else.</h3>
+      <p class="text-sm text-gray-500 max-w-lg mx-auto mb-4">
+        You don't have to switch from Karbon, Double, or your offshore team. Pick one client.
+        Connect their QBO. Zenday runs alongside your existing setup for 30 days.
+        Compare the results yourself.
+      </p>
+      <a href="#pricing" class="inline-flex px-6 py-2.5 rounded-full bg-[#5B5FF6] hover:bg-[#4A4EE5] text-white text-sm font-semibold shadow-md shadow-[#5B5FF6]/20">Start with one client — free</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" class="py-14 px-5 bg-gray-50">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-[38px] font-bold tracking-tight mb-3">$15 per client per month.</h2>
+      <p class="text-sm text-gray-500 max-w-lg mx-auto">Your first client is free for 30 days. No credit card required. That's $15 to never work a weekend on that client's books again.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-10">
+      <div class="p-6 rounded-2xl border-2 border-[#5B5FF6] bg-white shadow-lg shadow-[#5B5FF6]/10">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-sm font-bold">Zenday Continuous Close</h3>
+          <div><span class="text-3xl font-bold">$15</span><span class="text-sm text-gray-400">/client/mo</span></div>
+        </div>
+        <p class="text-[11px] text-gray-400 mb-5">Everything your firm needs to keep one client's books continuously closed.</p>
+        <a href="#" class="block w-full text-center py-2.5 rounded-full bg-[#5B5FF6] hover:bg-[#4A4EE5] text-white text-[13px] font-medium mb-5">Start Free — First Client on Us</a>
+        <div class="space-y-2.5">
+          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">AI transaction categorization with confidence scoring</span></div>
+          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Per-client AI brain that learns from your corrections</span></div>
+          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Automated client chase for missing documents</span></div>
+          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Daily bank reconciliation via Plaid</span></div>
+          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Multi-client roster dashboard</span></div>
+          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Monthly financial package generation (P&L, BS, CF)</span></div>
+          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Variance analysis and anomaly detection</span></div>
+          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Full audit trail — every AI action logged</span></div>
+          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">QuickBooks Online + Xero integration</span></div>
+          <div class="flex items-start gap-2"><span class="text-[#5B5FF6] mt-0.5">✓</span><span class="text-[12px] text-gray-600">Unlimited team members</span></div>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-gray-200 bg-white">
+        <h3 class="text-sm font-bold mb-4">What you pay now vs. Zenday</h3>
+        <p class="text-[11px] text-gray-400 mb-5">For a firm with 30 bookkeeping clients:</p>
+
+        <div class="mb-6">
+          <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-3">Your current monthly cost</div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Close management tool</span><span class="text-[12px] font-medium">$300</span></div>
+            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Offshore bookkeeper #1</span><span class="text-[12px] font-medium">$1,500</span></div>
+            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Offshore bookkeeper #2</span><span class="text-[12px] font-medium">$1,500</span></div>
+            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Weekend hours (your time)</span><span class="text-[12px] font-medium">20+ hrs</span></div>
+            <div class="flex items-center justify-between pt-2 border-t border-gray-200">
+              <span class="text-[12px] font-bold">Total</span>
+              <span class="text-[12px] font-bold text-rose-600">$3,300/mo + weekends</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="text-[10px] font-bold text-[#5B5FF6] uppercase tracking-wider mb-3">With Zenday</div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Zenday (30 clients × $15)</span><span class="text-[12px] font-medium">$450</span></div>
+            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Offshore team</span><span class="text-[12px] font-medium text-gray-400 line-through">$3,000</span></div>
+            <div class="flex items-center justify-between py-1"><span class="text-[12px] text-gray-500">Weekend hours</span><span class="text-[12px] font-medium text-emerald-600">0 hours</span></div>
+            <div class="flex items-center justify-between pt-2 border-t border-gray-200">
+              <span class="text-[12px] font-bold">Total</span>
+              <span class="text-[12px] font-bold text-emerald-600">$450/mo + zero weekends</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 p-3 rounded-lg bg-emerald-50 border border-emerald-100">
+          <p class="text-[12px] text-emerald-700 font-medium text-center">Save $2,850/month. Eliminate weekend work entirely.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 pt-6 border-t border-gray-200">
+      <div class="text-center"><h4 class="text-[11px] font-bold mb-1">No Credit Card Required</h4><p class="text-[10px] text-gray-400 leading-relaxed">Start your free trial with no payment details.</p></div>
+      <div class="text-center"><h4 class="text-[11px] font-bold mb-1">Cancel Anytime</h4><p class="text-[10px] text-gray-400 leading-relaxed">No contracts. Remove a client whenever you want.</p></div>
+      <div class="text-center"><h4 class="text-[11px] font-bold mb-1">Keep Your Existing Tools</h4><p class="text-[10px] text-gray-400 leading-relaxed">Zenday runs alongside Karbon, Double, and Gmail.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEMO ============ -->
+<section id="demo" class="py-14 px-5 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#5B5FF6]/10 border border-[#5B5FF6]/20 mb-3">
+        <span class="text-[#5B5FF6]">▶</span>
+        <span class="text-[11px] font-semibold text-[#5B5FF6]">5-Minute Demo</span>
+      </div>
+      <h2 class="text-2xl md:text-[38px] font-bold tracking-tight text-balance">See what your morning looks like on Zenday.</h2>
+      <p class="text-sm text-gray-500 mt-2 max-w-lg mx-auto">A real walkthrough of bank feed automation, AI categorization, close management, and financial reporting.</p>
+    </div>
+    <div class="rounded-xl overflow-hidden border border-gray-200 shadow-xl shadow-[#5B5FF6]/5">
+      <iframe src="https://clueso.site/embed/beho7uz3vte8xsno?autoplay=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="w-full aspect-video border-0" title="zenday Product Demo"></iframe>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+      <div class="text-center p-3 rounded-lg bg-gray-50 border border-gray-100"><span class="text-[11px] font-bold text-[#5B5FF6]">0:00</span><p class="text-[11px] text-gray-500 mt-0.5">Bank Feed Setup</p></div>
+      <div class="text-center p-3 rounded-lg bg-gray-50 border border-gray-100"><span class="text-[11px] font-bold text-[#5B5FF6]">1:30</span><p class="text-[11px] text-gray-500 mt-0.5">AI Categorization</p></div>
+      <div class="text-center p-3 rounded-lg bg-gray-50 border border-gray-100"><span class="text-[11px] font-bold text-[#5B5FF6]">3:00</span><p class="text-[11px] text-gray-500 mt-0.5">Close Dashboard</p></div>
+      <div class="text-center p-3 rounded-lg bg-gray-50 border border-gray-100"><span class="text-[11px] font-bold text-[#5B5FF6]">4:00</span><p class="text-[11px] text-gray-500 mt-0.5">Financial Reports</p></div>
+    </div>
+    <div class="text-center mt-8">
+      <a href="#pricing" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#5B5FF6] hover:bg-[#4A4EE5] text-white text-sm font-semibold shadow-md shadow-[#5B5FF6]/20">Ready? Try your first client free</a>
+    </div>
+  </div>
+</section>
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-14 px-5 bg-gray-50">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-2xl md:text-[38px] font-bold tracking-tight text-center mb-8 text-balance">Questions firm owners actually ask.</h2>
+    <div class="space-y-2">
+      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
+        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[13px] font-medium pr-4">How is Zenday different from Keeper/Double, Client Hub, or Karbon?</span>
+          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">Those are tools where your team does the work. Zenday is an AI that does the work and asks your team to approve. You don't use Zenday — you oversee it, the same way you'd oversee a junior accountant. The difference: this junior works 24/7, never quits, and gets better every month.</div>
+      </details>
+
+      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
+        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[13px] font-medium pr-4">Is this actually AI or are there humans behind the curtain?</span>
+          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">Pure AI. No offshore team pretending to be a bot. When Zenday categorizes a transaction, it's the AI — powered by Claude. Every action is logged with a confidence score and full reasoning. We built Zenday specifically because we were tired of companies like Botkeeper and Bench disguising human labor as automation.</div>
+      </details>
+
+      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
+        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[13px] font-medium pr-4">What happens when the AI gets something wrong?</span>
+          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">Every categorization has a confidence score. Low-confidence items go to your review queue — they're never auto-posted without your approval. When you override the AI, it learns. DoorDash miscategorized once? You correct it. It never makes the same mistake again. Override rates typically drop from ~10% in month 1 to under 2% by month 3.</div>
+      </details>
+
+      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
+        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[13px] font-medium pr-4">Do I have to switch from Karbon or Double?</span>
+          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">No. Zenday runs alongside your existing tools. Keep Karbon for task management. Keep Double for whatever you use it for. Keep Gmail. Zenday only needs a connection to your client's QuickBooks or Xero. It doesn't replace your practice management — it replaces the manual bookkeeping work.</div>
+      </details>
+
+      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
+        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[13px] font-medium pr-4">What integrations does Zenday support?</span>
+          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">QuickBooks Online and Xero for the ledger. Plaid for direct bank feeds (faster than QBO's built-in bank feed). Email integration for client communication. More integrations are coming based on firm requests.</div>
+      </details>
+
+      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
+        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[13px] font-medium pr-4">How does per-client pricing work?</span>
+          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">$15 per client per month. You only pay for clients actively managed by Zenday. Add or remove clients anytime. Your first client is free for 30 days — no credit card required. A firm with 30 clients pays $450/month, which typically replaces $3,000+ in offshore costs plus weekend work.</div>
+      </details>
+
+      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
+        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[13px] font-medium pr-4">Is my clients' data safe?</span>
+          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">Yes. Enterprise-grade encryption in transit and at rest. Each client gets an isolated AI brain — no data is shared across clients. Full audit trail on every action. SOC 2 compliance in progress. Your clients' financial data is treated with the same care you'd expect from your own firm.</div>
+      </details>
+
+      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
+        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[13px] font-medium pr-4">How long does it take to set up?</span>
+          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">About 2 minutes per client. Connect QuickBooks via OAuth, select the client, and Zenday starts working. It pulls 3 months of transaction history, builds vendor rules, and begins processing new transactions overnight. By tomorrow morning, you'll see your first AI-categorized review queue.</div>
+      </details>
+
+      <details class="rounded-xl bg-white border border-gray-200 overflow-hidden group">
+        <summary class="px-5 py-3.5 flex items-center justify-between cursor-pointer list-none">
+          <span class="text-[13px] font-medium pr-4">What if Zenday shuts down like Bench or Botkeeper?</span>
+          <span class="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="px-5 pb-4 text-[13px] text-gray-500 leading-relaxed">Your data lives in your QuickBooks/Xero — not in Zenday. We categorize and post transactions to YOUR ledger. If Zenday disappeared tomorrow, your books are intact in QBO/Xero exactly as they were. Nothing is locked in our platform. Additionally, Zenday is built by a firm owner who uses it daily for their own firm — this isn't a VC-funded experiment, it's a tool the founder depends on.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="py-14 px-5 bg-[#5B5FF6] text-white">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-2xl md:text-[42px] font-bold tracking-tight leading-tight mb-3 text-balance">What if you never worked a weekend on close again?</h2>
+    <p class="text-white/60 text-sm mb-7 max-w-lg mx-auto leading-relaxed">Connect one client. See your books current tomorrow morning. Compare to your existing process. Decide for yourself.</p>
+    <div class="flex items-center justify-center gap-3">
+      <a href="#pricing" class="px-6 py-2.5 rounded-full bg-white hover:bg-gray-50 text-[#5B5FF6] text-sm font-bold shadow-lg">Try Your First Client Free</a>
+      <a href="#demo" class="px-6 py-2.5 rounded-full border border-white/30 hover:border-white/50 text-sm font-medium text-white/80">Watch Demo</a>
+    </div>
+    <p class="text-white/30 text-xs mt-4">$15/client/month after trial. No credit card. Cancel anytime.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-6 px-5 border-t border-gray-100 bg-white">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <div class="w-5 h-5 rounded bg-[#5B5FF6] flex items-center justify-center"><span class="text-[9px] font-bold text-white">Z</span></div>
+      <span class="text-xs font-bold">zenday</span>
+      <span class="text-[10px] text-gray-400 ml-2">AI-powered continuous close for accounting firms</span>
+    </div>
+    <div class="flex items-center gap-6 text-[10px] text-gray-400">
+      <a href="#" class="hover:text-gray-600">Privacy</a>
+      <a href="#" class="hover:text-gray-600">Terms</a>
+      <a href="#" class="hover:text-gray-600">Security</a>
+      <span>2026 Zenday. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // AI Engine tab switching
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      tabBtns.forEach(b => {
+        b.classList.remove('bg-white', 'text-[#5B5FF6]', 'shadow-lg');
+        b.classList.add('bg-white/15', 'text-white/80', 'border', 'border-white/20');
+      });
+      btn.classList.add('bg-white', 'text-[#5B5FF6]', 'shadow-lg');
+      btn.classList.remove('bg-white/15', 'text-white/80', 'border', 'border-white/20');
+      tabContents.forEach(c => {
+        if (c.id === 'tab-' + target) c.classList.remove('hidden');
+        else c.classList.add('hidden');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
