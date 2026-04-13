@@ -23,9 +23,9 @@
   --mute:#6F7A8C;
   --line:#D9D2C2;
   --line-soft:rgba(14,26,43,.08);
-  --red:#C8372D;
-  --red-ink:#A8291F;
-  --red-soft:rgba(200,55,45,.08);
+  --red:#B55C37;
+  --red-ink:#964625;
+  --red-soft:rgba(181,92,55,.09);
   --serif:'IBM Plex Serif','Iowan Old Style',Georgia,serif;
   --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
@@ -102,7 +102,7 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(244,239,231,.88);backdr
 .lp-txn .v .c{display:block;font-family:var(--mono);font-size:10.5px;color:var(--mute);margin-top:2px;transition:color .3s}
 .lp-txn.coding .v .c{color:var(--red)}
 .lp-txn .a{font-family:var(--mono);font-weight:500;font-size:12.5px;text-align:right}
-.lp-txn .stamp-mini{position:absolute;right:-6px;top:-8px;padding:3px 7px;border:1.5px solid var(--red);color:var(--red);font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:rgba(200,55,45,.05);transform:rotate(-6deg) scale(.3);opacity:0;transition:all .4s cubic-bezier(.2,.8,.3,1.3)}
+.lp-txn .stamp-mini{position:absolute;right:-6px;top:-8px;padding:3px 7px;border:1.5px solid var(--red);color:var(--red);font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:rgba(181,92,55,.05);transform:rotate(-6deg) scale(.3);opacity:0;transition:all .4s cubic-bezier(.2,.8,.3,1.3)}
 .lp-txn.posted .stamp-mini{transform:rotate(-6deg) scale(1);opacity:1}
 .lp-foot{margin-top:16px;padding-top:12px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
 .lp-foot b{color:var(--ink)}
@@ -111,17 +111,17 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(244,239,231,.88);backdr
 /* ============ NUMERICS BAND ============ */
 .band{background:var(--ink);color:var(--bone);padding:120px 0;border-top:1px solid var(--ink)}
 .band .sec-num{color:rgba(244,239,231,.5)}
-.band .sec-num .n{color:#F4A197}
+.band .sec-num .n{color:#E8A985}
 .band-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(244,239,231,.15);border-bottom:1px solid rgba(244,239,231,.15)}
 .bn{padding:56px 40px 48px;border-left:1px solid rgba(244,239,231,.1);position:relative}
 .bn:first-child{border-left:0}
 .bn-n{font-family:var(--mono);font-weight:500;font-size:clamp(70px,9vw,128px);letter-spacing:-.05em;line-height:.9;color:var(--bone);font-feature-settings:"tnum"}
-.bn-n .u{font-size:.34em;color:#F4A197;margin-left:2px;font-weight:400}
-.bn-l{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#F4A197;margin-top:24px;font-weight:500}
+.bn-n .u{font-size:.34em;color:#E8A985;margin-left:2px;font-weight:400}
+.bn-l{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#E8A985;margin-top:24px;font-weight:500}
 .bn-d{font-family:var(--serif);font-size:15px;color:rgba(244,239,231,.7);margin-top:10px;line-height:1.5;max-width:280px}
 .band-lede{max-width:640px;margin-bottom:72px}
 .band-lede .h{font-family:var(--serif);font-size:clamp(32px,4vw,48px);line-height:1.1;letter-spacing:-.025em;font-weight:500;color:var(--bone);margin:0}
-.band-lede .h em{font-style:italic;color:#F4A197;font-weight:400}
+.band-lede .h em{font-style:italic;color:#E8A985;font-weight:400}
 
 /* ============ PRODUCT SCREENSHOT ============ */
 .product-sec{padding:140px 0}
@@ -172,7 +172,7 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(244,239,231,.88);backdr
 .txn .a{font-family:var(--mono);font-weight:500;font-size:12.5px;text-align:right}
 .txn .b{font-family:var(--mono);font-size:9px;font-weight:600;padding:3px 8px;letter-spacing:.1em;text-transform:uppercase;text-align:center;border-radius:2px}
 .txn .b.posted{background:var(--line-soft);color:var(--ink-2)}
-.txn .b.review{background:var(--red-soft);color:var(--red);border:1px solid rgba(200,55,45,.2)}
+.txn .b.review{background:var(--red-soft);color:var(--red);border:1px solid rgba(181,92,55,.2)}
 
 .r-aside{border-left:1px solid var(--line);padding:22px;background:var(--bone-2)}
 .ra-h{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:12px;font-weight:500}
@@ -227,7 +227,7 @@ input[type=range].slider::-webkit-slider-thumb{-webkit-appearance:none;appearanc
 input[type=range].slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--red);border:3px solid var(--bone);cursor:pointer}
 
 .roi-total{margin-top:14px;padding:20px 30px;background:var(--ink);color:var(--bone);display:flex;justify-content:space-between;align-items:center}
-.roi-total .l{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#F4A197;font-weight:500}
+.roi-total .l{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#E8A985;font-weight:500}
 .roi-total .v{font-family:var(--serif);font-weight:500;font-size:42px;letter-spacing:-.025em;font-feature-settings:"tnum";color:var(--bone)}
 .roi-total .v .u{font-family:var(--mono);font-size:12px;color:rgba(244,239,231,.6);margin-left:6px;letter-spacing:.1em;text-transform:uppercase;vertical-align:middle}
 
@@ -246,7 +246,7 @@ input[type=range].slider::-moz-range-thumb{width:18px;height:18px;border-radius:
   background-size:100% 28px;
   background-position:0 28px;
 }
-.form::before{content:"";position:absolute;left:54px;top:0;bottom:0;width:1px;background:rgba(200,55,45,.18)}
+.form::before{content:"";position:absolute;left:54px;top:0;bottom:0;width:1px;background:rgba(181,92,55,.18)}
 .form-h{display:flex;justify-content:space-between;padding-bottom:22px;border-bottom:1.5px solid var(--ink);margin-bottom:28px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
 .form-h .t{color:var(--ink);font-weight:600}
 .form-h .r{text-align:right}
@@ -271,7 +271,7 @@ input[type=range].slider::-moz-range-thumb{width:18px;height:18px;border-radius:
 .form-foot b{color:var(--ink);font-weight:500}
 
 /* The signature stamp */
-.paid-stamp{position:absolute;right:-24px;top:-32px;transform:rotate(8deg);padding:14px 28px 12px;border:3px solid var(--red);color:var(--red);font-family:var(--mono);font-weight:700;text-align:center;background:rgba(200,55,45,.04);line-height:1.1;letter-spacing:.14em;opacity:0;transition:opacity .6s ease, transform .8s cubic-bezier(.2,.9,.3,1.3);box-shadow:0 8px 24px -10px rgba(200,55,45,.35)}
+.paid-stamp{position:absolute;right:-24px;top:-32px;transform:rotate(8deg);padding:14px 28px 12px;border:3px solid var(--red);color:var(--red);font-family:var(--mono);font-weight:700;text-align:center;background:rgba(181,92,55,.04);line-height:1.1;letter-spacing:.14em;opacity:0;transition:opacity .6s ease, transform .8s cubic-bezier(.2,.9,.3,1.3);box-shadow:0 8px 24px -10px rgba(181,92,55,.35)}
 .paid-stamp.in{opacity:.92;transform:rotate(8deg) scale(1)}
 .paid-stamp .p1{font-size:26px;display:block;letter-spacing:.22em;margin-bottom:2px}
 .paid-stamp .p2{font-size:10px;display:block;border-top:1.5px solid var(--red);padding-top:4px;margin-top:4px;letter-spacing:.18em}
@@ -355,9 +355,9 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bon
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="eyebrow">The autonomous staff accountant</div>
-        <h1 class="hero-h">Assign one agent<br/><em>per client.</em><br/>It does the books.</h1>
-        <p class="hero-sub">Zenday <b>codes every transaction, reconciles accounts, drafts client questions, and closes the month</b> — autonomously, with an audit trail. Your team reviews judgment. Not data entry.</p>
+        <div class="eyebrow">AI for accounting firms</div>
+        <h1 class="hero-h">A staff accountant,<br/><em>for every client.</em><br/>For fifteen dollars.</h1>
+        <p class="hero-sub">Assign Zenday to a client. It <b>reads the bank feed, codes every transaction, reconciles the accounts, drafts questions to the client, and closes the month</b> — on its own, with a full audit trail. Your team reviews judgment. Not data entry.</p>
         <div class="hero-cta">
           <a class="btn r big" href="#pricing">Assign to one client <span class="arr">→</span></a>
           <a class="btn o big" href="#product">See the product</a>
@@ -397,7 +397,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bon
   <div class="sec-num"><span class="n">§ 02</span>The Numbers</div>
   <div class="wrap">
     <div class="band-lede">
-      <h2 class="h">Ninety-four percent of transactions <em>never touch a human.</em></h2>
+      <h2 class="h">Ninety-four percent of transactions <em>post on their own.</em></h2>
     </div>
     <div class="band-grid">
       <div class="bn">
@@ -424,7 +424,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bon
   <div class="sec-num"><span class="n">§ 03</span>The Product</div>
   <div class="wrap">
     <div class="product-head">
-      <h2>Every client on one pane. <em>The agent runs beneath.</em></h2>
+      <h2>Every client on one pane. <em>Zenday works beneath it.</em></h2>
       <div class="tag">Live plate · Apr 2026</div>
     </div>
     <div class="shot">
@@ -455,7 +455,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bon
               <div class="r-main-t">Beta Studio</div>
               <div class="r-main-s">34 transactions today · 3 need your judgment</div>
             </div>
-            <div class="live-tag"><span class="d"></span>Agent running</div>
+            <div class="live-tag"><span class="d"></span>Zenday running</div>
           </div>
           <div id="prodStream">
             <div class="txn"><span class="t">10:21</span><div><div class="v">Wire · ACH Transfer</div><div class="c">No vendor match · 34%</div></div><span class="a">$15,000.00</span><span class="b review">Review</span></div>
@@ -487,33 +487,33 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bon
   <div class="sec-num"><span class="n">§ 04</span>How It Works</div>
   <div class="wrap">
     <div class="how-head">
-      <h2 class="h">Perception, reasoning, <em>action, learning.</em></h2>
-      <p class="p">Each client gets a dedicated Zenday agent with persistent memory, an audited toolbelt of ledger/bank/email actions, and a playbook your firm configures. The loop below runs continuously — not on an overnight batch.</p>
+      <h2 class="h">Four things it does, <em>every day, for every client.</em></h2>
+      <p class="p">Zenday has its own memory per client, a safe connection to your ledger and bank, and a playbook your firm sets. It runs continuously — not on an overnight batch.</p>
     </div>
     <div class="steps">
       <div class="step">
-        <div class="n">01 · Perception</div>
-        <h3>Reads <em>every event.</em></h3>
-        <p class="p">Subscribes to the bank feed, inbox, uploaded docs, QBO/Xero sync, and scheduled triggers.</p>
-        <div class="code">bank.txn.synced · $480 · <b>Ramp</b></div>
+        <div class="n">01 · Reads the feed</div>
+        <h3>Sees <em>every transaction</em> the moment it clears.</h3>
+        <p class="p">Connects to the bank, the ledger, the inbox, and uploaded receipts. Wakes on every new event.</p>
+        <div class="code">bank.txn · $480 · <b>Ramp</b></div>
       </div>
       <div class="step">
-        <div class="n">02 · Reasoning</div>
-        <h3>Decides <em>with confidence.</em></h3>
-        <p class="p">Checks chart of accounts, learned rules, vendor history, and your playbook. Outputs a decision plus a rationale.</p>
+        <div class="n">02 · Codes it right</div>
+        <h3>Chooses the <em>account &amp; vendor</em> with a confidence score.</h3>
+        <p class="p">Checks your chart of accounts, eighteen months of vendor history, and the rules the firm has already taught it.</p>
         <div class="code">match → <b>Office Supplies</b> · 97%</div>
       </div>
       <div class="step">
-        <div class="n">03 · Action</div>
-        <h3>Posts <em>and logs.</em></h3>
-        <p class="p">Writes to QBO/Xero through an audited, reversible ledger adapter. Every write carries reasoning and model version.</p>
+        <div class="n">03 · Posts to the books</div>
+        <h3>Writes the entry, <em>logs the reasoning.</em></h3>
+        <p class="p">Every entry is posted with its reasoning, confidence, and source — auditable, reversible, traceable.</p>
         <div class="code">ledger.post · <b>JE-2264</b> · ✓</div>
       </div>
       <div class="step">
-        <div class="n">04 · Learning</div>
-        <h3>Never <em>repeats itself.</em></h3>
-        <p class="p">Your override becomes a permanent per-client rule. Override rate drops under 2% by month three.</p>
-        <div class="code">rule.upsert · <b>vendor → acct</b></div>
+        <div class="n">04 · Learns from you</div>
+        <h3>Never asks <em>the same question twice.</em></h3>
+        <p class="p">A correction becomes a permanent rule for that client. Override rate drops under two per cent by month three.</p>
+        <div class="code">rule saved · <b>vendor → acct</b></div>
       </div>
     </div>
   </div>
@@ -577,12 +577,12 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bon
       <div class="form-title">The standard <em>invoice.</em></div>
       <div class="form-sub">Everything the agent does · all integrations · unlimited team seats</div>
 
-      <div class="line-row"><span class="ln">Line 01</span><span class="desc"><span>Autonomous per-client agent</span><span class="dots"></span><span class="d">coding · reconcile · close</span></span><span class="v">$15.00</span></div>
+      <div class="line-row"><span class="ln">Line 01</span><span class="desc"><span>A staff accountant, per client</span><span class="dots"></span><span class="d">codes · reconciles · closes the month</span></span><span class="v">$15.00</span></div>
       <div class="line-row"><span class="ln">Line 02</span><span class="desc"><span>Team seats</span><span class="dots"></span><span class="d">unlimited</span></span><span class="v zero">$0.00</span></div>
       <div class="line-row"><span class="ln">Line 03</span><span class="desc"><span>Integrations</span><span class="dots"></span><span class="d">QBO · Xero · Plaid</span></span><span class="v zero">$0.00</span></div>
       <div class="line-row"><span class="ln">Line 04</span><span class="desc"><span>Setup &amp; onboarding</span><span class="dots"></span><span class="d">self-serve</span></span><span class="v zero">$0.00</span></div>
-      <div class="line-row"><span class="ln">Line 05</span><span class="desc"><span>Transaction caps</span><span class="dots"></span><span class="d">none</span></span><span class="v zero">$0.00</span></div>
-      <div class="line-row"><span class="ln">Line 06</span><span class="desc"><span>Audit trail</span><span class="dots"></span><span class="d">reasoning + model + source</span></span><span class="v zero">$0.00</span></div>
+      <div class="line-row"><span class="ln">Line 05</span><span class="desc"><span>Transaction caps</span><span class="dots"></span><span class="d">none, at any volume</span></span><span class="v zero">$0.00</span></div>
+      <div class="line-row"><span class="ln">Line 06</span><span class="desc"><span>Audit trail on every entry</span><span class="dots"></span><span class="d">reasoning · confidence · source</span></span><span class="v zero">$0.00</span></div>
 
       <div class="line-total">
         <span class="ln">Total</span>
@@ -623,12 +623,12 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bon
         </div>
       </div>
       <div class="faq">
-        <div class="q open"><div class="q-t">Is Zenday a bookkeeping service or software?</div><div class="q-a">Software. Zenday is the agent your firm assigns to each client. You stay the accountant of record. The agent does coding, reconciliation, and close — your team reviews the exceptions.</div></div>
-        <div class="q"><div class="q-t">How is this different from QBO's built-in AI?</div><div class="q-a">QBO suggests a category on transactions you review one-by-one. Zenday is an autonomous agent that runs continuously, learns per-client, drafts client questions, and closes the month without a human driving.</div></div>
-        <div class="q"><div class="q-t">What happens when it gets something wrong?</div><div class="q-a">Low-confidence items go to the review queue instead of being posted. When you correct one, the rule becomes permanent for that client. Override rate drops under 2% by month three.</div></div>
-        <div class="q"><div class="q-t">Which ledgers and banks do you support?</div><div class="q-a">QuickBooks Online, Xero, and any bank that supports Plaid or direct feed — 12,000+ US and Canadian institutions. Sage and NetSuite on the roadmap.</div></div>
-        <div class="q"><div class="q-t">Can I run it on one client before committing?</div><div class="q-a">Yes. First client is free for thirty days. No credit card. No onboarding call — connect QBO and a bank feed, pick a client, assign the agent.</div></div>
-        <div class="q"><div class="q-t">What about data security?</div><div class="q-a">SOC 2 Type II in progress. Customer data is never used for model training. US-hosted. BAA available on Enterprise.</div></div>
+        <div class="q open"><div class="q-t">Is this a bookkeeping service or software?</div><div class="q-a">Software. Your firm assigns Zenday to each client; you stay the accountant of record. Zenday handles the coding, the reconciliation, and the close — your team reviews anything that needs judgment.</div></div>
+        <div class="q"><div class="q-t">How is this different from QBO's built-in AI?</div><div class="q-a">QBO suggests a category on transactions you review one by one. Zenday is a full staff accountant — it runs continuously, learns per client, writes the client questions for you, and closes the month without anyone driving.</div></div>
+        <div class="q"><div class="q-t">What happens when it gets something wrong?</div><div class="q-a">Low-confidence items wait in the review queue instead of being posted. When you correct one, Zenday remembers it for that client — permanently. Override rate drops under two per cent by month three.</div></div>
+        <div class="q"><div class="q-t">Which ledgers and banks do you support?</div><div class="q-a">QuickBooks Online, Xero, and any bank on Plaid or direct feed — 12,000+ US and Canadian institutions. Sage and NetSuite are on the roadmap.</div></div>
+        <div class="q"><div class="q-t">Can I run it on one client before committing?</div><div class="q-a">Yes. First client is free for thirty days. No credit card. No onboarding call — connect QBO and a bank feed, pick a client, and let Zenday do the month.</div></div>
+        <div class="q"><div class="q-t">What about data security?</div><div class="q-a">SOC 2 Type II in progress. Your client data is never used to train models. US-hosted. BAA available on Enterprise.</div></div>
       </div>
     </div>
   </div>
