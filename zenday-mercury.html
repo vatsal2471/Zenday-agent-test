@@ -310,15 +310,27 @@ a{color:inherit;text-decoration:none}
 .q-name{font-size:14.5px;font-weight:700;letter-spacing:-.005em;text-align:left}
 .q-role{font-size:12.5px;color:var(--mute);margin-top:2px}
 
-/* ============ PRICING INVOICE ============ */
-.inv-sec{padding:140px 0;border-bottom:1px solid var(--line)}
+/* ============ PRICING — FINANCIAL DOCUMENT PACKET ============ */
+.inv-sec{padding:140px 0 160px;border-bottom:1px solid var(--line);background:
+  linear-gradient(var(--bg),var(--bg)),
+  repeating-linear-gradient(0deg,rgba(15,81,50,.02) 0,rgba(15,81,50,.02) 1px,transparent 1px,transparent 28px);
+  background-blend-mode:multiply}
 .inv-head{text-align:center;margin-bottom:60px}
 .inv-eye{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:24px}
 .inv-h{font-size:clamp(48px,6.5vw,92px);font-weight:800;letter-spacing:-.038em;line-height:.98;margin:0}
 .inv-h em{font-style:normal;color:var(--green)}
-.inv-sub{font-size:17px;color:var(--ink-2);margin:24px auto 0;max-width:620px;line-height:1.55}
+.inv-sub{font-size:17px;color:var(--ink-2);margin:24px auto 0;max-width:640px;line-height:1.55}
 
-.invoice{max-width:920px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+/* Exhibit dividers */
+.exhibit{max-width:920px;margin:90px auto 32px;padding-bottom:18px;border-bottom:2px solid var(--ink);display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:baseline}
+.exhibit-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:800;padding:5px 10px;border:1.5px solid var(--green);border-radius:4px}
+.exhibit-h{font-size:28px;font-weight:800;letter-spacing:-.02em;margin:0;line-height:1.1}
+.exhibit-h em{font-style:normal;color:var(--green)}
+.exhibit-note{font-size:11.5px;color:var(--mute);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-align:right}
+.exhibit-desc{max-width:920px;margin:-16px auto 32px;font-size:14.5px;color:var(--ink-2);line-height:1.55}
+
+.invoice{max-width:920px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;position:relative}
+.invoice::before{content:"";position:absolute;top:0;bottom:0;left:68px;width:1px;background:rgba(220,50,50,.12);pointer-events:none}
 .inv-top{display:grid;grid-template-columns:1fr 1fr;padding:40px 48px;border-bottom:1px dashed var(--line);background:#fbfaf5;gap:40px}
 .inv-brand{font-size:22px;font-weight:800;letter-spacing:-.015em;display:flex;align-items:center;gap:10px}
 .inv-brand .brand-mark{transform:none}
@@ -339,7 +351,96 @@ a{color:inherit;text-decoration:none}
 .inv-total-v .u{font-size:18px;color:var(--mute);font-weight:500;margin-left:4px}
 .inv-stamp{display:inline-block;margin-top:20px;padding:8px 14px;border:2px solid var(--green);color:var(--green);font-family:'JetBrains Mono',monospace;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;transform:rotate(-3deg);border-radius:4px}
 .inv-foot{padding:24px 48px;background:#fbfaf5;border-top:1px dashed var(--line);font-size:11.5px;color:var(--mute);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace}
-.inv-actions{text-align:center;margin-top:32px;display:flex;gap:10px;justify-content:center}
+.inv-actions{text-align:center;margin-top:48px;display:flex;gap:10px;justify-content:center}
+
+/* Before / After paired invoices */
+.inv-pair{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:stretch;max-width:1180px;margin:0 auto}
+.inv-side{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column}
+.inv-side.before{border-color:#e4c8c8;background:linear-gradient(180deg,#fff,#fdf7f5)}
+.inv-side.after{border-color:var(--green);background:linear-gradient(180deg,#fff,var(--green-tint));box-shadow:0 2px 6px rgba(15,81,50,.08),0 22px 50px rgba(15,81,50,.1)}
+.inv-side-h{padding:20px 24px;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline;background:#fbfaf5}
+.inv-side.before .inv-side-h{background:#fcf3f0}
+.inv-side.after .inv-side-h{background:var(--green-tint)}
+.inv-side-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:4px}
+.inv-side.before .inv-side-tag{background:#e4c8c8;color:#8a2a2a}
+.inv-side.after .inv-side-tag{background:var(--green);color:#fff}
+.inv-side-no{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mute);letter-spacing:.08em}
+.inv-side-body{padding:22px 24px;flex:1;display:flex;flex-direction:column}
+.inv-side-title{font-size:16px;font-weight:800;letter-spacing:-.015em;margin-bottom:4px}
+.inv-side-sub{font-size:12px;color:var(--mute);margin-bottom:18px;font-family:'JetBrains Mono',monospace}
+.pair-row{display:grid;grid-template-columns:1fr 90px;gap:12px;padding:9px 0;border-top:1px solid var(--line-2);font-size:13px}
+.pair-row:first-of-type{border-top:0}
+.pair-row .t{letter-spacing:-.005em}
+.pair-row .t .d{display:block;font-size:11px;color:var(--mute);margin-top:2px;font-family:'JetBrains Mono',monospace}
+.pair-row .c{font-family:'JetBrains Mono',monospace;text-align:right;font-weight:600}
+.pair-total{margin-top:auto;padding-top:18px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline}
+.inv-side.after .pair-total{border-top-color:var(--green)}
+.pair-total-l{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-family:'JetBrains Mono',monospace}
+.pair-total-v{font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:800;letter-spacing:-.025em}
+.inv-side.before .pair-total-v{color:#a02a2a}
+.inv-side.after .pair-total-v{color:var(--green)}
+.pair-total-v .u{font-size:13px;color:var(--mute);font-weight:500;margin-left:3px;letter-spacing:0}
+.pair-arrow{align-self:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 6px}
+.pair-arrow .lbl{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);font-weight:700}
+.pair-arrow .big{font-size:42px;color:var(--green);line-height:1}
+.pair-arrow .save{margin-top:6px;padding:7px 12px;background:var(--green);color:#fff;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;white-space:nowrap}
+
+/* Savings worksheet — tax form */
+.worksheet{max-width:920px;margin:0 auto;background:var(--surface);border:1.5px solid var(--ink);border-radius:4px;overflow:hidden;box-shadow:var(--shadow-sm);position:relative}
+.ws-h{padding:20px 28px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:baseline}
+.ws-h .t{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.ws-h .s{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#8a9e96;letter-spacing:.08em}
+.ws-form{padding:8px 0}
+.ws-row{display:grid;grid-template-columns:72px 1fr 70px 140px;align-items:center;padding:13px 28px;border-top:1px solid var(--line-2);font-size:13.5px}
+.ws-row:first-child{border-top:0}
+.ws-row:hover{background:#fbfaf5}
+.ws-row .ln{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);font-weight:700;letter-spacing:.08em}
+.ws-row .desc{letter-spacing:-.005em}
+.ws-row .desc b{font-weight:600}
+.ws-row .desc .op{color:var(--mute);font-family:'JetBrains Mono',monospace;font-size:11px;margin-left:6px}
+.ws-row .unit{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mute);text-align:center}
+.ws-row .val{font-family:'JetBrains Mono',monospace;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;font-size:14px}
+.ws-row.subtotal{background:#fbfaf5;border-top:1.5px solid var(--ink)}
+.ws-row.subtotal .val{color:var(--ink)}
+.ws-row.total{background:var(--green-tint);border-top:2px solid var(--green);border-bottom:2px solid var(--green)}
+.ws-row.total .ln{color:var(--green)}
+.ws-row.total .desc{font-weight:800;font-size:15px}
+.ws-row.total .val{font-size:22px;color:var(--green);font-weight:800;letter-spacing:-.015em}
+.ws-row.final{padding:22px 28px;background:var(--green-3);color:#fff}
+.ws-row.final .ln{color:#7dd4a8}
+.ws-row.final .desc{color:#fff;font-weight:800;font-size:15px;letter-spacing:-.01em}
+.ws-row.final .val{font-size:32px;color:#7dd4a8;letter-spacing:-.025em;font-weight:800}
+.ws-foot{padding:16px 28px;background:#fbfaf5;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+
+/* Terms & signatures */
+.terms-doc{max-width:920px;margin:70px auto 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.terms-h{padding:16px 28px;background:#fbfaf5;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.terms-h .t{color:var(--ink)}
+.terms-body{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;padding:28px}
+.terms-fine h6{font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 10px;font-weight:700}
+.terms-fine p{font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:0 0 10px}
+.terms-fine p b{color:var(--ink);font-weight:600}
+.signatures{display:flex;flex-direction:column;gap:26px;padding-left:30px;border-left:1px dashed var(--line)}
+.sig{display:flex;flex-direction:column;gap:6px}
+.sig-line{height:1.5px;background:var(--ink);position:relative}
+.sig-line::after{content:"× signature";position:absolute;left:0;top:-22px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mute-2);letter-spacing:.08em;text-transform:uppercase}
+.sig-meta{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mute);font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
+.sig-meta b{color:var(--ink);font-weight:700;letter-spacing:-.005em;font-family:'Inter',sans-serif;font-size:13px}
+.sig.done .sig-line{background:var(--green)}
+.sig.done .sig-line::after{content:"✓ signed · Zenday";color:var(--green)}
+
+/* Perforated tear */
+.tear{height:22px;background:
+  radial-gradient(circle at 12px 50%, transparent 5px, transparent 5.5px),
+  linear-gradient(#fff,#fff);
+  background-size:24px 100%, 100% 100%;
+  background-repeat:repeat-x, no-repeat;
+  border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);
+  background-color:#fff;
+  position:relative}
+.tear::before,.tear::after{content:"";position:absolute;top:0;bottom:0;width:22px}
+.tear::before{left:-11px;background:radial-gradient(circle at 0 50%,var(--bg) 10px,transparent 11px)}
+.tear::after{right:-11px;background:radial-gradient(circle at 100% 50%,var(--bg) 10px,transparent 11px)}
 
 /* ============ MANIFESTO ============ */
 .manifesto{padding:160px 0 120px;background:var(--bg-2);border-bottom:1px solid var(--line)}
@@ -406,6 +507,15 @@ footer{padding:60px 0 30px;background:var(--ink);color:#888;font-size:12.5px}
   .me-grid{grid-template-columns:1fr}
   .inv-top{grid-template-columns:1fr;text-align:left}
   .inv-bill-to{text-align:left}
+  .inv-pair{grid-template-columns:1fr}
+  .pair-arrow{flex-direction:row;justify-content:center;padding:16px 0}
+  .pair-arrow .big{transform:rotate(90deg)}
+  .ws-row{grid-template-columns:64px 1fr 80px;gap:8px}
+  .ws-row .unit{display:none}
+  .terms-body{grid-template-columns:1fr}
+  .signatures{border-left:0;border-top:1px dashed var(--line);padding-left:0;padding-top:20px}
+  .exhibit{grid-template-columns:1fr;gap:8px}
+  .exhibit-note{text-align:left}
   .foot-top{grid-template-columns:1fr 1fr}
 }
 </style>
@@ -761,7 +871,7 @@ footer{padding:60px 0 30px;background:var(--ink);color:#888;font-size:12.5px}
   </div>
 </section>
 
-<!-- PRICING INVOICE -->
+<!-- PRICING — FINANCIAL DOCUMENT PACKET -->
 <section class="inv-sec" id="pricing">
   <div class="wrap">
     <div class="inv-head">
@@ -798,8 +908,130 @@ footer{padding:60px 0 30px;background:var(--ink);color:#888;font-size:12.5px}
         <span>SOC 2 TYPE II · IN PROGRESS</span>
       </div>
     </div>
+
+    <!-- EXHIBIT B — BEFORE / AFTER PAIRED INVOICES -->
+    <div class="exhibit">
+      <span class="exhibit-num">Exhibit B</span>
+      <h4 class="exhibit-h">The side-by-side <em>comparison.</em></h4>
+      <span class="exhibit-note">ONE FIRM · 40 CLIENTS · 30 DAYS</span>
+    </div>
+    <p class="exhibit-desc">A representative 40-client firm, one month. The left column is the labor stack most firms are running today — offshore coders, a junior bookkeeper's time, and the ledger seat fee. The right column is what replaces it.</p>
+
+    <div class="inv-pair">
+      <div class="inv-side before">
+        <div class="inv-side-h">
+          <span class="inv-side-tag">Before</span>
+          <span class="inv-side-no">INV #CURRENT-04</span>
+        </div>
+        <div class="inv-side-body">
+          <div class="inv-side-title">Current monthly labor stack</div>
+          <div class="inv-side-sub">40 clients · status quo</div>
+          <div class="pair-row"><div class="t">Offshore coder (per client)<span class="d">40 clients × $400 / mo</span></div><div class="c">$16,000</div></div>
+          <div class="pair-row"><div class="t">Junior bookkeeper<span class="d">1 FTE loaded, partial allocation</span></div><div class="c">$3,800</div></div>
+          <div class="pair-row"><div class="t">QBO Accountant seats<span class="d">Firm seat + per-client</span></div><div class="c">$920</div></div>
+          <div class="pair-row"><div class="t">Close-week overtime<span class="d">Avg last-week-of-month</span></div><div class="c">$1,200</div></div>
+          <div class="pair-row"><div class="t">Chase tool / receipt inbox<span class="d">Dext, HubDoc, etc.</span></div><div class="c">$340</div></div>
+          <div class="pair-total">
+            <span class="pair-total-l">Monthly total</span>
+            <span class="pair-total-v">$22,260<span class="u">/ mo</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pair-arrow">
+        <span class="lbl">Replace with</span>
+        <span class="big">→</span>
+        <span class="save">SAVE $21,660 / MO</span>
+      </div>
+
+      <div class="inv-side after">
+        <div class="inv-side-h">
+          <span class="inv-side-tag">After</span>
+          <span class="inv-side-no">INV #ZD-2026-04</span>
+        </div>
+        <div class="inv-side-body">
+          <div class="inv-side-title">Zenday · Firm plan</div>
+          <div class="inv-side-sub">40 clients · all included</div>
+          <div class="pair-row"><div class="t">Autonomous per-client agent<span class="d">Coding · reconcile · chase · close</span></div><div class="c">$600</div></div>
+          <div class="pair-row"><div class="t">Team seats<span class="d">Unlimited</span></div><div class="c">$0</div></div>
+          <div class="pair-row"><div class="t">Integrations<span class="d">QBO · Xero · Plaid · 12k+ banks</span></div><div class="c">$0</div></div>
+          <div class="pair-row"><div class="t">Setup &amp; onboarding<span class="d">Self-serve</span></div><div class="c">$0</div></div>
+          <div class="pair-row"><div class="t">Transaction caps<span class="d">None, at any volume</span></div><div class="c">$0</div></div>
+          <div class="pair-total">
+            <span class="pair-total-l">Monthly total</span>
+            <span class="pair-total-v">$600<span class="u">/ mo</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXHIBIT C — SAVINGS WORKSHEET -->
+    <div class="exhibit">
+      <span class="exhibit-num">Exhibit C</span>
+      <h4 class="exhibit-h">The <em>savings worksheet.</em></h4>
+      <span class="exhibit-note">FORM ZD-1040 · ANNUAL</span>
+    </div>
+    <p class="exhibit-desc">Annual math for the same 40-client firm, worked line by line the way a tax form walks you through a calculation. Plug your own client count into Line 2 — the rest follows.</p>
+
+    <div class="worksheet">
+      <div class="ws-h">
+        <span class="t">Form ZD-1040 · Annual Savings Worksheet</span>
+        <span class="s">FOR USE BY ACCOUNTING FIRMS · 2026</span>
+      </div>
+      <div class="ws-form">
+        <div class="ws-row"><span class="ln">Line 01</span><span class="desc">Current offshore / labor cost <b>per client, per month</b></span><span class="unit">USD</span><span class="val">$400.00</span></div>
+        <div class="ws-row"><span class="ln">Line 02</span><span class="desc">Number of clients on the roster</span><span class="unit">count</span><span class="val">40</span></div>
+        <div class="ws-row subtotal"><span class="ln">Line 03</span><span class="desc">Monthly labor cost<span class="op">= L01 × L02</span></span><span class="unit">USD</span><span class="val">$16,000</span></div>
+        <div class="ws-row"><span class="ln">Line 04</span><span class="desc">Annual labor cost<span class="op">= L03 × 12</span></span><span class="unit">USD</span><span class="val">$192,000</span></div>
+        <div class="ws-row"><span class="ln">Line 05</span><span class="desc">Zenday price per client, per month</span><span class="unit">USD</span><span class="val">$15.00</span></div>
+        <div class="ws-row subtotal"><span class="ln">Line 06</span><span class="desc">Monthly Zenday cost<span class="op">= L05 × L02</span></span><span class="unit">USD</span><span class="val">$600</span></div>
+        <div class="ws-row"><span class="ln">Line 07</span><span class="desc">Annual Zenday cost<span class="op">= L06 × 12</span></span><span class="unit">USD</span><span class="val">$7,200</span></div>
+        <div class="ws-row total"><span class="ln">Line 08</span><span class="desc">Annual savings<span class="op">= L04 − L07</span></span><span class="unit">USD</span><span class="val">$184,800</span></div>
+        <div class="ws-row"><span class="ln">Line 09</span><span class="desc">Reduction, labor layer<span class="op">= L08 ÷ L04</span></span><span class="unit">%</span><span class="val">96.25%</span></div>
+        <div class="ws-row"><span class="ln">Line 10</span><span class="desc">Hours redeployed to advisory<span class="op">est. 10 hr/wk × 50 wk</span></span><span class="unit">hr</span><span class="val">500</span></div>
+        <div class="ws-row final"><span class="ln">Line 11</span><span class="desc">Net annual benefit to firm<span class="op" style="color:#7dd4a8">L08 + (L10 × $300/hr advisory rate)</span></span><span class="unit" style="color:#7dd4a8">USD</span><span class="val">$334,800</span></div>
+      </div>
+      <div class="ws-foot">
+        <span>WORKSHEET REV 2026.04</span>
+        <span>RETAIN FOR YOUR RECORDS</span>
+        <span>ZD-1040 · PAGE 1 OF 1</span>
+      </div>
+    </div>
+
+    <!-- TERMS + SIGNATURES -->
+    <div class="terms-doc">
+      <div class="terms-h">
+        <span class="t">Terms &amp; Signatures</span>
+        <span>STANDARD FIRM AGREEMENT · 2026.04</span>
+      </div>
+      <div class="terms-body">
+        <div class="terms-fine">
+          <h6>The fine print — written in plain English</h6>
+          <p><b>Billing.</b> $15 per active client per month, billed on the first of the following month. No seat fees, no transaction caps, no setup cost.</p>
+          <p><b>Trial.</b> Your first client is free for 30 days. No credit card. Cancel anytime with one click.</p>
+          <p><b>Data.</b> Customer data is never used for model training. US-hosted. SOC 2 Type II in progress. BAA available on Enterprise.</p>
+          <p><b>Portability.</b> All entries sync natively into QBO or Xero. Leaving is copy-to-clipboard; there is no export ransom.</p>
+          <p><b>Uptime.</b> Target 99.95%. Credits if we miss. The agent retries on feed outages automatically.</p>
+        </div>
+        <div class="signatures">
+          <div class="sig done">
+            <div class="sig-line"></div>
+            <div class="sig-meta"><b>Zenday Inc.</b><span>PROVIDER</span></div>
+          </div>
+          <div class="sig">
+            <div class="sig-line"></div>
+            <div class="sig-meta"><b>Your Firm, LLP</b><span>CLIENT · AWAITING</span></div>
+          </div>
+          <div class="sig" style="margin-top:6px">
+            <div class="sig-line" style="background:var(--mute-2);height:1px"></div>
+            <div class="sig-meta" style="color:var(--mute)"><span>Date</span><span>APR 2026</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="inv-actions">
-      <a class="btn g big" href="#cta">Start with one client free<span class="arr">→</span></a>
+      <a class="btn g big" href="#cta">Countersign — start with one client free<span class="arr">→</span></a>
       <a class="btn o big" href="#">Book a 20-min demo</a>
     </div>
   </div>
