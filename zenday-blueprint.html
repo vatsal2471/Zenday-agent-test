@@ -257,9 +257,76 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(230,235,240,.88);backdr
 .b-head h3 em{font-style:italic;color:var(--ink-2);font-weight:400}
 .b-head p{font-family:var(--serif);font-size:13.5px;color:var(--ink-2);line-height:1.5;margin:0;max-width:92%}
 
-.b-ui{margin-top:auto;background:var(--bone-2);border:1px solid var(--line);padding:14px;flex:1;min-height:150px;display:flex;flex-direction:column;gap:6px}
+.b-ui{margin-top:auto;background:#fff;border:1px solid var(--line);padding:0;flex:1;min-height:180px;display:flex;flex-direction:column;overflow:hidden;font-family:'Inter',-apple-system,system-ui,sans-serif;color:#0f172a}
+.b-ui,.b-ui *{font-family:'Inter',-apple-system,system-ui,sans-serif}
+.b-ui .scrn-bar{height:26px;background:#fafaf9;border-bottom:1px solid #eee;display:flex;align-items:center;padding:0 10px;gap:6px;font-size:10px;color:#94a3b8}
+.b-ui .scrn-bar .d{width:7px;height:7px;border-radius:50%;background:#e5e5e5}
+.b-ui .scrn-bar .lbl{margin-left:auto;color:#64748b;letter-spacing:.04em}
+.b-ui .scrn-bar .ask{padding:3px 8px;background:linear-gradient(90deg,#a855f7,#ec4899);color:#fff;border-radius:999px;font-size:9px;font-weight:600;letter-spacing:.02em}
 
-/* 01 roster */
+/* Product-style mini UIs — Inter sans, white, red/purple accents */
+.b-ui .dash{padding:0;flex:1;display:flex;flex-direction:column;background:#fff}
+.dash-h{display:grid;grid-template-columns:1.6fr repeat(4,52px) 48px;gap:6px;padding:10px 14px;font-size:10px;letter-spacing:.05em;color:#94a3b8;font-weight:500;border-bottom:1px solid #f1f5f9}
+.dash-h .dh-c{text-align:center}
+.dash-r{display:grid;grid-template-columns:1.6fr repeat(4,52px) 48px;gap:6px;padding:9px 14px;align-items:center;font-size:11.5px;color:#0f172a;border-bottom:1px solid #f5f5f5;transition:background .15s}
+.dash-r:hover,.dash-r.open{background:#fafaf9}
+.dash-r .dr-n{font-weight:500;letter-spacing:-.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dash-r .dr-c{text-align:center;font-size:11px;color:#94a3b8}
+.dash-r .dr-c b{color:#dc2626;font-weight:600}
+.dash-r .dr-av{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:9px;font-weight:700;color:#1e293b;margin:0 auto;letter-spacing:.02em}
+
+/* 02 Ask Zen */
+.zen{padding:14px;display:flex;flex-direction:column;gap:10px;flex:1;background:#fff}
+.zen-q{padding:8px 12px;background:#f8fafc;border-radius:8px;font-size:12px;color:#334155;align-self:flex-end;max-width:88%;letter-spacing:-.005em}
+.zen-a{padding:10px 12px;background:linear-gradient(180deg,#faf5ff,#fdf2f8);border-radius:8px;border-left:2px solid #a855f7}
+.zen-a-m{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#a855f7;margin-bottom:4px}
+.zen-a p{margin:0 0 6px;font-size:11.5px;line-height:1.5;color:#1e293b}
+.zen-links{display:flex;gap:4px;flex-wrap:wrap}
+.zen-links span{font-size:9.5px;padding:2px 6px;background:#fff;border:1px solid #e5e7eb;border-radius:4px;color:#64748b}
+.zen-input{margin-top:auto;padding:8px 12px;background:#fafaf9;border:1px solid #e5e7eb;border-radius:8px;font-size:11px;color:#94a3b8;display:flex;justify-content:space-between;align-items:center}
+.zen-send{font-size:11px;color:#a855f7;font-weight:600}
+
+/* 03 Alerts */
+.alerts{padding:10px 12px;flex:1;display:flex;flex-direction:column;gap:2px;background:#fff}
+.al{display:grid;grid-template-columns:10px 1fr auto;gap:10px;align-items:center;padding:8px 10px;font-size:12px;color:#0f172a;border-bottom:1px solid #f5f5f5}
+.al:last-child{border-bottom:0}
+.al .al-dot{width:6px;height:6px;border-radius:50%;background:#dc2626}
+.al .al-n{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;color:#dc2626;min-width:18px;text-align:right}
+
+/* 04 Reconciliation */
+.rec{padding:10px 12px;flex:1;display:flex;flex-direction:column;gap:1px;background:#fff}
+.rec-r{display:grid;grid-template-columns:1.3fr auto 52px 18px;gap:8px;align-items:center;padding:9px 8px;font-size:11.5px;color:#0f172a;border-bottom:1px solid #f5f5f5}
+.rec-r.var{background:#fef9f7}
+.rec-r .rec-n{font-weight:500;letter-spacing:-.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec-r .rec-m{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#94a3b8}
+.rec-r .rec-t{font-size:9.5px;letter-spacing:.08em;color:#94a3b8;text-align:right;text-transform:uppercase;font-weight:600}
+.rec-r .rec-s{font-size:12px;text-align:center;font-weight:700}
+.rec-r .rec-s.ok{color:#16a34a}
+.rec-r .rec-s.war{color:#dc2626}
+
+/* 05 Report review */
+.rep{padding:10px 12px;flex:1;display:flex;flex-direction:column;gap:1px;background:#fff}
+.rep-r{display:flex;justify-content:space-between;align-items:center;padding:10px 8px;font-size:12px;color:#0f172a;border-bottom:1px solid #f5f5f5}
+.rep-r .rep-n{font-weight:500;letter-spacing:-.005em}
+.rep-r .rep-p{display:inline-block;margin-left:8px;font-size:10px;color:#94a3b8;font-weight:400;letter-spacing:.02em}
+.rep-r .rep-s{font-size:9.5px;font-weight:600;letter-spacing:.06em;padding:3px 8px;border-radius:999px;text-transform:uppercase}
+.rep-s.done{background:#dcfce7;color:#166534}
+.rep-s.prog{background:#fef3c7;color:#a16207}
+.rep-s.wait{background:#f1f5f9;color:#64748b}
+
+/* 06 Client drilldown */
+.drill{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#f5f5f5;flex:1}
+.drl{background:#fff;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.drl-h{font-size:11px;font-weight:600;color:#0f172a;display:flex;justify-content:space-between;align-items:center;padding-bottom:8px;border-bottom:1px solid #f1f5f9;margin-bottom:4px;letter-spacing:-.005em}
+.drl-tag{font-size:9px;padding:2px 7px;border-radius:999px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.drl-tag.unread{background:#dcfce7;color:#166534}
+.drl-tag.overdue{background:#fee2e2;color:#991b1b}
+.drl-tag.ok{background:#f0fdf4;color:#166534}
+.drl-i{font-size:11.5px;color:#1e293b;display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;letter-spacing:-.005em}
+.drl-i .drl-d{font-size:10px;color:#94a3b8;font-family:'IBM Plex Mono',monospace;letter-spacing:.02em}
+.drl-i .drl-d.dn{color:#dc2626;font-weight:500}
+
+/* 01 roster (OLD - keeping for backward compat/minor references) */
 .bros{padding:12px;display:flex;flex-direction:column;gap:6px;justify-content:center}
 .bros-r{display:grid;grid-template-columns:8px 1fr auto 72px;gap:12px;align-items:center;padding:9px 12px;background:var(--bone);border:1px solid var(--line);font-family:var(--serif);font-size:13px}
 .bros-r .d{width:8px;height:8px;border-radius:50%;flex-shrink:0}
@@ -603,107 +670,135 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bon
       <div class="b wide">
         <div class="b-head">
           <div class="b-n">01 · Client dashboard</div>
-          <h3>Every client. <em>One screen. Current.</em></h3>
-          <p>Green, yellow, red. See the whole firm at a glance — continuously updated as the work is done.</p>
+          <h3>Every client. <em>One table.</em></h3>
+          <p>Inbox · Tasks · Bank · Alerts — every column, per client, continuously updated.</p>
         </div>
-        <div class="b-ui bros">
-          <div class="bros-r"><span class="d green"></span><span class="c">Acme Design Co.</span><span class="v">current · as of today · 34 txns</span><span class="tag ok">OK</span></div>
-          <div class="bros-r"><span class="d green"></span><span class="c">Brightpath LLC</span><span class="v">current · as of today · 12 txns</span><span class="tag ok">OK</span></div>
-          <div class="bros-r"><span class="d yellow"></span><span class="c">Beta Studio</span><span class="v">waiting on client · 3 questions</span><span class="tag wait">WAIT</span></div>
-          <div class="bros-r"><span class="d red"></span><span class="c">Delta Ventures</span><span class="v">needs your review · 2 exceptions</span><span class="tag rev">REVIEW</span></div>
-          <div class="bros-r"><span class="d green"></span><span class="c">Nova Digital</span><span class="v">current · as of today · 8 txns</span><span class="tag ok">OK</span></div>
-          <div class="bros-r"><span class="d green"></span><span class="c">Orion Agency</span><span class="v">current · as of today · 15 txns</span><span class="tag ok">OK</span></div>
-        </div>
-      </div>
-
-      <!-- 02 · BOOKKEEPING -->
-      <div class="b">
-        <div class="b-head">
-          <div class="b-n">02 · AI bookkeeping</div>
-          <h3>Coded with <em>confidence.</em></h3>
-          <p>Direct Plaid feed. Every transaction scored.</p>
-        </div>
-        <div class="b-ui bf">
-          <div class="bf-r"><span class="t">11:42</span><span class="v">Adobe Creative Cloud</span><span class="c">Software · 99%</span><span class="a">$59.99</span><span class="s">✓</span></div>
-          <div class="bf-r"><span class="t">11:18</span><span class="v">AWS</span><span class="c">Cloud · 99%</span><span class="a">$1,284.12</span><span class="s">✓</span></div>
-          <div class="bf-r"><span class="t">10:55</span><span class="v">DoorDash</span><span class="c">Meals · 94%</span><span class="a">$87.50</span><span class="s">✓</span></div>
-          <div class="bf-r rev"><span class="t">10:21</span><span class="v">Wire · ACH</span><span class="c">No match · 34%</span><span class="a">$15,000</span><span class="s">⚠</span></div>
-        </div>
-      </div>
-
-      <!-- 03 · CHASE -->
-      <div class="b">
-        <div class="b-head">
-          <div class="b-n">03 · Client chase &amp; portal</div>
-          <h3>Missing receipt? <em>Already asked.</em></h3>
-          <p>AI drafts the message. You press send.</p>
-        </div>
-        <div class="b-ui be">
-          <div class="be-meta">TO sarah@beta.com · FROM your firm</div>
-          <div class="be-sub">Quick one — $15K wire March 12</div>
-          <div class="be-body">Hi Sarah — noticed a wire on 3/12 that doesn't match an open invoice. Is this capital contribution or intercompany?</div>
-          <div class="be-send"><span class="be-btn">Approve &amp; send</span></div>
-        </div>
-      </div>
-
-      <!-- 04 · RECEIPT -->
-      <div class="b">
-        <div class="b-head">
-          <div class="b-n">04 · Receipt match</div>
-          <h3>Upload. <em>Matched.</em></h3>
-          <p>Vision AI reads any receipt, ties it to the entry.</p>
-        </div>
-        <div class="b-ui bm">
-          <div class="bm-receipt">
-            <div class="bm-r-t">AMEX · 03/15/26</div>
-            <div class="bm-r-v">DoorDash</div>
-            <div class="bm-r-a">$87.50</div>
-          </div>
-          <div class="bm-arrow">→</div>
-          <div class="bm-txn">
-            <div class="bm-txn-t">DoorDash · Meals</div>
-            <div class="bm-txn-a">$87.50</div>
-            <div class="bm-txn-s">✓ documented</div>
+        <div class="b-ui">
+          <div class="scrn-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="lbl">app.zenday.io / clients</span><span class="ask">Ask Zen</span></div>
+          <div class="dash">
+            <div class="dash-h"><span class="dh-l">Clients</span><span class="dh-c">Inbox</span><span class="dh-c">Tasks</span><span class="dh-c">Bank</span><span class="dh-c">Alerts</span><span class="dh-c">Team</span></div>
+            <div class="dash-r"><span class="dr-n">Apex Engineering</span><span class="dr-c"><b>2</b></span><span class="dr-c"><b>5</b></span><span class="dr-c"><b>22</b></span><span class="dr-c"><b>12</b></span><span class="dr-av" style="background:#f8cfa3">RH</span></div>
+            <div class="dash-r open"><span class="dr-n">AppSphere Mobile</span><span class="dr-c"><b>5</b></span><span class="dr-c"><b>6</b></span><span class="dr-c">—</span><span class="dr-c"><b>7</b></span><span class="dr-av" style="background:#e8a985">AP</span></div>
+            <div class="dash-r"><span class="dr-n">Artisan Goods Co</span><span class="dr-c"><b>7</b></span><span class="dr-c"><b>6</b></span><span class="dr-c">—</span><span class="dr-c"><b>4</b></span><span class="dr-av" style="background:#b8d4c9">AG</span></div>
+            <div class="dash-r"><span class="dr-n">Bayview Construction</span><span class="dr-c"><b>5</b></span><span class="dr-c"><b>11</b></span><span class="dr-c">—</span><span class="dr-c"><b>7</b></span><span class="dr-av" style="background:#d4b8e8">BC</span></div>
+            <div class="dash-r"><span class="dr-n">CloudNine Software</span><span class="dr-c"><b>3</b></span><span class="dr-c"><b>8</b></span><span class="dr-c"><b>18</b></span><span class="dr-c"><b>12</b></span><span class="dr-av" style="background:#a8c5e8">CS</span></div>
           </div>
         </div>
       </div>
 
-      <!-- 05 · AUDIT -->
+      <!-- 02 · ASK ZEN -->
       <div class="b">
         <div class="b-head">
-          <div class="b-n">05 · Audit trail</div>
-          <h3>Every action. <em>Visible. Reversible.</em></h3>
-          <p>Reasoning, confidence, source — per entry.</p>
+          <div class="b-n">02 · Ask Zen · AI</div>
+          <h3>The <em>always-on</em> accountant.</h3>
+          <p>Ask anything about any client. Context-aware.</p>
         </div>
-        <div class="b-ui ba">
-          <div class="ba-r"><span class="ba-t">11:42</span><span>JE-2264 posted · Adobe → Software · <b>99%</b></span></div>
-          <div class="ba-r"><span class="ba-t">10:21</span><span>Held for review · no vendor match · <b>34%</b></span></div>
-          <div class="ba-r"><span class="ba-t">10:05</span><span>Email drafted · Beta · capital question</span></div>
-          <div class="ba-r"><span class="ba-t">09:22</span><span>Matched · Stripe → Invoice #4188</span></div>
+        <div class="b-ui">
+          <div class="scrn-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="ask">Ask Zen</span></div>
+          <div class="zen">
+            <div class="zen-q">What changed for AppSphere this month?</div>
+            <div class="zen-a">
+              <div class="zen-a-m">Zen</div>
+              <p>Revenue up 18% MoM on the App Store payout. OpEx up $2.4K from the Firebase plan change on Mar 14.</p>
+              <div class="zen-links"><span>App Store</span><span>Firebase</span><span>P&amp;L</span></div>
+            </div>
+            <div class="zen-input">Ask anything…<span class="zen-send">↵</span></div>
+          </div>
         </div>
       </div>
 
-      <!-- 06 · MONTH-END CLOSE (wide3 — full width, with variance narrative) -->
+      <!-- 03 · ALERTS -->
+      <div class="b">
+        <div class="b-head">
+          <div class="b-n">03 · Transaction alerts</div>
+          <h3>Nine things <em>Zen watches for.</em></h3>
+          <p>Anomalies flagged as they happen.</p>
+        </div>
+        <div class="b-ui">
+          <div class="scrn-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="lbl">alerts</span></div>
+          <div class="alerts">
+            <div class="al"><span class="al-dot"></span>Missing Receipt<span class="al-n">3</span></div>
+            <div class="al"><span class="al-dot"></span>New Vendor Transaction<span class="al-n">2</span></div>
+            <div class="al"><span class="al-dot"></span>Potential Duplicate<span class="al-n">1</span></div>
+            <div class="al"><span class="al-dot"></span>Reconciliation Variance<span class="al-n">1</span></div>
+            <div class="al"><span class="al-dot"></span>Unusual Amount<span class="al-n">—</span></div>
+            <div class="al"><span class="al-dot"></span>Round Number<span class="al-n">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · RECONCILIATION -->
+      <div class="b">
+        <div class="b-head">
+          <div class="b-n">04 · Reconciliation</div>
+          <h3>Every account. <em>Matched.</em></h3>
+          <p>Bank, card, AP, AR, payroll — continuously.</p>
+        </div>
+        <div class="b-ui">
+          <div class="scrn-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="lbl">reconciliation</span></div>
+          <div class="rec">
+            <div class="rec-r"><span class="rec-n">Business Checking</span><span class="rec-m">****5437</span><span class="rec-t">Bank</span><span class="rec-s ok">✓</span></div>
+            <div class="rec-r"><span class="rec-n">Business Credit Card</span><span class="rec-m">****8471</span><span class="rec-t">Bank</span><span class="rec-s ok">✓</span></div>
+            <div class="rec-r"><span class="rec-n">Amex Business</span><span class="rec-m">****5004</span><span class="rec-t">Bank</span><span class="rec-s ok">✓</span></div>
+            <div class="rec-r"><span class="rec-n">Accounts Payable</span><span class="rec-m">(2000)</span><span class="rec-t">AP</span><span class="rec-s ok">✓</span></div>
+            <div class="rec-r var"><span class="rec-n">Payroll Clearing</span><span class="rec-m">(2150)</span><span class="rec-t">Payroll</span><span class="rec-s war">⚠</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 · REPORT REVIEW -->
+      <div class="b">
+        <div class="b-head">
+          <div class="b-n">05 · Report review</div>
+          <h3>Reports ready. <em>You sign off.</em></h3>
+          <p>P&amp;L, BS, CF — workflow with status.</p>
+        </div>
+        <div class="b-ui">
+          <div class="scrn-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="lbl">report review</span></div>
+          <div class="rep">
+            <div class="rep-r"><span class="rep-n">Income Statement<span class="rep-p">Feb 2026</span></span><span class="rep-s done">Reviewed</span></div>
+            <div class="rep-r"><span class="rep-n">Balance Sheet<span class="rep-p">Feb 2026</span></span><span class="rep-s done">Done</span></div>
+            <div class="rep-r"><span class="rep-n">Cash Flow<span class="rep-p">Feb 2026</span></span><span class="rep-s prog">In Review</span></div>
+            <div class="rep-r"><span class="rep-n">AP Aging<span class="rep-p">Feb 2026</span></span><span class="rep-s wait">Queued</span></div>
+            <div class="rep-r"><span class="rep-n">AR Aging<span class="rep-p">Feb 2026</span></span><span class="rep-s wait">Queued</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 · CLIENT DETAIL (wide3 — full width, inline expand of client row) -->
       <div class="b wide3">
         <div class="b-head">
-          <div class="b-n">06 · Month-end close</div>
-          <h3>The package, <em>on day one.</em></h3>
-          <p>Continuous reconciliation means the close is already done the moment the month ends. P&amp;L, balance sheet, cash flow — and a variance narrative drafted alongside.</p>
+          <div class="b-n">06 · Client drilldown</div>
+          <h3>Open a client. <em>Everything in four panels.</em></h3>
+          <p>Emails, tasks, bookkeeping status, and reports — inline, without leaving the roster.</p>
         </div>
-        <div class="b-ui bc-grid">
-          <div class="bc">
-            <div class="bc-head">March 2026 · Acme Design Co. <span class="bc-tag">Day 1 · Ready</span></div>
-            <div class="bc-row"><span>Revenue</span><span>$384,200</span></div>
-            <div class="bc-row neg"><span>Cost of Goods Sold</span><span>(118,450)</span></div>
-            <div class="bc-row"><span>Gross Profit</span><span>$265,750</span></div>
-            <div class="bc-row neg"><span>Operating Expenses</span><span>(142,800)</span></div>
-            <div class="bc-row total"><span>Net Income</span><span>$122,950</span></div>
-          </div>
-          <div class="bn-note">
-            <div class="bn-note-h">Variance narrative · drafted</div>
-            <p>Revenue up <b>22%</b> year on year. OpEx up <b>18% MoM</b>, driven by $8.4K in new contractor spend (Upwork × 3 designers).</p>
-            <p>Runway dropped from <b>16 → 14 months</b>. Suggest pricing review on retainer contracts in Q2.</p>
-            <div class="bn-note-tag">✓ Ready to send</div>
+        <div class="b-ui">
+          <div class="scrn-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="lbl">AppSphere Mobile</span><span class="ask">Ask Zen</span></div>
+          <div class="drill">
+            <div class="drl">
+              <div class="drl-h">✉ Recent Emails<span class="drl-tag unread">5 unread</span></div>
+              <div class="drl-i">Apple Developer Program Renewal<span class="drl-d">Tue</span></div>
+              <div class="drl-i">Firebase Usage Alert<span class="drl-d">Mon</span></div>
+              <div class="drl-i">Stripe Payout Statement<span class="drl-d">Mon</span></div>
+            </div>
+            <div class="drl">
+              <div class="drl-h">☑ Tasks<span class="drl-tag overdue">3 overdue</span></div>
+              <div class="drl-i">Review vendor payments<span class="drl-d dn">6d overdue</span></div>
+              <div class="drl-i">Collect W-9s from vendors<span class="drl-d dn">6d overdue</span></div>
+              <div class="drl-i">File 1099s with IRS<span class="drl-d dn">6d overdue</span></div>
+            </div>
+            <div class="drl">
+              <div class="drl-h">📖 Bookkeeping<span class="drl-tag ok">All clear</span></div>
+              <div class="drl-i">Bank Feed<span class="drl-d">0</span></div>
+              <div class="drl-i">Transaction Alerts<span class="drl-d">7</span></div>
+              <div class="drl-i">Reconciliation<span class="drl-d">0</span></div>
+            </div>
+            <div class="drl">
+              <div class="drl-h">📊 Reports</div>
+              <div class="drl-i">Income Statement</div>
+              <div class="drl-i">Balance Sheet</div>
+              <div class="drl-i">Cash Flow Statement</div>
+            </div>
           </div>
         </div>
       </div>
