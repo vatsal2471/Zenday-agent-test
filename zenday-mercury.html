@@ -3,1236 +3,1310 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Zenday — The autonomous staff accountant</title>
-<meta name="description" content="One AI agent per client. Codes every transaction, reconciles accounts, drafts client questions, closes the month. $15 per client / month." />
+<title>Zenday — Annual Prospectus to Accounting Firms, 2026</title>
+<meta name="description" content="An autonomous staff accountant assigned per client. Codes every transaction, reconciles accounts, drafts client questions, closes the month. $15 per client per month." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-/* =============================================================
-   Zenday — Mercury variant v3
-   Editorial fintech prospectus. Cover-style hero, full-bleed
-   product sections, spec-sheet, full-bleed number band,
-   invoice pricing, manifesto close. No tabs. No bento.
-   ============================================================= */
+/* ============================================================
+   ZENDAY · Firm Prospectus 2026
+   Serif body + serif display + mono data. Cream paper, ink,
+   red composition rule, green ink stamps. One printed document.
+   ============================================================ */
 
 :root{
-  --bg:#f6f3ec;
-  --bg-2:#efebe1;
-  --surface:#ffffff;
-  --ink:#080807;
-  --ink-2:#1e1e1c;
-  --mute:#656560;
-  --mute-2:#9a9a93;
-  --line:#e3dfd2;
-  --line-2:#ece8dc;
+  --paper:#f4f0e6;
+  --paper-2:#ece7d7;
+  --paper-warm:#eae4d0;
+  --surface:#fbf8ee;
+  --ink:#0a0a0a;
+  --ink-2:#1c1c1a;
+  --ink-3:#333330;
+  --mute:#66655c;
+  --mute-2:#9a9889;
+  --line:#d9d3bf;
+  --line-2:#e6e1cf;
+  --rule:#b02a2a;
+  --rule-soft:rgba(176,42,42,.14);
   --green:#0f5132;
   --green-2:#0a3a24;
-  --green-3:#062317;
-  --green-soft:#dfeee4;
-  --green-tint:#eaf3ed;
-  --amber:#b45309;
-  --amber-soft:#fdf0d9;
-  --red:#991b1b;
-  --red-soft:#fde2e2;
-  --shadow-sm:0 1px 2px rgba(20,30,25,.04), 0 2px 6px rgba(20,30,25,.04);
-  --shadow:0 2px 8px rgba(20,30,25,.06), 0 22px 50px rgba(20,30,25,.08);
-  --shadow-xl:0 8px 20px rgba(20,30,25,.08), 0 60px 140px rgba(15,81,50,.14);
-  --serif:'IBM Plex Serif', 'Iowan Old Style', Georgia, serif;
-  --sans:'Inter', system-ui, sans-serif;
-  --mono:'IBM Plex Mono','JetBrains Mono',ui-monospace,monospace;
-  --stamp-red:#b02a2a;
+  --green-tint:#dde9dd;
+  --green-soft:#cbdccf;
+  --amber:#8f5a00;
+  --amber-soft:#efdcb3;
+  --red:#8a2a2a;
+  --red-soft:#f1d6d2;
+  --serif:'IBM Plex Serif','Iowan Old Style',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,'Menlo',monospace;
+  --margin-x:72px;
 }
-
-/* Global serif for display headings — retro prospectus feel */
-.cover-title, .ed-h, .surface-body h3, .spec-h, .inv-h, .faq-h, .mani-h, .band-right h4, .cta h2, .exhibit-h, .quote blockquote, .pc-price, .pair-total-v, .inv-total-v, .ws-row.total .val, .ws-row.final .val, .m-n, .cover-stat .v, .me-kpi .v, .kpi .v, .band-num, .dash-c-t, .r-main-t, .rv-t, .rv-v, .me-t, .inv-brand, .inv-bill-to .n, .inv-side-title, .dash-l-brand .n, .brand-name{
-  font-family:var(--serif);
-  font-weight:700;
-  letter-spacing:-.018em;
-  font-feature-settings:"kern","liga","dlig","ss01";
-}
-.cover-title, .inv-h, .mani-h, .cta h2, .spec-h{letter-spacing:-.03em}
-.cover-title em, .ed-h em, .surface-body h3 em, .spec-h em, .inv-h em, .mani-h em, .cta h2 em, .faq-h em, .band-right h4 em, .exhibit-h em{font-style:italic;font-weight:500;color:var(--green)}
-.pc-price, .pair-total-v, .inv-total-v, .ws-row.total .val, .ws-row.final .val, .band-num, .m-n{font-feature-settings:"tnum","kern"}
-.quote blockquote{font-style:italic;font-weight:500}
-
-/* Paper ledger texture */
-.paper-bg{
-  background-image:
-    linear-gradient(rgba(15,81,50,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(178,42,42,.05) 1px, transparent 1px);
-  background-size:100% 30px, 72px 100%;
-  background-position:0 0, 68px 0;
-}
-
-/* Red rule left margin like a composition book */
-.with-margin{position:relative}
-.with-margin::before{content:"";position:absolute;left:68px;top:0;bottom:0;width:1px;background:rgba(178,42,42,.18);pointer-events:none}
-
-/* Ink stamps */
-.stamp{display:inline-block;padding:8px 14px;border:2.5px solid var(--stamp-red);color:var(--stamp-red);font-family:var(--mono);font-weight:800;font-size:11px;letter-spacing:.18em;text-transform:uppercase;transform:rotate(-4deg);border-radius:3px;position:relative}
-.stamp.green{border-color:var(--green);color:var(--green)}
-.stamp.ink{border-color:var(--ink);color:var(--ink)}
-.stamp::after{content:"";position:absolute;inset:-2px;border-radius:4px;opacity:.15;background:currentColor;mix-blend-mode:multiply;pointer-events:none}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"ss01","cv11","tnum"}
-body{overflow-x:hidden;font-size:16px;line-height:1.55;
-  background-image:
-    linear-gradient(rgba(15,81,50,.022) 1px, transparent 1px);
-  background-size:100% 32px;
-  background-attachment:fixed;
+::selection{background:var(--ink);color:var(--paper)}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"kern","liga","onum","ss01"}
+body{font-size:17px;line-height:1.6;overflow-x:hidden;
+  background-image:linear-gradient(rgba(15,81,50,.022) 1px, transparent 1px);
+  background-size:100% 30px; background-attachment:fixed;
 }
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
-.wrap-n{max-width:960px;margin:0 auto;padding:0 40px}
-.wrap-xl{max-width:1600px;margin:0 auto;padding:0 40px}
-.mono{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
-.tnum{font-variant-numeric:tabular-nums}
-::selection{background:var(--green);color:#fff}
+p{margin:0 0 1.1em}
+em{font-style:italic}
+strong,b{font-weight:600}
 
-/* ============ MASTHEAD ============ */
-.mast{background:var(--bg);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60;backdrop-filter:saturate(180%) blur(14px);background:rgba(246,243,236,.9)}
-.mast-top{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--mute);padding:8px 0;border-bottom:1px solid var(--line-2);letter-spacing:.06em}
-.mast-top .mono{font-weight:500}
-.mast-mid{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{display:flex;align-items:baseline;gap:10px}
-.brand-mark{width:30px;height:30px;border-radius:7px;background:var(--ink);color:#fff;display:inline-grid;place-items:center;font-weight:800;font-size:14px;box-shadow:inset 0 -5px 0 var(--green);transform:translateY(6px)}
-.brand-name{font-weight:800;font-size:26px;letter-spacing:-.03em}
-.brand-sub{font-size:10.5px;color:var(--mute);letter-spacing:.14em;text-transform:uppercase;margin-left:4px}
-.nav-links{display:flex;gap:34px;font-size:13.5px;color:var(--ink-2);font-weight:500}
-.nav-links a:hover{color:var(--green)}
-.nav-cta{display:flex;gap:10px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;font-size:13.5px;font-weight:500;border:1px solid transparent;transition:transform .15s, background .15s, color .15s, border-color .15s;cursor:pointer;letter-spacing:-.005em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px;position:relative}
+.wrap-n{max-width:760px;margin:0 auto;padding:0 40px;position:relative}
+.wrap-xl{max-width:1440px;margin:0 auto;padding:0 40px;position:relative}
+
+.mono{font-family:var(--mono);font-feature-settings:"tnum","zero"}
+.italic{font-style:italic}
+.ink{color:var(--ink)}
+.green{color:var(--green)}
+.rule-color{color:var(--rule)}
+
+/* ========== COMPOSITION-BOOK MARGIN LINE ========== */
+.with-margin{position:relative}
+.with-margin::before{
+  content:"";position:absolute;left:var(--margin-x);top:0;bottom:0;
+  width:1px;background:var(--rule-soft);pointer-events:none;
+}
+
+/* ========== INK STAMPS ========== */
+.stamp{
+  display:inline-block;padding:7px 13px;
+  border:2.5px solid var(--rule);color:var(--rule);
+  font-family:var(--mono);font-weight:700;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;
+  transform:rotate(-3deg);border-radius:3px;
+  background:rgba(176,42,42,.03);
+}
+.stamp.green{border-color:var(--green);color:var(--green);background:rgba(15,81,50,.04)}
+.stamp.ink{border-color:var(--ink);color:var(--ink);background:rgba(10,10,10,.03)}
+.stamp.lg{padding:10px 18px;font-size:13px;letter-spacing:.22em}
+
+/* ========== MASTHEAD ========== */
+.mast{border-bottom:1.5px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:60;backdrop-filter:blur(10px) saturate(160%);background:rgba(244,240,230,.94)}
+.mast-top{display:flex;justify-content:space-between;padding:7px 0;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid var(--line-2)}
+.mast-mid{display:flex;align-items:center;justify-content:space-between;height:74px}
+.mast-brand{display:flex;align-items:baseline;gap:14px}
+.mast-brand .mark{width:32px;height:32px;background:var(--ink);color:var(--paper);display:inline-grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:16px;font-style:italic;transform:translateY(6px);border-radius:2px}
+.mast-brand .name{font-family:var(--serif);font-weight:700;font-size:26px;letter-spacing:-.02em}
+.mast-brand .sub{font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.14em;text-transform:uppercase;margin-left:2px}
+.mast-nav{display:flex;gap:30px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+.mast-nav a:hover{color:var(--green)}
+.mast-cta{display:flex;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;border:1.5px solid transparent;transition:all .15s;cursor:pointer;border-radius:2px}
 .btn:hover{transform:translateY(-1px)}
-.btn.g{background:var(--ink);color:#fff}
-.btn.g:hover{background:var(--green)}
-.btn.o{background:transparent;color:var(--ink);border-color:var(--line)}
-.btn.o:hover{border-color:var(--ink)}
-.btn.big{padding:14px 22px;font-size:14.5px;font-weight:600;border-radius:12px}
+.btn.g{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.g:hover{background:var(--green);border-color:var(--green)}
+.btn.o{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.o:hover{background:var(--ink);color:var(--paper)}
+.btn.big{padding:15px 24px;font-size:12.5px;letter-spacing:.14em}
 .arr{display:inline-block;transition:transform .2s}
 .btn:hover .arr{transform:translateX(3px)}
 
-/* ============ HERO / COVER ============ */
-.cover{padding:70px 0 0;position:relative;border-bottom:1px solid var(--line)}
-.cover-kicker{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;color:var(--mute);letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid var(--line-2);padding-bottom:14px;margin-bottom:40px}
-.cover-kicker .mono{letter-spacing:.06em;color:var(--ink-2);font-weight:500}
-.cover-title{font-size:clamp(60px,12.5vw,200px);line-height:.86;letter-spacing:-.055em;font-weight:800;color:var(--ink);margin:0}
+/* ========== COVER PAGE ========== */
+.cover{padding:70px 0 0;position:relative;border-bottom:1.5px solid var(--ink)}
+.cover-kicker{display:grid;grid-template-columns:1fr 1fr 1fr;padding:0 0 22px;border-bottom:1px solid var(--line);margin-bottom:54px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.cover-kicker .m{text-align:center;color:var(--ink-2)}
+.cover-kicker .r{text-align:right}
+
+.cover-plate{position:relative}
+.cover-stamps{position:absolute;right:0;top:-28px;display:flex;gap:16px;flex-direction:column;align-items:flex-end;z-index:2}
+.cover-eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:28px;font-weight:700;display:flex;align-items:center;gap:14px}
+.cover-eyebrow::before,.cover-eyebrow::after{content:"";flex:0 0 auto;width:36px;height:1px;background:var(--green)}
+.cover-eyebrow::after{flex:1;background:var(--line)}
+
+.cover-title{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(56px,10vw,148px);line-height:.9;letter-spacing:-.035em;color:var(--ink);font-feature-settings:"kern","liga","dlig","onum"}
 .cover-title .line{display:block}
-.cover-title em{font-style:normal;color:var(--green);position:relative;display:inline-block}
-.cover-title em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.08em;background:rgba(15,81,50,.2);border-radius:2px}
-.cover-deck{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:32px;margin-top:56px;padding-top:32px;border-top:1px solid var(--line)}
-.cover-deck-p{grid-column:span 2;font-size:19px;line-height:1.45;color:var(--ink-2);letter-spacing:-.008em;max-width:520px}
-.cover-deck-p b{color:var(--ink);font-weight:600}
-.cover-stat{border-left:1px solid var(--line);padding-left:20px}
-.cover-stat .k{font-size:10.5px;color:var(--mute);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
-.cover-stat .v{font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
-.cover-stat .d{font-size:12px;color:var(--mute);margin-top:8px;line-height:1.4}
-.cover-actions{margin-top:48px;padding-top:32px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-bottom:60px}
-.cover-actions .actions{display:flex;gap:10px}
-.cover-actions .byline{font-size:12px;color:var(--mute);letter-spacing:.04em}
-.cover-actions .byline b{color:var(--ink);font-weight:600}
+.cover-title em{font-style:italic;font-weight:500;color:var(--green)}
 
-/* Table of Contents */
-.toc{padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fbfaf5}
-.toc-in{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center}
-.toc-h{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);font-weight:700;white-space:nowrap}
-.toc-list{display:flex;flex-wrap:wrap;gap:6px 26px;list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:12px;color:var(--ink-2)}
-.toc-list li{display:flex;gap:6px;align-items:baseline}
-.toc-list .n{color:var(--green);font-weight:700}
-.toc-list .p{color:var(--mute-2)}
-.toc-meta{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.cover-deck{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;margin-top:56px;padding-top:30px;border-top:1.5px solid var(--ink)}
+.cover-lede{font-family:var(--serif);font-size:21px;line-height:1.5;color:var(--ink-2);max-width:560px}
+.cover-lede::first-letter{font-family:var(--serif);font-weight:700;font-size:4.4em;line-height:.82;float:left;margin:6px 10px 0 0;color:var(--green)}
+.cover-lede b{font-weight:600;color:var(--ink)}
+.cover-stat{border-left:1px solid var(--line);padding-left:22px}
+.cover-stat .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
+.cover-stat .v{font-family:var(--serif);font-weight:700;font-size:56px;line-height:.9;letter-spacing:-.025em;font-feature-settings:"tnum"}
+.cover-stat .v .u{font-family:var(--serif);font-size:.4em;color:var(--mute);font-weight:500;margin-left:4px;font-style:italic}
+.cover-stat .d{font-family:var(--serif);font-size:14px;color:var(--mute);margin-top:10px;line-height:1.45;font-style:italic}
 
-/* ============ FULL-BLEED HERO DASHBOARD ============ */
-.hero-shot{background:var(--green-3);padding:60px 40px 0;position:relative;overflow:hidden}
-.hero-shot::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(1000px 500px at 20% 0%, rgba(125,212,168,.12), transparent 60%),
-  radial-gradient(900px 500px at 80% 100%, rgba(125,212,168,.08), transparent 60%);
-  pointer-events:none}
-.hero-shot-wrap{position:relative;max-width:1560px;margin:0 auto}
-.hero-shot-cap{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:22px;color:#c8d6cf}
-.hero-shot-cap .h{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
-.hero-shot-cap .sub{font-size:12px;color:#8a9e96}
+.cover-cta{display:flex;justify-content:space-between;align-items:flex-end;margin-top:60px;padding:28px 0 60px;border-top:1px solid var(--line);gap:30px;flex-wrap:wrap}
+.cover-cta-actions{display:flex;gap:10px}
+.cover-cta-note{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--mute);max-width:420px}
+.cover-cta-note b{color:var(--ink);font-weight:600;font-style:normal}
 
-/* Dashboard */
-.dash{background:#fbfaf5;border-radius:18px 18px 0 0;box-shadow:var(--shadow-xl);overflow:hidden;border:1px solid rgba(255,255,255,.08);transform:translateY(40px)}
-.dash-chrome{height:44px;background:linear-gradient(180deg,#efece4,#e7e3d7);display:flex;align-items:center;padding:0 18px;gap:14px;border-bottom:1px solid var(--line)}
-.dash-chrome .dots{display:flex;gap:6px}
-.dash-chrome .dots span{width:11px;height:11px;border-radius:50%}
-.dash-chrome .dots span:nth-child(1){background:#ea9595}
-.dash-chrome .dots span:nth-child(2){background:#e8c38a}
-.dash-chrome .dots span:nth-child(3){background:#a3c9a8}
-.dash-chrome .url{flex:1;text-align:center;font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:12px;color:var(--mute)}
-.dash-chrome .url .u{color:var(--green)}
-.dash-chrome .pill-live{display:inline-flex;gap:6px;align-items:center;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);background:var(--green-tint);padding:4px 10px;border-radius:999px;font-weight:700}
-.dash-chrome .pill-live .d{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pd 1.8s infinite}
-@keyframes pd{0%,100%{opacity:1}50%{opacity:.35}}
+/* ========== TABLE OF CONTENTS ========== */
+.toc{padding:48px 0;border-bottom:1.5px solid var(--ink);background:var(--paper-2)}
+.toc-h{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:28px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.toc-h .t{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--ink);letter-spacing:0;text-transform:none}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 60px}
+.toc-row{display:grid;grid-template-columns:72px 1fr auto;gap:14px;padding:9px 0;align-items:baseline;border-bottom:1px dotted var(--line);font-family:var(--serif)}
+.toc-row .n{font-family:var(--mono);font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.toc-row .t{font-size:16px;color:var(--ink)}
+.toc-row .t em{font-style:italic;color:var(--mute)}
+.toc-row .p{font-family:var(--mono);font-size:11px;color:var(--mute)}
 
-.dash-body{display:grid;grid-template-columns:260px 1fr 320px;min-height:560px;background:#fbfaf5}
-.dash-l{border-right:1px solid var(--line);padding:22px 18px;background:#f7f4ec}
-.dash-l-brand{display:flex;align-items:center;gap:8px;margin-bottom:22px}
-.dash-l-brand .m{width:20px;height:20px;border-radius:5px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:10px;font-weight:800;box-shadow:inset 0 -3px 0 var(--green)}
-.dash-l-brand .n{font-weight:700;font-size:13px;letter-spacing:-.01em}
-.dash-l-brand .s{font-size:10px;color:var(--mute);margin-left:auto;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.dash-l-search{display:flex;justify-content:space-between;align-items:center;padding:9px 11px;background:var(--surface);border:1px solid var(--line);border-radius:8px;font-size:12px;color:var(--mute);margin-bottom:16px}
-.dash-l-search .k{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:10px;padding:2px 5px;border:1px solid var(--line);border-radius:4px;background:#fbfaf5}
-.dash-l-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute-2);margin:14px 0 6px;display:flex;justify-content:space-between}
-.dash-l-label .c{color:var(--mute);font-weight:600}
-.cli{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:12.5px;position:relative}
+/* ========== SECTION HEADER (Exhibit/Schedule/Figure) ========== */
+.sec{padding:140px 0;border-bottom:1px solid var(--line)}
+.sec.alt{background:var(--paper-2)}
+.sec.tight{padding:90px 0}
+.sec-h{display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:baseline;padding-bottom:24px;border-bottom:2px solid var(--ink);margin-bottom:50px}
+.sec-num{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);font-weight:700;padding:6px 12px;border:1.5px solid var(--green);border-radius:3px;white-space:nowrap}
+.sec-title{font-family:var(--serif);font-weight:700;font-size:clamp(32px,4.6vw,60px);line-height:1;letter-spacing:-.025em;margin:0}
+.sec-title em{font-style:italic;font-weight:500;color:var(--green)}
+.sec-note{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:right}
+.sec-lede{margin-top:-24px;margin-bottom:40px;font-size:18px;color:var(--ink-2);line-height:1.55;max-width:820px;font-style:italic}
+.sec-lede::first-letter{font-weight:500}
+
+/* ========== § 01 LETTER FROM THE FOUNDER ========== */
+.letter{max-width:840px;margin:0 auto;background:var(--surface);border:1px solid var(--line);padding:72px 88px 56px;box-shadow:0 1px 0 var(--line),0 40px 80px rgba(15,81,50,.07);position:relative}
+.letter::before{content:"";position:absolute;left:56px;top:0;bottom:0;width:1px;background:var(--rule-soft)}
+.letter-head{display:flex;justify-content:space-between;padding-bottom:22px;border-bottom:1.5px solid var(--ink);margin-bottom:36px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.letter-head .t{color:var(--green);font-weight:700}
+.letter-salutation{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink);margin-bottom:24px}
+.letter p{font-family:var(--serif);font-size:17.5px;line-height:1.7;color:var(--ink-2)}
+.letter p.drop::first-letter{font-family:var(--serif);font-weight:700;font-size:4.2em;line-height:.82;float:left;margin:6px 12px 0 0;color:var(--green)}
+.letter p b{font-weight:600;color:var(--ink)}
+.letter-close{margin-top:32px;display:flex;flex-direction:column;gap:10px}
+.letter-close .c{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink-2)}
+.letter-sig{font-family:'Brush Script MT','Segoe Script','Monotype Corsiva',cursive;font-size:42px;line-height:1;color:var(--ink);letter-spacing:.02em;margin-top:-4px;transform:rotate(-2deg);display:inline-block}
+.letter-footer{margin-top:10px;padding-top:14px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+.letter-footer b{color:var(--ink);font-weight:700}
+
+/* ========== § 02 EXECUTIVE SUMMARY — numbered clauses ========== */
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 48px}
+.clause{border-top:1.5px solid var(--ink);padding-top:22px}
+.clause-n{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:12px}
+.clause-h{font-family:var(--serif);font-weight:700;font-size:26px;line-height:1.08;letter-spacing:-.02em;margin:0 0 14px}
+.clause-h em{font-style:italic;color:var(--green);font-weight:500}
+.clause-p{font-family:var(--serif);font-size:15.5px;line-height:1.6;color:var(--ink-2);margin:0}
+.clause-p b{font-weight:600;color:var(--ink)}
+
+/* ========== FIGURE PLATE (product screenshots) ========== */
+.figure{margin:0}
+.fig-caption{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:baseline;padding:0 0 16px;border-bottom:1.5px solid var(--ink);margin-bottom:18px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.fig-caption .num{font-family:var(--mono);font-size:11px;color:var(--green);font-weight:700;letter-spacing:.18em;padding:4px 10px;border:1.5px solid var(--green);border-radius:3px}
+.fig-caption .ttl{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--ink);letter-spacing:-.01em;text-transform:none;font-weight:500}
+.fig-plate{background:var(--surface);border:1.5px solid var(--ink);overflow:hidden;position:relative;box-shadow:0 2px 0 rgba(0,0,0,.04),0 40px 100px rgba(10,10,10,.09)}
+.fig-note{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);display:grid;grid-template-columns:auto 1fr auto;gap:20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.fig-note .src{color:var(--ink-2);font-weight:600}
+
+/* ROSTER */
+.roster{display:grid;grid-template-columns:280px 1fr 300px;min-height:560px}
+.r-side{border-right:1px solid var(--line);padding:22px;background:var(--paper-warm)}
+.r-side-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.r-firm{font-family:var(--serif);font-weight:700;font-size:15px;letter-spacing:-.01em}
+.r-meta{font-family:var(--mono);font-size:10.5px;color:var(--mute)}
+.r-search{display:flex;justify-content:space-between;padding:9px 11px;background:var(--surface);border:1px solid var(--line);font-size:12px;color:var(--mute);font-family:var(--serif);font-style:italic;margin-bottom:16px}
+.r-search .k{font-family:var(--mono);font-size:10px;padding:2px 6px;border:1px solid var(--line);background:var(--paper);font-style:normal}
+.r-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mute-2);margin:12px 0 4px;display:flex;justify-content:space-between}
+.cli{display:flex;align-items:center;gap:10px;padding:8px 10px;cursor:pointer;font-family:var(--serif);font-size:13.5px;position:relative;border-top:1px solid transparent;border-bottom:1px solid transparent}
 .cli:hover{background:var(--surface)}
-.cli.on{background:var(--surface);box-shadow:var(--shadow-sm)}
-.cli.on::before{content:"";position:absolute;left:-18px;top:50%;transform:translateY(-50%);width:3px;height:14px;background:var(--green);border-radius:0 2px 2px 0}
-.cli .s{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.cli .s.ok{background:var(--green)}.cli .s.warn{background:#d97706}.cli .s.need{background:#dc2626;animation:pd 1.8s infinite}.cli .s.mute{background:#c8c4b7}
-.cli .n{flex:1;font-weight:500;letter-spacing:-.005em}
-.cli .b{font-size:9.5px;font-weight:700;padding:2px 6px;border-radius:4px;font-family:'IBM Plex Mono','JetBrains Mono',monospace;letter-spacing:.03em}
-.cli .b.ok{background:var(--green-soft);color:var(--green)}
+.cli.on{background:var(--surface);border-top-color:var(--line);border-bottom-color:var(--line)}
+.cli.on::before{content:"";position:absolute;left:-22px;top:0;bottom:0;width:3px;background:var(--green)}
+.cli .s{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.cli .s.ok{background:var(--green)}.cli .s.warn{background:var(--amber)}.cli .s.need{background:var(--rule);animation:pulse 1.8s infinite}.cli .s.mute{background:var(--mute-2)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.cli .n{flex:1;letter-spacing:-.005em;font-weight:500}
+.cli .b{font-family:var(--mono);font-size:9.5px;font-weight:700;padding:2px 7px;letter-spacing:.08em;text-transform:uppercase;border-radius:3px}
+.cli .b.ok{background:var(--green-tint);color:var(--green)}
 .cli .b.warn{background:var(--amber-soft);color:var(--amber)}
 .cli .b.mute{background:var(--line-2);color:var(--mute)}
+.r-side-foot{margin-top:16px;padding-top:12px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.r-side-foot b{color:var(--green);font-weight:700}
 
-.dash-c{padding:26px 30px;background:#fbfaf5}
-.dash-c-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px}
-.dash-c-t{font-size:22px;font-weight:800;letter-spacing:-.025em}
-.dash-c-s{font-size:12.5px;color:var(--mute);margin-top:3px;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.dash-c-h .live{display:inline-flex;gap:7px;align-items:center;font-size:11px;font-weight:700;color:var(--green);padding:6px 11px;background:var(--green-tint);border-radius:999px;letter-spacing:.04em;text-transform:uppercase}
-.dash-c-h .live .p{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pd 1.8s infinite}
-.txn{display:grid;grid-template-columns:68px 1fr 90px 86px;gap:12px;align-items:center;padding:12px 10px;border-radius:8px;border-top:1px solid var(--line-2);font-size:12.5px}
-.txn:first-of-type{border-top:0}
-.txn:hover{background:#f7f4ec}
+.r-main{padding:26px 30px}
+.r-main-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.r-main-t{font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:-.02em}
+.r-main-s{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--mute);margin-top:4px}
+.live{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;font-weight:700;color:var(--green);padding:6px 11px;background:var(--green-tint);letter-spacing:.12em;text-transform:uppercase;border-radius:2px}
+.live .p{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 1.8s infinite}
+.txn{display:grid;grid-template-columns:64px 1fr 100px 86px;gap:14px;align-items:center;padding:12px 8px;border-bottom:1px solid var(--line-2)}
 .txn.new{background:var(--green-tint);animation:flash 1.2s ease-out}
-@keyframes flash{from{background:#c8e6d4}to{background:var(--green-tint)}}
-.txn .t{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:10.5px;color:var(--mute)}
-.txn .v{font-weight:600;letter-spacing:-.008em}
-.txn .c{font-size:10.5px;color:var(--mute);margin-top:2px}
-.txn .a{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-weight:700;text-align:right;letter-spacing:-.01em}
-.txn .b{font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:5px;text-align:center;text-transform:uppercase;letter-spacing:.06em;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.txn .b.posted{background:var(--green-soft);color:var(--green)}
+@keyframes flash{from{background:var(--green-soft)}to{background:var(--green-tint)}}
+.txn .t{font-family:var(--mono);font-size:10.5px;color:var(--mute)}
+.txn .v{font-family:var(--serif);font-weight:600;font-size:14px;letter-spacing:-.005em}
+.txn .c{font-family:var(--serif);font-size:12px;color:var(--mute);margin-top:2px;font-style:italic}
+.txn .a{font-family:var(--mono);font-weight:600;font-size:13px;text-align:right;letter-spacing:-.01em}
+.txn .b{font-family:var(--mono);font-size:9.5px;font-weight:700;padding:4px 9px;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;text-align:center}
+.txn .b.posted{background:var(--green-tint);color:var(--green)}
 .txn .b.review{background:var(--amber-soft);color:var(--amber)}
 
-.dash-r{border-left:1px solid var(--line);padding:24px 22px;background:#f7f4ec}
-.dash-r-h{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
-.kpi-stack{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
-.kpi{padding:13px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
-.kpi .l{font-size:10.5px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
-.kpi .v{font-size:22px;font-weight:800;letter-spacing:-.025em;line-height:1;margin-top:6px;font-variant-numeric:tabular-nums}
-.kpi .d{font-size:10.5px;margin-top:5px;color:var(--green);font-weight:600}
-.kpi .d.down{color:var(--red)}
-.conf-box{padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
-.conf-box .h{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
-.conf-row{display:flex;justify-content:space-between;font-size:11.5px;padding:5px 0}
-.conf-row .n{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-weight:700}
-.conf-bar{margin-top:8px;height:7px;border-radius:4px;display:flex;overflow:hidden;background:var(--line-2)}
+.r-aside{border-left:1px solid var(--line);padding:24px 22px;background:var(--paper-warm)}
+.r-aside-h{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:14px;display:flex;justify-content:space-between}
+.kpi{padding:14px 16px;background:var(--surface);border:1px solid var(--line);margin-bottom:10px}
+.kpi .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.kpi .v{font-family:var(--serif);font-weight:700;font-size:28px;letter-spacing:-.025em;line-height:1;margin-top:6px;font-feature-settings:"tnum"}
+.kpi .d{font-family:var(--mono);font-size:10.5px;margin-top:6px;color:var(--green);font-weight:600;letter-spacing:.04em}
+.kpi .d.down{color:var(--rule)}
+.conf{padding:16px;background:var(--surface);border:1px solid var(--line);margin-top:6px}
+.conf .h{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.conf-row{display:flex;justify-content:space-between;font-family:var(--serif);font-size:12.5px;padding:5px 0}
+.conf-row .n{font-family:var(--mono);font-weight:700}
+.conf-bar{margin-top:8px;height:8px;display:flex;overflow:hidden;background:var(--line-2);border:1px solid var(--line)}
 .conf-bar .s1{flex:94;background:var(--green)}
 .conf-bar .s2{flex:4;background:var(--amber)}
-.conf-bar .s3{flex:2;background:var(--red)}
+.conf-bar .s3{flex:2;background:var(--rule)}
 
-.dash-foot{display:flex;gap:26px;padding:12px 22px;border-top:1px solid var(--line);background:#eeeadf;font-size:11px;color:var(--mute);font-family:'IBM Plex Mono','JetBrains Mono',monospace}
+.dash-foot{display:flex;gap:28px;padding:14px 30px;border-top:1.5px solid var(--ink);background:var(--paper-warm);font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
 .dash-foot b{color:var(--ink);font-weight:700}
 
-.hero-shot-footnotes{display:flex;justify-content:space-between;padding:22px 0 34px;color:#8a9e96;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
+/* ========== § 03 HOW IT WORKS (CLAUSES) ========== */
+.clauses-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:48px 80px;margin-top:10px}
+.clause-lg{border-top:2px solid var(--ink);padding-top:24px;position:relative}
+.clause-lg .num{font-family:var(--mono);font-size:12px;color:var(--green);font-weight:700;letter-spacing:.16em;margin-bottom:10px}
+.clause-lg h4{font-family:var(--serif);font-weight:700;font-size:34px;letter-spacing:-.022em;line-height:1.08;margin:0 0 14px}
+.clause-lg h4 em{font-style:italic;color:var(--green);font-weight:500}
+.clause-lg p{font-family:var(--serif);font-size:16.5px;line-height:1.6;color:var(--ink-2);margin:0 0 16px}
+.clause-lg .code{font-family:var(--mono);font-size:12px;padding:12px 16px;background:var(--paper-2);border:1px solid var(--line);color:var(--ink-2);border-left:3px solid var(--green);margin:0}
+.clause-lg .code em{font-style:normal;color:var(--green);font-weight:600}
 
-/* ============ EDITORIAL BREAK ============ */
-.ed-break{padding:120px 0;border-bottom:1px solid var(--line)}
-.ed-break .eye{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);padding-bottom:18px;border-bottom:1px solid var(--line-2);margin-bottom:42px;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.ed-break .eye b{color:var(--green)}
-.ed-h{font-size:clamp(40px,6vw,78px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:0;max-width:1100px}
-.ed-h em{font-style:normal;color:var(--green)}
-.ed-body{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1200px}
-.ed-body p{font-size:17px;line-height:1.6;color:var(--ink-2);margin:0}
-.ed-body p b{color:var(--ink);font-weight:600}
-.ed-body p::first-letter{font-size:1.2em;font-weight:700}
-.ed-body .drop::first-letter{font-size:3.4em;font-weight:800;float:left;line-height:.85;margin:6px 10px 0 0;color:var(--green)}
-
-/* ============ FULL-BLEED PRODUCT SECTION ============ */
-.surface-sec{padding:120px 0;border-bottom:1px solid var(--line)}
-.surface-sec.alt{background:var(--bg-2)}
-.surface-head{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:baseline;padding-bottom:28px;border-bottom:1px solid var(--line-2);margin-bottom:50px}
-.surface-num{font-size:140px;font-weight:800;letter-spacing:-.06em;line-height:.8;color:var(--green);font-variant-numeric:tabular-nums}
-.surface-body h3{font-size:clamp(36px,4.6vw,60px);font-weight:800;letter-spacing:-.03em;line-height:1;margin:0 0 14px}
-.surface-body h3 em{font-style:normal;color:var(--green)}
-.surface-body p{font-size:17px;line-height:1.55;color:var(--ink-2);margin:0;max-width:760px}
-.surface-tag{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding:6px 11px;border:1px solid var(--line);border-radius:999px;white-space:nowrap}
-
-/* Product shot generic */
-.shot{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
-.shot-bar{height:40px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 16px;gap:12px;background:linear-gradient(180deg,#fbfaf5,#f6f2e8)}
-.shot-bar .dots{display:flex;gap:6px}
-.shot-bar .dots span{width:10px;height:10px;border-radius:50%;background:#e2dfd6}
-.shot-bar .url{flex:1;text-align:center;font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11.5px;color:var(--mute)}
-
-/* Review shot */
-.rv-wrap{padding:32px 38px}
-.rv-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px}
-.rv-t{font-size:22px;font-weight:800;letter-spacing:-.025em}
-.rv-s{font-size:12.5px;color:var(--mute);font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.rv-card{border:1px solid var(--line);border-radius:14px;padding:26px;margin-bottom:14px;background:var(--surface);box-shadow:var(--shadow-sm)}
-.rv-top{display:flex;justify-content:space-between;margin-bottom:18px}
-.rv-v{font-size:20px;font-weight:800;letter-spacing:-.02em}
-.rv-conf{display:inline-flex;gap:6px;align-items:center;font-size:11px;color:var(--amber);background:var(--amber-soft);padding:4px 9px;border-radius:5px;margin-top:8px;font-weight:700;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.rv-amt{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-weight:800;font-size:26px;letter-spacing:-.02em;text-align:right}
-.rv-date{font-size:11px;color:var(--mute);text-align:right;font-family:'IBM Plex Mono','JetBrains Mono',monospace;margin-top:3px}
-.rv-reason{background:var(--green-tint);border-radius:10px;padding:18px 20px;font-size:14px;line-height:1.6;color:var(--ink-2);border-left:3px solid var(--green)}
-.rv-reason b{display:block;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:7px;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.rv-act{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
-.rv-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;font-size:12.5px;font-weight:600;border-radius:8px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
-.rv-btn.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* ========== REVIEW PLATE ========== */
+.rv-wrap{padding:32px 40px}
+.rv-h{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.rv-t{font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:-.022em}
+.rv-s{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--mute);margin-top:2px}
+.rv-card{border:1px solid var(--line);padding:28px;margin-bottom:14px;background:var(--surface);position:relative}
+.rv-card::before{content:"";position:absolute;left:20px;top:0;bottom:0;width:1px;background:var(--rule-soft)}
+.rv-top{display:flex;justify-content:space-between;margin-bottom:18px;padding-left:20px}
+.rv-v{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.02em}
+.rv-conf{display:inline-flex;gap:6px;align-items:center;font-family:var(--mono);font-size:10.5px;color:var(--amber);background:var(--amber-soft);padding:4px 9px;margin-top:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.rv-amt{font-family:var(--mono);font-weight:700;font-size:28px;letter-spacing:-.02em;text-align:right}
+.rv-date{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:right;margin-top:4px;letter-spacing:.04em}
+.rv-reason{padding:18px 22px;background:var(--green-tint);border-left:3px solid var(--green);font-family:var(--serif);font-size:15px;line-height:1.65;color:var(--ink-2);margin-left:20px}
+.rv-reason b{display:block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.rv-act{display:flex;gap:8px;margin:18px 0 0 20px;flex-wrap:wrap}
+.rv-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;border-radius:2px}
+.rv-btn.pri{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .rv-btn.pri:hover{background:var(--green);border-color:var(--green)}
-.rk{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:10px;padding:2px 6px;background:rgba(0,0,0,.06);border-radius:3px;font-weight:700}
-.rv-btn.pri .rk{background:rgba(255,255,255,.18)}
+.rk{font-family:var(--mono);font-size:9.5px;padding:2px 6px;background:rgba(0,0,0,.08);font-weight:700;letter-spacing:.04em}
+.rv-btn.pri .rk{background:rgba(255,255,255,.2)}
+.rv-hint{text-align:center;font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:16px;letter-spacing:.08em;text-transform:uppercase}
 
-/* Month-end shot */
-.me-wrap{padding:32px 38px}
-.me-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px}
-.me-t{font-size:22px;font-weight:800;letter-spacing:-.025em}
-.me-s{font-size:12.5px;color:var(--mute);font-family:'IBM Plex Mono','JetBrains Mono',monospace;margin-top:3px}
-.me-tag{font-size:10.5px;font-weight:800;color:#fff;background:var(--green);padding:6px 12px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
+/* ========== MONTH-END PLATE ========== */
+.me-wrap{padding:32px 40px}
+.me-h{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.me-t{font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:-.022em}
+.me-s{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--mute);margin-top:3px}
+.me-tag{font-family:var(--mono);font-size:10.5px;font-weight:700;color:var(--paper);background:var(--green);padding:6px 13px;letter-spacing:.14em;text-transform:uppercase;border-radius:2px}
 .me-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
-.me-kpi{padding:16px 18px;background:#fbfaf5;border-radius:12px;border:1px solid var(--line)}
-.me-kpi .l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.me-kpi .v{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-top:6px;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.me-kpi .d{font-size:10.5px;margin-top:3px;color:var(--green);font-weight:700}
-.me-kpi .d.down{color:var(--red)}
-.me-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:14px}
-.me-card{border:1px solid var(--line);border-radius:12px;padding:22px;background:#fbfaf5}
-.me-sec{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:14px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.me-sec .src{color:var(--green);font-weight:700}
-.me-line{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid var(--line-2);font-size:13.5px}
-.me-line:first-of-type{border-top:0}
-.me-line .v{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-weight:600}
-.me-line.neg{color:var(--mute)}
-.me-line.total{border-top:2px solid var(--ink);padding-top:12px;margin-top:4px;font-weight:800;font-size:15.5px}
-.me-note{font-size:13.5px;line-height:1.6;color:var(--ink-2);margin-bottom:14px}
-.me-note b{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:8px;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
+.me-kpi{padding:16px 18px;background:var(--paper-warm);border:1px solid var(--line)}
+.me-kpi .l{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.me-kpi .v{font-family:var(--serif);font-weight:700;font-size:28px;letter-spacing:-.025em;line-height:1;margin-top:6px;font-feature-settings:"tnum"}
+.me-kpi .d{font-family:var(--mono);font-size:10.5px;margin-top:4px;color:var(--green);font-weight:600;letter-spacing:.04em}
+.me-kpi .d.down{color:var(--rule)}
+.me-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+.me-card{border:1px solid var(--line);padding:22px;background:var(--surface)}
+.me-sec{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:14px;display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.me-sec .src{color:var(--green)}
+.me-line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dotted var(--line);font-family:var(--serif);font-size:14.5px}
+.me-line .v{font-family:var(--mono);font-weight:600}
+.me-line.neg{color:var(--mute);font-style:italic}
+.me-line.total{border-top:2px solid var(--ink);border-bottom:0;padding-top:12px;margin-top:6px;font-weight:700;font-size:16px}
+.me-note{font-family:var(--serif);font-size:14.5px;line-height:1.65;color:var(--ink-2);margin-bottom:14px}
+.me-note b{display:block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
 
-/* ============ FULL-BLEED NUMBER BAND ============ */
-.band{background:var(--green-3);color:#fff;padding:140px 0;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-.band::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(800px 400px at 20% 30%, rgba(125,212,168,.2), transparent 60%),
-  radial-gradient(700px 400px at 80% 70%, rgba(125,212,168,.1), transparent 60%);
-  pointer-events:none}
-.band-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;position:relative}
-.band-num{font-size:clamp(180px,26vw,440px);font-weight:800;letter-spacing:-.08em;line-height:.75;color:#7dd4a8;font-variant-numeric:tabular-nums;position:relative;display:inline-block}
-.band-num .pct{font-size:.3em;color:#7dd4a8;margin-left:.02em;font-weight:700;vertical-align:top}
-.band-cap{color:#c8d6cf;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-top:16px;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.band-right h4{font-size:clamp(32px,4vw,52px);font-weight:800;line-height:1.05;letter-spacing:-.025em;margin:0 0 20px;color:#fff}
-.band-right h4 em{font-style:normal;color:#7dd4a8}
-.band-right p{font-size:17px;color:#c8d6cf;line-height:1.55;max-width:500px;margin:0 0 28px}
-.band-ft{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15)}
-.band-ft .row .k{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a9e96;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.band-ft .row .v{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-top:4px;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-
-/* ============ SPEC SHEET ============ */
-.spec-sec{padding:120px 0;border-bottom:1px solid var(--line);background:var(--bg-2)}
-.spec-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:50px;padding-bottom:28px;border-bottom:2px solid var(--ink)}
-.spec-h{font-size:clamp(40px,5.5vw,72px);font-weight:800;letter-spacing:-.035em;line-height:.98;margin:0}
-.spec-h em{font-style:normal;color:var(--green)}
-.spec-sub{font-size:16px;color:var(--ink-2);line-height:1.55;max-width:460px}
-.spec-table{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm)}
-.spec-table thead th{background:#fbfaf5;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);padding:16px 22px;text-align:left;border-bottom:1px solid var(--line);font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.spec-table tbody tr{border-top:1px solid var(--line-2)}
-.spec-table tbody tr:hover{background:#fbfaf5}
-.spec-table tbody td{padding:22px;vertical-align:top}
-.spec-table .sku{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-weight:700;color:var(--green);font-size:12px;letter-spacing:.06em;width:90px;white-space:nowrap}
-.spec-table .cap{font-weight:700;font-size:16px;letter-spacing:-.015em;width:24%}
-.spec-table .desc{color:var(--ink-2);line-height:1.55;max-width:520px}
+/* ========== SCHEDULE A — SPEC SHEET ========== */
+.spec-table{width:100%;border-collapse:collapse;font-family:var(--serif);background:var(--surface);border:1.5px solid var(--ink)}
+.spec-table thead th{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:16px 22px;text-align:left}
+.spec-table tbody td{padding:22px;vertical-align:top;border-top:1px solid var(--line-2);font-size:14.5px;line-height:1.55}
+.spec-table tbody tr:hover{background:var(--paper-warm)}
+.spec-table .sku{font-family:var(--mono);font-weight:700;color:var(--green);font-size:11.5px;letter-spacing:.1em;width:90px;white-space:nowrap}
+.spec-table .cap{font-weight:700;font-size:15px;letter-spacing:-.012em;width:22%}
+.spec-table .desc{color:var(--ink-2)}
 .spec-table .desc b{color:var(--ink);font-weight:600}
-.spec-table .prf{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:12px;color:var(--green);font-weight:700;white-space:nowrap;width:140px}
+.spec-table .prf{font-family:var(--mono);font-size:12px;color:var(--green);font-weight:700;white-space:nowrap;width:140px}
 
-/* ============ COMPARISON ============ */
-.compare-sec{padding:120px 0;border-bottom:1px solid var(--line)}
-.compare{margin-top:40px;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden;box-shadow:var(--shadow-sm)}
-.compare table{width:100%;border-collapse:collapse;font-size:13.5px}
-.compare th,.compare td{padding:18px 22px;text-align:left;vertical-align:top}
-.compare thead th{background:#fbfaf5;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid var(--line);font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.compare thead th.hl{color:var(--green)}
-.compare tbody tr{border-top:1px solid var(--line-2)}
-.compare tbody tr:hover{background:#fbfaf5}
-.compare td.row-label{font-weight:700;letter-spacing:-.008em;width:24%;font-size:14px}
-.compare td.hl{background:var(--green-tint);color:var(--green-2);font-weight:600}
-.compare td .x{color:var(--mute-2)}
-.compare td .c{color:var(--green);font-weight:700}
+/* ========== SCHEDULE B — COMPARISON ========== */
+.compare{width:100%;border-collapse:collapse;font-family:var(--serif);background:var(--surface);border:1.5px solid var(--ink)}
+.compare thead th{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:16px 20px;text-align:left;border-left:1px solid #333}
+.compare thead th:first-child{border-left:0}
+.compare thead th.hl{background:var(--green)}
+.compare tbody td{padding:18px 20px;font-size:14px;border-top:1px solid var(--line-2);border-left:1px solid var(--line-2);vertical-align:top}
+.compare tbody td:first-child{border-left:0}
+.compare tbody tr:hover{background:var(--paper-warm)}
+.compare td.row-label{font-weight:700;letter-spacing:-.008em;width:22%;background:var(--paper-warm)}
+.compare td.hl{background:var(--green-tint);color:var(--green-2);font-weight:500}
+.compare .x{color:var(--mute-2);font-style:italic}
+.compare .c{color:var(--green);font-weight:700}
 
-/* ============ LETTER OF REFERENCE ============ */
-.quote-wrap{padding:140px 0;background:var(--bg-2);border-bottom:1px solid var(--line)}
-.letter{max-width:820px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:60px 72px;box-shadow:var(--shadow);position:relative;
-  background-image:linear-gradient(rgba(15,81,50,.04) 1px, transparent 1px);background-size:100% 30px;background-position:0 30px}
-.letter::before{content:"";position:absolute;left:56px;top:0;bottom:0;width:1px;background:rgba(178,42,42,.14);pointer-events:none}
-.letter-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:20px;border-bottom:2px solid var(--ink);margin-bottom:32px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
-.letter-head .lh-t{color:var(--green);font-weight:700}
-.letter-sal{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);margin-bottom:26px}
-.quote blockquote{margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.5;letter-spacing:-.01em;color:var(--ink);font-style:italic;font-weight:500}
-.quote blockquote em{font-style:italic;color:var(--green);font-weight:600}
-.letter-foot{margin-top:40px;padding-top:20px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:flex-end}
-.letter-sig{display:flex;gap:14px;align-items:center}
-.quote-who{display:flex;gap:14px;align-items:center}
-.q-av{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#c9b79a,#8a6e42);display:grid;place-items:center;color:#fff;font-weight:800;font-size:17px;box-shadow:var(--shadow)}
-.q-name{font-size:14.5px;font-weight:700;letter-spacing:-.005em;text-align:left}
-.q-role{font-size:12.5px;color:var(--mute);margin-top:2px}
+/* ========== METRICS PLATE ========== */
+.metrics-plate{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface)}
+.m{padding:48px 32px;border-left:1px solid var(--line);position:relative}
+.m:first-child{border-left:0}
+.m-n{font-family:var(--serif);font-weight:700;font-size:clamp(64px,8vw,104px);letter-spacing:-.045em;line-height:.9;font-feature-settings:"tnum"}
+.m-n .u{font-size:.32em;color:var(--green);font-weight:500;margin-left:2px;font-style:italic}
+.m-l{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-top:18px}
+.m-d{font-family:var(--serif);font-size:14px;color:var(--mute);margin-top:8px;line-height:1.5;font-style:italic}
 
-/* ============ PRICING — FINANCIAL DOCUMENT PACKET ============ */
-.inv-sec{padding:140px 0 160px;border-bottom:1px solid var(--line);background:
-  linear-gradient(var(--bg),var(--bg)),
-  repeating-linear-gradient(0deg,rgba(15,81,50,.02) 0,rgba(15,81,50,.02) 1px,transparent 1px,transparent 28px);
-  background-blend-mode:multiply}
-.inv-head{text-align:center;margin-bottom:60px}
-.inv-eye{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:24px}
-.inv-h{font-size:clamp(48px,6.5vw,92px);font-weight:800;letter-spacing:-.038em;line-height:.98;margin:0}
-.inv-h em{font-style:normal;color:var(--green)}
-.inv-sub{font-size:17px;color:var(--ink-2);margin:24px auto 0;max-width:640px;line-height:1.55}
+/* ========== LETTER OF REFERENCE ========== */
+.letter.ref{max-width:820px}
+.letter.ref .ref-foot{margin-top:36px;padding-top:20px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+.letter.ref .who{display:flex;gap:16px;align-items:center}
+.letter.ref .av{width:54px;height:54px;border-radius:50%;background:#c9b79a;display:grid;place-items:center;color:var(--ink);font-family:var(--serif);font-weight:700;font-size:17px;border:1.5px solid var(--ink)}
+.letter.ref .who .n{font-family:var(--serif);font-weight:700;font-size:15.5px;letter-spacing:-.005em}
+.letter.ref .who .r{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--mute)}
 
-/* Exhibit dividers */
-.exhibit{max-width:920px;margin:90px auto 32px;padding-bottom:18px;border-bottom:2px solid var(--ink);display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:baseline}
-.exhibit-num{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:800;padding:5px 10px;border:1.5px solid var(--green);border-radius:4px}
-.exhibit-h{font-size:28px;font-weight:800;letter-spacing:-.02em;margin:0;line-height:1.1}
-.exhibit-h em{font-style:normal;color:var(--green)}
-.exhibit-note{font-size:11.5px;color:var(--mute);font-family:'IBM Plex Mono','JetBrains Mono',monospace;letter-spacing:.06em;text-align:right}
-.exhibit-desc{max-width:920px;margin:-16px auto 32px;font-size:14.5px;color:var(--ink-2);line-height:1.55}
-
-.invoice{max-width:920px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;position:relative}
-.invoice::before{content:"";position:absolute;top:0;bottom:0;left:68px;width:1px;background:rgba(220,50,50,.12);pointer-events:none}
-.inv-top{display:grid;grid-template-columns:1fr 1fr;padding:40px 48px;border-bottom:1px dashed var(--line);background:#fbfaf5;gap:40px}
-.inv-brand{font-size:22px;font-weight:800;letter-spacing:-.015em;display:flex;align-items:center;gap:10px}
-.inv-brand .brand-mark{transform:none}
-.inv-no{font-size:10.5px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.inv-bill-to{text-align:right}
-.inv-bill-to .l{font-size:10.5px;color:var(--mute);letter-spacing:.12em;text-transform:uppercase;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.inv-bill-to .n{font-size:15px;font-weight:700;margin-top:6px}
-.inv-bill-to .a{font-size:12px;color:var(--mute);margin-top:2px}
-.inv-body{padding:40px 48px}
-.inv-row{display:grid;grid-template-columns:1fr 90px 120px;gap:20px;padding:14px 0;border-top:1px solid var(--line-2);font-size:14px}
+/* ========== PRICING — DOCUMENT PACKET (kept from v3) ========== */
+.pricing-wrap{padding:140px 0 160px;border-bottom:1px solid var(--line);background:var(--paper)}
+.invoice{max-width:920px;margin:0 auto;background:var(--surface);border:1.5px solid var(--ink);position:relative}
+.invoice::before{content:"";position:absolute;left:56px;top:0;bottom:0;width:1px;background:var(--rule-soft)}
+.inv-top{display:grid;grid-template-columns:1fr 1fr;padding:36px 48px;border-bottom:1px dashed var(--line);background:var(--paper-warm);gap:30px}
+.inv-brand{font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:-.018em;display:flex;align-items:center;gap:12px}
+.inv-brand .m{width:28px;height:28px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-style:italic;font-weight:700;font-size:14px;border-radius:2px}
+.inv-no{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+.inv-bill{text-align:right}
+.inv-bill .l{font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.16em;text-transform:uppercase}
+.inv-bill .n{font-family:var(--serif);font-weight:700;font-size:16px;margin-top:6px;letter-spacing:-.008em}
+.inv-bill .a{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--mute);margin-top:3px;max-width:280px;margin-left:auto}
+.inv-body{padding:36px 48px}
+.inv-row{display:grid;grid-template-columns:1fr 90px 120px;gap:18px;padding:14px 0;border-top:1px dotted var(--line);font-family:var(--serif);font-size:14.5px}
 .inv-row:first-of-type{border-top:0}
-.inv-row .c{font-family:'IBM Plex Mono','JetBrains Mono',monospace;text-align:right;font-weight:600}
 .inv-row .t{font-weight:600}
-.inv-row .t .d{display:block;font-size:11.5px;color:var(--mute);font-weight:400;margin-top:2px}
-.inv-total{margin-top:20px;padding-top:20px;border-top:2px solid var(--ink);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline}
-.inv-total-l{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.inv-total-v{font-size:56px;font-weight:800;letter-spacing:-.035em;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.inv-total-v .u{font-size:18px;color:var(--mute);font-weight:500;margin-left:4px}
-.inv-stamp{display:inline-block;margin-top:20px;padding:8px 14px;border:2px solid var(--green);color:var(--green);font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;transform:rotate(-3deg);border-radius:4px}
-.inv-foot{padding:24px 48px;background:#fbfaf5;border-top:1px dashed var(--line);font-size:11.5px;color:var(--mute);display:flex;justify-content:space-between;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.inv-actions{text-align:center;margin-top:48px;display:flex;gap:10px;justify-content:center}
+.inv-row .t .d{display:block;font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--mute);font-weight:400;margin-top:2px}
+.inv-row .c{font-family:var(--mono);text-align:right;font-weight:600}
+.inv-total{margin-top:22px;padding-top:22px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline}
+.inv-total-l{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.inv-total-v{font-family:var(--serif);font-weight:700;font-size:66px;letter-spacing:-.035em;font-feature-settings:"tnum";line-height:1}
+.inv-total-v .u{font-family:var(--serif);font-size:.3em;color:var(--mute);font-weight:500;font-style:italic;margin-left:4px}
+.inv-stamp{margin-top:22px}
+.inv-foot{padding:22px 48px;background:var(--paper-warm);border-top:1px dashed var(--line);font-family:var(--mono);font-size:11px;color:var(--mute);display:flex;justify-content:space-between;letter-spacing:.12em;text-transform:uppercase}
 
-/* Before / After paired invoices */
-.inv-pair{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:stretch;max-width:1180px;margin:0 auto}
-.inv-side{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column}
-.inv-side.before{border-color:#e4c8c8;background:linear-gradient(180deg,#fff,#fdf7f5)}
-.inv-side.after{border-color:var(--green);background:linear-gradient(180deg,#fff,var(--green-tint));box-shadow:0 2px 6px rgba(15,81,50,.08),0 22px 50px rgba(15,81,50,.1)}
-.inv-side-h{padding:20px 24px;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline;background:#fbfaf5}
-.inv-side.before .inv-side-h{background:#fcf3f0}
-.inv-side.after .inv-side-h{background:var(--green-tint)}
-.inv-side-tag{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:4px}
-.inv-side.before .inv-side-tag{background:#e4c8c8;color:#8a2a2a}
-.inv-side.after .inv-side-tag{background:var(--green);color:#fff}
-.inv-side-no{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:10.5px;color:var(--mute);letter-spacing:.08em}
-.inv-side-body{padding:22px 24px;flex:1;display:flex;flex-direction:column}
-.inv-side-title{font-size:16px;font-weight:800;letter-spacing:-.015em;margin-bottom:4px}
-.inv-side-sub{font-size:12px;color:var(--mute);margin-bottom:18px;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.pair-row{display:grid;grid-template-columns:1fr 90px;gap:12px;padding:9px 0;border-top:1px solid var(--line-2);font-size:13px}
+.exhibit-divider{max-width:1180px;margin:90px auto 32px;padding:0 40px;padding-bottom:18px;border-bottom:2px solid var(--ink);display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:baseline}
+.exhibit-num{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:700;padding:5px 10px;border:1.5px solid var(--green);border-radius:3px}
+.exhibit-title{font-family:var(--serif);font-weight:700;font-size:30px;letter-spacing:-.02em;line-height:1.1;margin:0}
+.exhibit-title em{font-style:italic;color:var(--green);font-weight:500}
+.exhibit-meta{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase}
+.exhibit-lede{max-width:1180px;margin:-16px auto 34px;padding:0 40px;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-2);line-height:1.6}
+
+/* Before/after paired invoices */
+.pair{display:grid;grid-template-columns:1fr 100px 1fr;gap:20px;align-items:stretch;max-width:1180px;margin:0 auto;padding:0 40px}
+.pair-side{background:var(--surface);border:1.5px solid var(--line);display:flex;flex-direction:column}
+.pair-side.before{border-color:var(--red-soft);background:linear-gradient(180deg,var(--surface),#faf0ec)}
+.pair-side.after{border:2px solid var(--green);background:linear-gradient(180deg,var(--surface),var(--green-tint));box-shadow:0 20px 50px rgba(15,81,50,.1)}
+.pair-h{padding:18px 24px;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.pair-h .tag{font-weight:700;padding:4px 10px;border-radius:2px}
+.pair-side.before .pair-h{background:#f5dfd9}
+.pair-side.after .pair-h{background:var(--green-tint)}
+.pair-side.before .tag{background:var(--red);color:var(--paper)}
+.pair-side.after .tag{background:var(--green);color:var(--paper)}
+.pair-body{padding:24px 26px;flex:1;display:flex;flex-direction:column}
+.pair-t{font-family:var(--serif);font-weight:700;font-size:18px;letter-spacing:-.015em;margin-bottom:3px}
+.pair-s{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--mute);margin-bottom:18px}
+.pair-row{display:grid;grid-template-columns:1fr 90px;gap:12px;padding:9px 0;border-top:1px dotted var(--line);font-family:var(--serif);font-size:13.5px}
 .pair-row:first-of-type{border-top:0}
-.pair-row .t{letter-spacing:-.005em}
-.pair-row .t .d{display:block;font-size:11px;color:var(--mute);margin-top:2px;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.pair-row .c{font-family:'IBM Plex Mono','JetBrains Mono',monospace;text-align:right;font-weight:600}
+.pair-row .t .d{display:block;font-family:var(--serif);font-style:italic;font-size:11.5px;color:var(--mute);margin-top:2px}
+.pair-row .c{font-family:var(--mono);text-align:right;font-weight:600}
 .pair-total{margin-top:auto;padding-top:18px;border-top:2px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline}
-.inv-side.after .pair-total{border-top-color:var(--green)}
-.pair-total-l{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.pair-total-v{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:36px;font-weight:800;letter-spacing:-.025em}
-.inv-side.before .pair-total-v{color:#a02a2a}
-.inv-side.after .pair-total-v{color:var(--green)}
-.pair-total-v .u{font-size:13px;color:var(--mute);font-weight:500;margin-left:3px;letter-spacing:0}
-.pair-arrow{align-self:center;display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 6px}
-.pair-arrow .lbl{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);font-weight:700}
-.pair-arrow .big{font-size:42px;color:var(--green);line-height:1}
-.pair-arrow .save{margin-top:6px;padding:7px 12px;background:var(--green);color:#fff;border-radius:999px;font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;white-space:nowrap}
+.pair-side.after .pair-total{border-top-color:var(--green)}
+.pair-total-l{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.pair-total-v{font-family:var(--serif);font-size:38px;font-weight:700;letter-spacing:-.03em}
+.pair-side.before .pair-total-v{color:var(--red)}
+.pair-side.after .pair-total-v{color:var(--green)}
+.pair-total-v .u{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--mute);font-weight:500;margin-left:3px}
+.pair-arrow{align-self:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.pair-arrow .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:700;text-align:center}
+.pair-arrow .big{font-family:var(--serif);font-size:58px;color:var(--green);line-height:.9}
+.pair-arrow .save{padding:7px 13px;background:var(--green);color:var(--paper);font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.1em;white-space:nowrap;text-align:center}
 
-/* Savings worksheet — tax form */
-.worksheet{max-width:920px;margin:0 auto;background:var(--surface);border:1.5px solid var(--ink);border-radius:4px;overflow:hidden;box-shadow:var(--shadow-sm);position:relative}
-.ws-h{padding:20px 28px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:baseline}
-.ws-h .t{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-.ws-h .s{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:10.5px;color:#8a9e96;letter-spacing:.08em}
-.ws-form{padding:8px 0}
-.ws-row{display:grid;grid-template-columns:72px 1fr 70px 140px;align-items:center;padding:13px 28px;border-top:1px solid var(--line-2);font-size:13.5px}
+/* Worksheet */
+.worksheet{max-width:920px;margin:0 auto;background:var(--surface);border:1.5px solid var(--ink);overflow:hidden}
+.ws-h{padding:20px 28px;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.ws-h .t{font-weight:700}
+.ws-h .s{color:#8a9e96}
+.ws-row{display:grid;grid-template-columns:76px 1fr 70px 140px;align-items:center;padding:13px 28px;border-top:1px solid var(--line-2);font-family:var(--serif);font-size:14px}
 .ws-row:first-child{border-top:0}
-.ws-row:hover{background:#fbfaf5}
-.ws-row .ln{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11px;color:var(--mute);font-weight:700;letter-spacing:.08em}
-.ws-row .desc{letter-spacing:-.005em}
+.ws-row:hover{background:var(--paper-warm)}
+.ws-row .ln{font-family:var(--mono);font-size:11px;color:var(--mute);font-weight:700;letter-spacing:.06em}
 .ws-row .desc b{font-weight:600}
-.ws-row .desc .op{color:var(--mute);font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11px;margin-left:6px}
-.ws-row .unit{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11px;color:var(--mute);text-align:center}
-.ws-row .val{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;font-size:14px}
-.ws-row.subtotal{background:#fbfaf5;border-top:1.5px solid var(--ink)}
-.ws-row.subtotal .val{color:var(--ink)}
+.ws-row .desc .op{font-family:var(--mono);font-size:11px;color:var(--mute);margin-left:8px;font-style:normal}
+.ws-row .unit{font-family:var(--mono);font-size:11px;color:var(--mute);text-align:center}
+.ws-row .val{font-family:var(--mono);font-weight:700;text-align:right;font-size:14px;font-feature-settings:"tnum"}
+.ws-row.subtotal{background:var(--paper-warm);border-top:1.5px solid var(--ink)}
 .ws-row.total{background:var(--green-tint);border-top:2px solid var(--green);border-bottom:2px solid var(--green)}
 .ws-row.total .ln{color:var(--green)}
-.ws-row.total .desc{font-weight:800;font-size:15px}
-.ws-row.total .val{font-size:22px;color:var(--green);font-weight:800;letter-spacing:-.015em}
-.ws-row.final{padding:22px 28px;background:var(--green-3);color:#fff}
+.ws-row.total .desc{font-weight:700}
+.ws-row.total .val{font-family:var(--serif);font-size:22px;color:var(--green);font-weight:700;letter-spacing:-.015em}
+.ws-row.final{padding:22px 28px;background:var(--ink);color:var(--paper)}
 .ws-row.final .ln{color:#7dd4a8}
-.ws-row.final .desc{color:#fff;font-weight:800;font-size:15px;letter-spacing:-.01em}
-.ws-row.final .val{font-size:32px;color:#7dd4a8;letter-spacing:-.025em;font-weight:800}
-.ws-foot{padding:16px 28px;background:#fbfaf5;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:10.5px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+.ws-row.final .desc{color:var(--paper);font-weight:700;font-size:15px}
+.ws-row.final .val{font-family:var(--serif);font-size:34px;color:#7dd4a8;font-weight:700;letter-spacing:-.03em}
+.ws-foot{padding:16px 28px;background:var(--paper-warm);border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.12em;text-transform:uppercase}
 
-/* Terms & signatures */
-.terms-doc{max-width:920px;margin:70px auto 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.terms-h{padding:16px 28px;background:#fbfaf5;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.terms{max-width:920px;margin:70px auto 0;background:var(--surface);border:1px solid var(--line)}
+.terms-h{padding:16px 28px;background:var(--paper-warm);border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:700}
 .terms-h .t{color:var(--ink)}
-.terms-body{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;padding:28px}
-.terms-fine h6{font-size:11px;font-family:'IBM Plex Mono','JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 10px;font-weight:700}
-.terms-fine p{font-size:12.5px;color:var(--ink-2);line-height:1.6;margin:0 0 10px}
+.terms-body{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;padding:32px 36px}
+.terms-fine h6{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:0 0 12px;font-weight:700}
+.terms-fine p{font-family:var(--serif);font-size:14px;color:var(--ink-2);line-height:1.65;margin:0 0 12px}
 .terms-fine p b{color:var(--ink);font-weight:600}
-.signatures{display:flex;flex-direction:column;gap:26px;padding-left:30px;border-left:1px dashed var(--line)}
+.signatures{display:flex;flex-direction:column;gap:28px;padding-left:36px;border-left:1px dashed var(--line)}
 .sig{display:flex;flex-direction:column;gap:6px}
 .sig-line{height:1.5px;background:var(--ink);position:relative}
-.sig-line::after{content:"× signature";position:absolute;left:0;top:-22px;font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:10px;color:var(--mute-2);letter-spacing:.08em;text-transform:uppercase}
-.sig-meta{display:flex;justify-content:space-between;font-size:11.5px;color:var(--mute);font-family:'IBM Plex Mono','JetBrains Mono',monospace;letter-spacing:.05em}
-.sig-meta b{color:var(--ink);font-weight:700;letter-spacing:-.005em;font-family:'Inter',sans-serif;font-size:13px}
-.sig.done .sig-line{background:var(--green)}
+.sig-line::after{content:"× signature";position:absolute;left:0;top:-22px;font-family:var(--mono);font-size:10px;color:var(--mute-2);letter-spacing:.1em;text-transform:uppercase}
+.sig-meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.sig-meta b{font-family:var(--serif);color:var(--ink);font-weight:700;letter-spacing:-.005em;font-size:13.5px;text-transform:none}
+.sig.done .sig-line{background:var(--green);height:2px}
+.sig.done .sig-line::before{content:"Jordan A. ✓";position:absolute;right:10px;top:-32px;font-family:'Brush Script MT','Segoe Script','Monotype Corsiva',cursive;font-size:26px;color:var(--ink);transform:rotate(-5deg)}
 .sig.done .sig-line::after{content:"✓ signed · Zenday";color:var(--green)}
 
-/* Perforated tear */
-.tear{height:22px;background:
-  radial-gradient(circle at 12px 50%, transparent 5px, transparent 5.5px),
-  linear-gradient(#fff,#fff);
-  background-size:24px 100%, 100% 100%;
-  background-repeat:repeat-x, no-repeat;
-  border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);
-  background-color:#fff;
-  position:relative}
-.tear::before,.tear::after{content:"";position:absolute;top:0;bottom:0;width:22px}
-.tear::before{left:-11px;background:radial-gradient(circle at 0 50%,var(--bg) 10px,transparent 11px)}
-.tear::after{right:-11px;background:radial-gradient(circle at 100% 50%,var(--bg) 10px,transparent 11px)}
+.pricing-actions{text-align:center;margin-top:48px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-/* ============ MANIFESTO ============ */
-.manifesto{padding:160px 0 120px;background:var(--bg-2);border-bottom:1px solid var(--line)}
-.manifesto .eye{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:28px}
-.mani-h{font-size:clamp(48px,6.4vw,90px);font-weight:800;letter-spacing:-.035em;line-height:.98;margin:0 0 40px}
-.mani-h em{font-style:normal;color:var(--green)}
-.mani-body{max-width:720px}
-.mani-body p{font-size:20px;line-height:1.55;color:var(--ink-2);margin:0 0 24px;letter-spacing:-.005em}
-.mani-body p.lead{font-size:26px;font-weight:500;color:var(--ink)}
-.mani-body p.lead::first-letter{font-size:3.4em;font-weight:800;float:left;line-height:.85;margin:6px 12px 0 0;color:var(--green)}
-.mani-body p b{color:var(--ink);font-weight:700}
-.mani-sig{margin-top:60px;padding-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end}
-.mani-sig .n{font-size:15px;font-weight:700;letter-spacing:-.008em}
-.mani-sig .r{font-size:12.5px;color:var(--mute);margin-top:2px}
-.mani-sig .d{font-size:11.5px;color:var(--mute);font-family:'IBM Plex Mono','JetBrains Mono',monospace;letter-spacing:.06em}
+/* ========== § 05 MANIFESTO ========== */
+.manifesto-wrap{padding:160px 0 140px;border-bottom:1px solid var(--line)}
+.mani-body{max-width:760px;margin:0 auto}
+.mani-body p{font-family:var(--serif);font-size:20px;line-height:1.62;color:var(--ink-2);margin:0 0 24px;letter-spacing:-.003em}
+.mani-body p.lead{font-size:26px;color:var(--ink);font-weight:500}
+.mani-body p.lead::first-letter{font-family:var(--serif);font-weight:700;font-size:3.8em;line-height:.82;float:left;margin:6px 12px 0 0;color:var(--green)}
+.mani-body p b{color:var(--ink);font-weight:600}
+.mani-sig{margin:56px 0 0;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;max-width:760px;margin-left:auto;margin-right:auto}
+.mani-sig .n{font-family:var(--serif);font-weight:700;font-size:15.5px;letter-spacing:-.006em}
+.mani-sig .r{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--mute);margin-top:2px}
+.mani-sig .d{font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.12em;text-transform:uppercase}
 
-/* ============ FAQ ============ */
-.faq-sec{padding:120px 0;border-bottom:1px solid var(--line)}
-.faq-head{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:baseline;padding-bottom:30px;border-bottom:2px solid var(--ink);margin-bottom:8px}
-.faq-h{font-size:clamp(40px,5.5vw,70px);font-weight:800;letter-spacing:-.035em;line-height:1;margin:0}
-.faq-sub{font-size:15px;color:var(--ink-2);line-height:1.55}
-.faq{max-width:1040px;margin:0 auto}
-.q{border-bottom:1px solid var(--line);padding:26px 0;cursor:pointer}
-.q-t{font-size:20px;font-weight:700;letter-spacing:-.02em;display:flex;justify-content:space-between;align-items:center;gap:20px}
-.q-t::after{content:"+";font-weight:300;font-size:28px;color:var(--mute);transition:transform .2s;line-height:1}
-.q.open .q-t::after{content:"−";color:var(--green)}
-.q-a{font-size:15.5px;color:var(--ink-2);line-height:1.65;max-height:0;overflow:hidden;transition:max-height .3s ease, margin-top .2s;max-width:820px}
-.q.open .q-a{max-height:400px;margin-top:14px}
+/* ========== SCHEDULE C — INTERROGATORIES (FAQ) ========== */
+.inter{max-width:1020px;margin:0 auto}
+.q{border-top:1px solid var(--line);padding:26px 0;display:grid;grid-template-columns:60px 1fr;gap:20px}
+.q:last-child{border-bottom:1px solid var(--line)}
+.q-n{font-family:var(--mono);font-size:11px;color:var(--green);font-weight:700;letter-spacing:.1em;padding-top:3px}
+.q-t{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:-.018em;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.q-t::after{content:"+";font-family:var(--serif);font-weight:300;font-size:30px;line-height:.8;color:var(--mute);transition:color .2s}
+.q.open .q-t::after{content:"–";color:var(--green)}
+.q-a{font-family:var(--serif);font-size:15.5px;color:var(--ink-2);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s ease, margin-top .2s;max-width:820px}
+.q-a b{font-weight:600;color:var(--ink)}
+.q.open .q-a{max-height:460px;margin-top:12px}
 
-/* ============ FINAL CTA ============ */
-.cta{padding:160px 0;background:var(--ink);color:#fff;position:relative;overflow:hidden;text-align:center}
-.cta::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(800px 500px at 50% -20%, rgba(125,212,168,.22), transparent 60%),
-  radial-gradient(700px 500px at 20% 110%, rgba(15,81,50,.5), transparent 60%);pointer-events:none}
-.cta-eye{font-family:'IBM Plex Mono','JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7dd4a8;margin-bottom:30px}
-.cta h2{font-size:clamp(60px,8.5vw,140px);font-weight:800;letter-spacing:-.045em;margin:0;line-height:.93;position:relative}
-.cta h2 em{font-style:normal;color:#7dd4a8}
-.cta p{font-size:19px;color:#a0a0a0;max-width:600px;margin:26px auto 42px;line-height:1.5;position:relative}
-.cta .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
-.cta .btn.g{background:#fff;color:var(--ink)}
-.cta .btn.g:hover{background:#7dd4a8}
-.cta .btn.o{background:transparent;color:#fff;border-color:#333}
-.cta .btn.o:hover{border-color:#fff}
-.mega-word{margin-top:120px;font-size:clamp(100px,18vw,280px);font-weight:800;letter-spacing:-.065em;line-height:.88;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);text-align:center;user-select:none;line-height:.85}
+/* ========== § 06 COUNTERSIGNATURE CTA ========== */
+.sign-page{padding:140px 0 80px;background:var(--ink);color:var(--paper);position:relative;text-align:center;border-bottom:2px solid var(--ink)}
+.sign-page::before{content:"";position:absolute;left:var(--margin-x);top:0;bottom:0;width:1px;background:rgba(255,255,255,.1)}
+.sign-page .ey{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#7dd4a8;margin-bottom:22px;font-weight:700}
+.sign-page h2{font-family:var(--serif);font-weight:700;font-size:clamp(54px,8vw,120px);letter-spacing:-.035em;line-height:.95;margin:0}
+.sign-page h2 em{font-style:italic;color:#7dd4a8;font-weight:500}
+.sign-page p{font-family:var(--serif);font-size:19px;color:#b8b8b0;max-width:580px;margin:26px auto 38px;line-height:1.5;font-style:italic}
+.sign-page .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+.sign-page .btn.g{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.sign-page .btn.g:hover{background:#7dd4a8;border-color:#7dd4a8}
+.sign-page .btn.o{color:var(--paper);border-color:#444}
+.sign-page .btn.o:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.sign-stamps{margin-top:24px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.sign-stamps .stamp{border-color:#7dd4a8;color:#7dd4a8;background:rgba(125,212,168,.05)}
+.sign-stamps .stamp.g2{border-color:var(--paper);color:var(--paper);transform:rotate(3deg)}
+.mega{margin-top:80px;font-family:var(--serif);font-weight:700;font-size:clamp(100px,20vw,320px);letter-spacing:-.06em;line-height:.85;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.15);user-select:none;font-style:italic}
 
-/* ============ FOOTER ============ */
-footer{padding:60px 0 30px;background:var(--ink);color:#888;font-size:12.5px}
-.foot-top{display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:40px;padding-bottom:48px;border-bottom:1px solid #2a2a2a}
-.foot-col h5{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:700;font-family:'IBM Plex Mono','JetBrains Mono',monospace}
-.foot-col a{display:block;padding:5px 0;color:#888;transition:color .15s;font-size:13px}
-.foot-col a:hover{color:#7dd4a8}
-.foot-brand{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.foot-brand .brand-mark{box-shadow:inset 0 -4px 0 #7dd4a8}
-.foot-note{font-size:12.5px;color:#777;line-height:1.55;max-width:320px}
-.foot-bot{padding-top:26px;display:flex;justify-content:space-between;font-size:11.5px;color:#666;font-family:'IBM Plex Mono','JetBrains Mono',monospace;letter-spacing:.04em}
+/* ========== COLOPHON ========== */
+footer{padding:60px 0 36px;background:var(--ink);color:#888}
+.colophon{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:48px;padding-bottom:40px;border-bottom:1px solid #2a2a2a}
+.col-brand{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--paper);letter-spacing:-.018em;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.col-brand .m{width:26px;height:26px;background:var(--paper);color:var(--ink);display:grid;place-items:center;font-style:italic;font-weight:700;font-size:13px;border-radius:2px}
+.col-note{font-family:var(--serif);font-style:italic;font-size:13.5px;color:#999;line-height:1.6;max-width:320px}
+.col h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper);margin:0 0 14px;font-weight:700}
+.col a{display:block;padding:5px 0;color:#9a9989;font-family:var(--serif);font-size:14px;transition:color .15s}
+.col a:hover{color:#7dd4a8}
+.foot-bot{padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--mono);font-size:10.5px;color:#555;letter-spacing:.14em;text-transform:uppercase}
+.foot-colophon{margin-top:18px;padding-top:18px;border-top:1px solid #2a2a2a;font-family:var(--serif);font-style:italic;font-size:12px;color:#666;line-height:1.6}
 
+/* ========== RESPONSIVE ========== */
 @media (max-width:1100px){
-  .cover-deck{grid-template-columns:1fr 1fr}
-  .cover-deck-p{grid-column:span 2}
-  .dash-body{grid-template-columns:1fr}
-  .dash-l,.dash-r{border-right:0;border-left:0;border-bottom:1px solid var(--line)}
-  .surface-head,.spec-head,.faq-head,.band-grid,.ed-body{grid-template-columns:1fr;gap:24px}
+  :root{--margin-x:40px}
+  .cover-deck{grid-template-columns:1fr}
+  .sec-h{grid-template-columns:1fr;gap:8px}
+  .sec-note{text-align:left}
+  .summary{grid-template-columns:1fr}
+  .clauses-grid{grid-template-columns:1fr}
+  .roster{grid-template-columns:1fr}
+  .r-side{border-right:0;border-bottom:1px solid var(--line)}
+  .r-aside{border-left:0;border-top:1px solid var(--line)}
   .me-kpis{grid-template-columns:1fr 1fr}
   .me-grid{grid-template-columns:1fr}
-  .inv-top{grid-template-columns:1fr;text-align:left}
-  .inv-bill-to{text-align:left}
-  .inv-pair{grid-template-columns:1fr}
-  .pair-arrow{flex-direction:row;justify-content:center;padding:16px 0}
+  .metrics-plate{grid-template-columns:1fr 1fr}
+  .m{border-left:0;border-top:1px solid var(--line)}
+  .inv-top{grid-template-columns:1fr}
+  .inv-bill{text-align:left}
+  .inv-bill .a{margin-left:0}
+  .pair{grid-template-columns:1fr}
+  .pair-arrow{flex-direction:row;padding:14px 0}
   .pair-arrow .big{transform:rotate(90deg)}
-  .ws-row{grid-template-columns:64px 1fr 80px;gap:8px}
+  .ws-row{grid-template-columns:70px 1fr 90px;gap:8px}
   .ws-row .unit{display:none}
   .terms-body{grid-template-columns:1fr}
-  .signatures{border-left:0;border-top:1px dashed var(--line);padding-left:0;padding-top:20px}
-  .exhibit{grid-template-columns:1fr;gap:8px}
-  .exhibit-note{text-align:left}
-  .toc-in{grid-template-columns:1fr}
-  .cover [style*="position:absolute"]{display:none}
-  .letter{padding:36px 28px}
-  .letter-head{flex-wrap:wrap;gap:8px}
-  .foot-top{grid-template-columns:1fr 1fr}
+  .signatures{border-left:0;border-top:1px dashed var(--line);padding-left:0;padding-top:26px}
+  .toc-grid{grid-template-columns:1fr}
+  .colophon{grid-template-columns:1fr 1fr}
+  .letter{padding:40px 30px}
+  .cover-stamps{position:static;flex-direction:row;margin-bottom:18px}
+  .mast-nav{display:none}
+  .exhibit-divider{grid-template-columns:1fr;gap:8px}
 }
 </style>
 </head>
 <body>
 
+<!-- ============ MASTHEAD ============ -->
 <header class="mast">
   <div class="wrap-xl">
     <div class="mast-top">
-      <span class="mono">ISSUE 01 · VOL IV · APR 2026</span>
-      <span>The autonomous staff accountant</span>
-      <span class="mono">$15 / CLIENT / MO · QBO · XERO · PLAID</span>
+      <span>Issue 01 · Vol IV · Apr 2026</span>
+      <span>Zenday · Annual Prospectus to Accounting Firms</span>
+      <span>Rev 2026.04 · 16 pp.</span>
     </div>
     <div class="mast-mid">
-      <div class="brand">
-        <div class="brand-mark">Z</div>
-        <div>
-          <span class="brand-name">Zenday</span>
-          <span class="brand-sub">For accounting firms</span>
-        </div>
+      <div class="mast-brand">
+        <span class="mark">Z</span>
+        <span>
+          <span class="name">Zenday</span>
+          <span class="sub">For Accounting Firms</span>
+        </span>
       </div>
-      <div class="nav-links">
-        <a href="#surface">Product</a>
-        <a href="#spec">Spec sheet</a>
-        <a href="#compare">Compare</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#manifesto">Manifesto</a>
-      </div>
-      <div class="nav-cta">
+      <nav class="mast-nav">
+        <a href="#thesis">§ 01</a>
+        <a href="#summary">§ 02</a>
+        <a href="#roster">Fig 01</a>
+        <a href="#how">§ 03</a>
+        <a href="#specs">Sch A</a>
+        <a href="#pricing">§ 04</a>
+        <a href="#manifesto">§ 05</a>
+      </nav>
+      <div class="mast-cta">
         <a class="btn o" href="#">Sign in</a>
-        <a class="btn g" href="#pricing">Start free<span class="arr">→</span></a>
+        <a class="btn g" href="#pricing">Start free <span class="arr">→</span></a>
       </div>
     </div>
   </div>
 </header>
 
-<!-- COVER -->
+<!-- ============ COVER ============ -->
 <section class="cover">
-  <div class="wrap-xl">
+  <div class="wrap-xl with-margin">
     <div class="cover-kicker">
-      <span class="mono">● PRIVATE BETA · 14 FIRMS</span>
-      <span>The full product — not a demo</span>
-      <span class="mono">REV 2026.04</span>
+      <span>● Private beta · 14 firms enrolled</span>
+      <span class="m">Prepared for the Managing Partner</span>
+      <span class="r">Serial № ZD-MP-04-26</span>
     </div>
-    <div style="position:absolute;right:48px;top:160px;z-index:2;display:flex;flex-direction:column;gap:10px;align-items:flex-end">
-      <div class="stamp">Confidential · Firm Owner</div>
-      <div class="stamp green" style="transform:rotate(3deg)">For Review · 2026</div>
+    <div class="cover-plate">
+      <div class="cover-stamps">
+        <span class="stamp lg">Confidential · Firm Owner</span>
+        <span class="stamp green" style="transform:rotate(4deg)">For Review · 2026</span>
+      </div>
+      <div class="cover-eyebrow">Annual Prospectus · 2026</div>
+      <h1 class="cover-title">
+        <span class="line">The autonomous</span>
+        <span class="line">staff accountant,</span>
+        <span class="line"><em>assigned per client.</em></span>
+      </h1>
     </div>
-    <h1 class="cover-title">
-      <span class="line">The autonomous</span>
-      <span class="line">staff accountant,</span>
-      <span class="line"><em>assigned per client.</em></span>
-    </h1>
     <div class="cover-deck">
-      <p class="cover-deck-p">Your firm assigns Zenday to a client. It <b>reads the bank feed, codes every transaction, reconciles accounts, drafts client questions, and closes the month</b> — continuously, autonomously, with a full audit trail. Your team reviews judgment. Not data entry.</p>
-      <div class="cover-stat"><div class="k">Auto-post rate</div><div class="v">94<span style="font-size:.4em;color:var(--mute);margin-left:3px">%</span></div><div class="d">Transactions posted with no human touch.</div></div>
-      <div class="cover-stat"><div class="k">Daily review</div><div class="v">6<span style="font-size:.4em;color:var(--mute);margin-left:3px">min</span></div><div class="d">Across your entire roster.</div></div>
-    </div>
-    <div class="cover-actions">
-      <div class="actions">
-        <a class="btn g big" href="#pricing">Assign it to one client<span class="arr">→</span></a>
-        <a class="btn o big" href="#surface">See the full product</a>
+      <p class="cover-lede">Your firm assigns Zenday to a client. It reads the bank feed, codes every transaction, reconciles accounts, drafts client questions, and closes the month — continuously, autonomously, and with a complete audit trail. <b>Your team reviews judgment. Not data entry.</b></p>
+      <div class="cover-stat">
+        <div class="k">§ Auto-post rate</div>
+        <div class="v">94<span class="u">%</span></div>
+        <div class="d">Transactions posted with no human touch.</div>
       </div>
-      <div class="byline"><b>First client free for 30 days.</b> No credit card. No onboarding call.</div>
+      <div class="cover-stat">
+        <div class="k">§ Daily review</div>
+        <div class="v">6<span class="u">min</span></div>
+        <div class="d">Across the entire client roster.</div>
+      </div>
+    </div>
+    <div class="cover-cta">
+      <div class="cover-cta-actions">
+        <a class="btn g big" href="#pricing">Assign to one client <span class="arr">→</span></a>
+        <a class="btn o big" href="#roster">See the full product</a>
+      </div>
+      <div class="cover-cta-note">Priced at <b>fifteen dollars per client per month</b>. First client is free for thirty days. No credit card. No onboarding call.</div>
     </div>
   </div>
 </section>
 
-<!-- TABLE OF CONTENTS -->
+<!-- ============ TABLE OF CONTENTS ============ -->
 <section class="toc">
-  <div class="wrap-xl">
-    <div class="toc-in">
-      <div class="toc-h">Table of Contents</div>
-      <ul class="toc-list">
-        <li><span class="n">§ 01</span><span>Thesis</span><span class="p">p. 02</span></li>
-        <li><span class="n">Fig 01</span><span>Roster</span><span class="p">p. 03</span></li>
-        <li><span class="n">Fig 02</span><span>Review queue</span><span class="p">p. 05</span></li>
-        <li><span class="n">Fig 03</span><span>Month-end</span><span class="p">p. 06</span></li>
-        <li><span class="n">Sch A</span><span>Spec sheet</span><span class="p">p. 08</span></li>
-        <li><span class="n">Sch B</span><span>Comparison</span><span class="p">p. 09</span></li>
-        <li><span class="n">§ 04</span><span>Pricing</span><span class="p">p. 10</span></li>
-        <li><span class="n">§ 05</span><span>Manifesto</span><span class="p">p. 14</span></li>
-      </ul>
-      <div class="toc-meta">Rev 2026.04 · 16 pp.</div>
+  <div class="wrap-xl with-margin">
+    <div class="toc-h">
+      <span class="t">Table of Contents</span>
+      <span>16 pages · folio</span>
+    </div>
+    <div class="toc-grid">
+      <div>
+        <div class="toc-row"><span class="n">§ 01</span><span class="t">Letter from the founder</span><span class="p">p. 02</span></div>
+        <div class="toc-row"><span class="n">§ 02</span><span class="t">Executive summary</span><span class="p">p. 03</span></div>
+        <div class="toc-row"><span class="n">Fig. 01</span><span class="t">The roster</span><span class="p">p. 04</span></div>
+        <div class="toc-row"><span class="n">§ 03</span><span class="t">How the agent works <em>— in four clauses</em></span><span class="p">p. 06</span></div>
+        <div class="toc-row"><span class="n">Fig. 02</span><span class="t">The review queue</span><span class="p">p. 07</span></div>
+        <div class="toc-row"><span class="n">Fig. 03</span><span class="t">Month-end close</span><span class="p">p. 08</span></div>
+      </div>
+      <div>
+        <div class="toc-row"><span class="n">Sch. A</span><span class="t">Specifications</span><span class="p">p. 09</span></div>
+        <div class="toc-row"><span class="n">Sch. B</span><span class="t">Comparative analysis</span><span class="p">p. 10</span></div>
+        <div class="toc-row"><span class="n">Ex. D</span><span class="t">Letter of reference</span><span class="p">p. 11</span></div>
+        <div class="toc-row"><span class="n">§ 04</span><span class="t">Pricing <em>— Exhibits A/B/C</em></span><span class="p">p. 12</span></div>
+        <div class="toc-row"><span class="n">§ 05</span><span class="t">Manifesto</span><span class="p">p. 14</span></div>
+        <div class="toc-row"><span class="n">§ 06</span><span class="t">Countersignature</span><span class="p">p. 16</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FULL-BLEED PRODUCT SHOT -->
-<section class="hero-shot">
-  <div class="hero-shot-wrap">
-    <div class="hero-shot-cap">
-      <div class="h">Fig. 01 · Roster view · Vatsal CPAs</div>
-      <div class="sub">Captured live, April 2026</div>
+<!-- ============ § 01 LETTER FROM THE FOUNDER ============ -->
+<section class="sec" id="thesis">
+  <div class="wrap with-margin">
+    <div class="sec-h">
+      <span class="sec-num">§ 01</span>
+      <h2 class="sec-title">Letter from the <em>founder.</em></h2>
+      <span class="sec-note">p. 02 · signed</span>
     </div>
-    <div class="dash">
-      <div class="dash-chrome">
-        <div class="dots"><span></span><span></span><span></span></div>
-        <div class="url">app.zenday.io<span class="u">/clients</span></div>
-        <div class="pill-live"><span class="d"></span>Live</div>
+    <div class="letter">
+      <div class="letter-head">
+        <span class="t">Zenday Inc. · Office of the Founder</span>
+        <span>Toronto · April 12, 2026</span>
       </div>
-      <div class="dash-body">
-        <div class="dash-l">
-          <div class="dash-l-brand"><div class="m">Z</div><div class="n">Vatsal CPAs</div><div class="s">14 · 412</div></div>
-          <div class="dash-l-search"><span>⌕ Search clients</span><span class="k">⌘K</span></div>
-          <div class="dash-l-label"><span>Needs judgment</span><span class="c">2</span></div>
-          <div class="cli on"><span class="s need"></span><span class="n">Beta Studio</span><span class="b warn">3</span></div>
-          <div class="cli"><span class="s warn"></span><span class="n">Delta Ventures</span><span class="b warn">1</span></div>
-          <div class="dash-l-label"><span>Clear</span><span class="c">11</span></div>
-          <div class="cli"><span class="s ok"></span><span class="n">Acme Design Co.</span><span class="b ok">ok</span></div>
-          <div class="cli"><span class="s ok"></span><span class="n">Brightpath LLC</span><span class="b ok">ok</span></div>
-          <div class="cli"><span class="s ok"></span><span class="n">Nova Digital</span><span class="b ok">ok</span></div>
-          <div class="cli"><span class="s ok"></span><span class="n">Orion Agency</span><span class="b ok">ok</span></div>
-          <div class="cli"><span class="s ok"></span><span class="n">Pinecrest Foods</span><span class="b ok">ok</span></div>
-          <div class="dash-l-label"><span>Setup</span><span class="c">1</span></div>
-          <div class="cli"><span class="s mute"></span><span class="n">Sunrise Bakery</span><span class="b mute">…</span></div>
-        </div>
-        <div class="dash-c">
-          <div class="dash-c-h">
-            <div>
-              <div class="dash-c-t">Beta Studio</div>
-              <div class="dash-c-s">34 transactions today · 3 need your judgment · $24,911.61</div>
+      <div class="letter-salutation">Dear Managing Partner,</div>
+      <p class="drop">Accounting firms do not have a software problem. They have a labour problem — and it has been, broadly, the same problem for forty years. Every billable hour is sold at advisory rates and delivered, mostly, at data-entry speed. You already know this. Your partners have known it since the general ledger was printed on green paper.</p>
+      <p>The previous wave of automation — <b>OCR, rule engines, templated bookkeeping</b> — accelerated the easy sixty per cent and did nothing with the other forty. It could categorise a DoorDash and then freeze on a fifteen-thousand-dollar wire that didn't match an open invoice. Those are not edge cases. <b>They are the reason accounting is still a human job.</b></p>
+      <p>Zenday is the first accountant your firm can actually assign. It handles the easy sixty per cent in under thirty seconds. It handles the ambiguous thirty-eight per cent by drafting a reply to the client, or by learning from a single correction and never asking again. What remains is the queue: about six minutes of judgment a day, pushed to your senior accountants, with the agent's reasoning already on the page. <b>You stay the accountant of record.</b> We do the data entry.</p>
+      <p>I would like to show you the product. If the thesis holds, you will save a senior hire's worth of time per twenty clients — and your people will finally get to do the work you hired them for.</p>
+      <div class="letter-close">
+        <span class="c">Respectfully,</span>
+        <span class="letter-sig">Jordan A.</span>
+      </div>
+      <div class="letter-footer">
+        <span>Jordan Alani · <b>Founder &amp; CEO, Zenday</b></span>
+        <span>Ex-Intuit · Ex-Anthropic</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ § 02 EXECUTIVE SUMMARY ============ -->
+<section class="sec alt" id="summary">
+  <div class="wrap with-margin">
+    <div class="sec-h">
+      <span class="sec-num">§ 02</span>
+      <h2 class="sec-title">Executive <em>summary.</em></h2>
+      <span class="sec-note">p. 03 · three clauses</span>
+    </div>
+    <div class="summary">
+      <div class="clause">
+        <div class="clause-n">2.01 · The Product</div>
+        <h3 class="clause-h">A continuous agent, <em>assigned per client.</em></h3>
+        <p class="clause-p">Zenday is not a feature inside a ledger. It is an autonomous agent your firm assigns — one per client — with persistent memory, a toolbelt of ledger/bank/email actions, and a playbook you configure. <b>It runs continuously</b>, not in overnight batches.</p>
+      </div>
+      <div class="clause">
+        <div class="clause-n">2.02 · The Work</div>
+        <h3 class="clause-h">The full engagement, <em>not a categoriser.</em></h3>
+        <p class="clause-p">Bank feed landing, chart-of-accounts coding, reconciliation, drafted client questions, month-end P&amp;L and variance narrative — all of it. <b>Everything a junior bookkeeper would do</b>, traced to the exact reasoning, confidence score, and model version for every entry.</p>
+      </div>
+      <div class="clause">
+        <div class="clause-n">2.03 · The Economics</div>
+        <h3 class="clause-h">Fifteen dollars. <em>Per client. Per month.</em></h3>
+        <p class="clause-p">No seat fees. No transaction caps. No setup cost. For a forty-client firm, that is <b>$184,800 of annual savings</b> against an offshore stack — with the senior accountants' time returned to advisory, where it was always meant to go.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FIG 01 ROSTER ============ -->
+<section class="sec" id="roster">
+  <div class="wrap-xl with-margin">
+    <div class="sec-h">
+      <span class="sec-num">Fig. 01</span>
+      <h2 class="sec-title">The <em>roster.</em></h2>
+      <span class="sec-note">p. 04 · live plate</span>
+    </div>
+    <p class="sec-lede">A single pane over every client the firm serves: what the agent is doing right now, which accounts are clear, which need your judgment, and when the next close fires. Below is the actual view from a fourteen-client firm in private beta.</p>
+    <div class="figure">
+      <div class="fig-caption">
+        <span class="num">Plate 01</span>
+        <span class="ttl">Roster view · Vatsal CPAs</span>
+        <span>Captured Apr 2026 · 11:42 EDT</span>
+      </div>
+      <div class="fig-plate">
+        <div class="roster">
+          <div class="r-side">
+            <div class="r-side-h">
+              <div class="r-firm">Vatsal CPAs</div>
+              <div class="r-meta">14 · 412</div>
             </div>
-            <div class="live"><span class="p"></span>Agent running</div>
+            <div class="r-search"><span>Search clients…</span><span class="k">⌘K</span></div>
+            <div class="r-label"><span>Needs judgment</span><span>2</span></div>
+            <div class="cli on"><span class="s need"></span><span class="n">Beta Studio</span><span class="b warn">3</span></div>
+            <div class="cli"><span class="s warn"></span><span class="n">Delta Ventures</span><span class="b warn">1</span></div>
+            <div class="r-label"><span>Clear</span><span>11</span></div>
+            <div class="cli"><span class="s ok"></span><span class="n">Acme Design Co.</span><span class="b ok">ok</span></div>
+            <div class="cli"><span class="s ok"></span><span class="n">Brightpath LLC</span><span class="b ok">ok</span></div>
+            <div class="cli"><span class="s ok"></span><span class="n">Nova Digital</span><span class="b ok">ok</span></div>
+            <div class="cli"><span class="s ok"></span><span class="n">Orion Agency</span><span class="b ok">ok</span></div>
+            <div class="cli"><span class="s ok"></span><span class="n">Pinecrest Foods</span><span class="b ok">ok</span></div>
+            <div class="r-label"><span>Setup</span><span>1</span></div>
+            <div class="cli"><span class="s mute"></span><span class="n">Sunrise Bakery</span><span class="b mute">…</span></div>
+            <div class="r-side-foot"><span>Agent uptime</span><b>100.00%</b></div>
           </div>
-          <div id="txnStream">
-            <div class="txn"><span class="t">10:21</span><div><div class="v">Wire · ACH Transfer</div><div class="c">No vendor match · 34%</div></div><span class="a">$15,000.00</span><span class="b review">Review</span></div>
-            <div class="txn"><span class="t">09:44</span><div><div class="v">AMEX · New vendor</div><div class="c">First occurrence · 71%</div></div><span class="a">$480.00</span><span class="b review">Review</span></div>
-            <div class="txn"><span class="t">11:42</span><div><div class="v">Adobe Creative Cloud</div><div class="c">Software · 99%</div></div><span class="a">$59.99</span><span class="b posted">Posted</span></div>
-            <div class="txn"><span class="t">11:18</span><div><div class="v">AWS</div><div class="c">Cloud infra · 99%</div></div><span class="a">$1,284.12</span><span class="b posted">Posted</span></div>
-            <div class="txn"><span class="t">10:55</span><div><div class="v">DoorDash</div><div class="c">Meals · 94%</div></div><span class="a">$87.50</span><span class="b posted">Posted</span></div>
-            <div class="txn"><span class="t">09:22</span><div><div class="v">Stripe payout</div><div class="c">Revenue · matched Inv #4188 · 98%</div></div><span class="a">$8,400.00</span><span class="b posted">Posted</span></div>
+          <div class="r-main">
+            <div class="r-main-h">
+              <div>
+                <div class="r-main-t">Beta Studio</div>
+                <div class="r-main-s">34 transactions today · 3 need your judgment · $24,911.61 in volume</div>
+              </div>
+              <div class="live"><span class="p"></span>Agent running</div>
+            </div>
+            <div id="txnStream">
+              <div class="txn"><span class="t">10:21</span><div><div class="v">Wire · ACH Transfer</div><div class="c">No vendor match · 34% confidence</div></div><span class="a">$15,000.00</span><span class="b review">Review</span></div>
+              <div class="txn"><span class="t">09:44</span><div><div class="v">AMEX · New vendor</div><div class="c">First occurrence · 71% confidence</div></div><span class="a">$480.00</span><span class="b review">Review</span></div>
+              <div class="txn"><span class="t">11:42</span><div><div class="v">Adobe Creative Cloud</div><div class="c">Software subscriptions · 99% confidence</div></div><span class="a">$59.99</span><span class="b posted">Posted</span></div>
+              <div class="txn"><span class="t">11:18</span><div><div class="v">AWS</div><div class="c">Cloud infrastructure · 99% confidence</div></div><span class="a">$1,284.12</span><span class="b posted">Posted</span></div>
+              <div class="txn"><span class="t">10:55</span><div><div class="v">DoorDash</div><div class="c">Meals &amp; entertainment · 94% confidence</div></div><span class="a">$87.50</span><span class="b posted">Posted</span></div>
+              <div class="txn"><span class="t">09:22</span><div><div class="v">Stripe payout</div><div class="c">Revenue · matched Invoice #4188 · 98%</div></div><span class="a">$8,400.00</span><span class="b posted">Posted</span></div>
+            </div>
           </div>
-        </div>
-        <div class="dash-r">
-          <div class="dash-r-h">Today · Beta Studio</div>
-          <div class="kpi-stack">
+          <div class="r-aside">
+            <div class="r-aside-h"><span>Today · Beta Studio</span><span>Live</span></div>
             <div class="kpi"><div class="l">Posted</div><div class="v" id="kPost">31</div><div class="d">↑ 94% auto</div></div>
             <div class="kpi"><div class="l">In review</div><div class="v" id="kRev">3</div><div class="d down">~6 min</div></div>
-            <div class="kpi"><div class="l">Volume</div><div class="v">$24,911</div><div class="d">↑ 12% MoM</div></div>
-          </div>
-          <div class="conf-box">
-            <div class="h">Confidence distribution</div>
-            <div class="conf-row"><span>Posted (≥95%)</span><span class="n" style="color:var(--green)">94%</span></div>
-            <div class="conf-row"><span>Review (80–95%)</span><span class="n" style="color:var(--amber)">4%</span></div>
-            <div class="conf-row"><span>Client (&lt;80%)</span><span class="n" style="color:var(--red)">2%</span></div>
-            <div class="conf-bar"><div class="s1"></div><div class="s2"></div><div class="s3"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="dash-foot">
-        <span><b>14 clients</b> · all current</span>
-        <span><b>412 txns</b> posted this week · 97% auto</span>
-        <span>Next close: <b>Delta · Apr 30</b></span>
-        <span style="margin-left:auto">Agent uptime: <b>100.00%</b></span>
-      </div>
-    </div>
-    <div class="hero-shot-footnotes">
-      <span>ZENDAY · FIG 01</span>
-      <span>Live dashboard · continuously updating</span>
-      <span>Inter · JetBrains Mono</span>
-    </div>
-  </div>
-</section>
-
-<!-- EDITORIAL BREAK -->
-<section class="ed-break">
-  <div class="wrap">
-    <div class="eye"><span class="mono">§ 01 · THESIS</span><b>Why this exists</b><span class="mono">READ 2 MIN</span></div>
-    <h2 class="ed-h">Accounting firms <em>don't have a software problem.</em> They have a labor problem — and it's been the same problem for forty years.</h2>
-    <div class="ed-body">
-      <p class="drop">Every billable hour in a firm is sold at advisory rates and delivered, mostly, at data-entry speed. Firms know this. Partners have known it since the general ledger was a stack of green paper. The reason the problem has not been solved is not a lack of intent. It is that, until very recently, nothing could do the work other than a human.</p>
-      <p>The previous wave — <b>OCR, rule engines, templated bookkeeping</b> — could accelerate the easy 60% and did nothing with the other 40%. Categorize a DoorDash; stumble on a new vendor. Post a Stripe payout; freeze on a $15K wire that doesn't match an open invoice. Those are not edge cases. <b>They are the reason accounting is still a human job.</b> The middle tier of judgment is where firms bleed margin, and it is exactly where legacy AI stops.<br/><br/>Zenday is the first accountant your firm can actually assign. It does the easy 60% in under 30 seconds. It handles the ambiguous 38% by drafting a reply to the client, or by learning from one correction and never asking again. The remaining 2% is the queue: six minutes a day of judgment, pushed to your senior accountants, with the agent's reasoning in front of them.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SURFACE 01: ROSTER (no content — already shown above as hero shot; jump to SURFACE 02) -->
-
-<!-- SURFACE 02: REVIEW QUEUE -->
-<section class="surface-sec" id="surface">
-  <div class="wrap-xl">
-    <div class="surface-head">
-      <div class="surface-num">02</div>
-      <div class="surface-body">
-        <div class="mono" style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:8px;font-weight:700">Figure 02 · Review Queue</div>
-        <h3>The <em>review queue</em> is all you look at.</h3>
-        <p>Low-confidence items — and nothing else — land here with the agent's full reasoning: vendor history searched, invoices checked, playbook rules applied. Approve, edit, ask the client, or hold. Keyboard-driven. Most firms clear the queue in six minutes a day, across every client on the roster.</p>
-      </div>
-      <div class="surface-tag">~6 min / day</div>
-    </div>
-    <div class="shot">
-      <div class="shot-bar">
-        <div class="dots" style="display:flex;gap:6px"><span></span><span></span><span></span></div>
-        <div class="url">app.zenday.io/review/beta-studio</div>
-        <span class="mono" style="font-size:10.5px;color:var(--mute)">3 items</span>
-      </div>
-      <div class="rv-wrap">
-        <div class="rv-h">
-          <div>
-            <div class="rv-t">Review queue · Beta Studio</div>
-            <div class="rv-s">3 items · ~6 minutes · keyboard-driven</div>
-          </div>
-          <div style="display:inline-flex;gap:7px;align-items:center;font-size:11px;font-weight:700;color:var(--green);padding:6px 11px;background:var(--green-tint);border-radius:999px;letter-spacing:.04em;text-transform:uppercase"><span style="width:6px;height:6px;border-radius:50%;background:var(--green);animation:pd 1.8s infinite"></span>Real-time</div>
-        </div>
-        <div class="rv-card">
-          <div class="rv-top">
-            <div>
-              <div class="rv-v">Wire · ACH Transfer</div>
-              <span class="rv-conf">⚠ 34% confidence · no vendor match · no open invoice</span>
-            </div>
-            <div>
-              <div class="rv-amt">$15,000.00</div>
-              <div class="rv-date">03/12/2026</div>
+            <div class="kpi"><div class="l">Volume</div><div class="v">$24.9k</div><div class="d">↑ 12% MoM</div></div>
+            <div class="conf">
+              <div class="h">Confidence distribution</div>
+              <div class="conf-row"><span>Posted (≥95%)</span><span class="n" style="color:var(--green)">94%</span></div>
+              <div class="conf-row"><span>Review (80–95%)</span><span class="n" style="color:var(--amber)">4%</span></div>
+              <div class="conf-row"><span>Client (&lt;80%)</span><span class="n" style="color:var(--rule)">2%</span></div>
+              <div class="conf-bar"><div class="s1"></div><div class="s2"></div><div class="s3"></div></div>
             </div>
           </div>
-          <div class="rv-reason"><b>Zenday's reasoning</b>I searched 18 months of Beta Studio history. No prior wire from this routing number. No matching open invoice. Possible capital contribution, intercompany transfer, or new vendor. Holding for your judgment.</div>
-          <div class="rv-act">
-            <button class="rv-btn pri"><span class="rk">↵</span>Approve as Intercompany</button>
-            <button class="rv-btn"><span class="rk">E</span>Edit</button>
-            <button class="rv-btn"><span class="rk">A</span>Ask client</button>
-            <button class="rv-btn"><span class="rk">H</span>Hold for owner</button>
-          </div>
         </div>
-        <div style="text-align:center;font-size:12.5px;color:var(--mute);margin-top:18px;font-family:'IBM Plex Mono','JetBrains Mono',monospace">2 more items · press <span class="rk">J</span> to continue · <span class="rk">⌘⏎</span> approve all matching rule</div>
+        <div class="dash-foot">
+          <span><b>14 clients</b> · all current</span>
+          <span><b>412 txns</b> posted this week · 97% auto</span>
+          <span>Next close: <b>Delta · Apr 30</b></span>
+          <span style="margin-left:auto">Uptime <b>100.00%</b></span>
+        </div>
+      </div>
+      <div class="fig-note">
+        <span class="src">Source · app.zenday.io/clients</span>
+        <span>Figure captured live from a pilot firm, redacted. Transactions, amounts, and client names are representative.</span>
+        <span>Zenday · Fig. 01</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SURFACE 03: MONTH-END -->
-<section class="surface-sec alt">
-  <div class="wrap-xl">
-    <div class="surface-head">
-      <div class="surface-num">03</div>
-      <div class="surface-body">
-        <div class="mono" style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:8px;font-weight:700">Figure 03 · Month-End</div>
-        <h3>Month-end arrives on <em>day 1.</em></h3>
-        <p>The agent reconciles every account during the month, so the close is not an event — it's a receipt. On the first business day of the month, P&amp;L, balance sheet, cash flow, and a one-paragraph variance narrative are drafted, waiting for your sign-off. No more weekend close. No more last-week-of-month panic.</p>
-      </div>
-      <div class="surface-tag">Day 1 delivery</div>
+<!-- ============ § 03 HOW IT WORKS — CLAUSES ============ -->
+<section class="sec alt" id="how">
+  <div class="wrap with-margin">
+    <div class="sec-h">
+      <span class="sec-num">§ 03</span>
+      <h2 class="sec-title">How the agent <em>works.</em></h2>
+      <span class="sec-note">p. 06 · four clauses</span>
     </div>
-    <div class="shot">
-      <div class="shot-bar">
-        <div class="dots" style="display:flex;gap:6px"><span></span><span></span><span></span></div>
-        <div class="url">app.zenday.io/close/march-2026/acme</div>
-        <span class="mono" style="font-size:10.5px;color:var(--green);font-weight:700">● Ready</span>
+    <p class="sec-lede">Each client is assigned a dedicated agent with persistent memory and an audited toolbelt. The loop below runs continuously, not on a batch schedule, and every action is logged with reasoning, confidence, cost, and model version.</p>
+    <div class="clauses-grid">
+      <div class="clause-lg">
+        <div class="num">3.01 · Perception</div>
+        <h4>The agent <em>reads events.</em></h4>
+        <p>Subscribes to the bank feed, client email inbox, uploaded documents, QBO/Xero sync, and scheduled triggers. Wakes on every new event — there is no polling delay.</p>
+        <pre class="code">bank.txn.synced · $480.00 · <em>Ramp</em> · clear</pre>
       </div>
-      <div class="me-wrap">
-        <div class="me-h">
-          <div>
-            <div class="me-t">March 2026 · Acme Design Co.</div>
-            <div class="me-s">Closed Apr 1, 06:14 AM · Zero weekend work · 1,284 entries reconciled</div>
-          </div>
-          <div class="me-tag">Day 1 · Ready</div>
-        </div>
-        <div class="me-kpis">
-          <div class="me-kpi"><div class="l">Revenue</div><div class="v">$384,200</div><div class="d">↑ 22% YoY</div></div>
-          <div class="me-kpi"><div class="l">Net Income</div><div class="v">$122,950</div><div class="d">↑ 18% MoM</div></div>
-          <div class="me-kpi"><div class="l">Gross Margin</div><div class="v">69.2%</div><div class="d">↑ 1.4 pts</div></div>
-          <div class="me-kpi"><div class="l">Runway</div><div class="v">14 mo</div><div class="d down">−2 mo</div></div>
-        </div>
-        <div class="me-grid">
-          <div class="me-card">
-            <div class="me-sec"><span>Income Statement</span><span class="src">qbo.live</span></div>
-            <div class="me-line"><span>Revenue</span><span class="v">$384,200</span></div>
-            <div class="me-line neg"><span>Cost of Goods Sold</span><span class="v">(118,450)</span></div>
-            <div class="me-line"><span>Gross Profit</span><span class="v">$265,750</span></div>
-            <div class="me-line neg"><span>Operating Expenses</span><span class="v">(142,800)</span></div>
-            <div class="me-line total"><span>Net Income</span><span class="v">$122,950</span></div>
-          </div>
-          <div class="me-card">
-            <div class="me-sec"><span>Zenday's notes</span><span class="src">draft · awaiting sign-off</span></div>
-            <div class="me-note"><b>Observation</b>Best March on record. Revenue up 22% YoY. OpEx up 18% MoM, driven entirely by $8.4K new contractor spend (Upwork × 3 designers).</div>
-            <div class="me-note"><b>Flag</b>Runway dropped from 16 → 14 months. Suggest pricing review on retainer contracts in Q2.</div>
-          </div>
-        </div>
+      <div class="clause-lg">
+        <div class="num">3.02 · Reasoning</div>
+        <h4>The agent <em>decides.</em></h4>
+        <p>Claude checks the chart of accounts, per-client learned rules, eighteen months of vendor history, and your firm's playbook. It outputs a category with a confidence score and a written rationale.</p>
+        <pre class="code">match → <em>Office Supplies</em> · 97% · rule:ramp→office</pre>
+      </div>
+      <div class="clause-lg">
+        <div class="num">3.03 · Action</div>
+        <h4>The agent <em>posts.</em></h4>
+        <p>Writes to QuickBooks or Xero through an audited, reversible ledger adapter. Every write carries reasoning, confidence, model version, source event, and cost in tokens — a full trail.</p>
+        <pre class="code">ledger.post · <em>JE-2264</em> · ✓ · 0.004¢</pre>
+      </div>
+      <div class="clause-lg">
+        <div class="num">3.04 · Learning</div>
+        <h4>The agent <em>improves.</em></h4>
+        <p>When you override a decision, the correction becomes a permanent per-client rule. The agent does not ask the same question twice. Override rate drops under two per cent by month three.</p>
+        <pre class="code">rule.upsert · <em>vendor → account</em> · persisted</pre>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FULL-BLEED NUMBER BAND -->
-<section class="band">
-  <div class="wrap-xl">
-    <div class="band-grid">
-      <div>
-        <div class="band-num">94<span class="pct">%</span></div>
-        <div class="band-cap">Auto-post rate across the beta</div>
+<!-- ============ FIG 02 REVIEW QUEUE ============ -->
+<section class="sec" id="review">
+  <div class="wrap-xl with-margin">
+    <div class="sec-h">
+      <span class="sec-num">Fig. 02</span>
+      <h2 class="sec-title">The <em>review queue.</em></h2>
+      <span class="sec-note">p. 07 · six-minute pass</span>
+    </div>
+    <p class="sec-lede">Low-confidence items — and nothing else — land in the queue with the agent's full reasoning attached. Approve, edit, ask the client, or hold. Keyboard-driven. Most firms clear the queue across their entire roster in about six minutes a day.</p>
+    <div class="figure">
+      <div class="fig-caption">
+        <span class="num">Plate 02</span>
+        <span class="ttl">Review queue · Beta Studio</span>
+        <span>Captured Apr 2026 · keyboard-driven</span>
       </div>
-      <div class="band-right">
-        <h4>Ninety-four percent of transactions <em>never touch a human.</em></h4>
-        <p>The other 6% is split: 4% enters the review queue with the agent's reasoning, 2% becomes a drafted question to the client. By month three on any client, override rate drops below 2% and the queue clears in under six minutes a day.</p>
-        <div class="band-ft">
-          <div class="row"><div class="k">Clear → post</div><div class="v">&lt;30 sec</div></div>
-          <div class="row"><div class="k">Override (mo. 3)</div><div class="v">&lt;2%</div></div>
-          <div class="row"><div class="k">Month-end delivery</div><div class="v">Day 1</div></div>
-          <div class="row"><div class="k">Agent uptime</div><div class="v">100.00%</div></div>
+      <div class="fig-plate">
+        <div class="rv-wrap">
+          <div class="rv-h">
+            <div>
+              <div class="rv-t">Review queue · Beta Studio</div>
+              <div class="rv-s">3 items · approximately six minutes · keyboard-driven</div>
+            </div>
+            <div class="live"><span class="p"></span>Real-time</div>
+          </div>
+          <div class="rv-card">
+            <div class="rv-top">
+              <div>
+                <div class="rv-v">Wire · ACH Transfer</div>
+                <span class="rv-conf">⚠ 34% confidence · no vendor match · no open invoice</span>
+              </div>
+              <div>
+                <div class="rv-amt">$15,000.00</div>
+                <div class="rv-date">03 / 12 / 2026</div>
+              </div>
+            </div>
+            <div class="rv-reason"><b>Zenday's reasoning</b>I searched eighteen months of Beta Studio history. There is no prior wire from this routing number and no matching open invoice. This is a possible capital contribution, intercompany transfer, or new-vendor payment. I am holding for your judgment.</div>
+            <div class="rv-act">
+              <button class="rv-btn pri"><span class="rk">↵</span>Approve as Intercompany</button>
+              <button class="rv-btn"><span class="rk">E</span>Edit</button>
+              <button class="rv-btn"><span class="rk">A</span>Ask client</button>
+              <button class="rv-btn"><span class="rk">H</span>Hold for owner</button>
+            </div>
+          </div>
+          <div class="rv-hint">2 more items · press <span class="rk">J</span> to continue · <span class="rk">⌘⏎</span> approve &amp; promote to rule</div>
         </div>
+      </div>
+      <div class="fig-note">
+        <span class="src">Source · app.zenday.io/review/beta-studio</span>
+        <span>Keystrokes persist rules. A single correction becomes a permanent per-client policy.</span>
+        <span>Zenday · Fig. 02</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SPEC SHEET -->
-<section class="spec-sec" id="spec">
-  <div class="wrap-xl">
-    <div class="spec-head">
-      <div>
-        <div class="mono" style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:12px;font-weight:700">Schedule A · Capabilities</div>
-        <h3 class="spec-h">The agent's <em>spec sheet.</em></h3>
-      </div>
-      <div class="spec-sub">Not a feature list — a job description. Everything a junior bookkeeper would do, continuously, per client, with a full audit trail. Printed here the way your firm would print it.</div>
+<!-- ============ FIG 03 MONTH-END ============ -->
+<section class="sec alt" id="month">
+  <div class="wrap-xl with-margin">
+    <div class="sec-h">
+      <span class="sec-num">Fig. 03</span>
+      <h2 class="sec-title">Month-end, <em>on day one.</em></h2>
+      <span class="sec-note">p. 08 · auto-delivered</span>
     </div>
+    <p class="sec-lede">Because the agent reconciles every account continuously, the close is not an event — it is a receipt. On the first business day of the month, P&amp;L, balance sheet, cash flow, and a variance narrative are drafted, waiting for the senior accountant's sign-off.</p>
+    <div class="figure">
+      <div class="fig-caption">
+        <span class="num">Plate 03</span>
+        <span class="ttl">Month-end close · Acme Design Co.</span>
+        <span>Closed Apr 1 · 06:14 AM</span>
+      </div>
+      <div class="fig-plate">
+        <div class="me-wrap">
+          <div class="me-h">
+            <div>
+              <div class="me-t">March 2026 · Acme Design Co.</div>
+              <div class="me-s">Closed April 1, 06:14 AM · zero weekend work · 1,284 entries reconciled</div>
+            </div>
+            <div class="me-tag">Day 1 · Ready</div>
+          </div>
+          <div class="me-kpis">
+            <div class="me-kpi"><div class="l">Revenue</div><div class="v">$384,200</div><div class="d">↑ 22% YoY</div></div>
+            <div class="me-kpi"><div class="l">Net Income</div><div class="v">$122,950</div><div class="d">↑ 18% MoM</div></div>
+            <div class="me-kpi"><div class="l">Gross Margin</div><div class="v">69.2%</div><div class="d">↑ 1.4 pts</div></div>
+            <div class="me-kpi"><div class="l">Runway</div><div class="v">14 mo</div><div class="d down">– 2 mo</div></div>
+          </div>
+          <div class="me-grid">
+            <div class="me-card">
+              <div class="me-sec"><span>Income Statement</span><span class="src">qbo.live</span></div>
+              <div class="me-line"><span>Revenue</span><span class="v">$384,200</span></div>
+              <div class="me-line neg"><span>Cost of Goods Sold</span><span class="v">(118,450)</span></div>
+              <div class="me-line"><span>Gross Profit</span><span class="v">$265,750</span></div>
+              <div class="me-line neg"><span>Operating Expenses</span><span class="v">(142,800)</span></div>
+              <div class="me-line total"><span>Net Income</span><span class="v">$122,950</span></div>
+            </div>
+            <div class="me-card">
+              <div class="me-sec"><span>Zenday's notes</span><span class="src">draft · awaiting sign-off</span></div>
+              <div class="me-note"><b>Observation</b>Best March on record. Revenue up 22 per cent year-on-year. OpEx up 18 per cent month-on-month, driven entirely by $8.4K in new contractor spend (Upwork × three designers).</div>
+              <div class="me-note"><b>Flag</b>Runway dropped from sixteen to fourteen months. I suggest a pricing review on retainer contracts in Q2.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fig-note">
+        <span class="src">Source · app.zenday.io/close/march-2026/acme</span>
+        <span>All figures drafted by the agent; the senior accountant countersigns before release.</span>
+        <span>Zenday · Fig. 03</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METRICS PLATE ============ -->
+<section class="sec tight">
+  <div class="wrap-xl with-margin">
+    <div class="sec-h">
+      <span class="sec-num">Plate IV</span>
+      <h2 class="sec-title">The numbers, <em>in four figures.</em></h2>
+      <span class="sec-note">Across the beta · 14 firms</span>
+    </div>
+    <div class="metrics-plate">
+      <div class="m">
+        <div class="m-n">94<span class="u">%</span></div>
+        <div class="m-l">Auto-post rate</div>
+        <div class="m-d">Posted with no human touch, full audit trail per entry.</div>
+      </div>
+      <div class="m">
+        <div class="m-n">6<span class="u">min</span></div>
+        <div class="m-l">Daily review</div>
+        <div class="m-d">Across the entire roster, keyboard-driven.</div>
+      </div>
+      <div class="m">
+        <div class="m-n">$15</div>
+        <div class="m-l">Per client / month</div>
+        <div class="m-d">Replaces $100–1,500 in per-client offshore labour.</div>
+      </div>
+      <div class="m">
+        <div class="m-n">&lt;2<span class="u">%</span></div>
+        <div class="m-l">Override rate</div>
+        <div class="m-d">By month three. The agent learns, permanently.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCH A SPEC SHEET ============ -->
+<section class="sec" id="specs">
+  <div class="wrap-xl with-margin">
+    <div class="sec-h">
+      <span class="sec-num">Sch. A</span>
+      <h2 class="sec-title">Specifications, <em>by capability.</em></h2>
+      <span class="sec-note">p. 09 · eight rows</span>
+    </div>
+    <p class="sec-lede">Not a feature list — a job description. Everything a junior bookkeeper would do, performed continuously per client, with a full audit trail. Printed here the way an accounting firm would print it.</p>
     <table class="spec-table">
       <thead>
         <tr><th>Ref</th><th>Capability</th><th>Description</th><th>Performance</th></tr>
       </thead>
       <tbody>
-        <tr><td class="sku">R-01</td><td class="cap">Real-time transaction coding</td><td class="desc">Bank feed lands. Agent reads the vendor, applies your chart of accounts, checks learned rules, posts the entry with confidence score and audit trail. QBO and Xero.</td><td class="prf">&lt;30s clear→post</td></tr>
-        <tr><td class="sku">R-02</td><td class="cap">Per-client learning</td><td class="desc">Every override becomes a permanent per-client rule. The agent does not ask the same question twice. Override rate drops under 2% by month 3.</td><td class="prf">1× override → rule</td></tr>
+        <tr><td class="sku">R-01</td><td class="cap">Real-time transaction coding</td><td class="desc">Bank feed lands. Agent reads the vendor, applies your chart of accounts, checks learned rules, and posts the entry with confidence and audit trail. QBO and Xero native.</td><td class="prf">&lt;30 s clear→post</td></tr>
+        <tr><td class="sku">R-02</td><td class="cap">Per-client learning</td><td class="desc">Every override becomes a permanent per-client rule. The agent does not ask the same question twice. Override rate drops under 2% by month three.</td><td class="prf">1 × override → rule</td></tr>
         <tr><td class="sku">R-03</td><td class="cap">Drafted client questions</td><td class="desc">Contextual, not templated. The agent writes the email — vendor, amount, open invoices, prior transactions — and waits for your approval before sending.</td><td class="prf">&lt;2% of txns</td></tr>
         <tr><td class="sku">R-04</td><td class="cap">Account reconciliation</td><td class="desc">Continuous, not monthly. Reconciles bank, credit card, and merchant accounts as transactions clear; flags only unmatched items.</td><td class="prf">Continuous</td></tr>
-        <tr><td class="sku">R-05</td><td class="cap">Month-end delivery</td><td class="desc">P&amp;L, balance sheet, cash flow, and one-paragraph variance narrative drafted on day 1 of the new month. Your team reviews, not assembles.</td><td class="prf">Day 1</td></tr>
-        <tr><td class="sku">R-06</td><td class="cap">Audit-grade trail</td><td class="desc">Every entry carries the AI's reasoning, confidence score, source data, and model version. Trace any transaction back to the exact moment it was categorized.</td><td class="prf">100% traceable</td></tr>
-        <tr><td class="sku">R-07</td><td class="cap">Keyboard-first review</td><td class="desc">Queue designed for six-minute clears. Approve, edit, ask-client, or hold. Rule-promotion in one keystroke.</td><td class="prf">~6 min / day</td></tr>
+        <tr><td class="sku">R-05</td><td class="cap">Month-end delivery</td><td class="desc">P&amp;L, balance sheet, cash flow, and a one-paragraph variance narrative drafted on day one of the new month. Your team reviews, not assembles.</td><td class="prf">Day 1</td></tr>
+        <tr><td class="sku">R-06</td><td class="cap">Audit-grade trail</td><td class="desc">Every entry carries the AI's reasoning, confidence score, source data, and model version. Trace any transaction to the exact moment it was categorised.</td><td class="prf">100% traceable</td></tr>
+        <tr><td class="sku">R-07</td><td class="cap">Keyboard-first review</td><td class="desc">Queue designed for six-minute clears. Approve, edit, ask-client, or hold. Rule promotion in one keystroke.</td><td class="prf">~6 min / day</td></tr>
         <tr><td class="sku">R-08</td><td class="cap">Firm-level roster</td><td class="desc">Single pane over every client: what the agent is doing, what needs judgment, when the next close fires.</td><td class="prf">Real-time</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- COMPARISON -->
-<section class="compare-sec" id="compare">
-  <div class="wrap-xl">
-    <div class="spec-head">
-      <div>
-        <div class="mono" style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:12px;font-weight:700">Schedule B · Comparison</div>
-        <h3 class="spec-h">The honest <em>comparison.</em></h3>
-      </div>
-      <div class="spec-sub">Accounting AI has been "smart suggestions inside QBO" for a decade. Zenday is a different shape of thing: a continuously-running agent the firm assigns, not a feature inside a ledger.</div>
+<!-- ============ SCH B COMPARISON ============ -->
+<section class="sec alt">
+  <div class="wrap-xl with-margin">
+    <div class="sec-h">
+      <span class="sec-num">Sch. B</span>
+      <h2 class="sec-title">Comparative <em>analysis.</em></h2>
+      <span class="sec-note">p. 10 · four columns</span>
     </div>
-    <div class="compare">
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>QBO/Xero built-in AI</th>
-            <th>Offshore bookkeeping</th>
-            <th>Junior bookkeeper</th>
-            <th class="hl">Zenday</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="row-label">How it works</td><td>Suggests category on transactions you review one-by-one</td><td>Humans in other timezone; batched overnight</td><td>Manual entry &amp; reconciliation</td><td class="hl">Autonomous agent, continuous, per-client</td></tr>
-          <tr><td class="row-label">Latency (clear → post)</td><td><span class="x">Human-gated</span></td><td>8–24 hours</td><td>1–5 days</td><td class="hl"><span class="c">&lt;30 seconds</span></td></tr>
-          <tr><td class="row-label">Learns from corrections</td><td>Weak, global</td><td>Inconsistent</td><td>Yes, slowly</td><td class="hl"><span class="c">Per-client rules, permanent</span></td></tr>
-          <tr><td class="row-label">Drafts client questions</td><td><span class="x">—</span></td><td>Templated</td><td>Yes, you send</td><td class="hl"><span class="c">Contextual, you approve</span></td></tr>
-          <tr><td class="row-label">Month-end close</td><td>Human-driven</td><td>5–10 business days</td><td>3–8 business days</td><td class="hl"><span class="c">Day 1, auto</span></td></tr>
-          <tr><td class="row-label">Audit trail</td><td>Basic</td><td>Spreadsheet logs</td><td>Yes</td><td class="hl"><span class="c">Reasoning + confidence + model + source, per entry</span></td></tr>
-          <tr><td class="row-label">Cost / client / mo</td><td>$30–200</td><td>$100–1,500</td><td>$400–2,000</td><td class="hl"><span class="c">$15</span></td></tr>
-        </tbody>
-      </table>
-    </div>
+    <p class="sec-lede">Accounting AI has been "smart suggestions inside QBO" for a decade. Zenday is a different shape of thing: a continuously-running agent your firm assigns per client, not a feature inside a ledger.</p>
+    <table class="compare">
+      <thead>
+        <tr>
+          <th></th>
+          <th>QBO/Xero AI</th>
+          <th>Offshore book</th>
+          <th>Junior bookkeeper</th>
+          <th class="hl">Zenday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-label">How it works</td><td>Suggests category on transactions you review one-by-one</td><td>Humans in another timezone; batched overnight</td><td>Manual entry &amp; reconciliation</td><td class="hl">Autonomous agent, continuous, per-client</td></tr>
+        <tr><td class="row-label">Latency (clear → post)</td><td><span class="x">Human-gated</span></td><td>8–24 hours</td><td>1–5 days</td><td class="hl"><span class="c">&lt;30 seconds</span></td></tr>
+        <tr><td class="row-label">Learns from corrections</td><td>Weak, global</td><td>Inconsistent</td><td>Yes, slowly</td><td class="hl"><span class="c">Per-client, permanent</span></td></tr>
+        <tr><td class="row-label">Drafts client questions</td><td><span class="x">—</span></td><td>Templated</td><td>Yes, you send</td><td class="hl"><span class="c">Contextual, you approve</span></td></tr>
+        <tr><td class="row-label">Month-end close</td><td>Human-driven</td><td>5–10 days</td><td>3–8 days</td><td class="hl"><span class="c">Day 1, auto</span></td></tr>
+        <tr><td class="row-label">Audit trail</td><td>Basic</td><td>Spreadsheet logs</td><td>Yes</td><td class="hl"><span class="c">Reasoning + confidence + model + source</span></td></tr>
+        <tr><td class="row-label">Cost / client / mo</td><td>$30–200</td><td>$100–1,500</td><td>$400–2,000</td><td class="hl"><span class="c">$15</span></td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- QUOTE -->
-<section class="quote-wrap">
-  <div class="wrap">
-    <div class="letter">
+<!-- ============ EX D — LETTER OF REFERENCE ============ -->
+<section class="sec">
+  <div class="wrap with-margin">
+    <div class="sec-h">
+      <span class="sec-num">Ex. D</span>
+      <h2 class="sec-title">Letter of <em>reference.</em></h2>
+      <span class="sec-note">p. 11 · from a pilot firm</span>
+    </div>
+    <div class="letter ref">
       <div class="letter-head">
-        <span class="lh-t">Letter of Reference · Exhibit D</span>
-        <span>Cordova &amp; Partners CPA · Toronto</span>
+        <span class="t">Cordova &amp; Partners CPA · Toronto</span>
         <span>Dated March 28, 2026</span>
       </div>
-      <div class="letter-sal">To whom it may concern,</div>
-      <div class="quote">
-        <blockquote>"We pulled in forty clients in six weeks. The agent handled ninety-seven percent of coding without us touching it. <em>My senior accountants spend their days on advisory now</em> — which is what we were selling all along. I would recommend Zenday to any firm still losing margin on the coding layer."</blockquote>
-      </div>
-      <div class="letter-foot">
-        <div class="letter-sig">
-          <div class="q-av">MV</div>
+      <div class="letter-salutation">To whom it may concern,</div>
+      <p style="font-style:italic;font-size:21px;line-height:1.55;color:var(--ink)">"We pulled in forty clients in six weeks. The agent handled <b style="color:var(--green);font-style:italic">ninety-seven per cent of coding</b> without us touching it. My senior accountants spend their days on advisory now — which is what we were selling all along. I would recommend Zenday to any firm still losing margin on the coding layer."</p>
+      <div class="ref-foot">
+        <div class="who">
+          <div class="av">MV</div>
           <div>
-            <div class="q-name">Manav V., Managing Partner</div>
-            <div class="q-role">Cordova &amp; Partners · 210 active clients</div>
+            <div class="n">Manav Vasudevan, Managing Partner</div>
+            <div class="r">Cordova &amp; Partners · Three offices · 210 active clients</div>
           </div>
         </div>
-        <div class="stamp green" style="transform:rotate(-3deg)">Verified ✓</div>
+        <div class="stamp green">Verified ✓</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRICING — FINANCIAL DOCUMENT PACKET -->
-<section class="inv-sec" id="pricing">
-  <div class="wrap">
-    <div class="inv-head">
-      <div class="inv-eye">§ 04 · PRICING</div>
-      <h3 class="inv-h">$15. Per client.<br/><em>Per month.</em></h3>
-      <p class="inv-sub">No seat fees. No transaction caps. No setup cost. First client free for 30 days, no credit card. Priced the way your firm invoices: simple.</p>
+<!-- ============ § 04 PRICING ============ -->
+<section class="pricing-wrap" id="pricing">
+  <div class="wrap with-margin">
+    <div class="sec-h">
+      <span class="sec-num">§ 04</span>
+      <h2 class="sec-title">Pricing <em>— as invoiced.</em></h2>
+      <span class="sec-note">p. 12 · exhibits A–C</span>
     </div>
-    <div class="invoice">
-      <div class="inv-top">
-        <div>
-          <div class="inv-brand"><div class="brand-mark">Z</div>Zenday</div>
-          <div class="inv-no">Invoice no. ZD-2026-04 · Firm plan</div>
-        </div>
-        <div class="inv-bill-to">
-          <div class="l">Bill to</div>
-          <div class="n">Your Firm, LLP</div>
-          <div class="a">Everything the agent does · all integrations · unlimited team seats</div>
-        </div>
+    <p class="sec-lede">No seat fees. No transaction caps. No setup cost. First client is free for thirty days. Priced the way your firm invoices a client — simply, itemised, with nothing hidden.</p>
+  </div>
+
+  <!-- EXHIBIT A — MAIN INVOICE -->
+  <div class="exhibit-divider">
+    <span class="exhibit-num">Exhibit A</span>
+    <h3 class="exhibit-title">The standard <em>invoice.</em></h3>
+    <span class="exhibit-meta">Firm Plan · Monthly</span>
+  </div>
+  <p class="exhibit-lede">Everything the agent does. All integrations. Unlimited team seats. One line.</p>
+  <div class="invoice">
+    <div class="inv-top">
+      <div>
+        <div class="inv-brand"><span class="m">Z</span>Zenday</div>
+        <div class="inv-no">Invoice № ZD-2026-04 · Firm Plan</div>
       </div>
-      <div class="inv-body">
-        <div class="inv-row"><div class="t">Autonomous per-client agent<span class="d">Real-time coding, reconciliation, chase, close, audit trail</span></div><div class="c">14 × $15</div><div class="c">$210.00</div></div>
-        <div class="inv-row"><div class="t">Team seats<span class="d">Unlimited. Every accountant on the firm.</span></div><div class="c">unlimited</div><div class="c">$0.00</div></div>
-        <div class="inv-row"><div class="t">Integrations<span class="d">QBO, Xero, Plaid, 12k+ banks, Ramp, Brex, Stripe, Bill.com</span></div><div class="c">all</div><div class="c">$0.00</div></div>
-        <div class="inv-row"><div class="t">Setup &amp; onboarding<span class="d">Connect in minutes. No professional services. No call.</span></div><div class="c">—</div><div class="c">$0.00</div></div>
-        <div class="inv-row"><div class="t">Transaction caps<span class="d">None. 20 or 2,000 / client, same price.</span></div><div class="c">—</div><div class="c">$0.00</div></div>
-        <div class="inv-total">
-          <div class="inv-total-l">Total · monthly</div>
-          <div class="inv-total-v">$15<span class="u">/ client</span></div>
-        </div>
-        <div class="inv-stamp">FIRST CLIENT FREE · 30 DAYS</div>
-      </div>
-      <div class="inv-foot">
-        <span>REV 2026.04 · STANDARD FIRM PLAN</span>
-        <span>SOC 2 TYPE II · IN PROGRESS</span>
+      <div class="inv-bill">
+        <div class="l">Bill to</div>
+        <div class="n">Your Firm, LLP</div>
+        <div class="a">Everything the agent does · all integrations · unlimited team seats</div>
       </div>
     </div>
-
-    <!-- EXHIBIT B — BEFORE / AFTER PAIRED INVOICES -->
-    <div class="exhibit">
-      <span class="exhibit-num">Exhibit B</span>
-      <h4 class="exhibit-h">The side-by-side <em>comparison.</em></h4>
-      <span class="exhibit-note">ONE FIRM · 40 CLIENTS · 30 DAYS</span>
+    <div class="inv-body">
+      <div class="inv-row"><div class="t">Autonomous per-client agent<span class="d">Real-time coding · reconciliation · chase · close · audit trail</span></div><div class="c">14 × $15</div><div class="c">$210.00</div></div>
+      <div class="inv-row"><div class="t">Team seats<span class="d">Unlimited. Every accountant on the firm.</span></div><div class="c">unlimited</div><div class="c">$0.00</div></div>
+      <div class="inv-row"><div class="t">Integrations<span class="d">QBO · Xero · Plaid · 12k banks · Ramp · Brex · Stripe · Bill.com</span></div><div class="c">all</div><div class="c">$0.00</div></div>
+      <div class="inv-row"><div class="t">Setup &amp; onboarding<span class="d">Self-serve. No professional services. No call.</span></div><div class="c">—</div><div class="c">$0.00</div></div>
+      <div class="inv-row"><div class="t">Transaction caps<span class="d">None. 20 or 2,000 per client, same price.</span></div><div class="c">—</div><div class="c">$0.00</div></div>
+      <div class="inv-total">
+        <span class="inv-total-l">Total · monthly</span>
+        <span class="inv-total-v">$15<span class="u">/ client</span></span>
+      </div>
+      <div class="inv-stamp"><span class="stamp green lg">First Client Free · 30 Days</span></div>
     </div>
-    <p class="exhibit-desc">A representative 40-client firm, one month. The left column is the labor stack most firms are running today — offshore coders, a junior bookkeeper's time, and the ledger seat fee. The right column is what replaces it.</p>
+    <div class="inv-foot">
+      <span>Rev 2026.04 · Standard Firm Plan</span>
+      <span>SOC 2 Type II · In progress</span>
+    </div>
+  </div>
 
-    <div class="inv-pair">
-      <div class="inv-side before">
-        <div class="inv-side-h">
-          <span class="inv-side-tag">Before</span>
-          <span class="inv-side-no">INV #CURRENT-04</span>
-        </div>
-        <div class="inv-side-body">
-          <div class="inv-side-title">Current monthly labor stack</div>
-          <div class="inv-side-sub">40 clients · status quo</div>
-          <div class="pair-row"><div class="t">Offshore coder (per client)<span class="d">40 clients × $400 / mo</span></div><div class="c">$16,000</div></div>
-          <div class="pair-row"><div class="t">Junior bookkeeper<span class="d">1 FTE loaded, partial allocation</span></div><div class="c">$3,800</div></div>
-          <div class="pair-row"><div class="t">QBO Accountant seats<span class="d">Firm seat + per-client</span></div><div class="c">$920</div></div>
-          <div class="pair-row"><div class="t">Close-week overtime<span class="d">Avg last-week-of-month</span></div><div class="c">$1,200</div></div>
-          <div class="pair-row"><div class="t">Chase tool / receipt inbox<span class="d">Dext, HubDoc, etc.</span></div><div class="c">$340</div></div>
-          <div class="pair-total">
-            <span class="pair-total-l">Monthly total</span>
-            <span class="pair-total-v">$22,260<span class="u">/ mo</span></span>
-          </div>
-        </div>
-      </div>
+  <!-- EXHIBIT B — PAIRED INVOICES -->
+  <div class="exhibit-divider">
+    <span class="exhibit-num">Exhibit B</span>
+    <h3 class="exhibit-title">Side-by-side <em>comparison.</em></h3>
+    <span class="exhibit-meta">One firm · 40 clients · 30 days</span>
+  </div>
+  <p class="exhibit-lede">A representative forty-client firm, one month. The left column is the labour stack most firms run today. The right column is what replaces it.</p>
 
-      <div class="pair-arrow">
-        <span class="lbl">Replace with</span>
-        <span class="big">→</span>
-        <span class="save">SAVE $21,660 / MO</span>
-      </div>
-
-      <div class="inv-side after">
-        <div class="inv-side-h">
-          <span class="inv-side-tag">After</span>
-          <span class="inv-side-no">INV #ZD-2026-04</span>
-        </div>
-        <div class="inv-side-body">
-          <div class="inv-side-title">Zenday · Firm plan</div>
-          <div class="inv-side-sub">40 clients · all included</div>
-          <div class="pair-row"><div class="t">Autonomous per-client agent<span class="d">Coding · reconcile · chase · close</span></div><div class="c">$600</div></div>
-          <div class="pair-row"><div class="t">Team seats<span class="d">Unlimited</span></div><div class="c">$0</div></div>
-          <div class="pair-row"><div class="t">Integrations<span class="d">QBO · Xero · Plaid · 12k+ banks</span></div><div class="c">$0</div></div>
-          <div class="pair-row"><div class="t">Setup &amp; onboarding<span class="d">Self-serve</span></div><div class="c">$0</div></div>
-          <div class="pair-row"><div class="t">Transaction caps<span class="d">None, at any volume</span></div><div class="c">$0</div></div>
-          <div class="pair-total">
-            <span class="pair-total-l">Monthly total</span>
-            <span class="pair-total-v">$600<span class="u">/ mo</span></span>
-          </div>
-        </div>
+  <div class="pair">
+    <div class="pair-side before">
+      <div class="pair-h"><span class="tag">Before</span><span>Inv № CURRENT-04</span></div>
+      <div class="pair-body">
+        <div class="pair-t">Current monthly labour stack</div>
+        <div class="pair-s">40 clients · status quo</div>
+        <div class="pair-row"><div class="t">Offshore coder (per client)<span class="d">40 × $400 / mo</span></div><div class="c">$16,000</div></div>
+        <div class="pair-row"><div class="t">Junior bookkeeper<span class="d">1 FTE loaded, partial allocation</span></div><div class="c">$3,800</div></div>
+        <div class="pair-row"><div class="t">QBO Accountant seats<span class="d">Firm seat + per-client</span></div><div class="c">$920</div></div>
+        <div class="pair-row"><div class="t">Close-week overtime<span class="d">Avg last-week-of-month</span></div><div class="c">$1,200</div></div>
+        <div class="pair-row"><div class="t">Chase / receipt inbox<span class="d">Dext, HubDoc, etc.</span></div><div class="c">$340</div></div>
+        <div class="pair-total"><span class="pair-total-l">Monthly total</span><span class="pair-total-v">$22,260<span class="u">/ mo</span></span></div>
       </div>
     </div>
-
-    <!-- EXHIBIT C — SAVINGS WORKSHEET -->
-    <div class="exhibit">
-      <span class="exhibit-num">Exhibit C</span>
-      <h4 class="exhibit-h">The <em>savings worksheet.</em></h4>
-      <span class="exhibit-note">FORM ZD-1040 · ANNUAL</span>
+    <div class="pair-arrow">
+      <span class="lbl">Replace with</span>
+      <span class="big">→</span>
+      <span class="save">Save $21,660 / mo</span>
     </div>
-    <p class="exhibit-desc">Annual math for the same 40-client firm, worked line by line the way a tax form walks you through a calculation. Plug your own client count into Line 2 — the rest follows.</p>
-
-    <div class="worksheet">
-      <div class="ws-h">
-        <span class="t">Form ZD-1040 · Annual Savings Worksheet</span>
-        <span class="s">FOR USE BY ACCOUNTING FIRMS · 2026</span>
-      </div>
-      <div class="ws-form">
-        <div class="ws-row"><span class="ln">Line 01</span><span class="desc">Current offshore / labor cost <b>per client, per month</b></span><span class="unit">USD</span><span class="val">$400.00</span></div>
-        <div class="ws-row"><span class="ln">Line 02</span><span class="desc">Number of clients on the roster</span><span class="unit">count</span><span class="val">40</span></div>
-        <div class="ws-row subtotal"><span class="ln">Line 03</span><span class="desc">Monthly labor cost<span class="op">= L01 × L02</span></span><span class="unit">USD</span><span class="val">$16,000</span></div>
-        <div class="ws-row"><span class="ln">Line 04</span><span class="desc">Annual labor cost<span class="op">= L03 × 12</span></span><span class="unit">USD</span><span class="val">$192,000</span></div>
-        <div class="ws-row"><span class="ln">Line 05</span><span class="desc">Zenday price per client, per month</span><span class="unit">USD</span><span class="val">$15.00</span></div>
-        <div class="ws-row subtotal"><span class="ln">Line 06</span><span class="desc">Monthly Zenday cost<span class="op">= L05 × L02</span></span><span class="unit">USD</span><span class="val">$600</span></div>
-        <div class="ws-row"><span class="ln">Line 07</span><span class="desc">Annual Zenday cost<span class="op">= L06 × 12</span></span><span class="unit">USD</span><span class="val">$7,200</span></div>
-        <div class="ws-row total"><span class="ln">Line 08</span><span class="desc">Annual savings<span class="op">= L04 − L07</span></span><span class="unit">USD</span><span class="val">$184,800</span></div>
-        <div class="ws-row"><span class="ln">Line 09</span><span class="desc">Reduction, labor layer<span class="op">= L08 ÷ L04</span></span><span class="unit">%</span><span class="val">96.25%</span></div>
-        <div class="ws-row"><span class="ln">Line 10</span><span class="desc">Hours redeployed to advisory<span class="op">est. 10 hr/wk × 50 wk</span></span><span class="unit">hr</span><span class="val">500</span></div>
-        <div class="ws-row final"><span class="ln">Line 11</span><span class="desc">Net annual benefit to firm<span class="op" style="color:#7dd4a8">L08 + (L10 × $300/hr advisory rate)</span></span><span class="unit" style="color:#7dd4a8">USD</span><span class="val">$334,800</span></div>
-      </div>
-      <div class="ws-foot">
-        <span>WORKSHEET REV 2026.04</span>
-        <span>RETAIN FOR YOUR RECORDS</span>
-        <span>ZD-1040 · PAGE 1 OF 1</span>
+    <div class="pair-side after">
+      <div class="pair-h"><span class="tag">After</span><span>Inv № ZD-2026-04</span></div>
+      <div class="pair-body">
+        <div class="pair-t">Zenday · Firm plan</div>
+        <div class="pair-s">40 clients · all included</div>
+        <div class="pair-row"><div class="t">Autonomous per-client agent<span class="d">Coding · reconcile · chase · close</span></div><div class="c">$600</div></div>
+        <div class="pair-row"><div class="t">Team seats<span class="d">Unlimited</span></div><div class="c">$0</div></div>
+        <div class="pair-row"><div class="t">Integrations<span class="d">QBO · Xero · Plaid · 12k banks</span></div><div class="c">$0</div></div>
+        <div class="pair-row"><div class="t">Setup &amp; onboarding<span class="d">Self-serve</span></div><div class="c">$0</div></div>
+        <div class="pair-row"><div class="t">Transaction caps<span class="d">None, at any volume</span></div><div class="c">$0</div></div>
+        <div class="pair-total"><span class="pair-total-l">Monthly total</span><span class="pair-total-v">$600<span class="u">/ mo</span></span></div>
       </div>
     </div>
+  </div>
 
-    <!-- TERMS + SIGNATURES -->
-    <div class="terms-doc">
-      <div class="terms-h">
-        <span class="t">Terms &amp; Signatures</span>
-        <span>STANDARD FIRM AGREEMENT · 2026.04</span>
+  <!-- EXHIBIT C — WORKSHEET -->
+  <div class="exhibit-divider">
+    <span class="exhibit-num">Exhibit C</span>
+    <h3 class="exhibit-title">Savings <em>worksheet.</em></h3>
+    <span class="exhibit-meta">Form ZD-1040 · Annual</span>
+  </div>
+  <p class="exhibit-lede">Annual math worked line-by-line the way a tax form walks you through a calculation. Plug your own client count into Line 02 — the rest follows.</p>
+
+  <div class="worksheet">
+    <div class="ws-h">
+      <span class="t">Form ZD-1040 · Annual Savings Worksheet</span>
+      <span class="s">For use by accounting firms · 2026</span>
+    </div>
+    <div>
+      <div class="ws-row"><span class="ln">Line 01</span><span class="desc">Current offshore / labour cost <b>per client, per month</b></span><span class="unit">USD</span><span class="val">$400.00</span></div>
+      <div class="ws-row"><span class="ln">Line 02</span><span class="desc">Number of clients on the roster</span><span class="unit">count</span><span class="val">40</span></div>
+      <div class="ws-row subtotal"><span class="ln">Line 03</span><span class="desc">Monthly labour cost<span class="op">= L01 × L02</span></span><span class="unit">USD</span><span class="val">$16,000</span></div>
+      <div class="ws-row"><span class="ln">Line 04</span><span class="desc">Annual labour cost<span class="op">= L03 × 12</span></span><span class="unit">USD</span><span class="val">$192,000</span></div>
+      <div class="ws-row"><span class="ln">Line 05</span><span class="desc">Zenday price per client, per month</span><span class="unit">USD</span><span class="val">$15.00</span></div>
+      <div class="ws-row subtotal"><span class="ln">Line 06</span><span class="desc">Monthly Zenday cost<span class="op">= L05 × L02</span></span><span class="unit">USD</span><span class="val">$600</span></div>
+      <div class="ws-row"><span class="ln">Line 07</span><span class="desc">Annual Zenday cost<span class="op">= L06 × 12</span></span><span class="unit">USD</span><span class="val">$7,200</span></div>
+      <div class="ws-row total"><span class="ln">Line 08</span><span class="desc">Annual savings<span class="op">= L04 − L07</span></span><span class="unit">USD</span><span class="val">$184,800</span></div>
+      <div class="ws-row"><span class="ln">Line 09</span><span class="desc">Reduction, labour layer<span class="op">= L08 ÷ L04</span></span><span class="unit">%</span><span class="val">96.25%</span></div>
+      <div class="ws-row"><span class="ln">Line 10</span><span class="desc">Hours redeployed to advisory<span class="op">est. 10 hr / wk × 50 wk</span></span><span class="unit">hr</span><span class="val">500</span></div>
+      <div class="ws-row final"><span class="ln">Line 11</span><span class="desc">Net annual benefit to firm<span class="op" style="color:#7dd4a8">L08 + (L10 × $300 / hr)</span></span><span class="unit" style="color:#7dd4a8">USD</span><span class="val">$334,800</span></div>
+    </div>
+    <div class="ws-foot">
+      <span>Worksheet Rev 2026.04</span>
+      <span>Retain for your records</span>
+      <span>ZD-1040 · p. 1 of 1</span>
+    </div>
+  </div>
+
+  <!-- TERMS + SIGNATURES -->
+  <div class="terms">
+    <div class="terms-h">
+      <span class="t">Terms &amp; Signatures</span>
+      <span>Standard Firm Agreement · 2026.04</span>
+    </div>
+    <div class="terms-body">
+      <div class="terms-fine">
+        <h6>The fine print, in plain English</h6>
+        <p><b>Billing.</b> Fifteen dollars per active client per month, billed on the first of the following month. No seat fees, no transaction caps, no setup cost.</p>
+        <p><b>Trial.</b> Your first client is free for thirty days. No credit card. Cancel anytime with one click.</p>
+        <p><b>Data.</b> Customer data is never used for model training. US-hosted. SOC 2 Type II in progress. BAA available on Enterprise.</p>
+        <p><b>Portability.</b> All entries sync natively into QBO or Xero. Leaving is copy-to-clipboard; there is no export ransom.</p>
+        <p><b>Uptime.</b> Target 99.95%. Credits if we miss. The agent retries on feed outages automatically.</p>
       </div>
-      <div class="terms-body">
-        <div class="terms-fine">
-          <h6>The fine print — written in plain English</h6>
-          <p><b>Billing.</b> $15 per active client per month, billed on the first of the following month. No seat fees, no transaction caps, no setup cost.</p>
-          <p><b>Trial.</b> Your first client is free for 30 days. No credit card. Cancel anytime with one click.</p>
-          <p><b>Data.</b> Customer data is never used for model training. US-hosted. SOC 2 Type II in progress. BAA available on Enterprise.</p>
-          <p><b>Portability.</b> All entries sync natively into QBO or Xero. Leaving is copy-to-clipboard; there is no export ransom.</p>
-          <p><b>Uptime.</b> Target 99.95%. Credits if we miss. The agent retries on feed outages automatically.</p>
-        </div>
-        <div class="signatures">
-          <div class="sig done">
-            <div class="sig-line"></div>
-            <div class="sig-meta"><b>Zenday Inc.</b><span>PROVIDER</span></div>
-          </div>
-          <div class="sig">
-            <div class="sig-line"></div>
-            <div class="sig-meta"><b>Your Firm, LLP</b><span>CLIENT · AWAITING</span></div>
-          </div>
-          <div class="sig" style="margin-top:6px">
-            <div class="sig-line" style="background:var(--mute-2);height:1px"></div>
-            <div class="sig-meta" style="color:var(--mute)"><span>Date</span><span>APR 2026</span></div>
-          </div>
-        </div>
+      <div class="signatures">
+        <div class="sig done"><div class="sig-line"></div><div class="sig-meta"><b>Zenday Inc.</b><span>Provider</span></div></div>
+        <div class="sig"><div class="sig-line"></div><div class="sig-meta"><b>Your Firm, LLP</b><span>Client · awaiting</span></div></div>
+        <div class="sig" style="margin-top:4px"><div class="sig-line" style="background:var(--mute-2);height:1px"></div><div class="sig-meta"><span>Date</span><span>Apr 2026</span></div></div>
       </div>
     </div>
+  </div>
 
-    <div class="inv-actions">
-      <a class="btn g big" href="#cta">Countersign — start with one client free<span class="arr">→</span></a>
-      <a class="btn o big" href="#">Book a 20-min demo</a>
+  <div class="pricing-actions">
+    <a class="btn g big" href="#sign">Countersign · start with one client free <span class="arr">→</span></a>
+    <a class="btn o big" href="#">Book a 20-minute demo</a>
+  </div>
+</section>
+
+<!-- ============ SCH C — INTERROGATORIES (FAQ) ============ -->
+<section class="sec" id="faq">
+  <div class="wrap with-margin">
+    <div class="sec-h">
+      <span class="sec-num">Sch. C</span>
+      <h2 class="sec-title">Interrogatories <em>&amp; answers.</em></h2>
+      <span class="sec-note">p. 13 · seven Q&A</span>
+    </div>
+    <p class="sec-lede">The questions firm owners actually ask on the first call. If yours is not below, write to us — the answer is either already in the product, or it is a clear no.</p>
+    <div class="inter">
+      <div class="q open"><span class="q-n">Q. 01</span><div><div class="q-t">Is Zenday a bookkeeping service or software?</div><div class="q-a"><b>Software.</b> Zenday is the agent your firm assigns to each client. You stay the accountant of record. The agent does the coding, reconciliation, and close — your team reviews the exceptions.</div></div></div>
+      <div class="q"><span class="q-n">Q. 02</span><div><div class="q-t">How is this different from QBO's built-in AI?</div><div class="q-a">QBO suggests a category on transactions you review one-by-one. Zenday is an autonomous agent that runs continuously, learns per client, drafts client questions, and closes the month without a human driving.</div></div></div>
+      <div class="q"><span class="q-n">Q. 03</span><div><div class="q-t">What happens when it gets something wrong?</div><div class="q-a">Low-confidence items go to the review queue instead of being posted. When you correct one, the rule becomes permanent for that client. Override rate drops below 2% by month three.</div></div></div>
+      <div class="q"><span class="q-n">Q. 04</span><div><div class="q-t">Which ledgers and banks do you support?</div><div class="q-a">QuickBooks Online, Xero, and any bank that supports Plaid or direct feed (12,000+ US and Canadian institutions). Sage and NetSuite on the 2026 roadmap.</div></div></div>
+      <div class="q"><span class="q-n">Q. 05</span><div><div class="q-t">Who can see what the agent is doing?</div><div class="q-a">Your team. Every entry is traceable to the exact event, reasoning, and model version. The client sees only what you choose to share.</div></div></div>
+      <div class="q"><span class="q-n">Q. 06</span><div><div class="q-t">What about data security?</div><div class="q-a">SOC 2 Type II in progress. Customer data is not used for model training. US-hosted. BAA available on Enterprise.</div></div></div>
+      <div class="q"><span class="q-n">Q. 07</span><div><div class="q-t">Can I run it on one client before committing?</div><div class="q-a">Yes. First client is free for thirty days. No credit card. No onboarding call — connect QBO and a bank feed, pick a client, assign the agent.</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq-sec">
-  <div class="wrap-xl">
-    <div class="faq-head">
-      <div><h3 class="faq-h">Straight<br/>answers.</h3></div>
-      <div class="faq-sub">The questions firm owners actually ask on the first call. If yours isn't here, write to us — the answer is either in the product or it's a clear no.</div>
+<!-- ============ § 05 MANIFESTO ============ -->
+<section class="manifesto-wrap" id="manifesto">
+  <div class="wrap with-margin">
+    <div class="sec-h">
+      <span class="sec-num">§ 05</span>
+      <h2 class="sec-title">Why we built <em>this.</em></h2>
+      <span class="sec-note">p. 14 · manifesto</span>
     </div>
-    <div class="faq">
-      <div class="q open"><div class="q-t">Is Zenday a bookkeeping service or software?</div><div class="q-a">Software. Zenday is the agent your firm assigns to each client. You stay the accountant of record. The agent does the coding, reconciliation, and close — your team reviews the exceptions.</div></div>
-      <div class="q"><div class="q-t">How is this different from QBO's built-in AI?</div><div class="q-a">QBO suggests a category on transactions you review one-by-one. Zenday is an autonomous agent that runs continuously, learns per client, drafts client questions, and closes the month without a human driving.</div></div>
-      <div class="q"><div class="q-t">What happens when it gets something wrong?</div><div class="q-a">Low-confidence items go to the review queue instead of being posted. When you correct one, the rule becomes permanent for that client. Override rate drops below 2% by month 3.</div></div>
-      <div class="q"><div class="q-t">Which ledgers and banks do you support?</div><div class="q-a">QuickBooks Online, Xero, and any bank that supports Plaid or direct feed (12,000+ US and Canadian institutions). Sage and NetSuite on the 2026 roadmap.</div></div>
-      <div class="q"><div class="q-t">Who can see what the agent is doing?</div><div class="q-a">Your team. Every entry is traceable to the exact event, reasoning, and model version. The client sees only what you choose to share.</div></div>
-      <div class="q"><div class="q-t">What about data security?</div><div class="q-a">SOC 2 Type II in progress. Customer data is not used for model training. US-hosted. BAA available on Enterprise.</div></div>
-      <div class="q"><div class="q-t">Can I run it on one client before committing?</div><div class="q-a">Yes. First client is free for 30 days. No credit card. No onboarding call — connect QBO + bank feed, pick a client, assign the agent.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- MANIFESTO -->
-<section class="manifesto" id="manifesto">
-  <div class="wrap">
-    <div class="eye">§ 05 · The manifesto · Why we built this</div>
-    <h2 class="mani-h">Firms don't need<br/>another categorizer.<br/>They need <em>an accountant.</em></h2>
     <div class="mani-body">
-      <p class="lead">We grew up inside firms. We watched senior accountants — people who could price a business, negotiate with the IRS, turn around a failing book — spend two-thirds of their week doing data entry and chasing receipts. That is not leverage. That is the opposite of leverage. And every tool built for the profession in the last twenty years has accepted this arrangement as a fact of life.</p>
+      <p class="lead">We grew up inside firms. We watched senior accountants — people who could price a business, negotiate with the IRS, turn around a failing book — spend two-thirds of their week doing data entry and chasing receipts. That is not leverage. That is the opposite of leverage. Every tool built for the profession in the last twenty years has accepted this arrangement as a fact of life.</p>
       <p>Zenday does not. <b>The agent is assigned to the client, not installed in the ledger.</b> It does the work the junior bookkeeper was doing, at thirty-second latency, with a full audit trail and a memory that only grows. It is not a feature. It is a headcount decision — one you make per client, for fifteen dollars a month.</p>
-      <p>We are not trying to replace your staff. We are trying to give your staff back the ten hours a week they currently spend coding Adobe subscriptions, so they can do the work they were trained for. That is the entire pitch. <b>You assign it. It works. You review judgment.</b> Everything else we built — the spec sheet, the tables, the comparisons — is in service of that one sentence.</p>
+      <p>We are not trying to replace your staff. We are trying to give your staff back the ten hours a week they currently spend coding Adobe subscriptions, so they can do the work they were trained for. That is the entire pitch. <b>You assign it. It works. You review judgment.</b> Everything else in this prospectus — the spec sheet, the tables, the exhibits — is in service of that one sentence.</p>
     </div>
     <div class="mani-sig">
       <div>
         <div class="n">— The Zenday team</div>
         <div class="r">Founders · ex-firm, ex-Intuit, ex-Anthropic</div>
       </div>
-      <div class="d">APRIL 2026 · SIGNED</div>
+      <div class="d">April 2026 · Signed</div>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="cta" id="cta">
+<!-- ============ § 06 COUNTERSIGNATURE CTA ============ -->
+<section class="sign-page" id="sign">
   <div class="wrap">
-    <div class="cta-eye">§ 06 · Counter-signature page</div>
-    <div style="display:flex;justify-content:center;gap:14px;margin-bottom:18px;position:relative">
-      <span class="stamp" style="border-color:#7dd4a8;color:#7dd4a8">Offer Open · Apr 2026</span>
-      <span class="stamp green" style="transform:rotate(4deg)">First Client Free</span>
+    <div class="ey">§ 06 · Countersignature page</div>
+    <div class="sign-stamps">
+      <span class="stamp">Offer Open · Apr 2026</span>
+      <span class="stamp g2">First Client Free</span>
     </div>
-    <h2>Assign it to <em>one client.</em><br/>Judge from evidence.</h2>
+    <h2 style="margin-top:28px">Assign it to <em>one client.</em><br/>Judge from evidence.</h2>
     <p>Zenday codes every transaction, reconciles the account, and builds your review queue. Compare to your current process. Decide from what you see.</p>
     <div class="actions">
-      <a class="btn g big" href="#">Start free for 30 days<span class="arr">→</span></a>
+      <a class="btn g big" href="#">Start free for 30 days <span class="arr">→</span></a>
       <a class="btn o big" href="#">Book a 20-minute demo</a>
     </div>
-    <div class="mega-word">ZENDAY</div>
+    <div class="mega">Zenday</div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ============ COLOPHON ============ -->
 <footer>
   <div class="wrap-xl">
-    <div class="foot-top">
-      <div class="foot-col">
-        <div class="foot-brand"><div class="brand-mark">Z</div>Zenday</div>
-        <div class="foot-note">The autonomous staff accountant, assigned per client. Built for accounting firms that want to ship advisory — not data entry.</div>
+    <div class="colophon">
+      <div>
+        <div class="col-brand"><span class="m">Z</span>Zenday</div>
+        <div class="col-note">The autonomous staff accountant, assigned per client. Built for accounting firms that want to ship advisory — not data entry.</div>
       </div>
-      <div class="foot-col"><h5>Product</h5><a href="#">Roster</a><a href="#">Review queue</a><a href="#">Month-end</a><a href="#">Audit trail</a></div>
-      <div class="foot-col"><h5>Firm</h5><a href="#">Pricing</a><a href="#">Compare</a><a href="#">Security</a><a href="#">Changelog</a></div>
-      <div class="foot-col"><h5>Company</h5><a href="#">About</a><a href="#">Careers</a><a href="#">Manifesto</a><a href="#">Contact</a></div>
-      <div class="foot-col"><h5>Legal</h5><a href="#">Privacy</a><a href="#">Terms</a><a href="#">DPA</a><a href="#">Trust</a></div>
+      <div class="col"><h5>Product</h5><a href="#roster">Roster</a><a href="#review">Review queue</a><a href="#month">Month-end</a><a href="#specs">Spec sheet</a></div>
+      <div class="col"><h5>Firm</h5><a href="#pricing">Pricing</a><a href="#faq">Interrogatories</a><a href="#">Security</a><a href="#">Changelog</a></div>
+      <div class="col"><h5>Company</h5><a href="#thesis">Founder letter</a><a href="#manifesto">Manifesto</a><a href="#">Careers</a><a href="#">Contact</a></div>
+      <div class="col"><h5>Legal</h5><a href="#">Privacy</a><a href="#">Terms</a><a href="#">DPA</a><a href="#">Trust</a></div>
     </div>
     <div class="foot-bot">
-      <span>© 2026 ZENDAY · AI FOR ACCOUNTANTS</span>
-      <span>ISSUE 01 · VOL IV · APR 2026</span>
-      <span>SOC 2 TYPE II · IN PROGRESS</span>
+      <span>© 2026 Zenday · AI for accountants</span>
+      <span>Issue 01 · Vol IV · Apr 2026</span>
+      <span>SOC 2 Type II · In progress</span>
     </div>
-    <div style="padding-top:22px;margin-top:22px;border-top:1px solid #2a2a2a;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:#555;letter-spacing:.12em;text-transform:uppercase;flex-wrap:wrap;gap:16px">
-      <span>Colophon · Set in IBM Plex Serif, Inter &amp; IBM Plex Mono</span>
-      <span>Printed digitally · 16 pp. · Rev 2026.04</span>
-      <span>Typography by the Zenday studio</span>
-    </div>
+    <div class="foot-colophon">Colophon — Prospectus set in IBM Plex Serif and IBM Plex Mono. Composition by the Zenday studio, Toronto. Printed digitally, 16 pp. Rev 2026.04.</div>
   </div>
 </footer>
 
 <script>
-// faq accordion
-document.querySelectorAll('.q').forEach(q=>q.addEventListener('click',()=>q.classList.toggle('open')));
+// FAQ accordion
+document.querySelectorAll('.q').forEach(q=>{
+  const title=q.querySelector('.q-t');
+  (title||q).addEventListener('click',()=>q.classList.toggle('open'));
+});
 
-// live transaction stream in hero dashboard
+// Live transaction stream in the roster plate
 const vendors=[
-  {v:"Notion",c:"Software · 98%",a:"$16.00",tag:"Posted",cls:"posted"},
-  {v:"Uber",c:"Travel · 92%",a:"$42.18",tag:"Posted",cls:"posted"},
-  {v:"Shopify",c:"Platform fees · 99%",a:"$79.00",tag:"Posted",cls:"posted"},
-  {v:"Slack",c:"Software · 99%",a:"$87.50",tag:"Posted",cls:"posted"},
-  {v:"Linear",c:"Software · 98%",a:"$60.00",tag:"Posted",cls:"posted"},
-  {v:"New wire",c:"No match · 38%",a:"$2,400.00",tag:"Review",cls:"review"},
+  {v:"Notion",c:"Software · 98% confidence",a:"$16.00",tag:"Posted",cls:"posted"},
+  {v:"Uber",c:"Travel · 92% confidence",a:"$42.18",tag:"Posted",cls:"posted"},
+  {v:"Shopify",c:"Platform fees · 99% confidence",a:"$79.00",tag:"Posted",cls:"posted"},
+  {v:"Slack",c:"Software · 99% confidence",a:"$87.50",tag:"Posted",cls:"posted"},
+  {v:"Linear",c:"Software · 98% confidence",a:"$60.00",tag:"Posted",cls:"posted"},
+  {v:"Wire · new",c:"No match · 38% confidence",a:"$2,400.00",tag:"Review",cls:"review"},
 ];
 let vi=0;
 setInterval(()=>{
