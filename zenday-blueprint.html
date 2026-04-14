@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Zenday · Blueprint</title>
+<title>Zenday · Blueprint (navy)</title>
 <meta name="description" content="An AI staff accountant your firm assigns per client. Codes transactions, reconciles accounts, chases documents, closes the month. $15 per client / month." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -93,12 +93,12 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 /* Hero product shot */
 .hero-shot{margin:72px auto 0;max-width:1200px;position:relative}
 .hero-shot::before{
-  content:"";position:absolute;inset:-80px -40px;border-radius:40px;z-index:-1;
+  content:"";position:absolute;inset:-120px -60px;border-radius:40px;z-index:-1;
   background:
-    radial-gradient(800px 300px at 20% 30%, var(--purple-glow), transparent 60%),
-    radial-gradient(700px 300px at 80% 70%, var(--pink-glow), transparent 60%),
-    radial-gradient(500px 200px at 50% 50%, rgba(30,64,175,.08), transparent 70%);
-  filter:blur(20px);
+    radial-gradient(900px 380px at 15% 30%, rgba(139,92,246,.22), transparent 60%),
+    radial-gradient(800px 380px at 85% 70%, rgba(236,72,153,.18), transparent 60%),
+    radial-gradient(600px 260px at 50% 50%, rgba(30,64,175,.1), transparent 70%);
+  filter:blur(16px);
 }
 
 /* Browser chrome */
@@ -205,11 +205,29 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .zen-input .send{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff;display:grid;place-items:center;font-size:12px;font-weight:600}
 
 /* ============ FEATURE BENTO STRIP (smaller follow-ups) ============ */
+/* Social proof */
+.proof{padding:100px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.proof-in{display:grid;grid-template-columns:1fr 1.4fr;gap:72px;align-items:center}
+.proof-meta{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.proof-meta::before{content:"";width:24px;height:1px;background:var(--accent)}
+.proof-h{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.2vw,28px);line-height:1.25;letter-spacing:-.018em;color:var(--ink);margin:0}
+.proof-h em{font-style:italic;color:var(--ink-3);font-weight:400}
+.proof-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:26px;padding-top:26px;border-top:1px solid var(--line-soft)}
+.proof-stat .n{font-family:var(--mono);font-size:26px;font-weight:500;letter-spacing:-.02em;color:var(--ink);font-feature-settings:"tnum";line-height:1}
+.proof-stat .l{font-family:var(--sans);font-size:12.5px;color:var(--mute);margin-top:6px;letter-spacing:-.005em}
+.quote-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:36px 40px;box-shadow:var(--shadow)}
+.quote-card blockquote{margin:0;font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.45;letter-spacing:-.015em;color:var(--ink-2);font-style:italic}
+.quote-card blockquote b{color:var(--ink);font-weight:500;font-style:normal}
+.quote-card .qc-who{margin-top:24px;padding-top:20px;border-top:1px solid var(--line-soft);display:flex;align-items:center;gap:14px}
+.quote-card .qc-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#c9b79a,#8a6e42);color:#fff;display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.02em}
+.quote-card .qc-n{font-family:var(--sans);font-weight:500;font-size:14.5px;letter-spacing:-.005em;color:var(--ink)}
+.quote-card .qc-r{font-family:var(--sans);font-size:13px;color:var(--mute);margin-top:2px}
+
 .mini-feat{padding:100px 0;background:var(--bg-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
 .mini-feat h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.05;letter-spacing:-.025em;margin:0 0 10px;max-width:720px}
 .mini-feat h2 em{font-style:italic;color:var(--accent);font-weight:400}
 .mini-feat .mf-lede{font-size:16px;color:var(--ink-3);max-width:560px;margin:0 0 48px;line-height:1.5}
-.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .mf-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 26px 22px;display:flex;flex-direction:column;min-height:240px;transition:all .2s}
 .mf-card:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow)}
 .mf-card .kic{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:14px}
@@ -302,7 +320,10 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   .feat-row,.feat-row.rev{grid-template-columns:1fr;gap:40px}
   .feat-row.rev .feat-copy{order:1}
   .feat-row.rev .feat-shot{order:2}
-  .mini-grid{grid-template-columns:1fr}
+  .mini-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .proof-in{grid-template-columns:1fr;gap:40px}
+  .proof-stats{grid-template-columns:repeat(3,1fr);gap:16px}
+  .quote-card{padding:28px 24px}
   .stats-grid{grid-template-columns:1fr}
   .stat{border-left:0;border-top:1px solid rgba(255,255,255,.1)}
   .stat:first-child{border-top:0}
@@ -338,7 +359,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   <div class="wrap">
     <div class="eyebrow"><span class="dot"></span>AI for accounting firms · Private beta</div>
     <h1>A staff accountant,<br/><em>for every client.</em></h1>
-    <p class="hero-sub">Zenday is an AI staff accountant your firm assigns per client. It <b>codes transactions, reconciles accounts, chases documents, and closes the month</b> — continuously.</p>
+    <p class="hero-sub">The AI staff accountant your firm assigns per client. <b>Codes, reconciles, chases, closes</b> — continuously.</p>
     <div class="hero-cta">
       <a class="btn p big" href="#pricing">Start with one client free <span class="arr">→</span></a>
       <a class="btn o big" href="#product">See the product</a>
@@ -602,6 +623,33 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   </div>
 </section>
 
+<!-- ============ SOCIAL PROOF / TESTIMONIAL ============ -->
+<section class="proof">
+  <div class="wrap">
+    <div class="proof-in">
+      <div>
+        <div class="proof-meta">From the beta</div>
+        <h3 class="proof-h">Fourteen firms. Live engagements. <em>Five-minute reviews. Close on day one.</em></h3>
+        <div class="proof-stats">
+          <div class="proof-stat"><div class="n">14</div><div class="l">Firms in private beta</div></div>
+          <div class="proof-stat"><div class="n">3,400+</div><div class="l">Client-months run</div></div>
+          <div class="proof-stat"><div class="n">97%</div><div class="l">Auto-post rate</div></div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <blockquote>"We pulled in forty clients in six weeks. Zenday handled ninety-seven per cent of the coding without us touching it. <b>My senior accountants spend their days on advisory now</b> — which is what we were selling all along."</blockquote>
+        <div class="qc-who">
+          <div class="qc-av">MV</div>
+          <div>
+            <div class="qc-n">Manav V., Managing Partner</div>
+            <div class="qc-r">Cordova &amp; Partners · Toronto · 210 clients</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ MINI FEATURES STRIP ============ -->
 <section class="mini-feat" id="features">
   <div class="wrap">
@@ -627,21 +675,9 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
         <div class="mf-ui"><div class="mf-preview"><span class="dot"></span>47 matched · 0 orphaned</div></div>
       </div>
       <div class="mf-card">
-        <div class="kic">Transaction alerts</div>
-        <h3>Nine things <em>Zen watches.</em></h3>
-        <p>Missing Receipt, New Vendor, Duplicate, Reconciliation Variance, Round Number, Unusual Amount, and more.</p>
-        <div class="mf-ui"><div class="mf-preview"><span class="dot r"></span>7 alerts · 3 need review</div></div>
-      </div>
-      <div class="mf-card">
-        <div class="kic">Team</div>
-        <h3>Your team, <em>on the roster.</em></h3>
-        <p>Assign clients to team members. See who's responsible, who's reviewed what, who's on vacation.</p>
-        <div class="mf-ui"><div class="mf-preview"><span class="dot"></span>4 members · unlimited</div></div>
-      </div>
-      <div class="mf-card">
         <div class="kic">Audit trail</div>
         <h3>Every action, <em>logged.</em></h3>
-        <p>Reasoning, confidence, source, model version — per entry, per client, forever. One-click reversible.</p>
+        <p>Reasoning, confidence, source, model version — per entry, per client, forever.</p>
         <div class="mf-ui"><div class="mf-preview"><span class="dot"></span>100% traceable</div></div>
       </div>
     </div>
