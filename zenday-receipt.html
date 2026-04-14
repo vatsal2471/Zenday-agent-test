@@ -65,26 +65,63 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .nav-links a{padding:6px 0;transition:color .15s}
 .nav-links a:hover{color:var(--accent)}
 .nav-cta{display:flex;gap:8px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;font-size:13px;font-weight:500;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;border-radius:8px;transition:all .15s;font-family:var(--sans)}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;font-size:13.5px;font-weight:500;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;border-radius:999px;transition:all .2s ease;font-family:var(--sans)}
 .btn:hover{transform:translateY(-1px)}
-.btn.p{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.btn.p:hover{background:var(--accent);border-color:var(--accent)}
+.btn.p{background:var(--ink);color:var(--bg);border-color:var(--ink);box-shadow:0 1px 2px rgba(10,10,10,.08), inset 0 1px 0 rgba(255,255,255,.08)}
+.btn.p:hover{background:var(--accent);border-color:var(--accent);box-shadow:0 4px 12px -2px rgba(5,150,105,.32)}
 .btn.o{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.o:hover{border-color:var(--ink)}
 .btn.g{background:transparent;color:var(--ink-2)}
 .btn.g:hover{background:var(--bg-3)}
-.btn.big{padding:12px 20px;font-size:14px;border-radius:10px}
+.btn.big{padding:13px 22px;font-size:14px;border-radius:999px}
 .arr{display:inline-block;transition:transform .2s}
 .btn:hover .arr{transform:translateX(3px)}
 
 /* ============ HERO ============ */
-.hero{padding:80px 0 60px;text-align:center;position:relative}
+.hero{padding:100px 0 70px;text-align:center;position:relative;overflow:hidden}
+
+/* Linear-style aurora grid behind hero */
+.hero-grid{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.hero-grid::before{
+  content:"";position:absolute;inset:-5% -5%;
+  background-image:radial-gradient(circle at 1px 1px, rgba(10,10,10,.08) 1px, transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse at 50% 20%, #000 10%, transparent 65%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 20%, #000 10%, transparent 65%);
+}
+.hero-glow{position:absolute;left:50%;top:-80px;transform:translateX(-50%);width:1100px;height:460px;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(600px 280px at 30% 50%, rgba(139,92,246,.22), transparent 70%),
+    radial-gradient(600px 280px at 70% 50%, rgba(236,72,153,.16), transparent 70%),
+    radial-gradient(500px 220px at 50% 50%, rgba(5,150,105,.12), transparent 70%);
+  filter:blur(24px);
+  animation:glowShift 18s ease-in-out infinite alternate}
+@keyframes glowShift{
+  0%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(-20px)}
+  100%{transform:translateX(-50%) translateY(0)}
+}
+
+/* Animated dot grid like Linear */
+.dot-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(7, 1fr);grid-template-rows:repeat(5, 1fr);padding:40px 60px;z-index:-1;pointer-events:none;opacity:.55;
+  mask-image:radial-gradient(ellipse at 50% 40%, #000 5%, transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 40%, #000 5%, transparent 70%)}
+.dot-grid span{width:4px;height:4px;border-radius:50%;background:var(--accent);justify-self:center;align-self:center;animation:dotPulse 3s ease-in-out infinite}
+.dot-grid span:nth-child(7n+1){animation-delay:.0s}
+.dot-grid span:nth-child(7n+2){animation-delay:.3s}
+.dot-grid span:nth-child(7n+3){animation-delay:.6s}
+.dot-grid span:nth-child(7n+4){animation-delay:.9s}
+.dot-grid span:nth-child(7n+5){animation-delay:1.2s}
+.dot-grid span:nth-child(7n+6){animation-delay:1.5s}
+.dot-grid span:nth-child(7n+7){animation-delay:1.8s}
+@keyframes dotPulse{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:.7;transform:scale(1.4)}}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;padding:6px 14px;background:var(--accent-soft);border-radius:999px;margin-bottom:32px}
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(5,150,105,.18);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(5,150,105,.18)}50%{box-shadow:0 0 0 7px rgba(5,150,105,0)}}
-.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(48px,7vw,88px);line-height:.98;letter-spacing:-.032em;margin:0;max-width:920px;margin:0 auto;color:var(--ink)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(52px,7.6vw,100px);line-height:.96;letter-spacing:-.036em;margin:0 auto;max-width:1040px;color:var(--ink);text-wrap:balance}
 .hero h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
-.hero-sub{margin:28px auto 0;font-family:var(--sans);font-size:19px;line-height:1.45;color:var(--ink-3);max-width:540px;font-weight:450;letter-spacing:-.008em}
+.hero h1 .accent{font-style:italic;color:var(--accent);font-weight:400}
+.hero-sub{margin:28px auto 0;font-family:var(--sans);font-size:19px;line-height:1.5;color:var(--ink-3);max-width:560px;font-weight:450;letter-spacing:-.008em;text-wrap:pretty}
 .hero-sub b{color:var(--ink);font-weight:500}
 .hero-cta{margin-top:36px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .hero-trust{margin-top:32px;display:flex;gap:28px;justify-content:center;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
@@ -164,7 +201,7 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .feat-row.rev{grid-template-columns:1.35fr 1fr}
 .feat-row.rev .feat-copy{order:2}
 .feat-row.rev .feat-shot{order:1}
-.feat-copy h2{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4.4vw,52px);line-height:1.02;letter-spacing:-.028em;margin:0 0 24px;color:var(--ink)}
+.feat-copy h2{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4.4vw,52px);line-height:1.02;letter-spacing:-.028em;margin:0 0 24px;color:var(--ink);text-wrap:balance}
 .feat-copy h2 em{font-style:italic;color:var(--accent);font-weight:400}
 .feat-copy p{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink-3);margin:0 0 18px;max-width:440px;letter-spacing:-.005em}
 .feat-copy p b{color:var(--ink);font-weight:500}
@@ -356,18 +393,22 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
 
 <!-- ============ HERO ============ -->
 <section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="dot-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span>AI for accounting firms · Private beta</div>
-    <h1>The AI accountant,<br/><em>built for your firm.</em></h1>
-    <p class="hero-sub">Zenday is an AI staff accountant your firm assigns per client. It <b>codes transactions, reconciles accounts, chases documents, and closes the month</b> — continuously, on every engagement. Your team reviews judgment, not data entry.</p>
+    <div class="eyebrow"><span class="dot"></span>AI for accounting firms · Private beta · 14 firms</div>
+    <h1>The AI staff accountant,<br/><span class="accent">per client.</span></h1>
+    <p class="hero-sub">Zenday is the AI accountant your firm assigns per engagement. It <b>codes transactions, reconciles accounts, chases documents, and closes the month</b> — continuously. Your team reviews judgment, not data entry.</p>
     <div class="hero-cta">
       <a class="btn p big" href="#pricing">Start with one client free <span class="arr">→</span></a>
       <a class="btn o big" href="#product">See the product</a>
     </div>
     <div class="hero-trust">
-      <span><b>$15</b> per client / mo</span>
+      <span><b>$15</b> per client / month</span>
       <span><b>QBO · Xero</b> native</span>
       <span><b>SOC 2</b> in progress</span>
+      <span><b>14 firms</b> in beta</span>
     </div>
 
     <!-- Hero product dashboard shot -->
