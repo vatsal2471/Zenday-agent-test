@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Zenday · Receipt (emerald)</title>
+<title>Zenday · Iris (violet)</title>
 <meta name="description" content="An AI staff accountant your firm assigns per client. Codes transactions, reconciles accounts, chases documents, closes the month. $15 per client / month." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,9 +25,9 @@
   --line:#EDEAE1;
   --line-2:#F5F2EA;
   --line-soft:rgba(10,10,10,.06);
-  --accent:#059669;
-  --accent-ink:#047857;
-  --accent-soft:#ECFDF5;
+  --accent:#7C3AED;
+  --accent-ink:#5B21B6;
+  --accent-soft:#F5F3FF;
   --purple:#8B5CF6;
   --purple-2:#EC4899;
   --purple-glow:rgba(139,92,246,.18);
@@ -80,8 +80,8 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 /* ============ HERO ============ */
 .hero{padding:80px 0 60px;text-align:center;position:relative}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;padding:6px 14px;background:var(--accent-soft);border-radius:999px;margin-bottom:32px}
-.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(5,150,105,.18);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(5,150,105,.18)}50%{box-shadow:0 0 0 7px rgba(5,150,105,0)}}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(124,58,237,.18);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(124,58,237,.18)}50%{box-shadow:0 0 0 7px rgba(124,58,237,0)}}
 .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(48px,7vw,88px);line-height:.98;letter-spacing:-.032em;margin:0;max-width:920px;margin:0 auto;color:var(--ink)}
 .hero h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
 .hero-sub{margin:28px auto 0;font-family:var(--sans);font-size:19px;line-height:1.45;color:var(--ink-3);max-width:540px;font-weight:450;letter-spacing:-.008em}
@@ -97,7 +97,7 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
   background:
     radial-gradient(800px 300px at 20% 30%, var(--purple-glow), transparent 60%),
     radial-gradient(700px 300px at 80% 70%, var(--pink-glow), transparent 60%),
-    radial-gradient(500px 200px at 50% 50%, rgba(5,150,105,.08), transparent 70%);
+    radial-gradient(500px 200px at 50% 50%, rgba(124,58,237,.08), transparent 70%);
   filter:blur(20px);
 }
 
@@ -270,7 +270,7 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .pc-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;margin-bottom:32px;font-family:var(--sans)}
 .pc-list .it{display:flex;gap:10px;font-size:14px;color:var(--ink-2);padding:5px 0;align-items:flex-start}
 .pc-list .ck{color:var(--accent);font-family:var(--serif);font-size:15px;font-weight:600;line-height:1.2;flex-shrink:0}
-.price-stamp{position:absolute;top:30px;right:30px;padding:10px 16px;border:2.5px solid var(--accent);color:var(--accent);font-family:var(--mono);font-weight:700;text-align:center;background:rgba(5,150,105,.04);line-height:1.05;letter-spacing:.14em;transform:rotate(6deg);border-radius:3px;opacity:0;transition:opacity .5s ease .3s,transform .6s cubic-bezier(.2,.8,.3,1.4) .3s;box-shadow:0 4px 20px -4px rgba(5,150,105,.3)}
+.price-stamp{position:absolute;top:30px;right:30px;padding:10px 16px;border:2.5px solid var(--accent);color:var(--accent);font-family:var(--mono);font-weight:700;text-align:center;background:rgba(124,58,237,.04);line-height:1.05;letter-spacing:.14em;transform:rotate(6deg);border-radius:3px;opacity:0;transition:opacity .5s ease .3s,transform .6s cubic-bezier(.2,.8,.3,1.4) .3s;box-shadow:0 4px 20px -4px rgba(124,58,237,.3)}
 .price-stamp.in{opacity:.92;transform:rotate(6deg) scale(1)}
 .price-stamp .p1{font-size:18px;display:block;letter-spacing:.22em;margin-bottom:1px}
 .price-stamp .p2{font-size:8.5px;display:block;border-top:1.5px solid var(--accent);padding-top:3px;margin-top:3px;letter-spacing:.18em}
