@@ -79,40 +79,44 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .hero h1 .n{font-style:italic;color:var(--accent);font-weight:300}
 .hero-sub{font-family:var(--sans);font-size:17px;line-height:1.5;color:var(--ink-3);max-width:520px;margin:0 0 44px;font-weight:450}
 
-/* Calculator */
-.calc{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;background:var(--bg-2);border:1px solid var(--line);border-radius:22px;padding:52px 56px;position:relative;box-shadow:var(--shadow-xl)}
-.calc::before{content:"";position:absolute;inset:0;border-radius:22px;pointer-events:none;background:radial-gradient(600px 260px at 15% 20%, var(--accent-glow), transparent 70%);opacity:.35}
-.calc > *{position:relative;z-index:1}
-.calc-left .label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:16px;display:flex;justify-content:space-between;align-items:baseline}
-.calc-left .label b{color:var(--ink);font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:-.005em;text-transform:none}
-.calc-left .clientn{font-family:var(--serif);font-weight:300;font-size:112px;line-height:1;letter-spacing:-.04em;color:var(--ink);font-feature-settings:"tnum";margin:8px 0 28px;display:flex;align-items:baseline;gap:14px}
-.calc-left .clientn .u{font-family:var(--sans);font-style:italic;font-size:18px;color:var(--mute);font-weight:400;letter-spacing:-.005em}
-input[type=range].slider{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--line);outline:none;border-radius:2px;margin:0}
-input[type=range].slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:var(--accent);border:3px solid var(--bg-2);box-shadow:0 2px 12px var(--accent-glow), 0 0 0 1px rgba(181,92,55,.3);cursor:pointer;transition:transform .15s}
+/* Calculator — single unified card, horizontal flow, no overflow */
+.calc{background:var(--bg-2);border:1px solid var(--line);border-radius:20px;padding:40px 44px;position:relative;box-shadow:var(--shadow-xl);max-width:1100px;margin:0 auto}
+
+/* Top row — savings output is the star */
+.calc-out{text-align:center;padding-bottom:32px;border-bottom:1px solid var(--line);margin-bottom:32px}
+.calc-out .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px;display:inline-flex;align-items:center;gap:10px}
+.calc-out .lbl::before,.calc-out .lbl::after{content:"";width:24px;height:1px;background:var(--accent)}
+.calc-out .big{font-family:var(--serif);font-weight:300;font-size:clamp(56px,8vw,112px);line-height:1;letter-spacing:-.04em;color:var(--ink);font-feature-settings:"tnum";display:inline-flex;align-items:baseline;margin-bottom:10px;gap:4px}
+.calc-out .big .dollar{font-size:.42em;color:var(--mute);font-weight:400;font-style:italic}
+.calc-out .per{font-family:var(--sans);font-style:italic;font-size:16px;color:var(--mute);font-weight:400;letter-spacing:-.005em;display:block}
+
+/* Bottom row — inputs + breakdown side by side */
+.calc-body{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.calc-field .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline}
+.calc-field .clientn{font-family:var(--serif);font-weight:300;font-size:64px;line-height:1;letter-spacing:-.035em;color:var(--ink);font-feature-settings:"tnum";margin:0 0 18px;display:flex;align-items:baseline;gap:10px}
+.calc-field .clientn .u{font-family:var(--sans);font-style:italic;font-size:16px;color:var(--mute);font-weight:400}
+input[type=range].slider{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:var(--line);outline:none;border-radius:2px;margin:0;display:block}
+input[type=range].slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);border:3px solid var(--bg-2);box-shadow:0 2px 8px var(--accent-glow);cursor:pointer;transition:transform .15s}
 input[type=range].slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
-input[type=range].slider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--accent);border:3px solid var(--bg-2);box-shadow:0 2px 12px var(--accent-glow);cursor:pointer}
-.calc-ticks{display:flex;justify-content:space-between;margin-top:10px;font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.04em}
-.calc-breakdown{margin-top:36px;padding-top:24px;border-top:1px solid var(--line)}
-.calc-row{display:grid;grid-template-columns:1fr auto;gap:18px;padding:10px 0;font-family:var(--sans);font-size:14px;color:var(--ink-3);align-items:baseline}
-.calc-row .lbl{letter-spacing:-.005em}
-.calc-row .lbl .sub{display:block;font-family:var(--mono);font-size:10.5px;color:var(--mute);margin-top:2px;letter-spacing:.06em;text-transform:uppercase}
-.calc-row .v{font-family:var(--mono);font-size:14.5px;font-weight:500;color:var(--ink);font-feature-settings:"tnum"}
-.calc-row.minus .v{color:var(--mute)}
+input[type=range].slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);border:3px solid var(--bg-2);cursor:pointer}
+.calc-ticks{display:flex;justify-content:space-between;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--mute-2);letter-spacing:.04em}
 
-/* Right — the BIG savings output */
-.calc-out{text-align:left}
-.calc-out .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px}
-.calc-out .lbl::before{content:"";width:24px;height:1px;background:var(--accent)}
-.calc-out .big{font-family:var(--serif);font-weight:300;font-size:clamp(80px,10vw,152px);line-height:.9;letter-spacing:-.045em;color:var(--ink);font-feature-settings:"tnum";display:block;margin-bottom:6px;transition:color .2s}
-.calc-out .big .dollar{font-size:.42em;color:var(--mute);font-weight:400;font-style:italic;vertical-align:top;margin-right:4px;margin-top:.05em;display:inline-block}
-.calc-out .per{font-family:var(--sans);font-style:italic;font-size:18px;color:var(--mute);font-weight:400;letter-spacing:-.005em;margin-top:-12px;display:block}
-.calc-out-stats{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.calc-out-stat .v{font-family:var(--serif);font-size:32px;font-weight:400;letter-spacing:-.025em;line-height:1;color:var(--ink);font-feature-settings:"tnum"}
-.calc-out-stat .v .u{font-family:var(--sans);font-size:14px;color:var(--mute);font-weight:400;font-style:italic;margin-left:4px;letter-spacing:-.005em}
-.calc-out-stat .l{font-family:var(--mono);font-size:10.5px;color:var(--mute);margin-top:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.calc-breakdown .h{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:10px}
+.calc-row{display:grid;grid-template-columns:1fr auto;gap:18px;padding:9px 0;font-family:var(--sans);font-size:13.5px;color:var(--ink-3);align-items:baseline;border-bottom:1px dotted var(--line)}
+.calc-row:last-child{border-bottom:0}
+.calc-row.hl{color:var(--ink);font-weight:500}
+.calc-row .v{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--ink);font-feature-settings:"tnum"}
+.calc-row.hl .v{color:var(--accent)}
 
-.hero-cta{margin-top:36px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.hero-trust{margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+/* Secondary stats row */
+.calc-secondary{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:28px;padding-top:28px;border-top:1px solid var(--line)}
+.calc-s{text-align:center}
+.calc-s .v{font-family:var(--serif);font-size:34px;font-weight:400;letter-spacing:-.025em;line-height:1;color:var(--ink);font-feature-settings:"tnum"}
+.calc-s .v .u{font-family:var(--sans);font-size:14px;color:var(--mute);font-weight:400;font-style:italic;margin-left:4px;letter-spacing:-.005em}
+.calc-s .l{font-family:var(--mono);font-size:10.5px;color:var(--mute);margin-top:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+
+.hero-cta{margin-top:40px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center}
+.hero-trust{margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:center}
 .hero-trust b{color:var(--ink);font-weight:500}
 
 /* ============ PRODUCT SCREENSHOT + CALLOUTS ============ */
@@ -135,6 +139,22 @@ input[type=range].slider::-moz-range-thumb{width:22px;height:22px;border-radius:
 .pin.tr::after{left:-5px;top:16px}
 .pin.br{right:8%;bottom:-24px}
 .pin.br::after{left:30px;top:-5px}
+
+/* ============ FEATURE STRIP ============ */
+.feats{padding:100px 0;border-top:1px solid var(--line-soft)}
+.feats-head{max-width:680px;margin:0 auto 56px;text-align:center}
+.feats-head .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:16px;display:inline-block}
+.feats-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,52px);line-height:1.02;letter-spacing:-.028em;margin:0;color:var(--ink);text-wrap:balance}
+.feats-head h2 em{font-style:italic;color:var(--accent);font-weight:300}
+.feats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat-card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;min-height:240px;transition:border-color .2s,transform .2s}
+.feat-card:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow)}
+.feat-card .fc-n{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
+.feat-card h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.018em;line-height:1.18;margin:0 0 10px;color:var(--ink)}
+.feat-card h3 em{font-style:italic;color:var(--ink-3);font-weight:400}
+.feat-card p{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--ink-3);margin:0 0 18px}
+.feat-card .fc-foot{margin-top:auto;padding-top:14px;border-top:1px dotted var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+.feat-card .fc-foot b{color:var(--ink);font-weight:500}
 
 /* ============ HOW TO START ============ */
 .start{padding:120px 0;background:var(--bg-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
@@ -188,10 +208,12 @@ footer{padding:40px 0;border-top:1px solid var(--line);background:var(--bg)}
   .wrap,.nav-in{padding:0 20px}
   .nav-links{display:none}
   .hero{padding:48px 0 60px}
-  .calc{grid-template-columns:1fr;gap:40px;padding:32px 24px}
-  .calc-left .clientn{font-size:80px}
-  .calc-out .big{font-size:80px}
-  .calc-out-stats{grid-template-columns:1fr 1fr;gap:18px}
+  .calc{padding:28px 20px}
+  .calc-body{grid-template-columns:1fr;gap:32px}
+  .calc-field .clientn{font-size:48px}
+  .calc-out .big{font-size:64px}
+  .calc-secondary{grid-template-columns:1fr 1fr;gap:18px}
+  .feats-grid{grid-template-columns:1fr;gap:12px}
   .product{padding:60px 0}
   .pin{display:none}
   .steps{grid-template-columns:1fr;border-top:0}
@@ -229,42 +251,47 @@ footer{padding:40px 0;border-top:1px solid var(--line);background:var(--bg)}
     <p class="hero-sub">Zenday is an AI staff accountant your firm assigns per client. It codes, reconciles, chases, and closes — continuously. Here's what that's worth for a firm your size.</p>
 
     <div class="calc">
-      <div class="calc-left">
-        <div class="label"><span>Clients on your roster</span><b id="calcSubtitle">40 clients</b></div>
-        <div class="clientn" id="calcNum">40 <span class="u">clients</span></div>
-        <input type="range" min="5" max="120" value="40" class="slider" id="calcSlider" />
-        <div class="calc-ticks"><span>5</span><span>30</span><span>60</span><span>90</span><span>120</span></div>
-
-        <div class="calc-breakdown">
-          <div class="calc-row"><div class="lbl">Current labour stack<span class="sub">per client · estimated</span></div><div class="v">$400 / mo</div></div>
-          <div class="calc-row"><div class="lbl">Zenday<span class="sub">per client · all-in</span></div><div class="v" style="color:var(--green)">$15 / mo</div></div>
-          <div class="calc-row"><div class="lbl">Savings per client<span class="sub">delta</span></div><div class="v" style="color:var(--accent)">$385 / mo</div></div>
-        </div>
-      </div>
-
+      <!-- Top: savings output front and center -->
       <div class="calc-out">
         <div class="lbl">Your firm saves</div>
-        <span class="big" id="calcBig"><span class="dollar">$</span>15,400</span>
-        <span class="per">per month, starting month one</span>
+        <div class="big" id="calcBig"><span class="dollar">$</span>15,400</div>
+        <div class="per">per month, starting month one</div>
+      </div>
 
-        <div class="calc-out-stats">
-          <div class="calc-out-stat">
-            <div class="v" id="calcYear">$184,800<span class="u">/ yr</span></div>
-            <div class="l">Annual savings</div>
-          </div>
-          <div class="calc-out-stat">
-            <div class="v" id="calcHrs">500<span class="u">hrs / yr</span></div>
-            <div class="l">Back to advisory</div>
-          </div>
+      <!-- Bottom: input on left, math on right -->
+      <div class="calc-body">
+        <div class="calc-field">
+          <div class="lbl"><span>Clients on your roster</span><span id="calcSubtitle" style="color:var(--ink)">40</span></div>
+          <div class="clientn" id="calcNum">40 <span class="u">clients</span></div>
+          <input type="range" min="5" max="120" value="40" class="slider" id="calcSlider" />
+          <div class="calc-ticks"><span>5</span><span>30</span><span>60</span><span>90</span><span>120</span></div>
         </div>
+        <div class="calc-breakdown">
+          <div class="h">The math · per client, monthly</div>
+          <div class="calc-row"><div>Current labour stack</div><div class="v">$400 / mo</div></div>
+          <div class="calc-row"><div>Zenday, all-in</div><div class="v" style="color:var(--green)">$15 / mo</div></div>
+          <div class="calc-row hl"><div>Savings per client</div><div class="v">$385 / mo</div></div>
+        </div>
+      </div>
 
-        <div class="hero-cta">
-          <a class="btn p big" href="#signup">Start with one client free <span class="arr">→</span></a>
-          <a class="btn o big" href="#product">See the product</a>
+      <!-- Secondary stats strip -->
+      <div class="calc-secondary">
+        <div class="calc-s">
+          <div class="v" id="calcYear">$184,800<span class="u">/ yr</span></div>
+          <div class="l">Annual savings</div>
         </div>
-        <div class="hero-trust"><b>14 firms</b> in private beta · <b>QBO · Xero</b> native · <b>SOC 2</b> in progress</div>
+        <div class="calc-s">
+          <div class="v" id="calcHrs">500<span class="u">hrs / yr</span></div>
+          <div class="l">Back to advisory</div>
+        </div>
       </div>
     </div>
+
+    <div class="hero-cta">
+      <a class="btn p big" href="#signup">Start with one client free <span class="arr">→</span></a>
+      <a class="btn o big" href="#product">See the product</a>
+    </div>
+    <div class="hero-trust"><b>14 firms</b> in private beta · <b>QBO · Xero</b> native · <b>SOC 2</b> in progress</div>
   </div>
 </section>
 
@@ -282,6 +309,54 @@ footer{padding:40px 0;border-top:1px solid var(--line);background:var(--bg)}
       <div class="pin tl"><b>199 transactions auto-coded</b> last week · 97% auto-posted · no human touched them</div>
       <div class="pin tr"><b>Red = needs your eye.</b> Open only the rows with alerts. ~5 min a day across the whole firm.</div>
       <div class="pin br"><b>Month-end on day 1.</b> P&amp;L, BS, CF, AP/AR aging — drafted with variance narrative.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE STRIP ============ -->
+<section class="feats">
+  <div class="wrap">
+    <div class="feats-head">
+      <div class="kick">What Zenday does</div>
+      <h2>Six surfaces. <em>One continuous close.</em></h2>
+    </div>
+    <div class="feats-grid">
+      <div class="feat-card">
+        <div class="fc-n">01 · Client dashboard</div>
+        <h3>Every client, <em>one screen.</em></h3>
+        <p>Inbox, tasks, bank feed, and alerts per client. Open any row for the full drilldown.</p>
+        <div class="fc-foot"><span>Current as of</span><b>every minute</b></div>
+      </div>
+      <div class="feat-card">
+        <div class="fc-n">02 · Ask Zen · AI</div>
+        <h3>Ask anything, <em>about any client.</em></h3>
+        <p>Context-aware AI with full history. Cited answers, drafted emails, queued tasks.</p>
+        <div class="fc-foot"><span>Responds in</span><b>&lt; 2 sec</b></div>
+      </div>
+      <div class="feat-card">
+        <div class="fc-n">03 · AI bookkeeping</div>
+        <h3>Coded the moment <em>they clear.</em></h3>
+        <p>Direct Plaid feed, confidence-scored categorization, per-client learned rules.</p>
+        <div class="fc-foot"><span>Auto-post rate</span><b>97%</b></div>
+      </div>
+      <div class="feat-card">
+        <div class="fc-n">04 · Reconciliation</div>
+        <h3>Every account, <em>matched.</em></h3>
+        <p>Bank, credit card, AP, AR, payroll — continuously reconciled with variance flags.</p>
+        <div class="fc-foot"><span>Flagged anomalies</span><b>9 types</b></div>
+      </div>
+      <div class="feat-card">
+        <div class="fc-n">05 · Month-end close</div>
+        <h3>P&amp;L, BS, CF — <em>day one.</em></h3>
+        <p>Books already closed when the month ends. Variance narrative drafted alongside.</p>
+        <div class="fc-foot"><span>Delivery</span><b>First business day</b></div>
+      </div>
+      <div class="feat-card">
+        <div class="fc-n">06 · Audit trail</div>
+        <h3>Every action, <em>reversible.</em></h3>
+        <p>Reasoning, confidence, model version, source — logged for every entry, forever.</p>
+        <div class="fc-foot"><span>Traceability</span><b>100%</b></div>
+      </div>
     </div>
   </div>
 </section>
