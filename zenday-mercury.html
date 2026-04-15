@@ -138,6 +138,12 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
   filter:blur(16px);
 }
 
+/* Real product screenshot frame */
+.real-shot{border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-xl);background:#fff;position:relative}
+.real-shot img{display:block;width:100%;height:auto}
+.real-shot.lift{transform:translateY(0);transition:transform .4s ease}
+.real-shot.lift:hover{transform:translateY(-4px)}
+
 /* Browser chrome */
 .browser{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-xl)}
 .browser-bar{height:40px;border-bottom:1px solid var(--line-soft);display:flex;align-items:center;padding:0 16px;gap:12px;background:var(--bg-2)}
@@ -411,53 +417,10 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
       <span><b>14 firms</b> in beta</span>
     </div>
 
-    <!-- Hero product dashboard shot -->
+    <!-- Hero product dashboard shot — REAL product screenshot -->
     <div class="hero-shot" id="product">
-      <div class="browser">
-        <div class="browser-bar">
-          <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="browser-url">app.zenday.io<span class="p">/dashboard</span></div>
-          <div class="browser-pill">Ask Zen</div>
-          <div class="avatar-mini">SM</div>
-        </div>
-        <div class="dash-app">
-          <aside class="dash-side">
-            <div class="ds-brand">Zenday<em>.</em></div>
-            <div class="ds-group">Firm</div>
-            <div class="ds-item on">◫ Dashboard</div>
-            <div class="ds-item">✉ Inbox <span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--accent)">23</span></div>
-            <div class="ds-item">☑ Tasks <span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--accent)">87</span></div>
-            <div class="ds-item">📁 Files</div>
-            <div class="ds-item">⚙ Settings</div>
-            <div class="ds-group">Clients · 14</div>
-            <div class="ds-item">Apex Engineering</div>
-            <div class="ds-item">AppSphere Mobile</div>
-            <div class="ds-item">Bayview Construction</div>
-            <div class="ds-item">CloudNine Software</div>
-            <div class="ds-item">Nova Digital</div>
-            <div class="ds-foot"><div class="av">SM</div><div><div style="font-size:12.5px;font-weight:500">Sarah Mitchell</div><div style="font-size:10.5px;color:var(--mute)">Partner</div></div></div>
-          </aside>
-          <div class="dash-main">
-            <div class="dash-main-h">
-              <div>
-                <div class="dash-main-t">Dashboard</div>
-                <div class="dash-main-s">14 clients · all current · as of 8:42 AM</div>
-              </div>
-              <div class="dash-filter"><span class="on">Clients</span><span>Tasks</span><span>Emails</span></div>
-            </div>
-            <div class="ctab">
-              <div class="ctab-h"><span>Clients</span><span>Inbox</span><span>Tasks</span><span>Bank</span><span>Alerts</span><span>Team</span><span></span></div>
-              <div class="ctab-r"><span class="name"><span class="ar">›</span>Apex Engineering</span><span class="c"><b>2</b></span><span class="c"><b>5</b></span><span class="c"><b>22</b></span><span class="c"><b>12</b></span><span class="c"><span class="av" style="background:#f8cfa3">RH</span></span><span class="act">⋯</span></div>
-              <div class="ctab-r"><span class="name"><span class="ar">›</span>AppSphere Mobile</span><span class="c"><b>5</b></span><span class="c"><b>6</b></span><span class="c z">—</span><span class="c"><b>7</b></span><span class="c"><span class="av" style="background:#e8a985">AP</span></span><span class="act">⋯</span></div>
-              <div class="ctab-r"><span class="name"><span class="ar">›</span>Artisan Goods Co</span><span class="c"><b>7</b></span><span class="c"><b>6</b></span><span class="c z">—</span><span class="c"><b>4</b></span><span class="c"><span class="av" style="background:#b8d4c9">AG</span></span><span class="act">⋯</span></div>
-              <div class="ctab-r"><span class="name"><span class="ar">›</span>Bayview Construction</span><span class="c"><b>5</b></span><span class="c"><b>11</b></span><span class="c z">—</span><span class="c"><b>7</b></span><span class="c"><span class="av" style="background:#d4b8e8">BC</span></span><span class="act">⋯</span></div>
-              <div class="ctab-r"><span class="name"><span class="ar">›</span>Bloom &amp; Branch</span><span class="c"><b>4</b></span><span class="c"><b>17</b></span><span class="c z">—</span><span class="c"><b>8</b></span><span class="c"><span class="av" style="background:#f0b8a8">BB</span></span><span class="act">⋯</span></div>
-              <div class="ctab-r"><span class="name"><span class="ar">›</span>CloudNine Software</span><span class="c"><b>3</b></span><span class="c"><b>8</b></span><span class="c"><b>18</b></span><span class="c"><b>12</b></span><span class="c"><span class="av" style="background:#a8c5e8">CS</span></span><span class="act">⋯</span></div>
-              <div class="ctab-r"><span class="name"><span class="ar">›</span>Coast Property Management</span><span class="c"><b>4</b></span><span class="c"><b>10</b></span><span class="c z">—</span><span class="c"><b>8</b></span><span class="c"><span class="av" style="background:#cdd6b8">CP</span></span><span class="act">⋯</span></div>
-              <div class="ctab-r"><span class="name"><span class="ar">›</span>DataFlow Analytics</span><span class="c"><b>5</b></span><span class="c"><b>12</b></span><span class="c z">—</span><span class="c"><b>5</b></span><span class="c"><span class="av" style="background:#e8c9a8">DA</span></span><span class="act">⋯</span></div>
-            </div>
-          </div>
-        </div>
+      <div class="real-shot">
+        <img src="prototype/scene-001.jpg" alt="Zenday client dashboard — every client on one screen" />
       </div>
     </div>
   </div>
@@ -496,80 +459,22 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
         <a class="feat-link" href="#">See the dashboard <span class="arr">→</span></a>
       </div>
       <div class="feat-shot">
-        <div class="browser">
-          <div class="browser-bar">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">AppSphere Mobile<span class="p"> · open</span></div>
-          </div>
-          <div style="background:#fff;padding:18px 22px">
-            <div style="display:flex;align-items:center;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--line-soft);margin-bottom:14px">
-              <span class="avatar-mini" style="background:#e8a985">AP</span>
-              <span style="font-family:var(--serif);font-weight:500;font-size:16px">AppSphere Mobile</span>
-              <span style="margin-left:auto;padding:3px 8px;background:var(--green-soft);color:#166534;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-radius:999px">ALL CLEAR</span>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-              <div style="background:var(--bg-2);border-radius:8px;padding:12px 14px">
-                <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mute);margin-bottom:8px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;font-weight:600">✉ Recent Emails<span style="color:#166534;background:var(--green-soft);padding:1px 6px;border-radius:999px;font-size:9px">5 unread</span></div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0">Apple Developer Program Renewal</div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0">Firebase Usage Alert</div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0">Stripe Payout Statement</div>
-              </div>
-              <div style="background:var(--bg-2);border-radius:8px;padding:12px 14px">
-                <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mute);margin-bottom:8px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;font-weight:600">☑ Tasks<span style="color:#991b1b;background:#fee2e2;padding:1px 6px;border-radius:999px;font-size:9px">3 overdue</span></div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0;display:flex;justify-content:space-between">Review vendor payments<span style="color:var(--accent);font-family:var(--mono);font-size:10px">6d</span></div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0;display:flex;justify-content:space-between">Collect W-9s<span style="color:var(--accent);font-family:var(--mono);font-size:10px">6d</span></div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0;display:flex;justify-content:space-between">File 1099s with IRS<span style="color:var(--accent);font-family:var(--mono);font-size:10px">6d</span></div>
-              </div>
-              <div style="background:var(--bg-2);border-radius:8px;padding:12px 14px">
-                <div style="font-size:11px;color:var(--mute);margin-bottom:8px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;font-weight:600">📖 Bookkeeping</div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0;display:flex;justify-content:space-between">Bank Feed<span style="color:#166534;font-family:var(--mono);font-size:11px;font-weight:600">0</span></div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0;display:flex;justify-content:space-between">Transaction Alerts<span style="color:var(--accent);font-family:var(--mono);font-size:11px;font-weight:600">7</span></div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0;display:flex;justify-content:space-between">Reconciliation<span style="color:#166534;font-family:var(--mono);font-size:11px;font-weight:600">0</span></div>
-              </div>
-              <div style="background:var(--bg-2);border-radius:8px;padding:12px 14px">
-                <div style="font-size:11px;color:var(--mute);margin-bottom:8px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;font-weight:600">📊 Reports</div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0">Income Statement</div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0">Balance Sheet</div>
-                <div style="font-size:12.5px;color:var(--ink);padding:3px 0">Cash Flow Statement</div>
-              </div>
-            </div>
-          </div>
+        <div class="real-shot lift">
+          <img src="prototype/scene-002.jpg" alt="AppSphere Mobile expanded — Recent Emails, Tasks, Bookkeeping, Reports" />
         </div>
       </div>
     </div>
   </div>
 </section>
 
+
 <!-- ============ FEATURE 02 · ASK ZEN (purple glow) ============ -->
 <section class="feat zen-feat">
   <div class="wrap">
     <div class="feat-row rev">
       <div class="feat-shot glow">
-        <div class="browser">
-          <div class="browser-bar">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">ask zen<span class="p"> · AppSphere Mobile</span></div>
-            <div class="browser-pill">Ask Zen</div>
-          </div>
-          <div class="zen-ui">
-            <div class="zen-msg u">
-              <div class="av u">SM</div>
-              <div class="bub">What changed for AppSphere this month?</div>
-            </div>
-            <div class="zen-msg z">
-              <div class="av z">✦</div>
-              <div class="bub">Revenue up <b>18% MoM</b> on the App Store payout. OpEx up <b>$2.4K</b> from the Firebase plan change on Mar 14. New vendor: Amplitude ($390/mo) — first occurrence, held for review.<div class="cite"><span>App Store</span><span>Firebase</span><span>Amplitude</span><span>P&amp;L</span></div></div>
-            </div>
-            <div class="zen-msg u">
-              <div class="av u">SM</div>
-              <div class="bub">Draft a message to the client about the Amplitude charge.</div>
-            </div>
-            <div class="zen-msg z">
-              <div class="av z">✦</div>
-              <div class="bub">Drafted. Ready in the Inbox — one click to send.</div>
-            </div>
-            <div class="zen-input">Ask anything about any client…<span class="send">↑</span></div>
-          </div>
+        <div class="real-shot lift">
+          <img src="prototype/t-016.jpg" alt="Ask Zen AI categorizing transactions in the bank feed" />
         </div>
       </div>
       <div class="feat-copy">
@@ -603,26 +508,8 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
         <a class="feat-link" href="#">See the alerts and recon engine <span class="arr">→</span></a>
       </div>
       <div class="feat-shot">
-        <div class="browser">
-          <div class="browser-bar">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">reconciliation<span class="p"> · Bloom &amp; Branch</span></div>
-          </div>
-          <div style="background:#fff;padding:10px 14px">
-            <div style="display:flex;gap:6px;padding:10px 0 14px;border-bottom:1px solid var(--line-soft);font-family:var(--sans)">
-              <span style="font-size:12px;padding:5px 10px;background:var(--ink);color:#fff;border-radius:6px;font-weight:500">Reconciliation</span>
-              <span style="font-size:12px;padding:5px 10px;color:var(--ink-3);border-radius:6px">Bank Feed</span>
-              <span style="font-size:12px;padding:5px 10px;color:var(--ink-3);border-radius:6px">Alerts</span>
-              <span style="font-size:12px;padding:5px 10px;color:var(--ink-3);border-radius:6px">Report Review</span>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 70px 60px 24px;gap:8px;padding:8px 6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600;border-bottom:1px solid var(--line-soft)"><span>Account</span><span style="text-align:right">Mask</span><span style="text-align:center">Type</span><span></span></div>
-            <div style="display:grid;grid-template-columns:1fr 70px 60px 24px;gap:8px;padding:11px 6px;font-size:12.5px;color:var(--ink);border-bottom:1px solid var(--line-soft);align-items:center"><span style="font-weight:500">Business Checking</span><span style="font-family:var(--mono);font-size:10.5px;color:var(--mute);text-align:right">****5437</span><span style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center;font-weight:600">Bank</span><span style="color:#16A34A;text-align:center">✓</span></div>
-            <div style="display:grid;grid-template-columns:1fr 70px 60px 24px;gap:8px;padding:11px 6px;font-size:12.5px;color:var(--ink);border-bottom:1px solid var(--line-soft);align-items:center"><span style="font-weight:500">Business Savings</span><span style="font-family:var(--mono);font-size:10.5px;color:var(--mute);text-align:right">****8217</span><span style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center;font-weight:600">Bank</span><span style="color:#16A34A;text-align:center">✓</span></div>
-            <div style="display:grid;grid-template-columns:1fr 70px 60px 24px;gap:8px;padding:11px 6px;font-size:12.5px;color:var(--ink);border-bottom:1px solid var(--line-soft);align-items:center"><span style="font-weight:500">Business Credit Card</span><span style="font-family:var(--mono);font-size:10.5px;color:var(--mute);text-align:right">****8471</span><span style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center;font-weight:600">Bank</span><span style="color:#16A34A;text-align:center">✓</span></div>
-            <div style="display:grid;grid-template-columns:1fr 70px 60px 24px;gap:8px;padding:11px 6px;font-size:12.5px;color:var(--ink);border-bottom:1px solid var(--line-soft);align-items:center"><span style="font-weight:500">Amex Business</span><span style="font-family:var(--mono);font-size:10.5px;color:var(--mute);text-align:right">****5004</span><span style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center;font-weight:600">Bank</span><span style="color:#16A34A;text-align:center">✓</span></div>
-            <div style="display:grid;grid-template-columns:1fr 70px 60px 24px;gap:8px;padding:11px 6px;font-size:12.5px;color:var(--ink);border-bottom:1px solid var(--line-soft);align-items:center"><span style="font-weight:500">Accounts Payable</span><span style="font-family:var(--mono);font-size:10.5px;color:var(--mute);text-align:right">(2000)</span><span style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center;font-weight:600">AP</span><span style="color:#16A34A;text-align:center">✓</span></div>
-            <div style="display:grid;grid-template-columns:1fr 70px 60px 24px;gap:8px;padding:11px 6px;font-size:12.5px;color:var(--ink);border-bottom:1px solid var(--line-soft);align-items:center;background:#fef9f7"><span style="font-weight:500">Payroll Clearing</span><span style="font-family:var(--mono);font-size:10.5px;color:var(--mute);text-align:right">(2150)</span><span style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center;font-weight:600">Payroll</span><span style="color:var(--accent);text-align:center">⚠</span></div>
-          </div>
+        <div class="real-shot lift">
+          <img src="prototype/t-032.jpg" alt="Reconciliation across all accounts — Type, Status, Variance, Balance, Last Recon, Assignee" />
         </div>
       </div>
     </div>
@@ -634,19 +521,8 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   <div class="wrap">
     <div class="feat-row rev">
       <div class="feat-shot">
-        <div class="browser">
-          <div class="browser-bar">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">report review<span class="p"> · AppSphere Mobile</span></div>
-          </div>
-          <div style="background:#fff;padding:14px 18px">
-            <div style="display:grid;grid-template-columns:1.6fr 80px 90px 80px;gap:10px;padding:8px 6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600;border-bottom:1px solid var(--line-soft)"><span>Report</span><span>Status</span><span>Due Date</span><span>Reviewer</span></div>
-            <div style="display:grid;grid-template-columns:1.6fr 80px 90px 80px;gap:10px;padding:12px 6px;font-size:13px;color:var(--ink);border-bottom:1px solid var(--line-soft);align-items:center"><span>Income Statement <span style="color:var(--mute);font-size:11px">Feb 2026</span></span><span style="font-size:9.5px;font-weight:600;letter-spacing:.08em;padding:3px 8px;background:var(--green-soft);color:#166534;border-radius:999px;text-transform:uppercase;text-align:center">Reviewed</span><span style="font-family:var(--mono);font-size:11px;color:var(--mute)">Feb 10</span><span style="font-size:12px;color:var(--ink-3)">Sarah M.</span></div>
-            <div style="display:grid;grid-template-columns:1.6fr 80px 90px 80px;gap:10px;padding:12px 6px;font-size:13px;color:var(--ink);border-bottom:1px solid var(--line-soft);align-items:center"><span>Balance Sheet <span style="color:var(--mute);font-size:11px">Feb 2026</span></span><span style="font-size:9.5px;font-weight:600;letter-spacing:.08em;padding:3px 8px;background:var(--green-soft);color:#166534;border-radius:999px;text-transform:uppercase;text-align:center">Done</span><span style="font-family:var(--mono);font-size:11px;color:var(--mute)">Feb 10</span><span style="font-size:12px;color:var(--ink-3)">James W.</span></div>
-            <div style="display:grid;grid-template-columns:1.6fr 80px 90px 80px;gap:10px;padding:12px 6px;font-size:13px;color:var(--ink);border-bottom:1px solid var(--line-soft);align-items:center"><span>Cash Flow Statement <span style="color:var(--mute);font-size:11px">Feb 2026</span></span><span style="font-size:9.5px;font-weight:600;letter-spacing:.08em;padding:3px 8px;background:var(--amber-soft);color:var(--amber);border-radius:999px;text-transform:uppercase;text-align:center">In Review</span><span style="font-family:var(--mono);font-size:11px;color:var(--mute)">Feb 12</span><span style="font-size:12px;color:var(--ink-3)">Sarah M.</span></div>
-            <div style="display:grid;grid-template-columns:1.6fr 80px 90px 80px;gap:10px;padding:12px 6px;font-size:13px;color:var(--ink);border-bottom:1px solid var(--line-soft);align-items:center"><span>AP Aging Summary <span style="color:var(--mute);font-size:11px">Feb 2026</span></span><span style="font-size:9.5px;font-weight:600;letter-spacing:.08em;padding:3px 8px;background:var(--bg-3);color:var(--mute);border-radius:999px;text-transform:uppercase;text-align:center">Queued</span><span style="font-family:var(--mono);font-size:11px;color:var(--mute)">Feb 5</span><span style="font-size:12px;color:var(--mute-2)">—</span></div>
-            <div style="display:grid;grid-template-columns:1.6fr 80px 90px 80px;gap:10px;padding:12px 6px;font-size:13px;color:var(--ink);align-items:center"><span>AR Aging Summary <span style="color:var(--mute);font-size:11px">Feb 2026</span></span><span style="font-size:9.5px;font-weight:600;letter-spacing:.08em;padding:3px 8px;background:var(--bg-3);color:var(--mute);border-radius:999px;text-transform:uppercase;text-align:center">Queued</span><span style="font-family:var(--mono);font-size:11px;color:var(--mute)">Feb 5</span><span style="font-size:12px;color:var(--mute-2)">—</span></div>
-          </div>
+        <div class="real-shot lift">
+          <img src="prototype/scene-008.jpg" alt="Report Review — Income Statement, Balance Sheet, Cash Flow with Reviewed/Done/In Review status" />
         </div>
       </div>
       <div class="feat-copy">
