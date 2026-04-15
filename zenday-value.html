@@ -16,29 +16,29 @@
    ============================================================= */
 
 :root{
-  --cream:#F5EFE4;
-  --cream-2:#EDE6D7;
-  --cream-3:#E4DCC7;
-  --ink:#0A0807;
-  --ink-2:#1D1915;
-  --ink-3:#3C362C;
-  --ink-soft:rgba(10,8,7,.72);
-  --ink-mute:rgba(10,8,7,.48);
-  --mute:#8C8576;
-  --mute-2:#B5AE9E;
-  --line:#D9D1BE;
-  --line-soft:rgba(10,8,7,.07);
-  --accent:#B55C37;
-  --accent-ink:#964625;
-  --accent-soft:#F3DBCC;
-  --amber:#D99A3A;
-  --sage:#7A9472;
-  --sage-soft:#DCE5D4;
-  --blush:#C88B7D;
-  --blush-soft:#F0D9D0;
-  --purple:#8B5CF6;
-  --purple-2:#C084FC;
-  --purple-soft:#F0E7FE;
+  --cream:#FBF9F4;
+  --cream-2:#F3F0E6;
+  --cream-3:#E9E4D4;
+  --ink:#121010;
+  --ink-2:#262220;
+  --ink-3:#4A4540;
+  --ink-soft:rgba(18,16,16,.72);
+  --ink-mute:rgba(18,16,16,.48);
+  --mute:#8A847B;
+  --mute-2:#B8B2A7;
+  --line:#E3DED1;
+  --line-soft:rgba(18,16,16,.08);
+  --accent:#C55339;
+  --accent-ink:#9E3D27;
+  --accent-soft:#FCE7DC;
+  --amber:#DBA14A;
+  --sage:#5E8A6A;
+  --sage-soft:#DCEBE0;
+  --blush:#C67B7B;
+  --blush-soft:#F4DCDC;
+  --purple:#7C3AED;
+  --purple-2:#A855F7;
+  --purple-soft:#EFE7FE;
   --serif:'IBM Plex Serif', Georgia, serif;
   --sans:'Inter', -apple-system, system-ui, sans-serif;
   --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
@@ -178,8 +178,39 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(245,239,228,.82);backdr
 .feat .inner{max-width:780px}
 .feat-card{margin:72px auto 0;max-width:820px;padding:0 40px;position:relative}
 .feat.dark{background:var(--ink);color:var(--cream)}
-.feat.dark::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 1px 1px, rgba(245,239,228,.025) 1px, transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%)}
-.feat .inner,.feat-card{position:relative;z-index:1}
+.feat.dark::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 1px 1px, rgba(251,249,244,.028) 1px, transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%)}
+.feat .inner,.feat-card,.feat-split{position:relative;z-index:1}
+
+/* Split layout — asymmetric 5/7 copy + card side by side */
+.feat-split{max-width:1240px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:center}
+.feat-split.rev{grid-template-columns:7fr 5fr}
+.feat-split.rev .split-copy{order:2}
+.feat-split.rev .split-card{order:1}
+.feat-split .split-copy .kicker{margin-bottom:22px}
+.feat-split .split-copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.04;letter-spacing:-.026em;margin:0 0 18px;text-wrap:balance}
+.feat-split .split-copy h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.feat.dark .feat-split .split-copy h2 em{color:var(--amber)}
+.feat-split .split-copy .lead{font-family:var(--sans);font-size:16.5px;line-height:1.55;color:var(--ink-soft);margin:0 0 24px;max-width:460px;letter-spacing:-.005em}
+.feat-split .split-copy .lead b{color:var(--ink);font-weight:500}
+.feat.dark .feat-split .split-copy .lead{color:rgba(251,249,244,.72)}
+.feat.dark .feat-split .split-copy .lead b{color:var(--cream)}
+.feat-split .split-copy .bullets{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.feat-split .split-copy .bullet{display:flex;gap:12px;align-items:flex-start;font-family:var(--sans);font-size:14px;color:var(--ink-soft);line-height:1.45}
+.feat-split .split-copy .bullet::before{content:"";display:inline-block;width:18px;height:1.5px;background:var(--accent);margin-top:9px;flex-shrink:0}
+.feat-split .split-copy .bullet b{color:var(--ink);font-weight:500}
+.feat.dark .feat-split .split-copy .bullet{color:rgba(251,249,244,.72)}
+.feat.dark .feat-split .split-copy .bullet b{color:var(--cream)}
+.feat.dark .feat-split .split-copy .bullet::before{background:var(--amber)}
+.feat-split .split-card{position:relative}
+.feat-split .split-card .stat-chip{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:500;padding:5px 12px;background:rgba(18,16,16,.04);border-radius:999px}
+.feat-split .split-card .stat-chip b{color:var(--accent);font-weight:600}
+
+/* Left-aligned narrative block (Alden "Staffing shortages..." pattern) */
+.narrative{padding:120px 0;position:relative}
+.narrative-in{max-width:880px;margin:0 auto;padding:0 40px}
+.narrative .kicker{margin-bottom:28px}
+.narrative h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.4vw,44px);line-height:1.25;letter-spacing:-.018em;margin:0;max-width:760px;color:var(--ink);text-wrap:pretty}
+.narrative h2 em{font-style:italic;color:var(--ink-3);font-weight:400}
 
 /* ============ BOOKKEEPING LIVE CARD (light section) ============ */
 .live-book{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0;box-shadow:var(--shadow-card-lg);overflow:hidden}
@@ -365,6 +396,12 @@ footer{padding:36px 0;background:var(--ink);border-top:1px solid rgba(245,239,22
   .f-card.a,.f-card.b,.f-card.c{grid-column:1;margin-top:0;animation:none;transform:none !important}
   .feat,.stat-moment,.testimonial,.pricing,.signup{padding:80px 0}
   .feat-card{margin-top:48px;padding:0 22px}
+  .feat-split{grid-template-columns:1fr;gap:44px;padding:0 22px}
+  .feat-split.rev .split-copy{order:1}
+  .feat-split.rev .split-card{order:2}
+  .narrative{padding:70px 0}
+  .narrative-in{padding:0 22px}
+  .recon-wrap{padding:18px 0 0}
   .close-card .cg{grid-template-columns:1fr}
   .invoice{padding:28px 22px}
   .li{grid-template-columns:44px 1fr auto;gap:10px}
@@ -438,23 +475,39 @@ footer{padding:36px 0;background:var(--ink);border-top:1px solid rgba(245,239,22
   </div>
 </section>
 
-<!-- ============ § 01 · BOOKKEEPING (live micro-product) ============ -->
-<section class="feat" id="book">
-  <div class="inner">
-    <div class="kicker reveal">§ 01 · Bookkeeping</div>
-    <h2 class="h-display reveal d1">Every transaction, coded<br/><em>the moment it clears.</em></h2>
-    <p class="h-sub reveal d2">Direct Plaid feed. Zenday reads the vendor, applies your chart of accounts, and posts — with a confidence score and audit trail attached. <b>Under thirty seconds</b> from clear to posted.</p>
+<!-- ============ NARRATIVE (Alden-style left-aligned problem frame) ============ -->
+<section class="narrative">
+  <div class="narrative-in">
+    <div class="kicker reveal">The shape of the work today</div>
+    <h2 class="reveal d1">Senior accountants spend half their week on <span class="hl-amber">data entry</span>, <span class="hl-sage">reconciliations</span>, and <span class="hl-blush">chasing receipts</span> — <em>work the firm sells as advisory.</em> Zenday takes that layer back, per client.</h2>
   </div>
-  <div class="feat-card reveal d3">
-    <div class="live-book" id="liveBook">
-      <div class="lb-h">
-        <div class="t">Bank feed · continuous</div>
-        <div class="meta"><span>Today · 147 posted</span><span class="live">live</span></div>
+</section>
+
+<!-- ============ § 01 · BOOKKEEPING (split — copy left, card right) ============ -->
+<section class="feat" id="book">
+  <div class="feat-split">
+    <div class="split-copy reveal">
+      <div class="kicker">§ 01 · Bookkeeping</div>
+      <h2>Every transaction, coded <em>the moment it clears.</em></h2>
+      <p class="lead">Direct Plaid feed. Zenday reads the vendor, applies your chart of accounts, and posts — with a confidence score and audit trail attached.</p>
+      <div class="bullets">
+        <div class="bullet"><span><b>Under 30 seconds</b> from clear to posted</span></div>
+        <div class="bullet"><span><b>Confidence-gated</b> auto-post above 95%, review queue below</span></div>
+        <div class="bullet"><span><b>Per-client learning</b> — corrections become permanent rules</span></div>
       </div>
-      <div class="lb-row" data-w="99%" style="--w:99%"><span class="t">11:42</span><div class="v">Adobe Creative Cloud<small class="cat">Software subscriptions</small></div><span class="a">$59.99</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">99%</span></span></div>
-      <div class="lb-row" data-w="94%" style="--w:94%"><span class="t">10:55</span><div class="v">DoorDash<small class="cat">Meals &amp; entertainment</small></div><span class="a">$87.50</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">94%</span></span></div>
-      <div class="lb-row" data-w="98%" style="--w:98%"><span class="t">09:22</span><div class="v">Stripe payout<small class="cat">Revenue · Invoice #4188</small></div><span class="a">$8,400.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">98%</span></span></div>
-      <div class="lb-row flag" data-w="34%" style="--w:34%"><span class="t">10:21</span><div class="v">Wire · ACH Transfer<small class="cat">No vendor match</small></div><span class="a">$15,000.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">34%</span></span></div>
+      <div class="stat-chip"><b>97%</b> · auto-post rate across the beta</div>
+    </div>
+    <div class="split-card reveal d2">
+      <div class="live-book" id="liveBook">
+        <div class="lb-h">
+          <div class="t">Bank feed · continuous</div>
+          <div class="meta"><span>Today · 147 posted</span><span class="live">live</span></div>
+        </div>
+        <div class="lb-row" data-w="99%" style="--w:99%"><span class="t">11:42</span><div class="v">Adobe Creative Cloud<small class="cat">Software subscriptions</small></div><span class="a">$59.99</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">99%</span></span></div>
+        <div class="lb-row" data-w="94%" style="--w:94%"><span class="t">10:55</span><div class="v">DoorDash<small class="cat">Meals &amp; entertainment</small></div><span class="a">$87.50</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">94%</span></span></div>
+        <div class="lb-row" data-w="98%" style="--w:98%"><span class="t">09:22</span><div class="v">Stripe payout<small class="cat">Revenue · Invoice #4188</small></div><span class="a">$8,400.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">98%</span></span></div>
+        <div class="lb-row flag" data-w="34%" style="--w:34%"><span class="t">10:21</span><div class="v">Wire · ACH Transfer<small class="cat">No vendor match</small></div><span class="a">$15,000.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">34%</span></span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -468,47 +521,63 @@ footer{padding:36px 0;background:var(--ink);border-top:1px solid rgba(245,239,22
   </div>
 </section>
 
-<!-- ============ § 02 · ASK ZEN (dark) ============ -->
+<!-- ============ § 02 · ASK ZEN (dark, split — card left, copy right) ============ -->
 <section class="feat zen dark" id="zen">
-  <div class="inner">
-    <div class="kicker reveal">§ 02 · Ask Zen · AI</div>
-    <h2 class="h-display reveal d1">An AI partner<br/><em>who's read every book.</em></h2>
-    <p class="h-sub reveal d2">Ask anything about any client. Zenday has full context — every transaction, reconciliation, email, and document — and answers with the source citations attached.</p>
-  </div>
-  <div class="feat-card reveal d3">
-    <div class="card-zen">
-      <div class="zen-h"><div class="zen-dot"></div><div class="t"><b>Ask Zen</b> · AppSphere Mobile</div></div>
-      <div class="zen-thread" id="zenThread">
-        <div class="zen-msg u" data-step="0"><div class="av">SM</div><div class="bub">What changed for AppSphere this month?</div></div>
-        <div class="zen-msg a" data-step="1"><div class="av">✦</div><div class="bub"><b>Revenue up 18% MoM</b> on the App Store payout. OpEx up <b>$2,400</b> from Firebase plan change on Mar 14. New vendor: Amplitude ($390/mo) — first occurrence, held for review.<div class="cites"><span>App Store</span><span>Firebase</span><span>Amplitude</span><span>P&amp;L</span></div></div></div>
-        <div class="zen-msg u" data-step="2"><div class="av">SM</div><div class="bub">Draft a note to the client about Amplitude.</div></div>
-        <div class="zen-msg a" data-step="3"><div class="av">✦</div><div class="bub" id="zenDraft"><span class="typing-dots"><span></span><span></span><span></span></span> <em style="color:rgba(245,239,228,.7);font-size:12.5px">drafting…</em></div></div>
+  <div class="feat-split rev">
+    <div class="split-copy reveal">
+      <div class="kicker">§ 02 · Ask Zen · AI</div>
+      <h2>An AI partner <em>who's read every book.</em></h2>
+      <p class="lead">Ask anything about any client. Zenday has full context — every transaction, reconciliation, email, and document — and answers with the source citations attached.</p>
+      <div class="bullets">
+        <div class="bullet"><span><b>Cited answers</b> — every claim links back to source</span></div>
+        <div class="bullet"><span><b>Context-aware</b> — knows which client, what's pending</span></div>
+        <div class="bullet"><span><b>Drafts the next action</b> — email, task, or entry</span></div>
+      </div>
+    </div>
+    <div class="split-card reveal d2">
+      <div class="card-zen">
+        <div class="zen-h"><div class="zen-dot"></div><div class="t"><b>Ask Zen</b> · AppSphere Mobile</div></div>
+        <div class="zen-thread" id="zenThread">
+          <div class="zen-msg u" data-step="0"><div class="av">SM</div><div class="bub">What changed for AppSphere this month?</div></div>
+          <div class="zen-msg a" data-step="1"><div class="av">✦</div><div class="bub"><b>Revenue up 18% MoM</b> on the App Store payout. OpEx up <b>$2,400</b> from Firebase plan change on Mar 14. New vendor: Amplitude ($390/mo) — first occurrence, held for review.<div class="cites"><span>App Store</span><span>Firebase</span><span>Amplitude</span><span>P&amp;L</span></div></div></div>
+          <div class="zen-msg u" data-step="2"><div class="av">SM</div><div class="bub">Draft a note to the client about Amplitude.</div></div>
+          <div class="zen-msg a" data-step="3"><div class="av">✦</div><div class="bub" id="zenDraft"><span class="typing-dots"><span></span><span></span><span></span></span> <em style="color:rgba(251,249,244,.7);font-size:12.5px">drafting…</em></div></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ § 03 · RECONCILIATION (light, stacked card) ============ -->
+<!-- ============ § 03 · RECONCILIATION (split — copy left, stacked card right) ============ -->
 <section class="feat" id="recon">
-  <div class="inner">
-    <div class="kicker reveal">§ 03 · Reconciliation</div>
-    <h2 class="h-display reveal d1">Every account,<br/><em>matched continuously.</em></h2>
-    <p class="h-sub reveal d2">Bank, credit card, AP, AR, payroll — reconciled as transactions clear, not at month-end. Variance flagged in real time. Nine anomaly types watched automatically.</p>
-  </div>
-  <div class="recon-wrap reveal d3">
-    <div class="recon-stack s1"></div>
-    <div class="recon-stack s2"></div>
-    <div class="recon-main">
-      <div class="rh">
-        <div class="t">Reconciliations · AppSphere Mobile</div>
-        <div class="meta">10 accounts · <b>1 variance</b></div>
+  <div class="feat-split">
+    <div class="split-copy reveal">
+      <div class="kicker">§ 03 · Reconciliation</div>
+      <h2>Every account, <em>matched continuously.</em></h2>
+      <p class="lead">Bank, credit card, AP, AR, payroll — reconciled as transactions clear, not at month-end. Variance flagged in real time.</p>
+      <div class="bullets">
+        <div class="bullet"><span><b>9 anomaly types</b> watched automatically</span></div>
+        <div class="bullet"><span><b>Real-time variance</b> — not discovered month-end</span></div>
+        <div class="bullet"><span><b>One held for review</b> — the rest just reconcile</span></div>
       </div>
-      <div class="r-row"><div class="n">Business Checking<small>****5437</small></div><span class="b">$126,309.84</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
-      <div class="r-row"><div class="n">Business Savings<small>****8217</small></div><span class="b">$53,965.72</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
-      <div class="r-row"><div class="n">Business Credit Card<small>****8471</small></div><span class="b">$5,654.32</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
-      <div class="r-row"><div class="n">Amex Business<small>****5004</small></div><span class="b">$2,858.73</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
-      <div class="r-row"><div class="n">Accounts Payable<small>(2000)</small></div><span class="b">$34,250.00</span><span class="ty">AP</span><span class="s ok">✓</span></div>
-      <div class="r-row"><div class="n">Payroll Clearing<small>(2150)</small></div><span class="b">$2,526.20</span><span class="ty">Payroll</span><span class="s w">⚠</span></div>
+      <div class="stat-chip"><b>10 accounts</b> · 1 variance today</div>
+    </div>
+    <div class="split-card reveal d2">
+      <div class="recon-wrap">
+        <div class="recon-stack s1"></div>
+        <div class="recon-stack s2"></div>
+        <div class="recon-main">
+          <div class="rh">
+            <div class="t">Reconciliations · AppSphere Mobile</div>
+            <div class="meta">10 accounts · <b>1 variance</b></div>
+          </div>
+          <div class="r-row"><div class="n">Business Checking<small>****5437</small></div><span class="b">$126,309.84</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
+          <div class="r-row"><div class="n">Business Savings<small>****8217</small></div><span class="b">$53,965.72</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
+          <div class="r-row"><div class="n">Amex Business<small>****5004</small></div><span class="b">$2,858.73</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
+          <div class="r-row"><div class="n">Accounts Payable<small>(2000)</small></div><span class="b">$34,250.00</span><span class="ty">AP</span><span class="s ok">✓</span></div>
+          <div class="r-row"><div class="n">Payroll Clearing<small>(2150)</small></div><span class="b">$2,526.20</span><span class="ty">Payroll</span><span class="s w">⚠</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
