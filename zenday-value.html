@@ -10,14 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;450;500;600&display=swap" rel="stylesheet" />
 <style>
 /* =============================================================
-   ZENDAY · Value rebuild 2026.04
-   ---------------------------------------------------------------
-   THEME: Quiet financial intelligence. Warm editorial meets
-   terminal. Nothing shouts. Everything breathes.
-   PALETTE: 3 colors · cream, ink, terracotta. Amber on dark.
-   STRUCTURE: alternating light/dark sections, single-column,
-   one custom illustrated card per section, lots of whitespace.
-   ANIMATION: scroll-triggered fade-ups only. Quiet motion.
+   ZENDAY · Value rebuild — Alive, not static.
+   Inspired by Alden's asymmetric floating-card hero + per-section
+   micro-product animations. Theme: quiet financial intelligence.
    ============================================================= */
 
 :root{
@@ -28,24 +23,28 @@
   --ink-2:#1D1915;
   --ink-3:#3C362C;
   --ink-soft:rgba(10,8,7,.72);
-  --ink-mute:rgba(10,8,7,.54);
+  --ink-mute:rgba(10,8,7,.48);
   --mute:#8C8576;
   --mute-2:#B5AE9E;
   --line:#D9D1BE;
-  --line-soft:rgba(10,8,7,.08);
+  --line-soft:rgba(10,8,7,.07);
   --accent:#B55C37;
   --accent-ink:#964625;
   --accent-soft:#F3DBCC;
-  --accent-warm:#D99A3A;
-  --accent-amber:#E8A23D;
+  --amber:#D99A3A;
+  --sage:#7A9472;
+  --sage-soft:#DCE5D4;
+  --blush:#C88B7D;
+  --blush-soft:#F0D9D0;
   --purple:#8B5CF6;
   --purple-2:#C084FC;
-  --green:#4A7A52;
+  --purple-soft:#F0E7FE;
   --serif:'IBM Plex Serif', Georgia, serif;
   --sans:'Inter', -apple-system, system-ui, sans-serif;
   --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
-  --shadow-card:0 1px 2px rgba(10,8,7,.05), 0 20px 50px -12px rgba(10,8,7,.14), 0 40px 80px -20px rgba(10,8,7,.08);
-  --shadow-card-dark:0 1px 2px rgba(0,0,0,.3), 0 30px 70px -10px rgba(0,0,0,.5), 0 50px 100px -30px rgba(181,92,55,.16);
+  --shadow-card:0 1px 2px rgba(10,8,7,.04), 0 20px 48px -12px rgba(10,8,7,.12), 0 40px 80px -20px rgba(10,8,7,.06);
+  --shadow-card-lg:0 2px 4px rgba(10,8,7,.05), 0 40px 80px -16px rgba(10,8,7,.16), 0 60px 120px -30px rgba(10,8,7,.08);
+  --shadow-dark:0 1px 2px rgba(0,0,0,.3), 0 30px 70px -10px rgba(0,0,0,.5);
 }
 
 *{box-sizing:border-box}
@@ -54,31 +53,35 @@ body{font-size:16px;line-height:1.55;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--ink);color:var(--cream)}
 
-.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
-.inner{max-width:880px;margin:0 auto;padding:0 40px;text-align:center}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px;position:relative}
+.inner{max-width:900px;margin:0 auto;padding:0 40px;text-align:center;position:relative}
 .mono{font-family:var(--mono);font-feature-settings:"tnum"}
 
-/* ============ SHARED TYPOGRAPHY ============ */
-.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;display:inline-flex;align-items:center;gap:10px;margin-bottom:28px}
+/* ============ SHARED TYPE ============ */
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;display:inline-flex;align-items:center;gap:10px;margin-bottom:26px}
 .kicker::before{content:"§";font-family:var(--serif);font-style:italic;font-weight:500;font-size:15px;line-height:1;transform:translateY(-1px)}
 .h-display{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.4vw,68px);line-height:1.02;letter-spacing:-.028em;margin:0;text-wrap:balance}
 .h-display em{font-style:italic;color:var(--accent);font-weight:400}
-.h-sub{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink-soft);max-width:520px;margin:18px auto 0;font-weight:400;letter-spacing:-.005em}
+.h-sub{font-family:var(--sans);font-size:17.5px;line-height:1.55;color:var(--ink-soft);max-width:540px;margin:20px auto 0;font-weight:400;letter-spacing:-.005em}
 .h-sub b{color:var(--ink);font-weight:500}
 
-/* Dark-section overrides */
 .dark{background:var(--ink);color:var(--cream)}
-.dark .kicker{color:var(--accent-amber)}
-.dark .h-display em{color:var(--accent-amber)}
+.dark .kicker{color:var(--amber)}
+.dark .h-display em{color:var(--amber)}
 .dark .h-sub{color:rgba(245,239,228,.72)}
 .dark .h-sub b{color:var(--cream)}
+
+/* Highlighter — words highlighted in soft colors, like Alden */
+.hl-sage{background:linear-gradient(180deg,transparent 55%,var(--sage-soft) 55%);padding:0 3px}
+.hl-blush{background:linear-gradient(180deg,transparent 55%,var(--blush-soft) 55%);padding:0 3px}
+.hl-amber{background:linear-gradient(180deg,transparent 55%,var(--accent-soft) 55%);padding:0 3px}
 
 /* ============ BUTTONS ============ */
 .btn{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;font-size:13.5px;font-weight:450;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;border-radius:999px;transition:all .2s ease;font-family:var(--sans)}
 .btn:hover{transform:translateY(-1px)}
 .btn.p{background:var(--ink);color:var(--cream);border-color:var(--ink)}
 .btn.p:hover{background:var(--ink-2)}
-.btn.o{background:transparent;color:var(--ink);border-color:rgba(10,8,7,.18)}
+.btn.o{background:transparent;color:var(--ink);border-color:rgba(10,8,7,.2)}
 .btn.o:hover{border-color:var(--ink)}
 .btn.big{padding:13px 24px;font-size:14px}
 .dark .btn.p{background:var(--cream);color:var(--ink);border-color:var(--cream)}
@@ -90,177 +93,218 @@ a{color:inherit;text-decoration:none}
 
 /* ============ NAV ============ */
 nav.top{position:sticky;top:0;z-index:60;background:rgba(245,239,228,.82);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line-soft)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1200px;margin:0 auto;padding:0 40px}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1240px;margin:0 auto;padding:0 40px}
 .brand{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.022em;display:flex;align-items:baseline;gap:2px}
 .brand em{font-style:italic;color:var(--accent)}
-.nav-links{display:flex;gap:30px;font-size:13px;color:var(--ink-2);font-weight:450;letter-spacing:-.005em}
+.nav-links{display:flex;gap:30px;font-size:13px;color:var(--ink-2);font-weight:450}
 .nav-links a:hover{color:var(--accent)}
-.nav-cta{display:flex;gap:8px;align-items:center}
+.nav-cta{display:flex;gap:8px}
 
-/* ============ ENTRANCE ANIMATIONS ============ */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.2,.7,.3,1), transform .9s cubic-bezier(.2,.7,.3,1)}
+/* Reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 1s cubic-bezier(.2,.7,.3,1),transform 1s cubic-bezier(.2,.7,.3,1)}
 .reveal.on{opacity:1;transform:translateY(0)}
-.reveal.delay-1{transition-delay:.08s}
-.reveal.delay-2{transition-delay:.16s}
-.reveal.delay-3{transition-delay:.24s}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
 
-/* ============ HERO ============ */
-.hero{padding:96px 0 140px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;left:50%;top:-100px;transform:translateX(-50%);width:1000px;height:380px;z-index:0;pointer-events:none;background:radial-gradient(480px 200px at 50% 50%, rgba(181,92,55,.08), transparent 70%);filter:blur(22px)}
-.hero .inner{position:relative;z-index:1}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6.2vw,84px);line-height:1;letter-spacing:-.032em;margin:24px 0 22px;color:var(--ink);text-wrap:balance}
+/* ============ HERO — floating multi-card like Alden ============ */
+.hero{padding:80px 0 100px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;left:50%;top:-140px;transform:translateX(-50%);width:1200px;height:500px;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(480px 200px at 30% 40%, rgba(181,92,55,.09), transparent 70%),
+    radial-gradient(420px 180px at 70% 60%, rgba(139,92,246,.07), transparent 70%);
+  filter:blur(30px)}
+.hero .inner{position:relative;z-index:2}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6.2vw,84px);line-height:1;letter-spacing:-.032em;margin:22px 0 20px;text-wrap:balance}
 .hero h1 em{font-style:italic;color:var(--accent);font-weight:400}
-.hero .h-sub{font-size:18.5px;max-width:560px}
 .hero-cta{margin-top:38px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.hero-trust{margin-top:32px;display:flex;justify-content:center;gap:28px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);flex-wrap:wrap}
+.hero-trust{margin-top:30px;display:flex;justify-content:center;gap:28px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);flex-wrap:wrap}
 .hero-trust b{color:var(--ink);font-weight:500}
 
-/* Hero card — composed illustration, not a real product shot */
-.hero-card-wrap{margin:92px auto 0;max-width:880px;padding:0 40px;position:relative;perspective:1600px}
-.hero-card-wrap::before{content:"";position:absolute;inset:-40px;background:radial-gradient(600px 220px at 50% 60%, rgba(181,92,55,.08), transparent 70%);pointer-events:none;z-index:-1}
-.hero-card{background:#FFFFFD;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow-card);transform:rotateX(2deg) rotateY(-.5deg);transition:transform .6s cubic-bezier(.2,.8,.3,1)}
-.hero-card:hover{transform:rotateX(0) rotateY(0)}
-.hero-card .hc-h{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--line-soft);margin-bottom:14px}
-.hero-card .hc-brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:500;font-size:15px;letter-spacing:-.015em}
-.hero-card .hc-brand::before{content:"Z";width:24px;height:24px;background:var(--ink);color:var(--cream);display:grid;place-items:center;font-weight:700;font-size:12px;border-radius:6px;font-style:italic;font-family:var(--serif)}
-.hero-card .hc-tag{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;display:flex;gap:12px}
-.hero-card .hc-tag .live{color:var(--accent);display:inline-flex;align-items:center;gap:5px}
-.hero-card .hc-tag .live::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite}
+/* Hero card stage — 3 floating cards arranged asymmetrically */
+.stage{margin:80px auto 0;max-width:1200px;padding:0 20px;position:relative;min-height:360px}
+.stage-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center}
+.f-card{background:#FFFFFD;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow-card);position:relative;transition:transform .5s cubic-bezier(.2,.8,.3,1)}
+.f-card:hover{transform:translateY(-6px) rotate(0) !important}
+@keyframes floatA{0%,100%{transform:translateY(0) rotate(-2.5deg)}50%{transform:translateY(-8px) rotate(-2deg)}}
+@keyframes floatB{0%,100%{transform:translateY(0) rotate(1.5deg)}50%{transform:translateY(-10px) rotate(1.8deg)}}
+@keyframes floatC{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-6px) rotate(-.5deg)}}
+.f-card.a{grid-column:1/span 4;animation:floatA 6s ease-in-out infinite;margin-top:30px}
+.f-card.b{grid-column:5/span 4;animation:floatB 7s ease-in-out infinite;margin-top:-20px;z-index:2}
+.f-card.c{grid-column:9/span 4;animation:floatC 6.5s ease-in-out infinite;margin-top:50px}
+
+/* Card A — chat moment (purple AI) */
+.f-card.a{background:linear-gradient(180deg,#fff,#fcfaff);border-color:rgba(139,92,246,.18)}
+.f-card.a .h{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:12px}
+.f-card.a .h .d{width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple-2));box-shadow:0 0 8px rgba(139,92,246,.6)}
+.f-card.a .h b{color:var(--purple)}
+.f-card.a .q{font-family:var(--sans);font-size:12.5px;color:var(--ink-2);background:var(--cream);padding:9px 12px;border-radius:10px;border-top-left-radius:4px;margin-bottom:8px;letter-spacing:-.003em}
+.f-card.a .a{font-family:var(--sans);font-size:12.5px;color:var(--ink-2);background:var(--purple-soft);border:1px solid rgba(139,92,246,.2);padding:9px 12px;border-radius:10px;border-top-left-radius:4px;line-height:1.45;letter-spacing:-.003em}
+.f-card.a .a b{color:var(--ink);font-weight:500}
+.f-card.a .chips{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
+.f-card.a .chips span{font-family:var(--mono);font-size:9.5px;padding:2px 6px;background:#fff;border:1px solid rgba(139,92,246,.15);border-radius:4px;color:var(--mute);letter-spacing:.02em}
+
+/* Card B — transaction getting coded (live) */
+.f-card.b{background:#fff}
+.f-card.b .h{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:14px}
+.f-card.b .h .live{color:var(--accent);display:inline-flex;align-items:center;gap:5px}
+.f-card.b .h .live::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 1.6s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.hero-card .hc-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;padding:6px 0 10px}
-.hero-card .hc-list{display:flex;flex-direction:column;gap:2px}
-.hero-card .hc-row{display:grid;grid-template-columns:1fr auto auto auto;gap:10px;padding:8px 10px;font-family:var(--sans);font-size:12.5px;color:var(--ink-2);border-radius:6px;align-items:center}
-.hero-card .hc-row:hover{background:var(--cream)}
-.hero-card .hc-row.on{background:var(--cream);position:relative}
-.hero-card .hc-row.on::before{content:"";position:absolute;left:-10px;top:50%;transform:translateY(-50%);width:3px;height:14px;background:var(--accent);border-radius:2px}
-.hero-card .hc-row .name{font-weight:500;letter-spacing:-.005em}
-.hero-card .hc-row .n{font-family:var(--mono);font-size:10.5px;color:var(--mute);min-width:28px;text-align:right}
-.hero-card .hc-row .n.hl{color:var(--accent);font-weight:600}
-.hero-card .hc-row .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
-.hero-card .hc-row.flag .dot{background:var(--accent);animation:pulse 1.8s infinite}
-.hero-card .hc-kpis{display:flex;flex-direction:column;gap:8px}
-.hero-card .hc-kpi{padding:12px 14px;background:var(--cream);border-radius:8px}
-.hero-card .hc-kpi .l{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:3px;font-weight:600}
-.hero-card .hc-kpi .v{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.02em;line-height:1}
-.hero-card .hc-kpi .v .u{font-family:var(--sans);font-size:11px;color:var(--mute);font-style:italic;margin-left:3px;letter-spacing:0}
-.hero-card .hc-kpi.amber .v{color:var(--accent)}
-.hero-card .hc-foot{display:flex;justify-content:space-between;padding:12px 10px 4px;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
-.hero-card .hc-foot b{color:var(--ink);font-weight:500}
+.f-card.b .tx-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;padding:9px 0;border-bottom:1px dotted var(--line);align-items:center;font-family:var(--sans);font-size:12.5px}
+.f-card.b .tx-row:last-child{border-bottom:0}
+.f-card.b .tx-row .vn{font-weight:500;letter-spacing:-.003em}
+.f-card.b .tx-row .vn small{display:block;font-family:var(--mono);font-size:9.5px;color:var(--mute);font-weight:400;margin-top:1px;letter-spacing:.02em}
+.f-card.b .tx-row .am{font-family:var(--mono);font-weight:500;font-size:11.5px;color:var(--ink)}
+.f-card.b .tx-row .badge{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase}
+.f-card.b .tx-row .badge.ok{background:var(--sage-soft);color:var(--sage)}
+.f-card.b .tx-row .badge.warn{background:var(--blush-soft);color:var(--blush)}
+.f-card.b .typed{overflow:hidden;white-space:nowrap;display:inline-block;border-right:1.5px solid var(--accent);animation:typing 3s steps(20,end) .8s both, caret .7s step-end infinite .8s;max-width:0}
+@keyframes typing{from{max-width:0}to{max-width:120px}}
+@keyframes caret{50%{border-color:transparent}}
 
-/* ============ FEATURE SECTION · single focus ============ */
-.feat{padding:160px 0;position:relative;overflow:hidden}
+/* Card C — reconciliation match moment */
+.f-card.c{background:#fff}
+.f-card.c .h{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:14px}
+.f-card.c .h b{color:var(--sage)}
+.f-card.c .row{display:grid;grid-template-columns:1fr auto auto;gap:8px;padding:8px 0;border-bottom:1px dotted var(--line);font-family:var(--sans);font-size:12px;align-items:center}
+.f-card.c .row:last-child{border-bottom:0}
+.f-card.c .row .n{font-weight:500;letter-spacing:-.003em}
+.f-card.c .row .n small{font-family:var(--mono);color:var(--mute);font-weight:400;margin-left:4px}
+.f-card.c .row .v{font-family:var(--mono);font-size:11px;font-weight:500}
+.f-card.c .row .st{text-align:center;width:18px;font-size:12px}
+.f-card.c .row .st.ok{color:var(--sage)}
+.f-card.c .row .st.w{color:var(--blush);animation:pulse 1.6s infinite}
+
+/* ============ FEATURE SECTION ============ */
+.feat{padding:140px 0;position:relative;overflow:hidden}
+.feat .inner{max-width:780px}
+.feat-card{margin:72px auto 0;max-width:820px;padding:0 40px;position:relative}
 .feat.dark{background:var(--ink);color:var(--cream)}
-.feat.dark::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 1px 1px, rgba(245,239,228,.025) 1px, transparent 1px);background-size:28px 28px;mask-image:radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%)}
-.feat .inner{position:relative;z-index:1}
-.feat-card{margin:84px auto 0;max-width:720px;position:relative}
+.feat.dark::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 1px 1px, rgba(245,239,228,.025) 1px, transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%)}
+.feat .inner,.feat-card{position:relative;z-index:1}
 
-/* ============ CARD 01 · BOOKKEEPING ============ */
-.card-book{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:24px 28px;box-shadow:var(--shadow-card-dark);position:relative}
-.feat:not(.dark) .card-book{box-shadow:var(--shadow-card);background:#fff}
-.card-book .cb-h{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--line-soft);margin-bottom:18px}
-.card-book .cb-t{font-family:var(--serif);font-weight:500;font-size:15px;color:var(--ink);letter-spacing:-.01em}
-.card-book .cb-s{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:500}
-.tx{display:grid;grid-template-columns:48px 1fr auto 70px;gap:12px;padding:11px 12px;font-family:var(--sans);font-size:13px;color:var(--ink-2);border-radius:8px;align-items:center;border:1px solid transparent;background:#FFFFFD;margin-bottom:6px}
-.tx.flag{background:var(--accent-soft);border-color:rgba(181,92,55,.2)}
-.tx .t{font-family:var(--mono);font-size:10.5px;color:var(--mute)}
-.tx .v{font-weight:500;letter-spacing:-.005em;line-height:1.2}
-.tx .v small{display:block;font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:400;margin-top:1px;letter-spacing:.02em}
-.tx .a{font-family:var(--mono);font-weight:500;font-size:12px;text-align:right}
-.tx .conf{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
-.tx .conf-bar{width:54px;height:3px;background:var(--line);border-radius:2px;overflow:hidden;position:relative}
-.tx .conf-bar::before{content:"";display:block;height:100%;background:var(--green);width:var(--w,0%);transition:width 1.2s cubic-bezier(.2,.8,.3,1) .3s;border-radius:2px}
-.tx.flag .conf-bar::before{background:var(--accent);width:var(--w,34%)}
-.tx .conf-n{font-family:var(--mono);font-size:9.5px;color:var(--mute);letter-spacing:.02em;font-weight:500}
-.reveal.on .conf-bar::before{width:var(--w)}
-.tx.flag .conf-n{color:var(--accent)}
+/* ============ BOOKKEEPING LIVE CARD (light section) ============ */
+.live-book{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0;box-shadow:var(--shadow-card-lg);overflow:hidden}
+.feat.dark .live-book{background:var(--cream);box-shadow:var(--shadow-dark)}
+.lb-h{display:flex;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--line-soft);background:#FFFFFD;align-items:center}
+.feat.dark .lb-h{background:var(--cream-2)}
+.lb-h .t{font-family:var(--serif);font-weight:500;font-size:15px;letter-spacing:-.01em;color:var(--ink)}
+.lb-h .meta{display:flex;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.lb-h .live{color:var(--accent);display:inline-flex;align-items:center;gap:5px}
+.lb-h .live::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 1.6s infinite}
+.lb-row{display:grid;grid-template-columns:60px 1fr auto 90px;gap:14px;padding:12px 24px;font-family:var(--sans);font-size:13.5px;color:var(--ink-2);border-bottom:1px solid var(--line-soft);align-items:center;opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .6s ease}
+.lb-row.on{opacity:1;transform:translateY(0)}
+.lb-row:last-child{border-bottom:0}
+.lb-row.flag{background:var(--accent-soft)}
+.lb-row .t{font-family:var(--mono);font-size:10.5px;color:var(--mute)}
+.lb-row .v{font-weight:500;letter-spacing:-.003em}
+.lb-row .v small{display:block;font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:400;margin-top:1px;letter-spacing:.02em}
+.lb-row .v small.cat{color:var(--sage);font-weight:500}
+.lb-row.flag .v small.cat{color:var(--accent)}
+.lb-row .a{font-family:var(--mono);font-weight:500;font-size:12px;text-align:right}
+.lb-row .conf{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.lb-row .conf-bar{width:48px;height:3px;background:var(--line);border-radius:2px;overflow:hidden;position:relative}
+.lb-row .conf-bar::after{content:"";position:absolute;left:0;top:0;height:100%;width:0;background:var(--sage);border-radius:2px;transition:width 1.2s cubic-bezier(.2,.8,.3,1)}
+.lb-row.flag .conf-bar::after{background:var(--accent)}
+.lb-row.on .conf-bar::after{width:var(--w,0)}
+.lb-row .conf-n{font-family:var(--mono);font-size:9.5px;color:var(--mute);font-weight:600;min-width:28px;text-align:right}
+.lb-row.flag .conf-n{color:var(--accent)}
 
-/* ============ CARD 02 · ASK ZEN CHAT ============ */
-.card-chat{background:var(--ink);border:1px solid rgba(245,239,228,.08);border-radius:18px;padding:26px;box-shadow:var(--shadow-card-dark);position:relative;overflow:hidden}
-.card-chat::before{content:"";position:absolute;top:-60%;left:-20%;width:140%;height:200%;background:radial-gradient(400px 260px at 20% 20%, rgba(139,92,246,.22), transparent 60%), radial-gradient(400px 260px at 80% 80%, rgba(192,132,252,.12), transparent 60%);pointer-events:none}
-.card-chat > *{position:relative;z-index:1}
-.card-chat .cc-h{display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid rgba(245,239,228,.08);margin-bottom:18px}
-.card-chat .cc-dot{width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple-2));box-shadow:0 0 10px rgba(139,92,246,.6)}
-.card-chat .cc-t{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,239,228,.72);font-weight:600}
-.card-chat .cc-t b{color:#E9D5FF;font-weight:700}
-.msg{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}
-.msg .av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-family:var(--sans);font-size:10px;font-weight:600;flex-shrink:0}
-.msg.u .av{background:rgba(245,239,228,.1);color:var(--cream)}
-.msg.a .av{background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff}
-.msg .bub{padding:11px 14px;border-radius:12px;font-family:var(--sans);font-size:13.5px;line-height:1.5;letter-spacing:-.005em;max-width:86%}
-.msg.u .bub{background:rgba(245,239,228,.08);color:var(--cream);border-top-left-radius:4px}
-.msg.a .bub{background:rgba(139,92,246,.14);color:rgba(245,239,228,.94);border:1px solid rgba(139,92,246,.3);border-top-left-radius:4px}
-.msg.a .bub b{color:#F0E0FF;font-weight:500}
-.msg .cites{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
-.msg .cites span{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:4px;background:rgba(245,239,228,.06);color:rgba(245,239,228,.8);border:1px solid rgba(245,239,228,.1);letter-spacing:.02em}
-.typing{display:inline-flex;gap:3px;align-items:center}
-.typing span{width:5px;height:5px;border-radius:50%;background:rgba(245,239,228,.5);animation:typing 1.4s infinite}
-.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
-@keyframes typing{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-3px);opacity:1}}
-.card-chat .cc-input{margin-top:14px;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(245,239,228,.04);border:1px solid rgba(245,239,228,.08);border-radius:10px;font-family:var(--sans);font-size:12.5px;color:rgba(245,239,228,.46);letter-spacing:-.005em}
-.card-chat .cc-input .send{width:22px;height:22px;border-radius:5px;background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff;display:grid;place-items:center;font-size:11px;font-weight:600}
+/* ============ BIG STAT (Alden move) ============ */
+.stat-moment{padding:140px 0;text-align:center;position:relative}
+.stat-moment .inner{max-width:780px}
+.stat-moment .n{font-family:var(--serif);font-weight:300;font-size:clamp(120px,18vw,220px);line-height:1;letter-spacing:-.05em;color:var(--ink);font-feature-settings:"tnum";margin:0;display:inline-flex;align-items:baseline;justify-content:center}
+.stat-moment .n .u{font-family:var(--serif);font-style:italic;font-size:.22em;color:var(--accent);font-weight:400;margin-left:.04em;margin-top:.08em}
+.stat-moment .caption{font-family:var(--serif);font-size:clamp(22px,2.6vw,32px);font-style:italic;font-weight:400;color:var(--ink-2);line-height:1.3;margin-top:26px;letter-spacing:-.015em;text-wrap:balance;max-width:680px;margin-left:auto;margin-right:auto}
+.stat-moment .caption b{color:var(--accent);font-style:italic;font-weight:500}
 
-/* ============ CARD 03 · RECONCILIATION (stacked) ============ */
-.card-recon-wrap{position:relative;padding:20px 0}
-.card-recon-wrap .stack{position:absolute;border-radius:14px;border:1px solid var(--line);background:var(--cream-2);left:50%;transform:translateX(-50%);width:84%}
-.card-recon-wrap .stack.s1{top:-12px;height:calc(100% + 8px);opacity:.5;transform:translateX(-50%) rotate(-1.5deg)}
-.card-recon-wrap .stack.s2{top:-6px;height:calc(100% + 4px);opacity:.8;transform:translateX(-50%) rotate(.8deg);width:90%}
-.feat.dark .card-recon-wrap .stack{background:rgba(245,239,228,.05);border-color:rgba(245,239,228,.1)}
-.card-recon{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 28px;box-shadow:var(--shadow-card);position:relative;z-index:2}
-.feat.dark .card-recon{background:var(--cream);box-shadow:var(--shadow-card-dark)}
-.card-recon .cr-h{display:flex;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--line-soft);margin-bottom:14px;align-items:baseline}
-.card-recon .cr-t{font-family:var(--serif);font-weight:500;font-size:15px;color:var(--ink);letter-spacing:-.01em}
-.card-recon .cr-meta{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:500}
-.rr{display:grid;grid-template-columns:1fr 80px 60px 18px;gap:12px;padding:10px 4px;font-family:var(--sans);font-size:13px;color:var(--ink-2);border-bottom:1px solid var(--line-soft);align-items:center}
-.rr:last-child{border-bottom:0}
-.rr .name{font-weight:500;letter-spacing:-.005em;display:flex;align-items:center;gap:8px}
-.rr .name small{font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:400}
-.rr .bal{font-family:var(--mono);font-size:11.5px;color:var(--ink);font-weight:500;text-align:right;font-feature-settings:"tnum"}
-.rr .type{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:right;font-weight:600}
-.rr .st{text-align:center;font-size:13px}
-.rr .st.ok{color:var(--green)}
-.rr .st.war{color:var(--accent);animation:pulse 1.8s infinite}
+/* ============ ASK ZEN DARK SECTION ============ */
+.feat.zen{background:var(--ink)}
+.feat.zen::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(600px 280px at 50% 50%, rgba(139,92,246,.18), transparent 70%);filter:blur(24px);z-index:0}
+.card-zen{background:#12101A;border:1px solid rgba(139,92,246,.25);border-radius:18px;padding:28px;box-shadow:0 40px 100px -20px rgba(139,92,246,.3),0 0 0 1px rgba(245,239,228,.04);position:relative;overflow:hidden}
+.card-zen::before{content:"";position:absolute;top:-50%;left:-20%;width:140%;height:200%;background:radial-gradient(300px 200px at 20% 30%, rgba(139,92,246,.14), transparent 60%),radial-gradient(300px 200px at 80% 70%, rgba(192,132,252,.1), transparent 60%);pointer-events:none}
+.card-zen > *{position:relative;z-index:1}
+.zen-h{display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid rgba(245,239,228,.08);margin-bottom:20px}
+.zen-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple-2));box-shadow:0 0 10px rgba(139,92,246,.6)}
+.zen-h .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,239,228,.7);font-weight:600}
+.zen-h .t b{color:#E9D5FF;font-weight:700}
+.zen-thread{display:flex;flex-direction:column;gap:12px}
+.zen-msg{display:flex;gap:10px;align-items:flex-start;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.zen-msg.on{opacity:1;transform:translateY(0)}
+.zen-msg .av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-family:var(--sans);font-size:10px;font-weight:600;flex-shrink:0}
+.zen-msg.u .av{background:rgba(245,239,228,.08);color:var(--cream)}
+.zen-msg.a .av{background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff}
+.zen-msg .bub{padding:11px 14px;border-radius:12px;font-family:var(--sans);font-size:13.5px;line-height:1.5;letter-spacing:-.005em;max-width:86%}
+.zen-msg.u .bub{background:rgba(245,239,228,.08);color:var(--cream);border-top-left-radius:4px}
+.zen-msg.a .bub{background:rgba(139,92,246,.14);color:rgba(245,239,228,.95);border:1px solid rgba(139,92,246,.3);border-top-left-radius:4px}
+.zen-msg.a .bub b{color:#F0E0FF;font-weight:500}
+.cites{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
+.cites span{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:4px;background:rgba(245,239,228,.06);color:rgba(245,239,228,.8);border:1px solid rgba(245,239,228,.1);letter-spacing:.02em}
+.typing-dots{display:inline-flex;gap:3px;align-items:center;padding:2px 0}
+.typing-dots span{width:5px;height:5px;border-radius:50%;background:rgba(245,239,228,.5);animation:tbounce 1.4s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes tbounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-3px);opacity:1}}
 
-/* ============ CARD 04 · CLOSE PACKAGE ============ */
-.card-close{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 30px;box-shadow:var(--shadow-card);position:relative}
-.feat.dark .card-close{background:var(--cream);box-shadow:var(--shadow-card-dark)}
-.card-close .cc-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:1.5px solid var(--ink);margin-bottom:18px}
-.card-close .cc-title{font-family:var(--serif);font-weight:500;font-size:16px;color:var(--ink);letter-spacing:-.015em}
-.card-close .cc-title small{display:block;font-family:var(--serif);font-style:italic;font-size:12px;color:var(--mute);font-weight:400;margin-top:2px}
-.card-close .cc-tag{font-family:var(--mono);font-size:9.5px;font-weight:700;background:var(--accent);color:var(--cream);padding:4px 10px;border-radius:999px;letter-spacing:.14em;text-transform:uppercase}
-.card-close .cc-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
-.card-close .pl-row{display:flex;justify-content:space-between;padding:7px 0;font-family:var(--serif);font-size:13px;color:var(--ink-2);border-bottom:1px dotted var(--line)}
-.card-close .pl-row:last-of-type{border-bottom:0}
-.card-close .pl-row.neg{color:var(--mute);font-style:italic}
-.card-close .pl-row .v{font-family:var(--mono);font-weight:500;color:var(--ink)}
-.card-close .pl-row.total{border-top:1.5px solid var(--ink);border-bottom:0;padding-top:10px;margin-top:4px;font-weight:700;font-size:14.5px;color:var(--ink)}
-.card-close .nar{background:var(--cream);border-left:2px solid var(--accent);padding:14px 16px;border-radius:4px}
-.card-close .nar-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px}
-.card-close .nar p{font-family:var(--serif);font-size:12.5px;line-height:1.55;color:var(--ink-2);margin:0 0 8px}
-.card-close .nar p b{color:var(--ink);font-weight:500}
-.card-close .nar p:last-child{margin:0}
+/* ============ RECONCILIATION LIGHT SECTION ============ */
+.recon-wrap{position:relative;max-width:760px;margin:72px auto 0;padding:30px 40px 0}
+.recon-stack{position:absolute;inset:30px 40px 0 40px;background:var(--cream-2);border:1px solid var(--line);border-radius:14px;transform-origin:center top}
+.recon-stack.s1{transform:translateY(-10px) rotate(-1.2deg);opacity:.6}
+.recon-stack.s2{transform:translateY(-5px) rotate(.7deg);opacity:.85}
+.recon-main{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 26px;box-shadow:var(--shadow-card-lg);position:relative;z-index:2}
+.recon-main .rh{display:flex;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--line-soft);margin-bottom:14px;align-items:baseline}
+.recon-main .rh .t{font-family:var(--serif);font-weight:500;font-size:15px;letter-spacing:-.01em}
+.recon-main .rh .meta{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.recon-main .rh .meta b{color:var(--accent)}
+.r-row{display:grid;grid-template-columns:1fr auto 70px 24px;gap:14px;padding:11px 4px;font-family:var(--sans);font-size:13.5px;color:var(--ink-2);border-bottom:1px solid var(--line-soft);align-items:center}
+.r-row:last-child{border-bottom:0}
+.r-row .n{font-weight:500;letter-spacing:-.003em}
+.r-row .n small{font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:400;margin-left:6px}
+.r-row .b{font-family:var(--mono);font-weight:500;font-size:12px;text-align:right}
+.r-row .ty{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:right;font-weight:600}
+.r-row .s{text-align:center;font-size:14px}
+.r-row .s.ok{color:var(--sage)}
+.r-row .s.w{color:var(--accent);animation:pulse 1.6s infinite}
 
-/* ============ TESTIMONIAL ============ */
-.testimonial{padding:160px 0;text-align:center;background:var(--cream)}
-.testimonial blockquote{margin:0 auto;font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.4vw,42px);line-height:1.3;letter-spacing:-.02em;color:var(--ink);font-style:italic;max-width:940px;text-wrap:balance}
+/* ============ CLOSE (second big stat moment · DARK) ============ */
+.stat-moment.dark{background:var(--ink);color:var(--cream)}
+.stat-moment.dark .n{color:var(--amber)}
+.stat-moment.dark .n .u{color:rgba(245,239,228,.6)}
+.stat-moment.dark .caption{color:rgba(245,239,228,.72)}
+.stat-moment.dark .caption b{color:var(--amber)}
+.close-card{margin:64px auto 0;max-width:700px;background:var(--cream);border-radius:14px;padding:24px 28px;box-shadow:var(--shadow-dark);text-align:left;color:var(--ink);border:1px solid var(--cream)}
+.close-card .ch{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:1.5px solid var(--ink);margin-bottom:18px}
+.close-card .ch .t{font-family:var(--serif);font-weight:500;font-size:15px}
+.close-card .ch .t small{display:block;font-family:var(--serif);font-style:italic;font-size:12px;color:var(--mute);margin-top:2px;font-weight:400}
+.close-card .ch .tag{font-family:var(--mono);font-size:9.5px;font-weight:700;background:var(--accent);color:var(--cream);padding:4px 10px;border-radius:999px;letter-spacing:.14em;text-transform:uppercase}
+.close-card .cg{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+.close-card .pl-r{display:flex;justify-content:space-between;padding:7px 0;font-family:var(--serif);font-size:13px;color:var(--ink-2);border-bottom:1px dotted var(--line)}
+.close-card .pl-r:last-of-type{border-bottom:0}
+.close-card .pl-r.neg{color:var(--mute);font-style:italic}
+.close-card .pl-r .v{font-family:var(--mono);font-weight:500;color:var(--ink)}
+.close-card .pl-r.total{border-top:1.5px solid var(--ink);border-bottom:0;padding-top:10px;margin-top:4px;font-weight:600;font-size:14px;color:var(--ink)}
+.close-card .nar{background:#fff;border-left:2px solid var(--accent);padding:14px 16px;border-radius:3px}
+.close-card .nar-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px}
+.close-card .nar p{font-family:var(--serif);font-size:12.5px;line-height:1.55;color:var(--ink-2);margin:0 0 8px}
+.close-card .nar p:last-child{margin:0}
+.close-card .nar p b{color:var(--ink);font-weight:500}
+
+/* ============ TESTIMONIAL (cream, quiet) ============ */
+.testimonial{padding:140px 0;text-align:center}
+.testimonial blockquote{margin:0 auto;font-family:var(--serif);font-weight:300;font-size:clamp(24px,3.2vw,40px);line-height:1.3;letter-spacing:-.02em;color:var(--ink);font-style:italic;max-width:920px;text-wrap:balance}
 .testimonial blockquote b{font-weight:500;color:var(--accent);font-style:italic}
-.testimonial .who{margin-top:44px;display:inline-flex;align-items:center;gap:16px;padding:14px 24px 14px 16px;border:1px solid var(--line);border-radius:999px;background:#FFFFFD}
-.testimonial .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#c9b79a,#8a6e42);color:#fff;display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.02em}
-.testimonial .meta{text-align:left}
-.testimonial .n{font-family:var(--sans);font-weight:500;font-size:14px;letter-spacing:-.005em;color:var(--ink)}
-.testimonial .r{font-family:var(--mono);font-size:10.5px;color:var(--mute);margin-top:2px;letter-spacing:.06em;text-transform:uppercase}
+.testimonial .who{margin-top:44px;display:inline-flex;align-items:center;gap:14px;padding:14px 22px 14px 14px;border:1px solid var(--line);border-radius:999px;background:#FFFFFD}
+.testimonial .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#c9b79a,#8a6e42);color:#fff;display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:14px}
+.testimonial .n{font-family:var(--sans);font-weight:500;font-size:14px;color:var(--ink);text-align:left}
+.testimonial .r{font-family:var(--mono);font-size:10.5px;color:var(--mute);margin-top:2px;letter-spacing:.06em;text-transform:uppercase;text-align:left}
 
-/* ============ PRICING — invoice on dark ============ */
-.pricing{padding:160px 0;background:var(--ink);color:var(--cream);text-align:center;position:relative;overflow:hidden}
-.pricing::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(245,239,228,.03) 1px, transparent 1px);background-size:28px 28px;mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 80%);-webkit-mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 80%)}
-.pricing > *{position:relative;z-index:1}
-.pricing .inner h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.03em;margin:0 0 16px;color:var(--cream)}
-.pricing .inner h2 em{font-style:italic;color:var(--accent-warm);font-weight:400}
-.pricing .inner .h-sub{color:rgba(245,239,228,.72)}
-.invoice{max-width:780px;margin:64px auto 0;background:var(--cream);border:1px solid var(--cream);color:var(--ink);position:relative;padding:48px 56px 40px;text-align:left;border-radius:6px;
-  background-image:linear-gradient(rgba(10,8,7,.035) 1px, transparent 1px);
+/* ============ PRICING — invoice ============ */
+.pricing{padding:140px 0;text-align:center;background:var(--cream)}
+.pricing h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.03em;margin:22px 0 16px;text-wrap:balance}
+.pricing h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.pricing .h-sub{margin-bottom:64px}
+.invoice{max-width:780px;margin:0 auto;background:#FFFFFD;border:1.5px solid var(--ink);position:relative;padding:48px 56px 40px;text-align:left;border-radius:4px;
+  background-image:linear-gradient(rgba(10,8,7,.03) 1px, transparent 1px);
   background-size:100% 28px;
   background-position:0 28px}
-.invoice::before{content:"";position:absolute;left:44px;top:0;bottom:0;width:1px;background:rgba(181,92,55,.2)}
+.invoice::before{content:"";position:absolute;left:44px;top:0;bottom:0;width:1px;background:rgba(181,92,55,.18)}
 .inv-h{display:flex;justify-content:space-between;padding-bottom:18px;border-bottom:1.5px solid var(--ink);margin-bottom:24px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 .inv-h b{color:var(--ink);font-weight:600}
 .inv-title{font-family:var(--serif);font-weight:400;font-size:30px;letter-spacing:-.022em;line-height:1.1;margin:0 0 4px;color:var(--ink)}
@@ -286,46 +330,49 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(245,239,228,.82);backdr
 .paid-stamp .p1{font-size:20px;display:block;letter-spacing:.22em;margin-bottom:2px}
 .paid-stamp .p2{font-size:9px;display:block;border-top:1.5px solid var(--accent);padding-top:3px;margin-top:3px;letter-spacing:.18em}
 
-.pricing-cta{margin-top:40px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.pricing-cta{margin-top:44px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 
-/* ============ SIGNUP · closing on cream ============ */
-.signup{padding:160px 0 140px;text-align:center;background:var(--cream)}
-.signup h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.2vw,68px);line-height:1;letter-spacing:-.03em;margin:24px 0 18px;color:var(--ink);text-wrap:balance;max-width:740px;margin-left:auto;margin-right:auto}
-.signup h2 em{font-style:italic;color:var(--accent);font-weight:400}
-.signup p{font-family:var(--sans);font-size:17px;color:var(--ink-soft);max-width:480px;margin:0 auto 40px;line-height:1.5}
-.signup-form{display:flex;gap:10px;justify-content:center;max-width:540px;margin:0 auto;flex-wrap:wrap}
-.signup-form input{flex:1;min-width:240px;padding:14px 22px;font-family:var(--sans);font-size:15px;border:1.5px solid var(--line);border-radius:999px;background:#FFFFFD;color:var(--ink);letter-spacing:-.005em;transition:border-color .15s}
-.signup-form input:focus{outline:none;border-color:var(--ink)}
-.signup-form input::placeholder{color:var(--mute-2)}
-.signup-form .btn.big{padding:14px 24px}
-.signup-meta{margin-top:26px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
-.signup-meta b{color:var(--ink);font-weight:500}
+/* ============ SIGNUP (DARK) ============ */
+.signup{padding:140px 0;background:var(--ink);color:var(--cream);text-align:center;position:relative;overflow:hidden}
+.signup::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 320px at 50% 40%, rgba(181,92,55,.18), transparent 70%);filter:blur(20px);pointer-events:none}
+.signup > *{position:relative;z-index:1}
+.signup h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.2vw,72px);line-height:1;letter-spacing:-.03em;margin:22px 0 18px;color:var(--cream);text-wrap:balance;max-width:740px;margin-left:auto;margin-right:auto}
+.signup h2 em{font-style:italic;color:var(--amber);font-weight:400}
+.signup p{font-family:var(--sans);font-size:17px;color:rgba(245,239,228,.72);max-width:480px;margin:0 auto 36px;line-height:1.5}
+.signup-form{display:flex;gap:10px;justify-content:center;max-width:520px;margin:0 auto;flex-wrap:wrap}
+.signup-form input{flex:1;min-width:240px;padding:14px 22px;font-family:var(--sans);font-size:15px;border:1.5px solid rgba(245,239,228,.18);border-radius:999px;background:rgba(245,239,228,.04);color:var(--cream);letter-spacing:-.005em;transition:border-color .15s}
+.signup-form input:focus{outline:none;border-color:var(--cream)}
+.signup-form input::placeholder{color:rgba(245,239,228,.4)}
+.signup-form .btn.p{background:var(--cream);color:var(--ink);border-color:var(--cream);padding:14px 24px}
+.signup-meta{margin-top:24px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,239,228,.5);display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.signup-meta b{color:var(--cream);font-weight:500}
 
 /* ============ FOOTER ============ */
-footer{padding:44px 0;background:var(--ink);color:rgba(245,239,228,.6)}
-.foot-in{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;max-width:1200px;margin:0 auto;padding:0 40px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+footer{padding:36px 0;background:var(--ink);border-top:1px solid rgba(245,239,228,.08);color:rgba(245,239,228,.5)}
+.foot-in{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;max-width:1240px;margin:0 auto;padding:0 40px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
 .foot-in .brand{font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:-.02em;text-transform:none;color:var(--cream)}
-.foot-in .brand em{color:var(--accent-warm)}
-.foot-in a{color:rgba(245,239,228,.6)}
-.foot-in a:hover{color:var(--accent-warm)}
-.foot-links{display:flex;gap:24px}
+.foot-in .brand em{color:var(--amber)}
+.foot-in a{color:rgba(245,239,228,.5)}
+.foot-in a:hover{color:var(--amber)}
+.foot-links{display:flex;gap:22px}
 
 @media (max-width:900px){
   .wrap,.inner,.nav-in{padding:0 22px}
   .nav-links{display:none}
-  .hero{padding:64px 0 80px}
-  .hero-card-wrap{margin-top:60px;padding:0 22px}
-  .hero-card .hc-grid{grid-template-columns:1fr}
-  .feat{padding:96px 0}
-  .feat-card{margin-top:56px}
-  .card-close .cc-grid{grid-template-columns:1fr;gap:14px}
-  .testimonial,.pricing,.signup{padding:90px 0}
-  .invoice{padding:28px 22px;margin-top:48px}
+  .hero{padding:50px 0 60px}
+  .stage{margin-top:60px;min-height:auto}
+  .stage-grid{grid-template-columns:1fr;gap:18px}
+  .f-card.a,.f-card.b,.f-card.c{grid-column:1;margin-top:0;animation:none;transform:none !important}
+  .feat,.stat-moment,.testimonial,.pricing,.signup{padding:80px 0}
+  .feat-card{margin-top:48px;padding:0 22px}
+  .close-card .cg{grid-template-columns:1fr}
+  .invoice{padding:28px 22px}
   .li{grid-template-columns:44px 1fr auto;gap:10px}
-  .li-total .v{font-size:40px}
+  .li-total .v{font-size:38px}
   .paid-stamp{right:8px;top:-12px}
   .paid-stamp.in{transform:rotate(8deg) scale(.85)}
-  .hero-trust{gap:14px;font-size:10.5px}
+  .hero-trust{gap:14px}
+  .stat-moment .n{font-size:clamp(80px,24vw,120px)}
 }
 </style>
 </head>
@@ -351,181 +398,175 @@ footer{padding:44px 0;background:var(--ink);color:rgba(245,239,228,.6)}
 <section class="hero">
   <div class="inner">
     <div class="kicker reveal">AI for accounting firms · Private beta</div>
-    <h1 class="reveal delay-1">Your firm's books,<br/><em>quietly kept.</em></h1>
-    <p class="h-sub reveal delay-2">Zenday is an AI staff accountant your firm assigns per client. It <b>codes transactions, reconciles accounts, chases documents, and closes the month</b> — continuously, so your team reviews judgment, not data entry.</p>
-    <div class="hero-cta reveal delay-3">
+    <h1 class="reveal d1">Your firm's books,<br/><em>quietly kept.</em></h1>
+    <p class="h-sub reveal d2">Zenday is an AI staff accountant your firm assigns per client. It <span class="hl-amber">codes transactions</span>, <span class="hl-sage">reconciles accounts</span>, <span class="hl-blush">chases documents</span>, and closes the month — continuously.</p>
+    <div class="hero-cta reveal d3">
       <a class="btn p big" href="#signup">Start with one client free <span class="arr">→</span></a>
       <a class="btn o big" href="#book">See how it works</a>
     </div>
-    <div class="hero-trust reveal delay-3">
+    <div class="hero-trust reveal d4">
       <span><b>$15</b> per client / mo</span>
       <span><b>14 firms</b> in beta</span>
       <span><b>QBO · Xero</b> native</span>
     </div>
   </div>
 
-  <!-- Hero illustration card -->
-  <div class="hero-card-wrap reveal delay-3">
-    <div class="hero-card">
-      <div class="hc-h">
-        <div class="hc-brand">Vatsal CPAs · Firm dashboard</div>
-        <div class="hc-tag"><span>14 clients</span><span class="live">running</span></div>
+  <!-- Alden-style: three asymmetric floating cards -->
+  <div class="stage">
+    <div class="stage-grid">
+      <!-- Card A · Ask Zen mini -->
+      <div class="f-card a reveal d3">
+        <div class="h"><span class="d"></span><span><b>Ask Zen</b> · AppSphere</span></div>
+        <div class="q">What changed this month?</div>
+        <div class="a"><b>Revenue up 18% MoM.</b> OpEx up $2.4K — new Amplitude subscription flagged.<div class="chips"><span>App Store</span><span>Firebase</span><span>Amplitude</span></div></div>
       </div>
-      <div class="hc-grid">
-        <div class="hc-list">
-          <div class="hc-row on"><span class="dot" style="background:var(--green)"></span><span class="name">Apex Engineering</span><span class="n">22</span><span class="n hl">2</span></div>
-          <div class="hc-row"><span class="dot"></span><span class="name">AppSphere Mobile</span><span class="n">18</span><span class="n">—</span></div>
-          <div class="hc-row"><span class="dot"></span><span class="name">Bayview Construction</span><span class="n">14</span><span class="n">—</span></div>
-          <div class="hc-row flag"><span class="dot"></span><span class="name">CloudNine Software</span><span class="n">24</span><span class="n hl">3</span></div>
-          <div class="hc-row"><span class="dot"></span><span class="name">Coast Property Mgmt</span><span class="n">11</span><span class="n">—</span></div>
-        </div>
-        <div class="hc-kpis">
-          <div class="hc-kpi"><div class="l">Posted today</div><div class="v">147<span class="u">txns</span></div></div>
-          <div class="hc-kpi amber"><div class="l">Needs review</div><div class="v">5<span class="u">items</span></div></div>
-          <div class="hc-kpi"><div class="l">Auto rate</div><div class="v">97<span class="u">%</span></div></div>
-        </div>
+      <!-- Card B · Transaction getting coded -->
+      <div class="f-card b reveal d4">
+        <div class="h"><span>Bank feed</span><span class="live">live</span></div>
+        <div class="tx-row"><span style="color:var(--mute);font-family:var(--mono);font-size:10.5px">10:55</span><div class="vn">DoorDash<small class="typed">Meals &amp; entertainment</small></div><span class="am">$87.50</span><span class="badge ok">Posted</span></div>
+        <div class="tx-row"><span style="color:var(--mute);font-family:var(--mono);font-size:10.5px">11:42</span><div class="vn">Adobe<small>Software · 99%</small></div><span class="am">$59.99</span><span class="badge ok">Posted</span></div>
+        <div class="tx-row"><span style="color:var(--mute);font-family:var(--mono);font-size:10.5px">10:21</span><div class="vn">Wire · ACH<small>No match · 34%</small></div><span class="am">$15,000</span><span class="badge warn">Review</span></div>
       </div>
-      <div class="hc-foot">
-        <span>Rev 2026.04</span>
-        <span><b>Zen</b> is watching · last sync 11:42</span>
+      <!-- Card C · Reconciliation match -->
+      <div class="f-card c reveal d5">
+        <div class="h"><span>Reconciliation</span><span>6 matched · <b>1 variance</b></span></div>
+        <div class="row"><div class="n">Business Checking<small>****5437</small></div><span class="v">$126,309</span><span class="st ok">✓</span></div>
+        <div class="row"><div class="n">Amex Business<small>****5004</small></div><span class="v">$2,858</span><span class="st ok">✓</span></div>
+        <div class="row"><div class="n">Payroll Clearing<small>(2150)</small></div><span class="v">$2,526</span><span class="st w">⚠</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ § 01 · BOOKKEEPING (LIGHT) ============ -->
+<!-- ============ § 01 · BOOKKEEPING (live micro-product) ============ -->
 <section class="feat" id="book">
   <div class="inner">
     <div class="kicker reveal">§ 01 · Bookkeeping</div>
-    <h2 class="h-display reveal delay-1">Every transaction, coded<br/><em>the moment it clears.</em></h2>
-    <p class="h-sub reveal delay-2">Direct Plaid feed. Zenday reads the vendor, applies your chart of accounts, and posts — with a confidence score and audit trail attached. Under thirty seconds from clear to posted.</p>
+    <h2 class="h-display reveal d1">Every transaction, coded<br/><em>the moment it clears.</em></h2>
+    <p class="h-sub reveal d2">Direct Plaid feed. Zenday reads the vendor, applies your chart of accounts, and posts — with a confidence score and audit trail attached. <b>Under thirty seconds</b> from clear to posted.</p>
   </div>
-  <div class="feat-card reveal delay-3">
-    <div class="card-book">
-      <div class="cb-h">
-        <div class="cb-t">Bank feed · live</div>
-        <div class="cb-s">11:42 · 147 posted today</div>
+  <div class="feat-card reveal d3">
+    <div class="live-book" id="liveBook">
+      <div class="lb-h">
+        <div class="t">Bank feed · continuous</div>
+        <div class="meta"><span>Today · 147 posted</span><span class="live">live</span></div>
       </div>
-      <div class="tx" style="--w:99%"><span class="t">11:42</span><div class="v">Adobe Creative Cloud<small>Software subscriptions</small></div><span class="a">$59.99</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">99%</span></span></div>
-      <div class="tx" style="--w:94%"><span class="t">10:55</span><div class="v">DoorDash<small>Meals &amp; entertainment</small></div><span class="a">$87.50</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">94%</span></span></div>
-      <div class="tx" style="--w:98%"><span class="t">09:22</span><div class="v">Stripe payout<small>Revenue · Inv #4188</small></div><span class="a">$8,400.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">98%</span></span></div>
-      <div class="tx flag" style="--w:34%"><span class="t">10:21</span><div class="v">Wire · ACH Transfer<small>No vendor match</small></div><span class="a">$15,000.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">34%</span></span></div>
+      <div class="lb-row" data-w="99%" style="--w:99%"><span class="t">11:42</span><div class="v">Adobe Creative Cloud<small class="cat">Software subscriptions</small></div><span class="a">$59.99</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">99%</span></span></div>
+      <div class="lb-row" data-w="94%" style="--w:94%"><span class="t">10:55</span><div class="v">DoorDash<small class="cat">Meals &amp; entertainment</small></div><span class="a">$87.50</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">94%</span></span></div>
+      <div class="lb-row" data-w="98%" style="--w:98%"><span class="t">09:22</span><div class="v">Stripe payout<small class="cat">Revenue · Invoice #4188</small></div><span class="a">$8,400.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">98%</span></span></div>
+      <div class="lb-row flag" data-w="34%" style="--w:34%"><span class="t">10:21</span><div class="v">Wire · ACH Transfer<small class="cat">No vendor match</small></div><span class="a">$15,000.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">34%</span></span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ § 02 · ASK ZEN (DARK) ============ -->
-<section class="feat dark" id="zen">
+<!-- ============ BIG STAT · 97% ============ -->
+<section class="stat-moment">
+  <div class="inner">
+    <div class="kicker reveal">§ The proof</div>
+    <div class="n reveal d1"><span id="bigStat1">0</span><span class="u">%</span></div>
+    <div class="caption reveal d2">of transactions <b>auto-posted</b> across the beta — no human touched them, full audit trail on every entry.</div>
+  </div>
+</section>
+
+<!-- ============ § 02 · ASK ZEN (dark) ============ -->
+<section class="feat zen dark" id="zen">
   <div class="inner">
     <div class="kicker reveal">§ 02 · Ask Zen · AI</div>
-    <h2 class="h-display reveal delay-1">An AI partner<br/><em>who's read every book.</em></h2>
-    <p class="h-sub reveal delay-2">Ask anything about any client. Zenday has full context — every transaction, reconciliation, email, and document — and answers with the source citations attached. Drafts the next email, task, or entry.</p>
+    <h2 class="h-display reveal d1">An AI partner<br/><em>who's read every book.</em></h2>
+    <p class="h-sub reveal d2">Ask anything about any client. Zenday has full context — every transaction, reconciliation, email, and document — and answers with the source citations attached.</p>
   </div>
-  <div class="feat-card reveal delay-3">
-    <div class="card-chat">
-      <div class="cc-h"><div class="cc-dot"></div><div class="cc-t"><b>Ask Zen</b> · AppSphere Mobile</div></div>
-      <div class="msg u">
-        <div class="av">SM</div>
-        <div class="bub">What changed for AppSphere this month?</div>
+  <div class="feat-card reveal d3">
+    <div class="card-zen">
+      <div class="zen-h"><div class="zen-dot"></div><div class="t"><b>Ask Zen</b> · AppSphere Mobile</div></div>
+      <div class="zen-thread" id="zenThread">
+        <div class="zen-msg u" data-step="0"><div class="av">SM</div><div class="bub">What changed for AppSphere this month?</div></div>
+        <div class="zen-msg a" data-step="1"><div class="av">✦</div><div class="bub"><b>Revenue up 18% MoM</b> on the App Store payout. OpEx up <b>$2,400</b> from Firebase plan change on Mar 14. New vendor: Amplitude ($390/mo) — first occurrence, held for review.<div class="cites"><span>App Store</span><span>Firebase</span><span>Amplitude</span><span>P&amp;L</span></div></div></div>
+        <div class="zen-msg u" data-step="2"><div class="av">SM</div><div class="bub">Draft a note to the client about Amplitude.</div></div>
+        <div class="zen-msg a" data-step="3"><div class="av">✦</div><div class="bub" id="zenDraft"><span class="typing-dots"><span></span><span></span><span></span></span> <em style="color:rgba(245,239,228,.7);font-size:12.5px">drafting…</em></div></div>
       </div>
-      <div class="msg a">
-        <div class="av">✦</div>
-        <div class="bub"><b>Revenue up 18% MoM</b> on the App Store payout. OpEx up <b>$2,400</b> from the Firebase plan change on Mar 14. New vendor: Amplitude ($390/mo) — first occurrence, held for review.<div class="cites"><span>App Store</span><span>Firebase</span><span>Amplitude</span><span>P&amp;L</span></div></div>
-      </div>
-      <div class="msg u">
-        <div class="av">SM</div>
-        <div class="bub">Draft a note to the client about Amplitude.</div>
-      </div>
-      <div class="msg a">
-        <div class="av">✦</div>
-        <div class="bub"><span class="typing"><span></span><span></span><span></span></span> <span style="color:rgba(245,239,228,.7);font-size:12.5px;font-style:italic">drafting…</span></div>
-      </div>
-      <div class="cc-input"><span>Ask anything about any client…</span><span class="send">↑</span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ § 03 · RECONCILIATION (LIGHT) ============ -->
+<!-- ============ § 03 · RECONCILIATION (light, stacked card) ============ -->
 <section class="feat" id="recon">
   <div class="inner">
     <div class="kicker reveal">§ 03 · Reconciliation</div>
-    <h2 class="h-display reveal delay-1">Every account,<br/><em>matched continuously.</em></h2>
-    <p class="h-sub reveal delay-2">Bank, credit card, AP, AR, payroll — reconciled as transactions clear, not at month-end. Variance flagged in real time. Nine anomaly types watched automatically.</p>
+    <h2 class="h-display reveal d1">Every account,<br/><em>matched continuously.</em></h2>
+    <p class="h-sub reveal d2">Bank, credit card, AP, AR, payroll — reconciled as transactions clear, not at month-end. Variance flagged in real time. Nine anomaly types watched automatically.</p>
   </div>
-  <div class="feat-card reveal delay-3">
-    <div class="card-recon-wrap">
-      <div class="stack s1"></div>
-      <div class="stack s2"></div>
-      <div class="card-recon">
-        <div class="cr-h">
-          <div class="cr-t">Reconciliations · AppSphere Mobile</div>
-          <div class="cr-meta">Apr 15 · 10 accounts · 1 variance</div>
-        </div>
-        <div class="rr"><div class="name">Business Checking <small>****5437</small></div><span class="bal">$126,309.84</span><span class="type">Bank</span><span class="st ok">✓</span></div>
-        <div class="rr"><div class="name">Business Savings <small>****8217</small></div><span class="bal">$53,965.72</span><span class="type">Bank</span><span class="st ok">✓</span></div>
-        <div class="rr"><div class="name">Business Credit Card <small>****8471</small></div><span class="bal">$5,654.32</span><span class="type">Bank</span><span class="st ok">✓</span></div>
-        <div class="rr"><div class="name">Amex Business <small>****5004</small></div><span class="bal">$2,858.73</span><span class="type">Bank</span><span class="st ok">✓</span></div>
-        <div class="rr"><div class="name">Accounts Payable <small>(2000)</small></div><span class="bal">$34,250.00</span><span class="type">AP</span><span class="st ok">✓</span></div>
-        <div class="rr"><div class="name">Payroll Clearing <small>(2150)</small></div><span class="bal">$2,526.20</span><span class="type">Payroll</span><span class="st war">⚠</span></div>
+  <div class="recon-wrap reveal d3">
+    <div class="recon-stack s1"></div>
+    <div class="recon-stack s2"></div>
+    <div class="recon-main">
+      <div class="rh">
+        <div class="t">Reconciliations · AppSphere Mobile</div>
+        <div class="meta">10 accounts · <b>1 variance</b></div>
       </div>
+      <div class="r-row"><div class="n">Business Checking<small>****5437</small></div><span class="b">$126,309.84</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
+      <div class="r-row"><div class="n">Business Savings<small>****8217</small></div><span class="b">$53,965.72</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
+      <div class="r-row"><div class="n">Business Credit Card<small>****8471</small></div><span class="b">$5,654.32</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
+      <div class="r-row"><div class="n">Amex Business<small>****5004</small></div><span class="b">$2,858.73</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
+      <div class="r-row"><div class="n">Accounts Payable<small>(2000)</small></div><span class="b">$34,250.00</span><span class="ty">AP</span><span class="s ok">✓</span></div>
+      <div class="r-row"><div class="n">Payroll Clearing<small>(2150)</small></div><span class="b">$2,526.20</span><span class="ty">Payroll</span><span class="s w">⚠</span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ § 04 · CLOSE (DARK) ============ -->
-<section class="feat dark" id="close">
+<!-- ============ BIG STAT · Day 1 (dark) + close card ============ -->
+<section class="stat-moment dark" id="close">
   <div class="inner">
     <div class="kicker reveal">§ 04 · Month-end close</div>
-    <h2 class="h-display reveal delay-1">The close,<br/><em>on day one.</em></h2>
-    <p class="h-sub reveal delay-2">Because the books are reconciled continuously, month-end is already done. Zenday drafts the P&amp;L, balance sheet, and cash flow — with a plain-English variance narrative — on the first business day.</p>
+    <div class="n reveal d1">Day<span id="bigStat2">0</span></div>
+    <div class="caption reveal d2">the close is <b>already done</b> — P&amp;L, balance sheet, cash flow, drafted with a plain-English variance narrative.</div>
   </div>
-  <div class="feat-card reveal delay-3">
-    <div class="card-close">
-      <div class="cc-head">
-        <div class="cc-title">March 2026 · P&amp;L<small>Acme Design Co. · closed Apr 1, 06:14</small></div>
-        <div class="cc-tag">Day 1 · Ready</div>
+  <div class="feat-card reveal d3" style="max-width:760px">
+    <div class="close-card">
+      <div class="ch">
+        <div class="t">March 2026 · P&amp;L<small>Acme Design Co. · closed Apr 1, 06:14</small></div>
+        <div class="tag">Day 1 · Ready</div>
       </div>
-      <div class="cc-grid">
+      <div class="cg">
         <div>
-          <div class="pl-row"><span>Revenue</span><span class="v">$384,200</span></div>
-          <div class="pl-row neg"><span>Cost of Goods Sold</span><span class="v">(118,450)</span></div>
-          <div class="pl-row"><span>Gross Profit</span><span class="v">$265,750</span></div>
-          <div class="pl-row neg"><span>Operating Expenses</span><span class="v">(142,800)</span></div>
-          <div class="pl-row total"><span>Net Income</span><span class="v">$122,950</span></div>
+          <div class="pl-r"><span>Revenue</span><span class="v">$384,200</span></div>
+          <div class="pl-r neg"><span>Cost of Goods Sold</span><span class="v">(118,450)</span></div>
+          <div class="pl-r"><span>Gross Profit</span><span class="v">$265,750</span></div>
+          <div class="pl-r neg"><span>Operating Expenses</span><span class="v">(142,800)</span></div>
+          <div class="pl-r total"><span>Net Income</span><span class="v">$122,950</span></div>
         </div>
         <div class="nar">
           <div class="nar-h">Variance narrative · drafted</div>
-          <p>Revenue up <b>22% YoY</b> — best March on record, driven by two new retainers.</p>
-          <p>OpEx up <b>18% MoM</b> from $8.4K new contractor spend (Upwork × 3).</p>
-          <p>Runway <b>16 → 14 months</b>. Recommend pricing review in Q2.</p>
+          <p>Revenue up <b>22% YoY</b> — best March on record, two new retainers.</p>
+          <p>OpEx up <b>18% MoM</b> from $8.4K new contractor spend.</p>
+          <p>Runway <b>16 → 14 months</b>. Pricing review recommended in Q2.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ TESTIMONIAL (LIGHT) ============ -->
+<!-- ============ TESTIMONIAL ============ -->
 <section class="testimonial">
   <div class="inner">
     <blockquote class="reveal">"We pulled in forty clients in six weeks. Zenday handled <b>ninety-seven per cent</b> of the coding without us touching it. My senior accountants spend their days on advisory now — which is what we were selling all along."</blockquote>
-    <div class="who reveal delay-1">
+    <div class="who reveal d1">
       <div class="av">MV</div>
-      <div class="meta">
+      <div>
         <div class="n">Manav V. · Managing Partner</div>
-        <div class="r">Cordova &amp; Partners · Toronto · 210 clients</div>
+        <div class="r">Cordova &amp; Partners · Toronto</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ PRICING (DARK · invoice on cream) ============ -->
+<!-- ============ PRICING ============ -->
 <section class="pricing" id="pricing">
   <div class="inner">
     <div class="kicker reveal">§ 05 · Pricing</div>
-    <h2 class="reveal delay-1">$15. <em>Per client. Per month.</em></h2>
-    <p class="h-sub reveal delay-2">Priced the way your firm invoices — simply, itemised, nothing hidden. First client is free for thirty days. No credit card.</p>
+    <h2 class="reveal d1">$15. <em>Per client. Per month.</em></h2>
+    <p class="h-sub reveal d2">Priced the way your firm invoices — simply, itemised, nothing hidden. First client is free for thirty days. No credit card.</p>
   </div>
-  <div class="wrap reveal delay-3">
+  <div class="wrap reveal d3">
     <div class="invoice" id="invoice">
       <div class="paid-stamp" id="paidStamp">
         <span class="p1">Paid</span>
@@ -565,13 +606,13 @@ footer{padding:44px 0;background:var(--ink);color:rgba(245,239,228,.6)}
 <section class="signup" id="signup">
   <div class="inner">
     <div class="kicker reveal">§ Get started</div>
-    <h2 class="reveal delay-1">Start with <em>one client.</em><br/>Free for thirty days.</h2>
-    <p class="reveal delay-2">Drop your email — we'll send the onboarding link. Connect QBO and a bank feed, assign Zenday, let it run the next thirty days on a real engagement.</p>
-    <form class="signup-form reveal delay-3" onsubmit="event.preventDefault();this.querySelector('input').value='';alert('Thanks — we will be in touch.');">
+    <h2 class="reveal d1">Start with <em>one client.</em><br/>Free for thirty days.</h2>
+    <p class="reveal d2">Drop your email — we'll send the onboarding link. Connect QBO and a bank feed, assign Zenday, let it run the next thirty days on a real engagement.</p>
+    <form class="signup-form reveal d3" onsubmit="event.preventDefault();this.querySelector('input').value='';alert('Thanks — we will be in touch.');">
       <input type="email" placeholder="you@yourfirm.com" required aria-label="Your email" />
       <button type="submit" class="btn p big">Start free <span class="arr">→</span></button>
     </form>
-    <div class="signup-meta reveal delay-3">
+    <div class="signup-meta reveal d4">
       <span><b>No credit card</b></span>
       <span><b>No onboarding call</b></span>
       <span><b>Cancel anytime</b></span>
@@ -579,7 +620,6 @@ footer{padding:44px 0;background:var(--ink);color:rgba(245,239,228,.6)}
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
 <footer>
   <div class="foot-in">
     <div class="brand">Zenday<em>.</em></div>
@@ -589,17 +629,77 @@ footer{padding:44px 0;background:var(--ink);color:rgba(245,239,228,.6)}
 </footer>
 
 <script>
-/* ---------- Scroll-triggered reveals ---------- */
+/* ---------- Reveal on scroll ---------- */
 (function(){
   const els=document.querySelectorAll('.reveal');
   if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('on'));return}
   const io=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})
-  },{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+  },{threshold:.14,rootMargin:'0px 0px -40px 0px'});
   els.forEach(e=>io.observe(e));
 })();
 
-/* ---------- Paid stamp thunks in on scroll ---------- */
+/* ---------- Live bookkeeping rows — staggered reveal + confidence bar fill ---------- */
+(function(){
+  const card=document.getElementById('liveBook');
+  if(!card) return;
+  const rows=card.querySelectorAll('.lb-row');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        rows.forEach((r,i)=>{ setTimeout(()=>r.classList.add('on'), 250+i*260); });
+        io.unobserve(e.target);
+      }
+    })
+  },{threshold:.3});
+  io.observe(card);
+})();
+
+/* ---------- Zen thread sequential reveal + final draft replace ---------- */
+(function(){
+  const thread=document.getElementById('zenThread');
+  if(!thread) return;
+  const msgs=thread.querySelectorAll('.zen-msg');
+  const draft=document.getElementById('zenDraft');
+  const finalText='<b>Drafted.</b> "Hi Sarah — noticed the Amplitude charge on Mar 14. Looks like a new analytics subscription — want me to categorise as Software?"';
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        msgs.forEach((m,i)=>{ setTimeout(()=>m.classList.add('on'), 200+i*550); });
+        setTimeout(()=>{ if(draft) draft.innerHTML=finalText; }, 200+msgs.length*550+1400);
+        io.unobserve(e.target);
+      }
+    })
+  },{threshold:.3});
+  io.observe(thread);
+})();
+
+/* ---------- Count-up big stats ---------- */
+(function(){
+  const targets=[{id:'bigStat1',to:97,dur:1400},{id:'bigStat2',to:1,dur:800}];
+  targets.forEach(t=>{
+    const el=document.getElementById(t.id);
+    if(!el) return;
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const start=performance.now();
+          function frame(ts){
+            const p=Math.min((ts-start)/t.dur,1);
+            const eased=1-Math.pow(1-p,3);
+            el.textContent=Math.round(eased*t.to);
+            if(p<1) requestAnimationFrame(frame);
+          }
+          requestAnimationFrame(frame);
+          io.unobserve(e.target);
+        }
+      })
+    },{threshold:.5});
+    io.observe(el);
+  });
+})();
+
+/* ---------- Paid stamp thunk ---------- */
 (function(){
   const stamp=document.getElementById('paidStamp');
   const inv=document.getElementById('invoice');
