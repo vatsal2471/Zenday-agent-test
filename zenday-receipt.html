@@ -65,10 +65,10 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .nav-links a{padding:6px 0;transition:color .15s}
 .nav-links a:hover{color:var(--accent)}
 .nav-cta{display:flex;gap:8px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;font-size:13.5px;font-weight:500;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;border-radius:999px;transition:all .2s ease;font-family:var(--sans)}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;font-size:13px;font-weight:450;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;border-radius:999px;transition:all .18s ease;font-family:var(--sans)}
 .btn:hover{transform:translateY(-1px)}
-.btn.p{background:var(--ink);color:var(--bg);border-color:var(--ink);box-shadow:0 1px 2px rgba(10,10,10,.08), inset 0 1px 0 rgba(255,255,255,.08)}
-.btn.p:hover{background:var(--accent);border-color:var(--accent);box-shadow:0 4px 12px -2px rgba(5,150,105,.32)}
+.btn.p{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.p:hover{background:var(--ink-2);border-color:var(--ink-2)}
 .btn.o{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.o:hover{border-color:var(--ink)}
 .btn.g{background:transparent;color:var(--ink-2)}
@@ -81,64 +81,38 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .hero{padding:120px 0 80px;position:relative;overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1fr;position:relative}
 
-/* Linear-style aurora grid behind hero */
-.hero-grid{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
-.hero-grid::before{
-  content:"";position:absolute;inset:-5% -5%;
-  background-image:radial-gradient(circle at 1px 1px, rgba(10,10,10,.08) 1px, transparent 1px);
-  background-size:32px 32px;
-  mask-image:radial-gradient(ellipse at 50% 20%, #000 10%, transparent 65%);
-  -webkit-mask-image:radial-gradient(ellipse at 50% 20%, #000 10%, transparent 65%);
-}
-.hero-glow{position:absolute;left:50%;top:-80px;transform:translateX(-50%);width:1100px;height:460px;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(600px 280px at 30% 50%, rgba(139,92,246,.22), transparent 70%),
-    radial-gradient(600px 280px at 70% 50%, rgba(236,72,153,.16), transparent 70%),
-    radial-gradient(500px 220px at 50% 50%, rgba(5,150,105,.12), transparent 70%);
-  filter:blur(24px);
-  animation:glowShift 18s ease-in-out infinite alternate}
-@keyframes glowShift{
-  0%{transform:translateX(-50%) translateY(0)}
-  50%{transform:translateX(-50%) translateY(-20px)}
-  100%{transform:translateX(-50%) translateY(0)}
-}
-
-/* Animated dot grid like Linear */
-.dot-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(7, 1fr);grid-template-rows:repeat(5, 1fr);padding:40px 60px;z-index:-1;pointer-events:none;opacity:.55;
-  mask-image:radial-gradient(ellipse at 50% 40%, #000 5%, transparent 70%);
-  -webkit-mask-image:radial-gradient(ellipse at 50% 40%, #000 5%, transparent 70%)}
-.dot-grid span{width:4px;height:4px;border-radius:50%;background:var(--accent);justify-self:center;align-self:center;animation:dotPulse 3s ease-in-out infinite}
-.dot-grid span:nth-child(7n+1){animation-delay:.0s}
-.dot-grid span:nth-child(7n+2){animation-delay:.3s}
-.dot-grid span:nth-child(7n+3){animation-delay:.6s}
-.dot-grid span:nth-child(7n+4){animation-delay:.9s}
-.dot-grid span:nth-child(7n+5){animation-delay:1.2s}
-.dot-grid span:nth-child(7n+6){animation-delay:1.5s}
-.dot-grid span:nth-child(7n+7){animation-delay:1.8s}
-@keyframes dotPulse{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:.7;transform:scale(1.4)}}
+/* Sleek subtle hero background — one quiet lavender glow */
+.hero-grid{display:none}
+.dot-grid{display:none}
+.hero-glow{position:absolute;left:50%;top:0;transform:translateX(-50%);width:900px;height:360px;z-index:-1;pointer-events:none;
+  background:radial-gradient(500px 220px at 50% 30%, rgba(139,92,246,.09), transparent 70%);
+  filter:blur(20px)}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;padding:0;background:transparent;border-radius:0;margin:0 0 28px}
 .eyebrow::before{content:"§";font-style:italic;font-weight:700;color:var(--accent);margin-right:4px;font-family:var(--serif);font-size:14px}
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(5,150,105,.18);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(5,150,105,.18)}50%{box-shadow:0 0 0 7px rgba(5,150,105,0)}}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(64px,11vw,160px);line-height:.92;letter-spacing:-.045em;margin:0;max-width:none;color:var(--ink);text-wrap:balance}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6.4vw,88px);line-height:1;letter-spacing:-.035em;margin:0 auto;max-width:880px;color:var(--ink);text-wrap:balance;text-align:center}
 .hero h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
 .hero h1 .accent{font-style:italic;color:var(--accent);font-weight:400}
-.hero h1 .small{display:block;font-size:.45em;letter-spacing:-.025em;color:var(--mute);font-style:italic;font-weight:400;margin-top:.2em;line-height:1}
+.hero h1 .small{display:inline;font-size:1em;color:var(--mute);font-style:italic;font-weight:400;margin:0;line-height:1}
 .hero-sub{margin:36px 0 0;font-family:var(--sans);font-size:20px;line-height:1.5;color:var(--ink-3);max-width:520px;font-weight:450;letter-spacing:-.008em;text-wrap:pretty}
 .hero-sub b{color:var(--ink);font-weight:500}
 .hero-cta{margin-top:40px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .hero-trust{margin-top:48px;display:flex;gap:32px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);padding-top:24px;border-top:1px solid var(--line-soft)}
 .hero-trust b{color:var(--ink);font-weight:500;margin-right:4px}
 
-/* Hero asymmetric layout */
-.hero-top{display:grid;grid-template-columns:1fr;max-width:920px}
+/* Hero layout — centered, sleek */
+.hero-top{display:grid;grid-template-columns:1fr;max-width:880px;margin:0 auto;text-align:center}
 .hero-copy{position:relative;z-index:2}
+.hero .eyebrow,.hero-sub,.hero-cta,.hero-trust{justify-content:center}
+.hero-sub{margin-left:auto;margin-right:auto}
+.hero-cta{justify-content:center}
+.hero-trust{justify-content:center;border-top:0;padding-top:32px}
 
-/* Hero product shot — offset + small caption, magazine "Fig" framing */
-.hero-shot{margin:80px 0 0;position:relative;max-width:none}
-.hero-shot-cap{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:18px;padding-left:4px;border-left:2px solid var(--accent);padding-left:14px}
-.real-shot.tilted{transform:perspective(1800px) rotateX(2deg) rotateY(-1.2deg);transform-origin:center top;transition:transform .6s cubic-bezier(.2,.8,.3,1)}
-.real-shot.tilted:hover{transform:perspective(1800px) rotateX(0) rotateY(0)}
+/* Hero product shot — centered, clean, subtle */
+.hero-shot{margin:72px auto 0;position:relative;max-width:1180px}
+.hero-shot-cap{display:none}
+.real-shot.tilted{transform:none}
 .hero-shot::before{
   content:"";position:absolute;inset:-120px -60px;border-radius:40px;z-index:-1;
   background:
@@ -214,14 +188,14 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .tour-head{max-width:720px;margin:0 auto 64px;text-align:center}
 .tour-head .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px;display:inline-flex;align-items:center;gap:10px}
 .tour-head .kick::before{content:"§";font-family:var(--serif);font-style:italic;font-weight:700;color:var(--accent)}
-.tour-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,84px);line-height:.98;letter-spacing:-.035em;margin:0;color:var(--ink);text-wrap:balance}
+.tour-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.8vw,64px);line-height:1;letter-spacing:-.028em;margin:0;color:var(--ink);text-wrap:balance}
 .tour-head h2 em{font-style:italic;color:var(--accent);font-weight:400}
 .tour-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:start;max-width:1280px;margin:0 auto;padding:0 40px}
 .tour-copy{display:flex;flex-direction:column;gap:180px;padding-top:80px;padding-bottom:80px}
 .tour-block{position:relative;padding-left:60px}
 .tour-block::before{content:attr(data-n);position:absolute;left:0;top:6px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--accent);padding:5px 10px;border:1px solid var(--accent);border-radius:999px}
 .tour-block.on::before{background:var(--accent);color:#fff}
-.tour-block h3{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4vw,52px);line-height:1.02;letter-spacing:-.028em;margin:0 0 20px;color:var(--ink);opacity:.4;transition:opacity .5s}
+.tour-block h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.15;letter-spacing:-.02em;margin:0 0 16px;color:var(--ink);opacity:.4;transition:opacity .5s}
 .tour-block h3 em{font-style:italic;color:var(--accent);font-weight:400}
 .tour-block.on h3{opacity:1}
 .tour-block p{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink-3);margin:0 0 20px;max-width:460px;opacity:.4;transition:opacity .5s}
@@ -259,11 +233,11 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .big-stat .ln{font-family:var(--serif);font-size:clamp(22px,2.6vw,34px);font-style:italic;color:var(--ink-3);margin-top:32px;letter-spacing:-.015em;font-weight:400;max-width:720px;margin-left:auto;margin-right:auto;text-wrap:balance}
 .big-stat .ln b{color:var(--ink);font-style:normal;font-weight:500}
 
-/* Giant wordmark footer */
-.wordmark-sec{padding:100px 0 0;background:var(--bg);position:relative;overflow:hidden}
-.wordmark{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(180px,32vw,520px);line-height:.78;letter-spacing:-.06em;color:var(--ink);text-align:center;margin:0;padding:0 0 0;user-select:none;position:relative}
-.wordmark .dot{color:var(--accent);font-style:italic;margin-left:-.05em}
-.wordmark-sub{text-align:center;margin-top:-.1em;font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);padding:20px 0 60px;border-bottom:1px solid var(--line)}
+/* Quiet wordmark */
+.wordmark-sec{padding:80px 0 60px;background:var(--bg);text-align:center;border-top:1px solid var(--line-soft)}
+.wordmark{font-family:var(--serif);font-weight:400;font-size:clamp(64px,8vw,112px);line-height:1;letter-spacing:-.035em;color:var(--ink);margin:0;user-select:none}
+.wordmark .dot{color:var(--accent);font-style:italic}
+.wordmark-sub{margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
 
 /* ============ FEATURE SECTION (legacy, kept for misc pages) ============ */
 .feat{padding:140px 0}
@@ -293,33 +267,21 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
   filter:blur(12px);
 }
 
-/* ============ ASK ZEN FEATURE — full-bleed dark poster ============ */
-.zen-feat{background:#0A0A0A;color:#fff;padding:160px 0;position:relative;overflow:hidden;border-top:1px solid #0A0A0A;border-bottom:1px solid #0A0A0A}
+/* ============ ASK ZEN FEATURE — subtle lavender wash, sleek AI feel ============ */
+.zen-feat{background:linear-gradient(180deg,#FBF9FF 0%,#F6F3FF 50%,#FBF9FF 100%);position:relative;overflow:hidden;border-top:1px solid rgba(139,92,246,.08);border-bottom:1px solid rgba(139,92,246,.08)}
 .zen-feat::before{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(900px 500px at 20% 30%, rgba(139,92,246,.32), transparent 60%),
-    radial-gradient(900px 500px at 80% 70%, rgba(236,72,153,.22), transparent 60%);
-  filter:blur(20px)}
-.zen-feat::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 1px);
-  background-size:32px 32px;
-  mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 75%)}
+    radial-gradient(700px 320px at 15% 20%, rgba(139,92,246,.08), transparent 65%),
+    radial-gradient(700px 320px at 85% 80%, rgba(236,72,153,.06), transparent 65%);
+}
 .zen-feat .wrap{position:relative;z-index:2}
-.zen-feat .feat-kicker{color:#E879F9}
-.zen-feat .feat-kicker .num{color:#fff}
-.zen-feat .feat-copy h2{color:#fff}
-.zen-feat .feat-copy h2 em{color:#E879F9}
-.zen-feat .feat-copy p{color:rgba(255,255,255,.72)}
-.zen-feat .feat-copy p b{color:#fff}
-.zen-feat .feat-b{color:rgba(255,255,255,.72)}
-.zen-feat .feat-b b{color:#fff}
-.zen-feat .feat-b .ck{color:#E879F9}
-.zen-feat .feat-link{color:#E879F9}
-.zen-feat .feat-link:hover{border-color:#E879F9}
-.zen-feat .real-shot{border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 100px -20px rgba(139,92,246,.4),0 0 0 1px rgba(255,255,255,.05)}
+.zen-feat .feat-kicker{color:#7C3AED}
+.zen-feat .feat-copy h2 em{color:#7C3AED}
+.zen-feat .feat-b .ck{color:#7C3AED}
+.zen-feat .feat-link{color:#7C3AED}
+.zen-feat .feat-link:hover{border-color:#7C3AED}
+.zen-feat .real-shot{box-shadow:0 1px 3px rgba(10,10,10,.04), 0 24px 60px -12px rgba(139,92,246,.18), 0 40px 100px -30px rgba(10,10,10,.1)}
 
 /* Ask Zen mini UI */
 .zen-ui{padding:22px;display:flex;flex-direction:column;gap:12px;min-height:380px;background:linear-gradient(180deg,#fff,#fefbff)}
@@ -358,7 +320,7 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .proof-in{max-width:1080px;margin:0 auto;position:relative;z-index:2}
 .proof-kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:34px;display:flex;align-items:center;gap:14px;justify-content:center}
 .proof-kick::before,.proof-kick::after{content:"";flex:0 0 36px;height:1px;background:var(--line)}
-.proof blockquote{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.5vw,56px);line-height:1.18;letter-spacing:-.022em;color:var(--ink);font-style:italic;text-align:center;text-wrap:balance}
+.proof blockquote{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.6vw,34px);line-height:1.35;letter-spacing:-.012em;color:var(--ink-2);font-style:italic;text-align:center;text-wrap:balance;max-width:820px;margin-left:auto;margin-right:auto}
 .proof blockquote b{font-weight:500;color:var(--accent);font-style:italic}
 .proof-attr{margin-top:48px;display:flex;align-items:center;justify-content:center;gap:16px}
 .proof-attr .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#c9b79a,#8a6e42);color:#fff;display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.02em;border:2px solid #fff;box-shadow:var(--shadow-sm)}
@@ -526,7 +488,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
     <div class="hero-top">
       <div class="hero-copy">
         <div class="eyebrow">AI for accounting firms · Private beta</div>
-        <h1>The AI staff<br/>accountant,<br/><span class="accent">per client.</span><span class="small">For your firm.</span></h1>
+        <h1>The AI staff accountant,<br/><span class="accent">per client.</span></h1>
         <p class="hero-sub">Zenday is the AI accountant your firm assigns per engagement. It <b>codes, reconciles, chases, and closes</b> — continuously. Your team reviews judgment, not data entry.</p>
         <div class="hero-cta">
           <a class="btn p big" href="#pricing">Start with one client free <span class="arr">→</span></a>
@@ -544,7 +506,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
     <!-- Hero product dashboard shot — REAL product screenshot, offset/bleeding -->
     <div class="hero-shot" id="product">
       <div class="hero-shot-cap">Fig. 01 · The client dashboard</div>
-      <div class="real-shot tilted">
+      <div class="real-shot">
         <img src="prototype/scene-001.jpg" alt="Zenday client dashboard — every client on one screen" />
       </div>
     </div>
@@ -568,29 +530,6 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   </div>
 </section>
 
-<!-- ============ MARQUEE BAND ============ -->
-<section class="marquee">
-  <div class="marquee-track">
-    <span class="live">Continuous close</span><span class="sep">/</span>
-    <span>Client dashboard</span><span class="sep">/</span>
-    <span class="live">Ask Zen AI</span><span class="sep">/</span>
-    <span>Bank feed</span><span class="sep">/</span>
-    <span class="live">Reconciliation</span><span class="sep">/</span>
-    <span>Nine transaction alerts</span><span class="sep">/</span>
-    <span class="live">Report review</span><span class="sep">/</span>
-    <span>Inbox &amp; tasks</span><span class="sep">/</span>
-    <span class="live">Audit trail</span><span class="sep">/</span>
-    <span>Continuous close</span><span class="sep">/</span>
-    <span class="live">Client dashboard</span><span class="sep">/</span>
-    <span>Ask Zen AI</span><span class="sep">/</span>
-    <span class="live">Bank feed</span><span class="sep">/</span>
-    <span>Reconciliation</span><span class="sep">/</span>
-    <span class="live">Nine transaction alerts</span><span class="sep">/</span>
-    <span>Report review</span><span class="sep">/</span>
-    <span class="live">Inbox &amp; tasks</span><span class="sep">/</span>
-    <span>Audit trail</span><span class="sep">/</span>
-  </div>
-</section>
 
 <!-- ============ STICKY PRODUCT TOUR ============ -->
 <section class="tour" id="tour">
@@ -677,15 +616,6 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
         <div class="proof-stat"><div class="n">97%</div><div class="l">Auto-post rate</div></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============ BIG STAT MOMENT ============ -->
-<section class="big-stat">
-  <div class="wrap">
-    <div class="kick">§ Pricing</div>
-    <div class="n"><span class="dollar">$</span>15<span class="per">/client/mo</span></div>
-    <div class="ln"><b>No seat fees.</b> No transaction caps. No setup cost. <b>First client free</b> for thirty days — no credit card.</div>
   </div>
 </section>
 
