@@ -7,7 +7,7 @@
 <meta name="description" content="An AI staff accountant your firm assigns per client. Codes transactions, reconciles accounts, chases documents, closes the month. $15 per client / month." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;450;500;600;700&display=swap" rel="stylesheet" />
 <style>
 /* =============================================================
    ZENDAY — Modern white SaaS · Plex Serif display · Inter body
@@ -39,6 +39,7 @@
   --serif:'IBM Plex Serif', Georgia, serif;
   --sans:'Inter', -apple-system, system-ui, sans-serif;
   --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  --hand:'Caveat', 'Brush Script MT', cursive;
   --shadow-sm:0 1px 2px rgba(10,10,10,.04);
   --shadow:0 1px 3px rgba(10,10,10,.05), 0 12px 32px -8px rgba(10,10,10,.08);
   --shadow-xl:0 2px 6px rgba(10,10,10,.05), 0 40px 80px -20px rgba(10,10,10,.12);
@@ -91,7 +92,8 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .eyebrow::before{content:"§";font-style:italic;font-weight:700;color:var(--accent);margin-right:4px;font-family:var(--serif);font-size:14px}
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(30,64,175,.18);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(30,64,175,.18)}50%{box-shadow:0 0 0 7px rgba(30,64,175,0)}}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6.4vw,88px);line-height:1;letter-spacing:-.035em;margin:0 auto;max-width:880px;color:var(--ink);text-wrap:balance;text-align:center}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(48px,6.4vw,88px);line-height:1;letter-spacing:-.032em;margin:0 auto;max-width:880px;color:var(--ink);text-wrap:balance;text-align:center}
+.hero h1 .accent,.hero h1 em{font-weight:300}
 .hero h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
 .hero h1 .accent{font-style:italic;color:var(--accent);font-weight:400}
 .hero h1 .small{display:inline;font-size:1em;color:var(--mute);font-style:italic;font-weight:400;margin:0;line-height:1}
@@ -110,7 +112,7 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .hero-trust{justify-content:center;border-top:0;padding-top:32px}
 
 /* Hero product shot — centered, clean, subtle */
-.hero-shot{margin:72px auto 0;position:relative;max-width:1180px}
+.hero-shot{margin:72px auto 0;position:relative;max-width:1180px;overflow:visible}
 .hero-shot-cap{display:none}
 .real-shot.tilted{transform:none}
 .hero-shot::before{
@@ -125,6 +127,20 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 /* Real product screenshot frame */
 .real-shot{border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-xl);background:#fff;position:relative}
 .real-shot img{display:block;width:100%;height:auto}
+
+/* Handwritten annotations — accountant's red-pen markings on screenshots */
+.annotate{position:absolute;pointer-events:none;z-index:3}
+.annotate .note{font-family:var(--hand);font-size:26px;color:var(--accent);font-weight:500;line-height:1.1;text-shadow:0 0 10px rgba(255,255,255,.5);max-width:200px;display:inline-block;transform:rotate(-3deg)}
+.annotate .note.r{transform:rotate(2deg)}
+.annotate svg{display:block;overflow:visible}
+.annotate svg path,.annotate svg circle,.annotate svg ellipse,.annotate svg line{stroke:var(--accent);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.annotate svg path.fill,.annotate svg circle.fill{fill:var(--accent)}
+
+/* Subtle noise/grain across the page */
+body::before{
+  content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
 .real-shot.lift{transform:translateY(0);transition:transform .4s ease}
 .real-shot.lift:hover{transform:translateY(-4px)}
 
@@ -212,6 +228,8 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .tour-frame{position:relative;width:100%;aspect-ratio:1600/1000;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-xl);background:#fff}
 .tour-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .5s ease}
 .tour-frame img.on{opacity:1}
+.ann-set{position:absolute;inset:0;opacity:0;transition:opacity .6s ease .1s;z-index:4}
+.ann-set.on{opacity:1}
 .tour-cap{margin-top:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 .tour-cap .l{color:var(--ink)}
 .tour-cap .n{color:var(--accent);font-weight:600}
@@ -430,6 +448,7 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   .feat-row.rev .feat-copy{order:1}
   .feat-row.rev .feat-shot{order:2}
   .mini-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .annotate{display:none}
   .tour-layout{grid-template-columns:1fr;gap:40px;padding:0 20px}
   .tour-copy{gap:60px;padding:0}
   .tour-block{padding-left:0}
@@ -506,8 +525,20 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
     <!-- Hero product dashboard shot — REAL product screenshot, offset/bleeding -->
     <div class="hero-shot" id="product">
       <div class="hero-shot-cap">Fig. 01 · The client dashboard</div>
-      <div class="real-shot">
+      <div class="real-shot bleed">
         <img src="prototype/scene-001.jpg" alt="Zenday client dashboard — every client on one screen" />
+      </div>
+      <div class="annotate" style="left:-2%;top:10%;z-index:5">
+        <span class="note r">every client,<br/>one screen</span>
+      </div>
+      <div class="annotate" style="left:4%;top:20%;z-index:5">
+        <svg width="110" height="40" viewBox="0 0 110 40"><path d="M4 8 C 30 22, 60 26, 104 18" /><path class="fill" d="M96 12 L 104 18 L 96 24 Z" /></svg>
+      </div>
+      <div class="annotate" style="right:-2%;top:14%;z-index:5">
+        <span class="note">alerts need<br/>your eye</span>
+      </div>
+      <div class="annotate" style="right:4%;top:26%;z-index:5">
+        <svg width="90" height="36" viewBox="0 0 90 36"><path d="M86 28 C 60 22, 30 18, 4 6" /><path class="fill" d="M12 0 L 4 6 L 14 8 Z" /></svg>
       </div>
     </div>
   </div>
@@ -586,6 +617,55 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
             <img data-i="1" src="prototype/t-016.jpg" alt="Ask Zen AI" />
             <img data-i="2" src="prototype/t-032.jpg" alt="Reconciliation across all accounts" />
             <img data-i="3" src="prototype/scene-008.jpg" alt="Report review workflow" />
+
+            <!-- Annotation sets — one per view -->
+            <div class="ann-set on" data-i="0">
+              <div class="annotate" style="right:6%;top:18%">
+                <span class="note">exceptions need<br/>your eye →</span>
+              </div>
+              <div class="annotate" style="right:4%;top:30%">
+                <svg width="80" height="40" viewBox="0 0 80 40"><path d="M78 6 C 50 4, 20 18, 4 32" /><path class="fill" d="M10 28 L 4 32 L 12 34 Z" /></svg>
+              </div>
+              <div class="annotate" style="left:8%;bottom:14%">
+                <span class="note r">four panels, one click</span>
+              </div>
+            </div>
+
+            <div class="ann-set" data-i="1">
+              <div class="annotate" style="right:3%;top:8%">
+                <svg width="200" height="70" viewBox="0 0 200 70"><ellipse cx="100" cy="35" rx="94" ry="28" /></svg>
+              </div>
+              <div class="annotate" style="right:6%;top:-2%">
+                <span class="note">live AI · full context</span>
+              </div>
+              <div class="annotate" style="left:6%;bottom:16%">
+                <span class="note r">49 of 50 auto-coded</span>
+              </div>
+            </div>
+
+            <div class="ann-set" data-i="2">
+              <div class="annotate" style="left:38%;top:46%">
+                <svg width="120" height="28" viewBox="0 0 120 28"><path d="M4 20 C 30 6, 60 24, 116 12" stroke-dasharray="0" /></svg>
+              </div>
+              <div class="annotate" style="left:44%;top:55%">
+                <span class="note r">flagged automatically</span>
+              </div>
+              <div class="annotate" style="right:6%;top:12%">
+                <span class="note">all accounts, every day →</span>
+              </div>
+            </div>
+
+            <div class="ann-set" data-i="3">
+              <div class="annotate" style="left:34%;top:34%">
+                <svg width="90" height="36" viewBox="0 0 90 36"><ellipse cx="45" cy="18" rx="42" ry="14" /></svg>
+              </div>
+              <div class="annotate" style="left:30%;top:50%">
+                <span class="note">your approval workflow ✓</span>
+              </div>
+              <div class="annotate" style="right:8%;bottom:20%">
+                <span class="note r">reports on day one</span>
+              </div>
+            </div>
           </div>
           <div class="tour-cap">
             <span class="l" id="tourCapL">Client dashboard</span>
@@ -807,6 +887,9 @@ document.querySelectorAll('.q').forEach(q=>q.addEventListener('click',()=>q.clas
         imgs.forEach(img=>img.classList.remove('on'));
         const target=document.querySelector('.tour-frame img[data-i="'+i+'"]');
         if(target) target.classList.add('on');
+        document.querySelectorAll('.ann-set').forEach(a=>a.classList.remove('on'));
+        const ann=document.querySelector('.ann-set[data-i="'+i+'"]');
+        if(ann) ann.classList.add('on');
         if(capL) capL.textContent=labels[i];
         if(capN) capN.textContent='Fig. 0'+(i+1)+' · 04';
       }
