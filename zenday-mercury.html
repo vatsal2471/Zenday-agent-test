@@ -77,8 +77,9 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .arr{display:inline-block;transition:transform .2s}
 .btn:hover .arr{transform:translateX(3px)}
 
-/* ============ HERO ============ */
-.hero{padding:100px 0 70px;text-align:center;position:relative;overflow:hidden}
+/* ============ HERO — asymmetric editorial ============ */
+.hero{padding:120px 0 80px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr;position:relative}
 
 /* Linear-style aurora grid behind hero */
 .hero-grid{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
@@ -115,20 +116,29 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .dot-grid span:nth-child(7n+6){animation-delay:1.5s}
 .dot-grid span:nth-child(7n+7){animation-delay:1.8s}
 @keyframes dotPulse{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:.7;transform:scale(1.4)}}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;padding:6px 14px;background:var(--accent-soft);border-radius:999px;margin-bottom:32px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;padding:0;background:transparent;border-radius:0;margin:0 0 28px}
+.eyebrow::before{content:"§";font-style:italic;font-weight:700;color:var(--accent);margin-right:4px;font-family:var(--serif);font-size:14px}
 .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(181,92,55,.18);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(181,92,55,.18)}50%{box-shadow:0 0 0 7px rgba(181,92,55,0)}}
-.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(52px,7.6vw,100px);line-height:.96;letter-spacing:-.036em;margin:0 auto;max-width:1040px;color:var(--ink);text-wrap:balance}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(64px,11vw,160px);line-height:.92;letter-spacing:-.045em;margin:0;max-width:none;color:var(--ink);text-wrap:balance}
 .hero h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
 .hero h1 .accent{font-style:italic;color:var(--accent);font-weight:400}
-.hero-sub{margin:28px auto 0;font-family:var(--sans);font-size:19px;line-height:1.5;color:var(--ink-3);max-width:560px;font-weight:450;letter-spacing:-.008em;text-wrap:pretty}
+.hero h1 .small{display:block;font-size:.45em;letter-spacing:-.025em;color:var(--mute);font-style:italic;font-weight:400;margin-top:.2em;line-height:1}
+.hero-sub{margin:36px 0 0;font-family:var(--sans);font-size:20px;line-height:1.5;color:var(--ink-3);max-width:520px;font-weight:450;letter-spacing:-.008em;text-wrap:pretty}
 .hero-sub b{color:var(--ink);font-weight:500}
-.hero-cta{margin-top:36px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.hero-trust{margin-top:32px;display:flex;gap:28px;justify-content:center;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.hero-cta{margin-top:40px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.hero-trust{margin-top:48px;display:flex;gap:32px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);padding-top:24px;border-top:1px solid var(--line-soft)}
 .hero-trust b{color:var(--ink);font-weight:500;margin-right:4px}
 
-/* Hero product shot */
-.hero-shot{margin:72px auto 0;max-width:1200px;position:relative}
+/* Hero asymmetric layout */
+.hero-top{display:grid;grid-template-columns:1fr;max-width:920px}
+.hero-copy{position:relative;z-index:2}
+
+/* Hero product shot — offset + small caption, magazine "Fig" framing */
+.hero-shot{margin:80px 0 0;position:relative;max-width:none}
+.hero-shot-cap{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:18px;padding-left:4px;border-left:2px solid var(--accent);padding-left:14px}
+.real-shot.tilted{transform:perspective(1800px) rotateX(2deg) rotateY(-1.2deg);transform-origin:center top;transition:transform .6s cubic-bezier(.2,.8,.3,1)}
+.real-shot.tilted:hover{transform:perspective(1800px) rotateX(0) rotateY(0)}
 .hero-shot::before{
   content:"";position:absolute;inset:-120px -60px;border-radius:40px;z-index:-1;
   background:
@@ -227,9 +237,33 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
   filter:blur(12px);
 }
 
-/* ============ ASK ZEN FEATURE (distinct purple moment) ============ */
-.zen-feat{background:linear-gradient(180deg,#fff 0%,#fefbff 100%);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
-.zen-feat .feat-kicker{color:var(--purple)}
+/* ============ ASK ZEN FEATURE — full-bleed dark poster ============ */
+.zen-feat{background:#0A0A0A;color:#fff;padding:160px 0;position:relative;overflow:hidden;border-top:1px solid #0A0A0A;border-bottom:1px solid #0A0A0A}
+.zen-feat::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(900px 500px at 20% 30%, rgba(139,92,246,.32), transparent 60%),
+    radial-gradient(900px 500px at 80% 70%, rgba(236,72,153,.22), transparent 60%);
+  filter:blur(20px)}
+.zen-feat::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 75%)}
+.zen-feat .wrap{position:relative;z-index:2}
+.zen-feat .feat-kicker{color:#E879F9}
+.zen-feat .feat-kicker .num{color:#fff}
+.zen-feat .feat-copy h2{color:#fff}
+.zen-feat .feat-copy h2 em{color:#E879F9}
+.zen-feat .feat-copy p{color:rgba(255,255,255,.72)}
+.zen-feat .feat-copy p b{color:#fff}
+.zen-feat .feat-b{color:rgba(255,255,255,.72)}
+.zen-feat .feat-b b{color:#fff}
+.zen-feat .feat-b .ck{color:#E879F9}
+.zen-feat .feat-link{color:#E879F9}
+.zen-feat .feat-link:hover{border-color:#E879F9}
+.zen-feat .real-shot{border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 100px -20px rgba(139,92,246,.4),0 0 0 1px rgba(255,255,255,.05)}
 
 /* Ask Zen mini UI */
 .zen-ui{padding:22px;display:flex;flex-direction:column;gap:12px;min-height:380px;background:linear-gradient(180deg,#fff,#fefbff)}
@@ -248,23 +282,37 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .zen-input .send{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff;display:grid;place-items:center;font-size:12px;font-weight:600}
 
 /* ============ FEATURE BENTO STRIP (smaller follow-ups) ============ */
-/* Social proof */
-.proof{padding:100px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
-.proof-in{display:grid;grid-template-columns:1fr 1.4fr;gap:72px;align-items:center}
-.proof-meta{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:10px}
-.proof-meta::before{content:"";width:24px;height:1px;background:var(--accent)}
-.proof-h{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.2vw,28px);line-height:1.25;letter-spacing:-.018em;color:var(--ink);margin:0}
-.proof-h em{font-style:italic;color:var(--ink-3);font-weight:400}
-.proof-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:26px;padding-top:26px;border-top:1px solid var(--line-soft)}
-.proof-stat .n{font-family:var(--mono);font-size:26px;font-weight:500;letter-spacing:-.02em;color:var(--ink);font-feature-settings:"tnum";line-height:1}
-.proof-stat .l{font-family:var(--sans);font-size:12.5px;color:var(--mute);margin-top:6px;letter-spacing:-.005em}
-.quote-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:36px 40px;box-shadow:var(--shadow)}
-.quote-card blockquote{margin:0;font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.45;letter-spacing:-.015em;color:var(--ink-2);font-style:italic}
-.quote-card blockquote b{color:var(--ink);font-weight:500;font-style:normal}
-.quote-card .qc-who{margin-top:24px;padding-top:20px;border-top:1px solid var(--line-soft);display:flex;align-items:center;gap:14px}
-.quote-card .qc-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#c9b79a,#8a6e42);color:#fff;display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.02em}
-.quote-card .qc-n{font-family:var(--sans);font-weight:500;font-size:14.5px;letter-spacing:-.005em;color:var(--ink)}
-.quote-card .qc-r{font-family:var(--sans);font-size:13px;color:var(--mute);margin-top:2px}
+/* Magazine-style pull quote — large editorial moment */
+.proof{padding:160px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg-2);position:relative;overflow:hidden}
+.proof::before{
+  content:"\201C";
+  position:absolute;
+  left:5%;
+  top:-30px;
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(280px,32vw,520px);
+  color:var(--accent);
+  opacity:.07;
+  font-weight:400;
+  line-height:.7;
+  pointer-events:none;
+  user-select:none;
+}
+.proof-in{max-width:1080px;margin:0 auto;position:relative;z-index:2}
+.proof-kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:34px;display:flex;align-items:center;gap:14px;justify-content:center}
+.proof-kick::before,.proof-kick::after{content:"";flex:0 0 36px;height:1px;background:var(--line)}
+.proof blockquote{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.5vw,56px);line-height:1.18;letter-spacing:-.022em;color:var(--ink);font-style:italic;text-align:center;text-wrap:balance}
+.proof blockquote b{font-weight:500;color:var(--accent);font-style:italic}
+.proof-attr{margin-top:48px;display:flex;align-items:center;justify-content:center;gap:16px}
+.proof-attr .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#c9b79a,#8a6e42);color:#fff;display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.02em;border:2px solid #fff;box-shadow:var(--shadow-sm)}
+.proof-attr .meta{text-align:left}
+.proof-attr .n{font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:-.005em;color:var(--ink)}
+.proof-attr .r{font-family:var(--sans);font-size:13px;color:var(--mute);margin-top:2px;font-style:italic}
+.proof-stats-strip{margin-top:64px;padding-top:32px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:760px;margin-left:auto;margin-right:auto}
+.proof-stat{text-align:center}
+.proof-stat .n{font-family:var(--serif);font-size:36px;font-weight:500;letter-spacing:-.025em;color:var(--ink);font-feature-settings:"tnum";line-height:1}
+.proof-stat .l{font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
 
 .mini-feat{padding:100px 0;background:var(--bg-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
 .mini-feat h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.05;letter-spacing:-.025em;margin:0 0 10px;max-width:720px}
@@ -364,9 +412,12 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   .feat-row.rev .feat-copy{order:1}
   .feat-row.rev .feat-shot{order:2}
   .mini-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .proof-in{grid-template-columns:1fr;gap:40px}
-  .proof-stats{grid-template-columns:repeat(3,1fr);gap:16px}
-  .quote-card{padding:28px 24px}
+  .proof{padding:90px 0}
+  .proof-stats-strip{grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:48px}
+  .real-shot.tilted{transform:none}
+  .zen-feat{padding:90px 0}
+  .hero{padding:60px 0 40px}
+  .hero h1{font-size:clamp(56px,12vw,80px) !important}
   .stats-grid{grid-template-columns:1fr}
   .stat{border-left:0;border-top:1px solid rgba(255,255,255,.1)}
   .stat:first-child{border-top:0}
@@ -403,23 +454,28 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   <div class="hero-glow"></div>
   <div class="dot-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span>AI for accounting firms · Private beta · 14 firms</div>
-    <h1>The AI staff accountant,<br/><span class="accent">per client.</span></h1>
-    <p class="hero-sub">Zenday is the AI accountant your firm assigns per engagement. It <b>codes transactions, reconciles accounts, chases documents, and closes the month</b> — continuously. Your team reviews judgment, not data entry.</p>
-    <div class="hero-cta">
-      <a class="btn p big" href="#pricing">Start with one client free <span class="arr">→</span></a>
-      <a class="btn o big" href="#product">See the product</a>
-    </div>
-    <div class="hero-trust">
-      <span><b>$15</b> per client / month</span>
-      <span><b>QBO · Xero</b> native</span>
-      <span><b>SOC 2</b> in progress</span>
-      <span><b>14 firms</b> in beta</span>
+    <div class="hero-top">
+      <div class="hero-copy">
+        <div class="eyebrow">AI for accounting firms · Private beta</div>
+        <h1>The AI staff<br/>accountant,<br/><span class="accent">per client.</span><span class="small">For your firm.</span></h1>
+        <p class="hero-sub">Zenday is the AI accountant your firm assigns per engagement. It <b>codes, reconciles, chases, and closes</b> — continuously. Your team reviews judgment, not data entry.</p>
+        <div class="hero-cta">
+          <a class="btn p big" href="#pricing">Start with one client free <span class="arr">→</span></a>
+          <a class="btn o big" href="#product">See the product</a>
+        </div>
+        <div class="hero-trust">
+          <span><b>$15</b> per client / mo</span>
+          <span><b>14 firms</b> in private beta</span>
+          <span><b>QBO · Xero</b> native</span>
+          <span><b>SOC 2</b> in progress</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Hero product dashboard shot — REAL product screenshot -->
+    <!-- Hero product dashboard shot — REAL product screenshot, offset/bleeding -->
     <div class="hero-shot" id="product">
-      <div class="real-shot">
+      <div class="hero-shot-cap">Fig. 01 · The client dashboard</div>
+      <div class="real-shot tilted">
         <img src="prototype/scene-001.jpg" alt="Zenday client dashboard — every client on one screen" />
       </div>
     </div>
@@ -540,28 +596,23 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   </div>
 </section>
 
-<!-- ============ SOCIAL PROOF / TESTIMONIAL ============ -->
+<!-- ============ MAGAZINE PULL QUOTE ============ -->
 <section class="proof">
   <div class="wrap">
     <div class="proof-in">
-      <div>
-        <div class="proof-meta">From the beta</div>
-        <h3 class="proof-h">Fourteen firms are running Zenday on live engagements — <em>reviewing their books in five minutes, delivering close on day one.</em></h3>
-        <div class="proof-stats">
-          <div class="proof-stat"><div class="n">14</div><div class="l">Firms in private beta</div></div>
-          <div class="proof-stat"><div class="n">3,400+</div><div class="l">Client-months run</div></div>
-          <div class="proof-stat"><div class="n">97%</div><div class="l">Auto-post rate</div></div>
+      <div class="proof-kick">From the private beta</div>
+      <blockquote>We pulled in forty clients in six weeks. Zenday handled <b>ninety-seven per cent</b> of the coding without us touching it. My senior accountants spend their days on <b>advisory now</b> — which is what we were selling all along.</blockquote>
+      <div class="proof-attr">
+        <div class="av">MV</div>
+        <div class="meta">
+          <div class="n">Manav V. · Managing Partner</div>
+          <div class="r">Cordova &amp; Partners · Toronto · 210 clients</div>
         </div>
       </div>
-      <div class="quote-card">
-        <blockquote>"We pulled in forty clients in six weeks. Zenday handled ninety-seven per cent of the coding without us touching it. <b>My senior accountants spend their days on advisory now</b> — which is what we were selling all along."</blockquote>
-        <div class="qc-who">
-          <div class="qc-av">MV</div>
-          <div>
-            <div class="qc-n">Manav V., Managing Partner</div>
-            <div class="qc-r">Cordova &amp; Partners · Toronto · 210 clients</div>
-          </div>
-        </div>
+      <div class="proof-stats-strip">
+        <div class="proof-stat"><div class="n">14</div><div class="l">Firms in beta</div></div>
+        <div class="proof-stat"><div class="n">3,400+</div><div class="l">Client-months</div></div>
+        <div class="proof-stat"><div class="n">97%</div><div class="l">Auto-post rate</div></div>
       </div>
     </div>
   </div>
