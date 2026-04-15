@@ -209,7 +209,63 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .logos-strip .logo.mono{font-family:var(--mono);font-weight:500;font-size:14px;letter-spacing:-.02em}
 .logos-strip .logo.italic{font-style:italic}
 
-/* ============ FEATURE SECTION ============ */
+/* ============ STICKY PRODUCT TOUR ============ */
+.tour{padding:140px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg)}
+.tour-head{max-width:720px;margin:0 auto 64px;text-align:center}
+.tour-head .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px;display:inline-flex;align-items:center;gap:10px}
+.tour-head .kick::before{content:"§";font-family:var(--serif);font-style:italic;font-weight:700;color:var(--accent)}
+.tour-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,84px);line-height:.98;letter-spacing:-.035em;margin:0;color:var(--ink);text-wrap:balance}
+.tour-head h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.tour-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:start;max-width:1280px;margin:0 auto;padding:0 40px}
+.tour-copy{display:flex;flex-direction:column;gap:180px;padding-top:80px;padding-bottom:80px}
+.tour-block{position:relative;padding-left:60px}
+.tour-block::before{content:attr(data-n);position:absolute;left:0;top:6px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--accent);padding:5px 10px;border:1px solid var(--accent);border-radius:999px}
+.tour-block.on::before{background:var(--accent);color:#fff}
+.tour-block h3{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4vw,52px);line-height:1.02;letter-spacing:-.028em;margin:0 0 20px;color:var(--ink);opacity:.4;transition:opacity .5s}
+.tour-block h3 em{font-style:italic;color:var(--accent);font-weight:400}
+.tour-block.on h3{opacity:1}
+.tour-block p{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink-3);margin:0 0 20px;max-width:460px;opacity:.4;transition:opacity .5s}
+.tour-block.on p{opacity:1}
+.tour-block p b{color:var(--ink);font-weight:500}
+.tour-block ul{margin:0;padding:0;list-style:none;opacity:.4;transition:opacity .5s}
+.tour-block.on ul{opacity:1}
+.tour-block li{font-family:var(--sans);font-size:14.5px;color:var(--ink-3);padding:6px 0;display:flex;gap:10px;align-items:flex-start}
+.tour-block li::before{content:"→";color:var(--accent);font-family:var(--serif);font-weight:500;flex-shrink:0}
+
+.tour-sticky-wrap{position:relative;height:100%}
+.tour-sticky{position:sticky;top:100px;display:flex;align-items:center;height:calc(100vh - 180px);min-height:520px;max-height:720px}
+.tour-sticky-inner{width:100%;position:relative}
+.tour-frame{position:relative;width:100%;aspect-ratio:1600/1000;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-xl);background:#fff}
+.tour-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .5s ease}
+.tour-frame img.on{opacity:1}
+.tour-cap{margin-top:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.tour-cap .l{color:var(--ink)}
+.tour-cap .n{color:var(--accent);font-weight:600}
+
+/* Marquee band */
+.marquee{background:var(--ink);color:#fff;padding:24px 0;overflow:hidden;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.marquee-track{display:flex;gap:60px;white-space:nowrap;animation:marquee 40s linear infinite;font-family:var(--serif);font-size:clamp(28px,3.6vw,48px);letter-spacing:-.02em;font-weight:400;color:#fff}
+.marquee-track span{font-style:italic;opacity:.35}
+.marquee-track span.live{opacity:1;color:#fff;font-style:normal}
+.marquee-track .sep{color:var(--accent);font-weight:400;font-family:var(--serif);opacity:1;font-style:normal}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Big stat moment */
+.big-stat{padding:160px 0;text-align:center;position:relative;overflow:hidden;background:var(--bg-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.big-stat .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:28px}
+.big-stat .n{font-family:var(--serif);font-weight:400;font-size:clamp(180px,26vw,420px);line-height:.85;letter-spacing:-.06em;color:var(--ink);font-feature-settings:"tnum";margin:0;display:inline-flex;align-items:flex-start}
+.big-stat .n .per{font-family:var(--serif);font-style:italic;font-size:.22em;color:var(--accent);margin-left:.08em;font-weight:400;margin-top:.1em}
+.big-stat .n .dollar{font-family:var(--serif);font-weight:400;font-size:.45em;color:var(--mute);margin-top:.15em;margin-right:.04em;font-style:italic}
+.big-stat .ln{font-family:var(--serif);font-size:clamp(22px,2.6vw,34px);font-style:italic;color:var(--ink-3);margin-top:32px;letter-spacing:-.015em;font-weight:400;max-width:720px;margin-left:auto;margin-right:auto;text-wrap:balance}
+.big-stat .ln b{color:var(--ink);font-style:normal;font-weight:500}
+
+/* Giant wordmark footer */
+.wordmark-sec{padding:100px 0 0;background:var(--bg);position:relative;overflow:hidden}
+.wordmark{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(180px,32vw,520px);line-height:.78;letter-spacing:-.06em;color:var(--ink);text-align:center;margin:0;padding:0 0 0;user-select:none;position:relative}
+.wordmark .dot{color:var(--accent);font-style:italic;margin-left:-.05em}
+.wordmark-sub{text-align:center;margin-top:-.1em;font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);padding:20px 0 60px;border-bottom:1px solid var(--line)}
+
+/* ============ FEATURE SECTION (legacy, kept for misc pages) ============ */
 .feat{padding:140px 0}
 .feat-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px;display:flex;align-items:center;gap:10px}
 .feat-kicker .num{color:var(--ink);font-weight:600}
@@ -412,6 +468,19 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   .feat-row.rev .feat-copy{order:1}
   .feat-row.rev .feat-shot{order:2}
   .mini-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .tour-layout{grid-template-columns:1fr;gap:40px;padding:0 20px}
+  .tour-copy{gap:60px;padding:0}
+  .tour-block{padding-left:0}
+  .tour-block::before{position:static;display:inline-block;margin-bottom:14px}
+  .tour-block h3,.tour-block p,.tour-block ul{opacity:1}
+  .tour-sticky{position:static;height:auto;min-height:auto}
+  .tour-frame{aspect-ratio:1600/1000}
+  .tour-frame img{position:relative;opacity:1;display:none}
+  .tour-frame img.on{display:block}
+  .marquee-track{font-size:clamp(22px,5vw,32px)}
+  .big-stat{padding:80px 0}
+  .big-stat .n{font-size:clamp(100px,22vw,160px)}
+  .wordmark{font-size:clamp(80px,22vw,180px)}
   .proof{padding:90px 0}
   .proof-stats-strip{grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:48px}
   .real-shot.tilted{transform:none}
@@ -499,98 +568,91 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   </div>
 </section>
 
-<!-- ============ FEATURE 01 · CLIENT DASHBOARD ============ -->
-<section class="feat">
-  <div class="wrap">
-    <div class="feat-row">
-      <div class="feat-copy">
-        <div class="feat-kicker"><span class="num">01</span>Client dashboard</div>
-        <h2>Every client, <em>on one screen.</em></h2>
-        <p>Inbox, tasks, bank feed, and alerts — one row per client, always up to date. Open any client inline and you're looking at the full picture in four panels.</p>
-        <div class="feat-bullets">
-          <div class="feat-b"><span class="ck">✓</span><span><b>Inbox · Tasks · Bank · Alerts</b> — numeric counts per client, red badges where you're needed</span></div>
-          <div class="feat-b"><span class="ck">✓</span><span><b>Inline drilldown</b> into Recent Emails, Tasks, Bookkeeping, and Reports</span></div>
-          <div class="feat-b"><span class="ck">✓</span><span><b>Team column</b> — see who's assigned on every engagement at a glance</span></div>
-        </div>
-        <a class="feat-link" href="#">See the dashboard <span class="arr">→</span></a>
-      </div>
-      <div class="feat-shot">
-        <div class="real-shot lift">
-          <img src="prototype/scene-002.jpg" alt="AppSphere Mobile expanded — Recent Emails, Tasks, Bookkeeping, Reports" />
-        </div>
-      </div>
-    </div>
+<!-- ============ MARQUEE BAND ============ -->
+<section class="marquee">
+  <div class="marquee-track">
+    <span class="live">Continuous close</span><span class="sep">/</span>
+    <span>Client dashboard</span><span class="sep">/</span>
+    <span class="live">Ask Zen AI</span><span class="sep">/</span>
+    <span>Bank feed</span><span class="sep">/</span>
+    <span class="live">Reconciliation</span><span class="sep">/</span>
+    <span>Nine transaction alerts</span><span class="sep">/</span>
+    <span class="live">Report review</span><span class="sep">/</span>
+    <span>Inbox &amp; tasks</span><span class="sep">/</span>
+    <span class="live">Audit trail</span><span class="sep">/</span>
+    <span>Continuous close</span><span class="sep">/</span>
+    <span class="live">Client dashboard</span><span class="sep">/</span>
+    <span>Ask Zen AI</span><span class="sep">/</span>
+    <span class="live">Bank feed</span><span class="sep">/</span>
+    <span>Reconciliation</span><span class="sep">/</span>
+    <span class="live">Nine transaction alerts</span><span class="sep">/</span>
+    <span>Report review</span><span class="sep">/</span>
+    <span class="live">Inbox &amp; tasks</span><span class="sep">/</span>
+    <span>Audit trail</span><span class="sep">/</span>
   </div>
 </section>
 
-
-<!-- ============ FEATURE 02 · ASK ZEN (purple glow) ============ -->
-<section class="feat zen-feat">
+<!-- ============ STICKY PRODUCT TOUR ============ -->
+<section class="tour" id="tour">
   <div class="wrap">
-    <div class="feat-row rev">
-      <div class="feat-shot glow">
-        <div class="real-shot lift">
-          <img src="prototype/t-016.jpg" alt="Ask Zen AI categorizing transactions in the bank feed" />
-        </div>
-      </div>
-      <div class="feat-copy">
-        <div class="feat-kicker"><span class="num">02</span>Ask Zen · AI</div>
-        <h2>An AI who's <em>read every book.</em></h2>
-        <p>Ask anything about any client. Zen has the full context — every transaction, every reconciliation, every email, every document — and answers with the citations alongside.</p>
-        <div class="feat-bullets">
-          <div class="feat-b"><span class="ck">✓</span><span><b>Context-aware</b> — knows which client you're in, what they asked last week, what's pending</span></div>
-          <div class="feat-b"><span class="ck">✓</span><span><b>Cited answers</b> — every claim links back to the source transaction, email, or report</span></div>
-          <div class="feat-b"><span class="ck">✓</span><span><b>Drafts the next action</b> — email to send, task to create, entry to post</span></div>
-        </div>
-        <a class="feat-link" href="#">How Ask Zen works <span class="arr">→</span></a>
-      </div>
+    <div class="tour-head">
+      <div class="kick">The product</div>
+      <h2>One system. <em>Every surface your firm runs.</em></h2>
     </div>
   </div>
-</section>
-
-<!-- ============ FEATURE 03 · BOOKKEEPING + RECONCILIATION ============ -->
-<section class="feat">
-  <div class="wrap">
-    <div class="feat-row">
-      <div class="feat-copy">
-        <div class="feat-kicker"><span class="num">03</span>Bookkeeping &amp; reconciliation</div>
-        <h2>Coded, reconciled, <em>continuously.</em></h2>
-        <p>Transactions post with a confidence score the moment they clear. Every account — bank, credit card, AP, AR, payroll — is matched continuously and flags only what needs your eye.</p>
-        <div class="feat-bullets">
-          <div class="feat-b"><span class="ck">✓</span><span><b>Direct Plaid feed</b> — under thirty seconds from clear to posted</span></div>
-          <div class="feat-b"><span class="ck">✓</span><span><b>Nine anomaly types</b> — Missing Receipt, New Vendor, Duplicate, Reconciliation Variance, Round Number, and more</span></div>
-          <div class="feat-b"><span class="ck">✓</span><span><b>Per-client learning</b> — one correction becomes a permanent rule for that client</span></div>
-        </div>
-        <a class="feat-link" href="#">See the alerts and recon engine <span class="arr">→</span></a>
+  <div class="tour-layout">
+    <div class="tour-copy">
+      <div class="tour-block on" data-n="01" data-img="0">
+        <h3>Every client, <em>on one screen.</em></h3>
+        <p>Inbox, tasks, bank feed, and alerts — one row per client, always current. <b>Green means clear. Red means you're needed.</b></p>
+        <ul>
+          <li>Inbox · Tasks · Bank · Alerts counts per client</li>
+          <li>Inline drilldown into all four panels</li>
+          <li>Team assignments visible at a glance</li>
+        </ul>
       </div>
-      <div class="feat-shot">
-        <div class="real-shot lift">
-          <img src="prototype/t-032.jpg" alt="Reconciliation across all accounts — Type, Status, Variance, Balance, Last Recon, Assignee" />
-        </div>
+      <div class="tour-block" data-n="02" data-img="1">
+        <h3>Ask Zen, <em>your AI partner.</em></h3>
+        <p>Ask anything about any client. Zen has full context — every transaction, reconciliation, email, and document. <b>Answers come with citations.</b></p>
+        <ul>
+          <li>Context-aware across every surface</li>
+          <li>Cited answers — every claim links back</li>
+          <li>Drafts the next action for you</li>
+        </ul>
+      </div>
+      <div class="tour-block" data-n="03" data-img="2">
+        <h3>Coded, reconciled, <em>continuously.</em></h3>
+        <p>Every account — bank, credit card, AP, AR, payroll — matched in real time. Flags only what needs your eye. <b>Nine anomaly types, zero hunting.</b></p>
+        <ul>
+          <li>Direct Plaid feed · sub-30-second post latency</li>
+          <li>Missing Receipt, New Vendor, Duplicate, Variance…</li>
+          <li>One correction becomes a permanent per-client rule</li>
+        </ul>
+      </div>
+      <div class="tour-block" data-n="04" data-img="3">
+        <h3>Month-end, <em>on day one.</em></h3>
+        <p>Books reconciled continuously means the close is already done when the month ends. <b>P&amp;L, BS, CF, aging — drafted with variance narrative.</b></p>
+        <ul>
+          <li>Income Statement · Balance Sheet · Cash Flow · AP/AR Aging</li>
+          <li>Status workflow: Reviewed / Done / In Review / Queued</li>
+          <li>Variance narrative drafted in plain English</li>
+        </ul>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============ FEATURE 04 · CLOSE + REPORT REVIEW ============ -->
-<section class="feat" style="border-top:1px solid var(--line-soft);background:var(--bg-2)">
-  <div class="wrap">
-    <div class="feat-row rev">
-      <div class="feat-shot">
-        <div class="real-shot lift">
-          <img src="prototype/scene-008.jpg" alt="Report Review — Income Statement, Balance Sheet, Cash Flow with Reviewed/Done/In Review status" />
+    <div class="tour-sticky-wrap">
+      <div class="tour-sticky">
+        <div class="tour-sticky-inner">
+          <div class="tour-frame" id="tourFrame">
+            <img class="on" data-i="0" src="prototype/scene-002.jpg" alt="Client dashboard drilldown" />
+            <img data-i="1" src="prototype/t-016.jpg" alt="Ask Zen AI" />
+            <img data-i="2" src="prototype/t-032.jpg" alt="Reconciliation across all accounts" />
+            <img data-i="3" src="prototype/scene-008.jpg" alt="Report review workflow" />
+          </div>
+          <div class="tour-cap">
+            <span class="l" id="tourCapL">Client dashboard</span>
+            <span class="n" id="tourCapN">Fig. 01 · 04</span>
+          </div>
         </div>
-      </div>
-      <div class="feat-copy">
-        <div class="feat-kicker"><span class="num">04</span>Close &amp; report review</div>
-        <h2>The close, <em>on day one.</em></h2>
-        <p>Because the books are reconciled continuously, month-end arrives already closed. P&amp;L, balance sheet, cash flow, and the aging reports are drafted on day one — with a variance narrative written alongside.</p>
-        <div class="feat-bullets">
-          <div class="feat-b"><span class="ck">✓</span><span><b>Auto-drafted deliverables</b> — Income Statement, Balance Sheet, Cash Flow, AP/AR Aging</span></div>
-          <div class="feat-b"><span class="ck">✓</span><span><b>Review workflow</b> — status per report, assignee, due date, last reviewed</span></div>
-          <div class="feat-b"><span class="ck">✓</span><span><b>Variance narrative</b> drafted automatically — explained in plain English</span></div>
-        </div>
-        <a class="feat-link" href="#">See the close flow <span class="arr">→</span></a>
       </div>
     </div>
   </div>
@@ -615,6 +677,15 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
         <div class="proof-stat"><div class="n">97%</div><div class="l">Auto-post rate</div></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ BIG STAT MOMENT ============ -->
+<section class="big-stat">
+  <div class="wrap">
+    <div class="kick">§ Pricing</div>
+    <div class="n"><span class="dollar">$</span>15<span class="per">/client/mo</span></div>
+    <div class="ln"><b>No seat fees.</b> No transaction caps. No setup cost. <b>First client free</b> for thirty days — no credit card.</div>
   </div>
 </section>
 
@@ -761,6 +832,12 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
   </div>
 </section>
 
+<!-- ============ GIANT WORDMARK ============ -->
+<section class="wordmark-sec">
+  <h2 class="wordmark">Zenday<span class="dot">.</span></h2>
+  <div class="wordmark-sub">AI for accounting firms · Private beta · Apr 2026</div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
@@ -783,6 +860,30 @@ footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-
 <script>
 // FAQ accordion
 document.querySelectorAll('.q').forEach(q=>q.addEventListener('click',()=>q.classList.toggle('open')));
+
+// Sticky tour — change screenshot based on which tour-block is active in viewport
+(function(){
+  const blocks=document.querySelectorAll('.tour-block');
+  const imgs=document.querySelectorAll('.tour-frame img');
+  const capL=document.getElementById('tourCapL'),capN=document.getElementById('tourCapN');
+  const labels=['Client dashboard','Ask Zen AI','Reconciliation','Report review'];
+  if(!blocks.length||!imgs.length) return;
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && e.intersectionRatio>.35){
+        const i=parseInt(e.target.dataset.img);
+        blocks.forEach(b=>b.classList.remove('on'));
+        e.target.classList.add('on');
+        imgs.forEach(img=>img.classList.remove('on'));
+        const target=document.querySelector('.tour-frame img[data-i="'+i+'"]');
+        if(target) target.classList.add('on');
+        if(capL) capL.textContent=labels[i];
+        if(capN) capN.textContent='Fig. 0'+(i+1)+' · 04';
+      }
+    });
+  },{threshold:[.35,.55,.75],rootMargin:"-30% 0px -30% 0px"});
+  blocks.forEach(b=>io.observe(b));
+})();
 
 // Paid stamp on pricing scroll-in
 const stamp=document.getElementById('priceStamp');
