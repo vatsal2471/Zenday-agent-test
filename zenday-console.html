@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Zenday · Console — AI for accounting firms</title>
+<meta name="description" content="An AI staff accountant your firm assigns per client. Codes transactions, reconciles accounts, chases documents, closes the month. $15 per client / month." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;450;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* =============================================================
+   ZENDAY · CONSOLE — Dark terminal AI aesthetic
+   IBM Plex Mono-primary · subtle green terminal accent · scanline grain
+   ============================================================= */
+
+:root{
+  --bg:#0A0A0A;
+  --bg-2:#111111;
+  --bg-3:#1A1A1A;
+  --ink:#F5F5F4;
+  --ink-2:#E5E5E3;
+  --ink-3:#A8A59B;
+  --mute:#6E6B64;
+  --mute-2:#4A4A47;
+  --line:#1F1F1E;
+  --line-2:#161615;
+  --line-soft:rgba(255,255,255,.08);
+  --accent:#7DD37F;
+  --accent-ink:#5AB260;
+  --accent-soft:rgba(125,211,127,.1);
+  --purple:#8B5CF6;
+  --purple-2:#EC4899;
+  --purple-glow:rgba(139,92,246,.18);
+  --pink-glow:rgba(236,72,153,.14);
+  --green:#16A34A;
+  --green-soft:#DCFCE7;
+  --amber:#C2700A;
+  --amber-soft:#FEF3C7;
+  --serif:'IBM Plex Serif', Georgia, serif;
+  --sans:'Inter', -apple-system, system-ui, sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  --hand:'Caveat', 'Brush Script MT', cursive;
+  --shadow-sm:0 1px 2px rgba(10,10,10,.04);
+  --shadow:0 1px 3px rgba(10,10,10,.05), 0 12px 32px -8px rgba(10,10,10,.08);
+  --shadow-xl:0 2px 6px rgba(10,10,10,.05), 0 40px 80px -20px rgba(10,10,10,.12);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"kern","liga","cv11"}
+body{font-size:16px;line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:var(--bg)}
+
+/* Terminal cursor blinker */
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.cursor{display:inline-block;width:.55em;height:1em;background:var(--accent);vertical-align:text-bottom;margin-left:.15em;animation:blink 1s infinite;transform:translateY(-.05em)}
+
+/* Subtle scanlines */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;
+  background:repeating-linear-gradient(0deg,transparent 0,transparent 2px,rgba(125,211,127,.014) 2px,rgba(125,211,127,.014) 3px);
+  opacity:.7}
+
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.wrap-n{max-width:900px;margin:0 auto;padding:0 40px}
+
+.serif{font-family:var(--serif)}
+.mono{font-family:var(--mono);font-feature-settings:"tnum","zero"}
+
+/* ============ NAV ============ */
+nav.top{position:sticky;top:0;z-index:60;background:rgba(10,10,10,.82);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line-soft)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1280px;margin:0 auto;padding:0 40px}
+.brand{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.022em;display:flex;align-items:baseline;gap:2px}
+.brand em{font-style:italic;color:var(--accent)}
+.nav-links{display:flex;gap:28px;font-size:13.5px;color:var(--ink-2);font-weight:450}
+.nav-links a{padding:6px 0;transition:color .15s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;font-size:13px;font-weight:450;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;border-radius:999px;transition:all .18s ease;font-family:var(--sans)}
+.btn:hover{transform:translateY(-1px)}
+.btn.p{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.p:hover{background:var(--ink-2);border-color:var(--ink-2)}
+.btn.o{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.o:hover{border-color:var(--ink)}
+.btn.g{background:transparent;color:var(--ink-2)}
+.btn.g:hover{background:var(--bg-3)}
+.btn.big{padding:13px 22px;font-size:14px;border-radius:999px}
+.arr{display:inline-block;transition:transform .2s}
+.btn:hover .arr{transform:translateX(3px)}
+
+/* ============ HERO — asymmetric editorial ============ */
+.hero{padding:120px 0 80px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr;position:relative}
+
+/* Sleek subtle hero background — one quiet lavender glow */
+.hero-grid{display:none}
+.dot-grid{display:none}
+.hero-glow{position:absolute;left:50%;top:0;transform:translateX(-50%);width:900px;height:360px;z-index:-1;pointer-events:none;
+  background:radial-gradient(500px 220px at 50% 30%, rgba(139,92,246,.09), transparent 70%);
+  filter:blur(20px)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;padding:0;background:transparent;border-radius:0;margin:0 0 28px}
+.eyebrow::before{content:"§";font-style:italic;font-weight:700;color:var(--accent);margin-right:4px;font-family:var(--serif);font-size:14px}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(125,211,127,.18);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(125,211,127,.18)}50%{box-shadow:0 0 0 7px rgba(125,211,127,0)}}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(48px,6.4vw,88px);line-height:1;letter-spacing:-.032em;margin:0 auto;max-width:880px;color:var(--ink);text-wrap:balance;text-align:center}
+.hero h1 .accent,.hero h1 em{font-weight:300}
+.hero h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
+.hero h1 .accent{font-style:italic;color:var(--accent);font-weight:400}
+.hero h1 .small{display:inline;font-size:1em;color:var(--mute);font-style:italic;font-weight:400;margin:0;line-height:1}
+.hero-sub{margin:36px 0 0;font-family:var(--sans);font-size:20px;line-height:1.5;color:var(--ink-3);max-width:520px;font-weight:450;letter-spacing:-.008em;text-wrap:pretty}
+.hero-sub b{color:var(--ink);font-weight:500}
+.hero-cta{margin-top:40px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.hero-trust{margin-top:48px;display:flex;gap:32px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);padding-top:24px;border-top:1px solid var(--line-soft)}
+.hero-trust b{color:var(--ink);font-weight:500;margin-right:4px}
+
+/* Hero layout — centered, sleek */
+.hero-top{display:grid;grid-template-columns:1fr;max-width:880px;margin:0 auto;text-align:center}
+.hero-copy{position:relative;z-index:2}
+.hero .eyebrow,.hero-sub,.hero-cta,.hero-trust{justify-content:center}
+.hero-sub{margin-left:auto;margin-right:auto}
+.hero-cta{justify-content:center}
+.hero-trust{justify-content:center;border-top:0;padding-top:32px}
+
+/* Hero product shot — centered, clean, subtle */
+.hero-shot{margin:72px auto 0;position:relative;max-width:1180px;overflow:visible}
+.hero-shot-cap{display:none}
+.real-shot.tilted{transform:none}
+.hero-shot::before{
+  content:"";position:absolute;inset:-120px -60px;border-radius:40px;z-index:-1;
+  background:
+    radial-gradient(900px 380px at 15% 30%, rgba(139,92,246,.22), transparent 60%),
+    radial-gradient(800px 380px at 85% 70%, rgba(236,72,153,.18), transparent 60%),
+    radial-gradient(600px 260px at 50% 50%, rgba(125,211,127,.1), transparent 70%);
+  filter:blur(16px);
+}
+
+/* Real product screenshot frame */
+.real-shot{border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 100px -10px rgba(125,211,127,.12),0 0 0 1px rgba(255,255,255,.04);background:var(--bg-2);position:relative}
+.real-shot img{display:block;width:100%;height:auto}
+
+/* Terminal-style annotations — mono labels with glow, not handwriting */
+.annotate{position:absolute;pointer-events:none;z-index:3}
+.annotate .note{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:500;line-height:1.3;letter-spacing:.05em;max-width:200px;display:inline-block;background:var(--bg);padding:4px 9px;border:1px solid var(--accent);border-radius:3px;box-shadow:0 0 16px rgba(125,211,127,.3);text-transform:uppercase}
+.annotate .note::before{content:"// ";color:var(--mute)}
+.annotate .note.r{}
+.annotate svg{display:block;overflow:visible}
+.annotate svg path,.annotate svg circle,.annotate svg ellipse,.annotate svg line{stroke:var(--accent);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.annotate svg path.fill,.annotate svg circle.fill{fill:var(--accent)}
+
+/* Subtle noise/grain across the page */
+body::before{
+  content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.04;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.real-shot.lift{transform:translateY(0);transition:transform .4s ease}
+.real-shot.lift:hover{transform:translateY(-4px)}
+
+/* Browser chrome */
+.browser{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-xl)}
+.browser-bar{height:40px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 16px;gap:12px;background:var(--bg-3)}
+.browser-dots{display:flex;gap:6px}
+.browser-dots span{width:10px;height:10px;border-radius:50%;background:#E5E7EB}
+.browser-url{flex:1;text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--mute);letter-spacing:.02em}
+.browser-url .p{color:var(--accent)}
+.browser-pill{padding:5px 11px;background:linear-gradient(90deg,var(--purple),var(--purple-2));color:#fff;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+.browser-pill::before{content:"✦";font-size:9px}
+.avatar-mini{width:22px;height:22px;border-radius:50%;background:#e8a985;color:#1e293b;display:grid;place-items:center;font-size:9px;font-weight:700;letter-spacing:.02em}
+
+/* ============ THE PRODUCT DASHBOARD (hero screenshot) ============ */
+.dash-app{display:grid;grid-template-columns:200px 1fr;min-height:560px}
+.dash-side{background:var(--bg-2);border-right:1px solid var(--line-soft);padding:20px 14px;display:flex;flex-direction:column;gap:4px}
+.dash-side .ds-brand{font-family:var(--serif);font-weight:500;font-size:17px;letter-spacing:-.018em;margin-bottom:20px;padding-left:8px;color:var(--ink);display:flex;align-items:baseline;gap:2px}
+.dash-side .ds-brand em{font-style:italic;color:var(--accent)}
+.dash-side .ds-item{padding:7px 10px;font-size:12.5px;color:var(--ink-3);border-radius:6px;display:flex;align-items:center;gap:8px;letter-spacing:-.005em;cursor:pointer}
+.dash-side .ds-item:hover{background:var(--bg-3)}
+.dash-side .ds-item.on{background:var(--ink);color:#fff}
+.dash-side .ds-item .ico{width:14px;height:14px;opacity:.7}
+.dash-side .ds-group{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute-2);font-weight:600;padding:14px 10px 6px}
+.dash-side .ds-foot{margin-top:auto;padding:10px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-3);border-top:1px solid var(--line-soft);padding-top:14px}
+.dash-side .ds-foot .av{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;display:grid;place-items:center;font-size:10px;font-weight:700}
+
+.dash-main{padding:24px 28px;overflow:hidden}
+.dash-main-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px}
+.dash-main-t{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:-.022em;color:var(--ink)}
+.dash-main-s{font-size:12.5px;color:var(--mute);margin-top:2px;font-family:var(--sans)}
+.dash-filter{display:flex;gap:6px}
+.dash-filter span{font-size:11px;color:var(--ink-3);padding:5px 10px;border-radius:6px;background:var(--bg-3);font-family:var(--sans)}
+.dash-filter span.on{background:var(--ink);color:#fff}
+
+/* Client table */
+.ctab{width:100%;font-family:var(--sans)}
+.ctab-h{display:grid;grid-template-columns:1.6fr 48px 48px 48px 56px 56px 24px;gap:8px;padding:10px 12px;font-family:var(--mono);font-size:9.5px;color:var(--mute);letter-spacing:.14em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-soft)}
+.ctab-h span{text-align:center}
+.ctab-h span:first-child{text-align:left}
+.ctab-r{display:grid;grid-template-columns:1.6fr 48px 48px 48px 56px 56px 24px;gap:8px;padding:11px 12px;align-items:center;font-size:12.5px;color:var(--ink);border-bottom:1px solid var(--line-soft);transition:background .12s;cursor:pointer}
+.ctab-r:hover{background:var(--bg-2)}
+.ctab-r .name{font-weight:500;letter-spacing:-.005em;display:flex;align-items:center;gap:8px}
+.ctab-r .name .ar{color:var(--mute-2);font-size:10px}
+.ctab-r .c{text-align:center;font-family:var(--mono);font-size:11px;color:var(--mute)}
+.ctab-r .c b{color:var(--accent);font-weight:600}
+.ctab-r .c.z{color:var(--mute-2)}
+.ctab-r .av{width:22px;height:22px;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:9px;font-weight:700;color:#1e293b;letter-spacing:.02em}
+.ctab-r .act{color:var(--mute-2);font-size:12px;text-align:center}
+
+/* ============ LOGO STRIP ============ */
+.logos{padding:60px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.logos-lead{text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-bottom:26px;font-weight:500}
+.logos-strip{display:flex;justify-content:center;align-items:center;gap:60px;flex-wrap:wrap;opacity:.7}
+.logos-strip .logo{font-family:var(--serif);font-size:18px;font-weight:500;letter-spacing:-.015em;color:var(--ink-3)}
+.logos-strip .logo.mono{font-family:var(--mono);font-weight:500;font-size:14px;letter-spacing:-.02em}
+.logos-strip .logo.italic{font-style:italic}
+
+/* ============ STICKY PRODUCT TOUR ============ */
+.tour{padding:140px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg)}
+.tour-head{max-width:720px;margin:0 auto 64px;text-align:center}
+.tour-head .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px;display:inline-flex;align-items:center;gap:10px}
+.tour-head .kick::before{content:"§";font-family:var(--serif);font-style:italic;font-weight:700;color:var(--accent)}
+.tour-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.8vw,64px);line-height:1;letter-spacing:-.028em;margin:0;color:var(--ink);text-wrap:balance}
+.tour-head h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.tour-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:start;max-width:1280px;margin:0 auto;padding:0 40px}
+.tour-copy{display:flex;flex-direction:column;gap:180px;padding-top:80px;padding-bottom:80px}
+.tour-block{position:relative;padding-left:60px}
+.tour-block::before{content:attr(data-n);position:absolute;left:0;top:6px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--accent);padding:5px 10px;border:1px solid var(--accent);border-radius:999px}
+.tour-block.on::before{background:var(--accent);color:#fff}
+.tour-block h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.15;letter-spacing:-.02em;margin:0 0 16px;color:var(--ink);opacity:.4;transition:opacity .5s}
+.tour-block h3 em{font-style:italic;color:var(--accent);font-weight:400}
+.tour-block.on h3{opacity:1}
+.tour-block p{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink-3);margin:0 0 20px;max-width:460px;opacity:.4;transition:opacity .5s}
+.tour-block.on p{opacity:1}
+.tour-block p b{color:var(--ink);font-weight:500}
+.tour-block ul{margin:0;padding:0;list-style:none;opacity:.4;transition:opacity .5s}
+.tour-block.on ul{opacity:1}
+.tour-block li{font-family:var(--sans);font-size:14.5px;color:var(--ink-3);padding:6px 0;display:flex;gap:10px;align-items:flex-start}
+.tour-block li::before{content:"→";color:var(--accent);font-family:var(--serif);font-weight:500;flex-shrink:0}
+
+.tour-sticky-wrap{position:relative;height:100%}
+.tour-sticky{position:sticky;top:100px;display:flex;align-items:center;height:calc(100vh - 180px);min-height:520px;max-height:720px}
+.tour-sticky-inner{width:100%;position:relative}
+.tour-frame{position:relative;width:100%;aspect-ratio:1600/1000;border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-xl);background:#fff}
+.tour-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .5s ease}
+.tour-frame img.on{opacity:1}
+.ann-set{position:absolute;inset:0;opacity:0;transition:opacity .6s ease .1s;z-index:4}
+.ann-set.on{opacity:1}
+.tour-cap{margin-top:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.tour-cap .l{color:var(--ink)}
+.tour-cap .n{color:var(--accent);font-weight:600}
+
+/* Marquee band */
+.marquee{background:var(--ink);color:#fff;padding:24px 0;overflow:hidden;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.marquee-track{display:flex;gap:60px;white-space:nowrap;animation:marquee 40s linear infinite;font-family:var(--serif);font-size:clamp(28px,3.6vw,48px);letter-spacing:-.02em;font-weight:400;color:#fff}
+.marquee-track span{font-style:italic;opacity:.35}
+.marquee-track span.live{opacity:1;color:#fff;font-style:normal}
+.marquee-track .sep{color:var(--accent);font-weight:400;font-family:var(--serif);opacity:1;font-style:normal}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Big stat moment */
+.big-stat{padding:160px 0;text-align:center;position:relative;overflow:hidden;background:var(--bg-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.big-stat .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:28px}
+.big-stat .n{font-family:var(--serif);font-weight:400;font-size:clamp(180px,26vw,420px);line-height:.85;letter-spacing:-.06em;color:var(--ink);font-feature-settings:"tnum";margin:0;display:inline-flex;align-items:flex-start}
+.big-stat .n .per{font-family:var(--serif);font-style:italic;font-size:.22em;color:var(--accent);margin-left:.08em;font-weight:400;margin-top:.1em}
+.big-stat .n .dollar{font-family:var(--serif);font-weight:400;font-size:.45em;color:var(--mute);margin-top:.15em;margin-right:.04em;font-style:italic}
+.big-stat .ln{font-family:var(--serif);font-size:clamp(22px,2.6vw,34px);font-style:italic;color:var(--ink-3);margin-top:32px;letter-spacing:-.015em;font-weight:400;max-width:720px;margin-left:auto;margin-right:auto;text-wrap:balance}
+.big-stat .ln b{color:var(--ink);font-style:normal;font-weight:500}
+
+/* Quiet wordmark */
+.wordmark-sec{padding:80px 0 60px;background:var(--bg);text-align:center;border-top:1px solid var(--line-soft)}
+.wordmark{font-family:var(--serif);font-weight:400;font-size:clamp(64px,8vw,112px);line-height:1;letter-spacing:-.035em;color:var(--ink);margin:0;user-select:none}
+.wordmark .dot{color:var(--accent);font-style:italic}
+.wordmark-sub{margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+
+/* ============ FEATURE SECTION (legacy, kept for misc pages) ============ */
+.feat{padding:140px 0}
+.feat-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.feat-kicker .num{color:var(--ink);font-weight:600}
+.feat-row{display:grid;grid-template-columns:1fr 1.35fr;gap:80px;align-items:center}
+.feat-row.rev{grid-template-columns:1.35fr 1fr}
+.feat-row.rev .feat-copy{order:2}
+.feat-row.rev .feat-shot{order:1}
+.feat-copy h2{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4.4vw,52px);line-height:1.02;letter-spacing:-.028em;margin:0 0 24px;color:var(--ink);text-wrap:balance}
+.feat-copy h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.feat-copy p{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink-3);margin:0 0 18px;max-width:440px;letter-spacing:-.005em}
+.feat-copy p b{color:var(--ink);font-weight:500}
+.feat-bullets{margin-top:24px;display:flex;flex-direction:column;gap:10px}
+.feat-b{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--ink-3);line-height:1.5}
+.feat-b .ck{color:var(--accent);font-weight:600;flex-shrink:0;font-family:var(--serif);font-size:16px;line-height:1.2}
+.feat-b b{color:var(--ink);font-weight:500}
+.feat-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--accent);margin-top:24px;border-bottom:1px solid transparent;padding-bottom:1px;transition:border-color .15s}
+.feat-link:hover{border-color:var(--accent)}
+
+/* Feature shot frame */
+.feat-shot{position:relative}
+.feat-shot .browser{box-shadow:var(--shadow)}
+.feat-shot.glow::before{
+  content:"";position:absolute;inset:-60px -30px;z-index:-1;
+  background:radial-gradient(500px 220px at 50% 50%, var(--purple-glow), transparent 70%);
+  filter:blur(12px);
+}
+
+/* ============ ASK ZEN FEATURE — dark purple glow ============ */
+.zen-feat{background:linear-gradient(180deg,#0A0A0F 0%,#12101F 50%,#0A0A0F 100%);position:relative;overflow:hidden;border-top:1px solid rgba(139,92,246,.18);border-bottom:1px solid rgba(139,92,246,.18)}
+.zen-feat::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(700px 320px at 15% 20%, rgba(139,92,246,.26), transparent 65%),
+    radial-gradient(700px 320px at 85% 80%, rgba(236,72,153,.18), transparent 65%);
+}
+.zen-feat .wrap{position:relative;z-index:2}
+.zen-feat .feat-kicker{color:#C4B5FD}
+.zen-feat .feat-copy h2 em{color:#C4B5FD}
+.zen-feat .feat-b .ck{color:#C4B5FD}
+.zen-feat .feat-link{color:#C4B5FD}
+.zen-feat .feat-link:hover{border-color:#C4B5FD}
+.zen-feat .real-shot{box-shadow:0 1px 3px rgba(10,10,10,.04), 0 24px 60px -12px rgba(139,92,246,.18), 0 40px 100px -30px rgba(10,10,10,.1)}
+
+/* Ask Zen mini UI */
+.zen-ui{padding:22px;display:flex;flex-direction:column;gap:12px;min-height:380px;background:linear-gradient(180deg,#fff,#fefbff)}
+.zen-msg{display:flex;gap:10px;align-items:flex-start}
+.zen-msg .av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;flex-shrink:0}
+.zen-msg .av.u{background:var(--bg-3);color:var(--ink-2)}
+.zen-msg .av.z{background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff}
+.zen-msg .bub{padding:10px 14px;border-radius:12px;font-size:13.5px;line-height:1.5;max-width:85%;letter-spacing:-.005em}
+.zen-msg.u .bub{background:var(--bg-3);color:var(--ink-2);border-top-left-radius:4px}
+.zen-msg.z{flex-direction:row}
+.zen-msg.z .bub{background:linear-gradient(180deg,#faf5ff,#fff);border:1px solid #ede9fe;color:var(--ink-2);border-top-left-radius:4px}
+.zen-msg.z .bub b{color:var(--ink);font-weight:500}
+.zen-msg .bub .cite{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
+.zen-msg .bub .cite span{font-size:10.5px;padding:2px 7px;background:#fff;border:1px solid #e5e7eb;border-radius:4px;color:var(--mute);font-family:var(--mono)}
+.zen-input{margin-top:auto;padding:12px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mute-2)}
+.zen-input .send{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff;display:grid;place-items:center;font-size:12px;font-weight:600}
+
+/* ============ FEATURE BENTO STRIP (smaller follow-ups) ============ */
+/* Magazine-style pull quote — large editorial moment */
+.proof{padding:160px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg-2);position:relative;overflow:hidden}
+.proof::before{
+  content:"\201C";
+  position:absolute;
+  left:5%;
+  top:-30px;
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(280px,32vw,520px);
+  color:var(--accent);
+  opacity:.07;
+  font-weight:400;
+  line-height:.7;
+  pointer-events:none;
+  user-select:none;
+}
+.proof-in{max-width:1080px;margin:0 auto;position:relative;z-index:2}
+.proof-kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:34px;display:flex;align-items:center;gap:14px;justify-content:center}
+.proof-kick::before,.proof-kick::after{content:"";flex:0 0 36px;height:1px;background:var(--line)}
+.proof blockquote{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.6vw,34px);line-height:1.35;letter-spacing:-.012em;color:var(--ink-2);font-style:italic;text-align:center;text-wrap:balance;max-width:820px;margin-left:auto;margin-right:auto}
+.proof blockquote b{font-weight:500;color:var(--accent);font-style:italic}
+.proof-attr{margin-top:48px;display:flex;align-items:center;justify-content:center;gap:16px}
+.proof-attr .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#c9b79a,#8a6e42);color:#fff;display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.02em;border:2px solid #fff;box-shadow:var(--shadow-sm)}
+.proof-attr .meta{text-align:left}
+.proof-attr .n{font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:-.005em;color:var(--ink)}
+.proof-attr .r{font-family:var(--sans);font-size:13px;color:var(--mute);margin-top:2px;font-style:italic}
+.proof-stats-strip{margin-top:64px;padding-top:32px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:760px;margin-left:auto;margin-right:auto}
+.proof-stat{text-align:center}
+.proof-stat .n{font-family:var(--serif);font-size:36px;font-weight:500;letter-spacing:-.025em;color:var(--ink);font-feature-settings:"tnum";line-height:1}
+.proof-stat .l{font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+
+.mini-feat{padding:100px 0;background:var(--bg-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.mini-feat h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.05;letter-spacing:-.025em;margin:0 0 10px;max-width:720px}
+.mini-feat h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.mini-feat .mf-lede{font-size:16px;color:var(--ink-3);max-width:560px;margin:0 0 48px;line-height:1.5}
+.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.mf-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 26px 22px;display:flex;flex-direction:column;min-height:240px;transition:all .2s}
+.mf-card:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow)}
+.mf-card .kic{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:14px}
+.mf-card h3{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.018em;line-height:1.12;margin:0 0 8px}
+.mf-card h3 em{font-style:italic;color:var(--ink-3);font-weight:400}
+.mf-card p{font-size:14px;color:var(--ink-3);line-height:1.5;margin:0}
+.mf-card .mf-ui{margin-top:auto;padding-top:18px}
+.mf-preview{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:8px;font-family:var(--mono);font-size:11px;color:var(--ink-3);font-weight:500}
+.mf-preview .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.mf-preview .dot.w{background:var(--amber)}
+.mf-preview .dot.r{background:var(--accent)}
+
+/* ============ METRICS BAND (dark strip) ============ */
+.stats{background:var(--ink);color:#fff;padding:100px 0}
+.stats-lede{max-width:580px;margin:0 auto 56px;text-align:center}
+.stats-lede .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#E8A985;font-weight:500;margin-bottom:16px}
+.stats-lede h2{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4vw,48px);line-height:1.08;letter-spacing:-.025em;margin:0;color:#fff}
+.stats-lede h2 em{font-style:italic;color:#E8A985;font-weight:400}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
+.stat{padding:48px 32px;border-left:1px solid rgba(255,255,255,.1);position:relative}
+.stat:first-child{border-left:0}
+.stat .n{font-family:var(--mono);font-weight:500;font-size:clamp(56px,7vw,88px);letter-spacing:-.04em;line-height:.9;color:#fff;font-feature-settings:"tnum"}
+.stat .n .u{font-size:.35em;color:#E8A985;margin-left:3px}
+.stat .l{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#E8A985;margin-top:20px;font-weight:500}
+.stat .d{font-family:var(--sans);font-size:14.5px;color:rgba(255,255,255,.6);margin-top:10px;line-height:1.5;max-width:240px}
+
+/* ============ PRICING ============ */
+.pricing{padding:140px 0;text-align:center}
+.pricing .eyebrow{justify-content:center}
+.pricing h2{font-family:var(--serif);font-weight:500;font-size:clamp(44px,5.6vw,76px);line-height:1;letter-spacing:-.03em;margin:0 0 18px}
+.pricing h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.pricing-sub{font-size:18px;color:var(--ink-3);max-width:520px;margin:0 auto 60px;line-height:1.5}
+
+.price-card{max-width:580px;margin:0 auto;background:var(--bg-2);border:1.5px solid var(--accent);border-radius:18px;padding:48px 44px 40px;text-align:left;position:relative;box-shadow:var(--shadow)}
+.price-card-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:20px;border-bottom:1.5px solid var(--ink);margin-bottom:26px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.price-card-head b{color:var(--ink);font-weight:600}
+.price-card-num{font-family:var(--serif);font-weight:500;font-size:clamp(72px,8vw,112px);letter-spacing:-.04em;line-height:.95;color:var(--ink);font-feature-settings:"tnum"}
+.price-card-num .per{font-family:var(--sans);font-style:italic;font-size:18px;color:var(--mute);font-weight:400;margin-left:6px}
+.price-card-desc{font-family:var(--sans);font-size:15px;color:var(--ink-3);margin:10px 0 28px;line-height:1.5}
+.pc-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;margin-bottom:32px;font-family:var(--sans)}
+.pc-list .it{display:flex;gap:10px;font-size:14px;color:var(--ink-2);padding:5px 0;align-items:flex-start}
+.pc-list .ck{color:var(--accent);font-family:var(--serif);font-size:15px;font-weight:600;line-height:1.2;flex-shrink:0}
+.price-stamp{position:absolute;top:30px;right:30px;padding:10px 16px;border:2.5px solid var(--accent);color:var(--accent);font-family:var(--mono);font-weight:700;text-align:center;background:rgba(125,211,127,.04);line-height:1.05;letter-spacing:.14em;transform:rotate(6deg);border-radius:3px;opacity:0;transition:opacity .5s ease .3s,transform .6s cubic-bezier(.2,.8,.3,1.4) .3s;box-shadow:0 4px 20px -4px rgba(125,211,127,.3)}
+.price-stamp.in{opacity:.92;transform:rotate(6deg) scale(1)}
+.price-stamp .p1{font-size:18px;display:block;letter-spacing:.22em;margin-bottom:1px}
+.price-stamp .p2{font-size:8.5px;display:block;border-top:1.5px solid var(--accent);padding-top:3px;margin-top:3px;letter-spacing:.18em}
+
+.price-card-cta{display:flex;gap:10px;flex-wrap:wrap}
+.price-foot{max-width:580px;margin:20px auto 0;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.price-foot b{color:var(--ink-2);font-weight:500}
+
+/* ============ FAQ + CLOSE ============ */
+.close-sec{padding:140px 0;border-top:1px solid var(--line-soft)}
+.close-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start}
+.close-copy h2{font-family:var(--serif);font-weight:500;font-size:clamp(36px,4.4vw,56px);line-height:1;letter-spacing:-.028em;margin:0 0 18px}
+.close-copy h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.close-copy p{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink-3);margin:0 0 28px;max-width:400px}
+.close-copy .actions{display:flex;gap:10px;flex-wrap:wrap}
+.close-copy .micro{margin-top:32px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;line-height:1.8}
+.close-copy .micro b{color:var(--ink);font-weight:500}
+.faq{display:flex;flex-direction:column}
+.q{border-top:1px solid var(--line);padding:22px 0;cursor:pointer}
+.q:last-of-type{border-bottom:1px solid var(--line)}
+.q-t{font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:-.018em;display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--ink)}
+.q-t::after{content:"+";font-family:var(--sans);font-weight:300;font-size:24px;color:var(--mute);line-height:.7;transition:color .2s}
+.q.open .q-t::after{content:"–";color:var(--accent)}
+.q-a{font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--ink-3);max-height:0;overflow:hidden;transition:max-height .3s ease,margin-top .2s}
+.q.open .q-a{max-height:300px;margin-top:12px}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--line);padding:60px 0 36px;background:var(--bg-2)}
+.foot-top{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:40px;padding-bottom:36px;border-bottom:1px solid var(--line-soft)}
+.foot-brand{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.022em;margin-bottom:12px}
+.foot-brand em{font-style:italic;color:var(--accent)}
+.foot-note{font-family:var(--sans);font-size:14px;color:var(--mute);line-height:1.6;max-width:300px}
+.foot-col h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0 0 14px;font-weight:600}
+.foot-col a{display:block;padding:5px 0;color:var(--ink-3);font-family:var(--sans);font-size:14px;transition:color .15s}
+.foot-col a:hover{color:var(--accent)}
+.foot-bot{padding-top:22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.12em;text-transform:uppercase}
+
+@media (max-width:1000px){
+  .wrap,.nav-in{padding:0 20px}
+  .nav-links{display:none}
+  .hero{padding:56px 0 40px}
+  .hero-shot{margin-top:48px}
+  .dash-app{grid-template-columns:1fr}
+  .dash-side{border-right:0;border-bottom:1px solid var(--line-soft);flex-direction:row;overflow-x:auto;padding:12px}
+  .dash-side .ds-foot,.dash-side .ds-group{display:none}
+  .feat{padding:80px 0}
+  .feat-row,.feat-row.rev{grid-template-columns:1fr;gap:40px}
+  .feat-row.rev .feat-copy{order:1}
+  .feat-row.rev .feat-shot{order:2}
+  .mini-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .annotate{display:none}
+  .tour-layout{grid-template-columns:1fr;gap:40px;padding:0 20px}
+  .tour-copy{gap:60px;padding:0}
+  .tour-block{padding-left:0}
+  .tour-block::before{position:static;display:inline-block;margin-bottom:14px}
+  .tour-block h3,.tour-block p,.tour-block ul{opacity:1}
+  .tour-sticky{position:static;height:auto;min-height:auto}
+  .tour-frame{aspect-ratio:1600/1000}
+  .tour-frame img{position:relative;opacity:1;display:none}
+  .tour-frame img.on{display:block}
+  .marquee-track{font-size:clamp(22px,5vw,32px)}
+  .big-stat{padding:80px 0}
+  .big-stat .n{font-size:clamp(100px,22vw,160px)}
+  .wordmark{font-size:clamp(80px,22vw,180px)}
+  .proof{padding:90px 0}
+  .proof-stats-strip{grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:48px}
+  .real-shot.tilted{transform:none}
+  .zen-feat{padding:90px 0}
+  .hero{padding:60px 0 40px}
+  .hero h1{font-size:clamp(56px,12vw,80px) !important}
+  .stats-grid{grid-template-columns:1fr}
+  .stat{border-left:0;border-top:1px solid rgba(255,255,255,.1)}
+  .stat:first-child{border-top:0}
+  .price-card{padding:32px 24px}
+  .pc-list{grid-template-columns:1fr}
+  .close-grid{grid-template-columns:1fr;gap:40px}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .ctab-h,.ctab-r{grid-template-columns:1.2fr 40px 40px 40px 44px 40px 0;font-size:11.5px;gap:4px}
+  .ctab-r .act{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-in">
+    <div class="brand">Zenday<em>.</em></div>
+    <div class="nav-links">
+      <a href="#product">Product</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn g" href="#">Sign in</a>
+      <a class="btn p" href="#pricing">Start free <span class="arr">→</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="dot-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-copy">
+        <div class="eyebrow">$ zenday --init · private beta · v0.26.4</div>
+        <h1>The AI staff accountant,<br/><span class="accent">per client.</span><span class="cursor"></span></h1>
+        <p class="hero-sub"><span style="color:var(--accent);font-family:var(--mono);font-weight:500">~$</span> An AI staff accountant your firm assigns per engagement. It <b>codes, reconciles, chases, and closes</b> — continuously. Your team reviews judgment, not data entry.</p>
+        <div class="hero-cta">
+          <a class="btn p big" href="#pricing">Start with one client free <span class="arr">→</span></a>
+          <a class="btn o big" href="#product">See the product</a>
+        </div>
+        <div class="hero-trust">
+          <span><b>$15</b> per client / mo</span>
+          <span><b>14 firms</b> in private beta</span>
+          <span><b>QBO · Xero</b> native</span>
+          <span><b>SOC 2</b> in progress</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero product dashboard shot — REAL product screenshot, offset/bleeding -->
+    <div class="hero-shot" id="product">
+      <div class="hero-shot-cap">Fig. 01 · The client dashboard</div>
+      <div class="real-shot bleed">
+        <img src="prototype/scene-001.jpg" alt="Zenday client dashboard — every client on one screen" />
+      </div>
+      <div class="annotate" style="left:-2%;top:10%;z-index:5">
+        <span class="note r">every client,<br/>one screen</span>
+      </div>
+      <div class="annotate" style="left:4%;top:20%;z-index:5">
+        <svg width="110" height="40" viewBox="0 0 110 40"><path d="M4 8 C 30 22, 60 26, 104 18" /><path class="fill" d="M96 12 L 104 18 L 96 24 Z" /></svg>
+      </div>
+      <div class="annotate" style="right:-2%;top:14%;z-index:5">
+        <span class="note">alerts need<br/>your eye</span>
+      </div>
+      <div class="annotate" style="right:4%;top:26%;z-index:5">
+        <svg width="90" height="36" viewBox="0 0 90 36"><path d="M86 28 C 60 22, 30 18, 4 6" /><path class="fill" d="M12 0 L 4 6 L 14 8 Z" /></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGOS ============ -->
+<section class="logos">
+  <div class="wrap">
+    <div class="logos-lead">Connects to the systems your firm already runs</div>
+    <div class="logos-strip">
+      <span class="logo">QuickBooks</span>
+      <span class="logo italic">Xero</span>
+      <span class="logo mono">Plaid</span>
+      <span class="logo">Ramp</span>
+      <span class="logo">Stripe</span>
+      <span class="logo">Bill.com</span>
+      <span class="logo mono">Gusto</span>
+      <span class="logo italic">HubDoc</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ STICKY PRODUCT TOUR ============ -->
+<section class="tour" id="tour">
+  <div class="wrap">
+    <div class="tour-head">
+      <div class="kick">The product</div>
+      <h2>One system. <em>Every surface your firm runs.</em></h2>
+    </div>
+  </div>
+  <div class="tour-layout">
+    <div class="tour-copy">
+      <div class="tour-block on" data-n="01" data-img="0">
+        <h3>Every client, <em>on one screen.</em></h3>
+        <p>Inbox, tasks, bank feed, and alerts — one row per client, always current. <b>Green means clear. Red means you're needed.</b></p>
+        <ul>
+          <li>Inbox · Tasks · Bank · Alerts counts per client</li>
+          <li>Inline drilldown into all four panels</li>
+          <li>Team assignments visible at a glance</li>
+        </ul>
+      </div>
+      <div class="tour-block" data-n="02" data-img="1">
+        <h3>Ask Zen, <em>your AI partner.</em></h3>
+        <p>Ask anything about any client. Zen has full context — every transaction, reconciliation, email, and document. <b>Answers come with citations.</b></p>
+        <ul>
+          <li>Context-aware across every surface</li>
+          <li>Cited answers — every claim links back</li>
+          <li>Drafts the next action for you</li>
+        </ul>
+      </div>
+      <div class="tour-block" data-n="03" data-img="2">
+        <h3>Coded, reconciled, <em>continuously.</em></h3>
+        <p>Every account — bank, credit card, AP, AR, payroll — matched in real time. Flags only what needs your eye. <b>Nine anomaly types, zero hunting.</b></p>
+        <ul>
+          <li>Direct Plaid feed · sub-30-second post latency</li>
+          <li>Missing Receipt, New Vendor, Duplicate, Variance…</li>
+          <li>One correction becomes a permanent per-client rule</li>
+        </ul>
+      </div>
+      <div class="tour-block" data-n="04" data-img="3">
+        <h3>Month-end, <em>on day one.</em></h3>
+        <p>Books reconciled continuously means the close is already done when the month ends. <b>P&amp;L, BS, CF, aging — drafted with variance narrative.</b></p>
+        <ul>
+          <li>Income Statement · Balance Sheet · Cash Flow · AP/AR Aging</li>
+          <li>Status workflow: Reviewed / Done / In Review / Queued</li>
+          <li>Variance narrative drafted in plain English</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tour-sticky-wrap">
+      <div class="tour-sticky">
+        <div class="tour-sticky-inner">
+          <div class="tour-frame" id="tourFrame">
+            <img class="on" data-i="0" src="prototype/scene-002.jpg" alt="Client dashboard drilldown" />
+            <img data-i="1" src="prototype/t-016.jpg" alt="Ask Zen AI" />
+            <img data-i="2" src="prototype/t-032.jpg" alt="Reconciliation across all accounts" />
+            <img data-i="3" src="prototype/scene-008.jpg" alt="Report review workflow" />
+
+            <!-- Annotation sets — one per view -->
+            <div class="ann-set on" data-i="0">
+              <div class="annotate" style="right:6%;top:18%">
+                <span class="note">exceptions need<br/>your eye →</span>
+              </div>
+              <div class="annotate" style="right:4%;top:30%">
+                <svg width="80" height="40" viewBox="0 0 80 40"><path d="M78 6 C 50 4, 20 18, 4 32" /><path class="fill" d="M10 28 L 4 32 L 12 34 Z" /></svg>
+              </div>
+              <div class="annotate" style="left:8%;bottom:14%">
+                <span class="note r">four panels, one click</span>
+              </div>
+            </div>
+
+            <div class="ann-set" data-i="1">
+              <div class="annotate" style="right:3%;top:8%">
+                <svg width="200" height="70" viewBox="0 0 200 70"><ellipse cx="100" cy="35" rx="94" ry="28" /></svg>
+              </div>
+              <div class="annotate" style="right:6%;top:-2%">
+                <span class="note">live AI · full context</span>
+              </div>
+              <div class="annotate" style="left:6%;bottom:16%">
+                <span class="note r">49 of 50 auto-coded</span>
+              </div>
+            </div>
+
+            <div class="ann-set" data-i="2">
+              <div class="annotate" style="left:38%;top:46%">
+                <svg width="120" height="28" viewBox="0 0 120 28"><path d="M4 20 C 30 6, 60 24, 116 12" stroke-dasharray="0" /></svg>
+              </div>
+              <div class="annotate" style="left:44%;top:55%">
+                <span class="note r">flagged automatically</span>
+              </div>
+              <div class="annotate" style="right:6%;top:12%">
+                <span class="note">all accounts, every day →</span>
+              </div>
+            </div>
+
+            <div class="ann-set" data-i="3">
+              <div class="annotate" style="left:34%;top:34%">
+                <svg width="90" height="36" viewBox="0 0 90 36"><ellipse cx="45" cy="18" rx="42" ry="14" /></svg>
+              </div>
+              <div class="annotate" style="left:30%;top:50%">
+                <span class="note">your approval workflow ✓</span>
+              </div>
+              <div class="annotate" style="right:8%;bottom:20%">
+                <span class="note r">reports on day one</span>
+              </div>
+            </div>
+          </div>
+          <div class="tour-cap">
+            <span class="l" id="tourCapL">Client dashboard</span>
+            <span class="n" id="tourCapN">Fig. 01 · 04</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAGAZINE PULL QUOTE ============ -->
+<section class="proof">
+  <div class="wrap">
+    <div class="proof-in">
+      <div class="proof-kick">From the private beta</div>
+      <blockquote>We pulled in forty clients in six weeks. Zenday handled <b>ninety-seven per cent</b> of the coding without us touching it. My senior accountants spend their days on <b>advisory now</b> — which is what we were selling all along.</blockquote>
+      <div class="proof-attr">
+        <div class="av">MV</div>
+        <div class="meta">
+          <div class="n">Manav V. · Managing Partner</div>
+          <div class="r">Cordova &amp; Partners · Toronto · 210 clients</div>
+        </div>
+      </div>
+      <div class="proof-stats-strip">
+        <div class="proof-stat"><div class="n">14</div><div class="l">Firms in beta</div></div>
+        <div class="proof-stat"><div class="n">3,400+</div><div class="l">Client-months</div></div>
+        <div class="proof-stat"><div class="n">97%</div><div class="l">Auto-post rate</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MINI FEATURES STRIP ============ -->
+<section class="mini-feat" id="features">
+  <div class="wrap">
+    <h2>Everything else <em>a firm needs.</em></h2>
+    <p class="mf-lede">The surfaces you'd expect from a firm-grade system — and a few you wouldn't.</p>
+    <div class="mini-grid">
+      <div class="mf-card">
+        <div class="kic">Inbox &amp; email</div>
+        <h3>Email, <em>triaged.</em></h3>
+        <p>Client replies parsed, receipts extracted, questions drafted back — one inbox across every client.</p>
+        <div class="mf-ui"><div class="mf-preview"><span class="dot"></span>5 unread · 2 drafts ready</div></div>
+      </div>
+      <div class="mf-card">
+        <div class="kic">Tasks</div>
+        <h3>Tasks, <em>per client.</em></h3>
+        <p>Overdue items flagged. Recurring tasks auto-scheduled. Every task traces to the client and the reason.</p>
+        <div class="mf-ui"><div class="mf-preview"><span class="dot w"></span>3 overdue · 12 upcoming</div></div>
+      </div>
+      <div class="mf-card">
+        <div class="kic">Documents</div>
+        <h3>Files, <em>matched.</em></h3>
+        <p>Receipts, statements, contracts — uploaded via portal or email, vision-matched to the right entry.</p>
+        <div class="mf-ui"><div class="mf-preview"><span class="dot"></span>47 matched · 0 orphaned</div></div>
+      </div>
+      <div class="mf-card">
+        <div class="kic">Transaction alerts</div>
+        <h3>Nine things <em>Zen watches for.</em></h3>
+        <p>Missing Receipt, New Vendor, Duplicate, Reconciliation Variance, Round Number, Unusual Amount, and more.</p>
+        <div class="mf-ui"><div class="mf-preview"><span class="dot r"></span>7 alerts · 3 need review</div></div>
+      </div>
+      <div class="mf-card">
+        <div class="kic">Team</div>
+        <h3>Your team, <em>on every roster.</em></h3>
+        <p>Assign clients to team members. See who's responsible, who's reviewed what, who's on vacation.</p>
+        <div class="mf-ui"><div class="mf-preview"><span class="dot"></span>4 members · unlimited seats</div></div>
+      </div>
+      <div class="mf-card">
+        <div class="kic">Audit trail</div>
+        <h3>Every action, <em>logged and reversible.</em></h3>
+        <p>Reasoning, confidence, source, model version — per entry, per client, forever. One-click reversible.</p>
+        <div class="mf-ui"><div class="mf-preview"><span class="dot"></span>100% traceable</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS BAND ============ -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-lede">
+      <div class="k">In numbers</div>
+      <h2>Five minutes a day. <em>Every client, current.</em></h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="n">5<span class="u">min</span></div>
+        <div class="l">Daily review</div>
+        <div class="d">Open the roster. Approve the exceptions. Go back to advisory.</div>
+      </div>
+      <div class="stat">
+        <div class="n">Day 1<span class="u"></span></div>
+        <div class="l">Month-end delivery</div>
+        <div class="d">P&amp;L, balance sheet, cash flow — waiting on the first business day.</div>
+      </div>
+      <div class="stat">
+        <div class="n">$15<span class="u">/mo</span></div>
+        <div class="l">Per client, all in</div>
+        <div class="d">No seat fees. No transaction caps. No setup cost.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="pricing" id="pricing">
+  <div class="wrap-n">
+    <div class="eyebrow"><span class="dot"></span>Pricing · the whole thing</div>
+    <h2>$15. <em>Per client. Per month.</em></h2>
+    <p class="pricing-sub">Priced the way your firm invoices a client — simply, itemised, nothing hidden.</p>
+
+    <div class="price-card" id="priceCard">
+      <div class="price-stamp" id="priceStamp">
+        <span class="p1">Paid</span>
+        <span class="p2">$15 · per client</span>
+      </div>
+      <div class="price-card-head">
+        <span><b>Firm plan</b></span>
+        <span>Rev 2026.04</span>
+      </div>
+      <div class="price-card-num">$15<span class="per">/ client / month</span></div>
+      <div class="price-card-desc">Everything the product does. All integrations. Unlimited team seats. First client free for thirty days — no credit card.</div>
+      <div class="pc-list">
+        <div class="it"><span class="ck">✓</span><span>Client dashboard &amp; drilldown</span></div>
+        <div class="it"><span class="ck">✓</span><span>Ask Zen AI · unlimited</span></div>
+        <div class="it"><span class="ck">✓</span><span>Bookkeeping &amp; reconciliation</span></div>
+        <div class="it"><span class="ck">✓</span><span>Nine transaction alert types</span></div>
+        <div class="it"><span class="ck">✓</span><span>Email, tasks, documents</span></div>
+        <div class="it"><span class="ck">✓</span><span>Month-end close &amp; report review</span></div>
+        <div class="it"><span class="ck">✓</span><span>Full audit trail, reversible</span></div>
+        <div class="it"><span class="ck">✓</span><span>Team seats · unlimited</span></div>
+      </div>
+      <div class="price-card-cta">
+        <a class="btn p big" href="#">Start with one client free <span class="arr">→</span></a>
+        <a class="btn o big" href="#">Book a demo</a>
+      </div>
+    </div>
+    <div class="price-foot">
+      <span><b>First client free</b> · 30 days</span>
+      <span><b>SOC 2</b> · In progress</span>
+      <span><b>QBO · Xero</b> · native</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ + CLOSE ============ -->
+<section class="close-sec" id="faq">
+  <div class="wrap">
+    <div class="close-grid">
+      <div class="close-copy">
+        <h2>Assign it to <em>one client.</em></h2>
+        <p>Zenday runs through your next month on one live engagement. Compare to the process you run today — decide from the outcome, not the pitch.</p>
+        <div class="actions">
+          <a class="btn p big" href="#">Start free <span class="arr">→</span></a>
+          <a class="btn g big" href="#">Talk to the founders</a>
+        </div>
+        <div class="micro">
+          <b>Private beta</b> · 14 firms enrolled<br/>
+          <b>Based in</b> · Toronto<br/>
+          <b>Team</b> · ex-firm, ex-Intuit, ex-Anthropic
+        </div>
+      </div>
+      <div class="faq">
+        <div class="q open"><div class="q-t">Is Zenday software or a service?</div><div class="q-a">Software. Your firm assigns Zenday to each client; you stay the accountant of record. Zenday handles the coding, reconciliation, and close — your team reviews anything that needs judgment.</div></div>
+        <div class="q"><div class="q-t">How is this different from Karbon or Client Hub?</div><div class="q-a">Karbon is practice management — Zenday is a working accountant. We do the bookkeeping work and bring it to your roster. Karbon organizes the work you still have to do yourself.</div></div>
+        <div class="q"><div class="q-t">What if Zenday gets something wrong?</div><div class="q-a">Low-confidence items wait in the review queue instead of being posted. When you correct one, Zenday remembers it for that client — permanently. Override rate drops under two per cent by month three.</div></div>
+        <div class="q"><div class="q-t">Which ledgers and banks are supported?</div><div class="q-a">QuickBooks Online, Xero, and any bank on Plaid or direct feed — 12,000+ US and Canadian institutions. Sage and NetSuite are on the roadmap.</div></div>
+        <div class="q"><div class="q-t">Can I try it on one client first?</div><div class="q-a">Yes. First client is free for thirty days. No credit card. Connect QBO and a bank feed, pick a client, and let Zenday do the month.</div></div>
+        <div class="q"><div class="q-t">What about security?</div><div class="q-a">SOC 2 Type II in progress. Your client data is never used to train models. US-hosted. BAA available on Enterprise.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GIANT WORDMARK ============ -->
+<section class="wordmark-sec">
+  <h2 class="wordmark">Zenday<span class="dot">.</span></h2>
+  <div class="wordmark-sub">AI for accounting firms · Private beta · Apr 2026</div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">Zenday<em>.</em></div>
+        <div class="foot-note">An AI staff accountant your firm assigns per client. Built for firms that want to ship advisory — not data entry.</div>
+      </div>
+      <div class="foot-col"><h5>Product</h5><a href="#product">Client dashboard</a><a href="#">Ask Zen AI</a><a href="#">Bookkeeping</a><a href="#">Reconciliation</a><a href="#">Close &amp; reports</a></div>
+      <div class="foot-col"><h5>Firm</h5><a href="#pricing">Pricing</a><a href="#">Security</a><a href="#">Changelog</a><a href="#">Roadmap</a></div>
+      <div class="foot-col"><h5>Company</h5><a href="#">About</a><a href="#">Careers</a><a href="#">Contact</a><a href="#">Privacy</a></div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Zenday · AI for accountants</span>
+      <span>Made in Toronto</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.q').forEach(q=>q.addEventListener('click',()=>q.classList.toggle('open')));
+
+// Sticky tour — change screenshot based on which tour-block is active in viewport
+(function(){
+  const blocks=document.querySelectorAll('.tour-block');
+  const imgs=document.querySelectorAll('.tour-frame img');
+  const capL=document.getElementById('tourCapL'),capN=document.getElementById('tourCapN');
+  const labels=['Client dashboard','Ask Zen AI','Reconciliation','Report review'];
+  if(!blocks.length||!imgs.length) return;
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && e.intersectionRatio>.35){
+        const i=parseInt(e.target.dataset.img);
+        blocks.forEach(b=>b.classList.remove('on'));
+        e.target.classList.add('on');
+        imgs.forEach(img=>img.classList.remove('on'));
+        const target=document.querySelector('.tour-frame img[data-i="'+i+'"]');
+        if(target) target.classList.add('on');
+        document.querySelectorAll('.ann-set').forEach(a=>a.classList.remove('on'));
+        const ann=document.querySelector('.ann-set[data-i="'+i+'"]');
+        if(ann) ann.classList.add('on');
+        if(capL) capL.textContent=labels[i];
+        if(capN) capN.textContent='Fig. 0'+(i+1)+' · 04';
+      }
+    });
+  },{threshold:[.35,.55,.75],rootMargin:"-30% 0px -30% 0px"});
+  blocks.forEach(b=>io.observe(b));
+})();
+
+// Paid stamp on pricing scroll-in
+const stamp=document.getElementById('priceStamp');
+const card=document.getElementById('priceCard');
+if('IntersectionObserver' in window && stamp && card){
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ setTimeout(()=>stamp.classList.add('in'),450); io.unobserve(e.target);} });
+  },{threshold:.35});
+  io.observe(card);
+} else if (stamp) { stamp.classList.add('in'); }
+</script>
+</body>
+</html>
