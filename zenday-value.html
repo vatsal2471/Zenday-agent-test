@@ -3,15 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Zenday · See what you save — interactive ROI for accounting firms</title>
-<meta name="description" content="Slide your client count. See monthly savings, hours returned to advisory, annual impact. Start with one client free." />
+<title>Zenday — Your clients hired you for advice. Not data entry.</title>
+<meta name="description" content="An AI staff accountant your firm assigns per client. Codes, reconciles, chases, closes — continuously. $15 per client per month." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;450;500;600&display=swap" rel="stylesheet" />
 <style>
 /* =============================================================
-   ZENDAY · VALUE — interactive savings calculator as the hero.
-   One job: show the firm owner how much they save, then sign up.
+   ZENDAY · VALUE REBUILD · applied from 19-site research.
+   Hero → Logo strip → Product carousel (the signature move)
+   → 6 modular feature cards → Testimonial → Stats → Invoice
+   pricing → Inline signup → Footer.
+   Discipline: 3 colors, Plex stack, 80px+ section spacing,
+   one memorable moment per section, no cluttered cards.
    ============================================================= */
 
 :root{
@@ -28,9 +32,6 @@
   --accent:#B55C37;
   --accent-ink:#964625;
   --accent-soft:#FBEEE7;
-  --accent-glow:rgba(181,92,55,.18);
-  --green:#1F7A3C;
-  --green-soft:#E8F3EC;
   --serif:'IBM Plex Serif', Georgia, serif;
   --sans:'Inter', -apple-system, system-ui, sans-serif;
   --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
@@ -42,9 +43,14 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:v
 body{font-size:16px;line-height:1.55;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--ink);color:var(--bg)}
+
 .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
-.wrap-n{max-width:860px;margin:0 auto;padding:0 40px}
-.mono{font-family:var(--mono);font-feature-settings:"tnum","zero"}
+.wrap-n{max-width:900px;margin:0 auto;padding:0 40px}
+.mono{font-family:var(--mono);font-feature-settings:"tnum"}
+
+/* Shared section kicker */
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px;display:inline-flex;align-items:center;gap:10px}
+.kick::before{content:"§";font-family:var(--serif);font-style:italic;font-weight:500}
 
 /* NAV */
 nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line-soft)}
@@ -57,238 +63,154 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdr
 .btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;font-size:13.5px;font-weight:450;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;border-radius:999px;transition:all .18s ease;font-family:var(--sans)}
 .btn:hover{transform:translateY(-1px)}
 .btn.p{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.btn.p:hover{background:var(--accent);border-color:var(--accent)}
+.btn.p:hover{background:var(--ink-2)}
 .btn.o{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.o:hover{border-color:var(--ink)}
 .btn.g{background:transparent;color:var(--ink-2)}
 .btn.g:hover{background:var(--bg-3)}
-.btn.big{padding:14px 24px;font-size:14.5px}
-.arr{transition:transform .2s;display:inline-block}
+.btn.big{padding:13px 22px;font-size:14px}
+.arr{display:inline-block;transition:transform .2s}
 .btn:hover .arr{transform:translateX(3px)}
 
-/* ============ HERO · LIVE ROI CALCULATOR ============ */
-.hero{padding:72px 0 120px;position:relative;overflow:hidden}
-.hero::before{
-  content:"";position:absolute;left:50%;top:-120px;transform:translateX(-50%);width:1100px;height:520px;z-index:-1;pointer-events:none;
-  background:radial-gradient(700px 320px at 50% 50%, var(--accent-glow), transparent 70%);
-  filter:blur(28px)}
-.hero-kick{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:30px}
-.hero-kick::before{content:"§";font-family:var(--serif);font-style:italic;font-weight:500}
-.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(40px,5.4vw,72px);line-height:1.02;letter-spacing:-.03em;margin:0 0 20px;max-width:820px;color:var(--ink);text-wrap:balance}
-.hero h1 em{font-style:italic;color:var(--ink-3);font-weight:300}
-.hero h1 .n{font-style:italic;color:var(--accent);font-weight:300}
-.hero-sub{font-family:var(--sans);font-size:17px;line-height:1.5;color:var(--ink-3);max-width:520px;margin:0 0 44px;font-weight:450}
-
-/* Calculator — single unified card, horizontal flow, no overflow */
-.calc{background:var(--bg-2);border:1px solid var(--line);border-radius:20px;padding:40px 44px;position:relative;box-shadow:var(--shadow-xl);max-width:1100px;margin:0 auto}
-
-/* Top row — savings output is the star */
-.calc-out{text-align:center;padding-bottom:32px;border-bottom:1px solid var(--line);margin-bottom:32px}
-.calc-out .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px;display:inline-flex;align-items:center;gap:10px}
-.calc-out .lbl::before,.calc-out .lbl::after{content:"";width:24px;height:1px;background:var(--accent)}
-.calc-out .big{font-family:var(--serif);font-weight:300;font-size:clamp(56px,8vw,112px);line-height:1;letter-spacing:-.04em;color:var(--ink);font-feature-settings:"tnum";display:inline-flex;align-items:baseline;margin-bottom:10px;gap:4px}
-.calc-out .big .dollar{font-size:.42em;color:var(--mute);font-weight:400;font-style:italic}
-.calc-out .per{font-family:var(--sans);font-style:italic;font-size:16px;color:var(--mute);font-weight:400;letter-spacing:-.005em;display:block}
-
-/* Bottom row — inputs + breakdown side by side */
-.calc-body{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.calc-field .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline}
-.calc-field .clientn{font-family:var(--serif);font-weight:300;font-size:64px;line-height:1;letter-spacing:-.035em;color:var(--ink);font-feature-settings:"tnum";margin:0 0 18px;display:flex;align-items:baseline;gap:10px}
-.calc-field .clientn .u{font-family:var(--sans);font-style:italic;font-size:16px;color:var(--mute);font-weight:400}
-input[type=range].slider{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:var(--line);outline:none;border-radius:2px;margin:0;display:block}
-input[type=range].slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);border:3px solid var(--bg-2);box-shadow:0 2px 8px var(--accent-glow);cursor:pointer;transition:transform .15s}
-input[type=range].slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
-input[type=range].slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--accent);border:3px solid var(--bg-2);cursor:pointer}
-.calc-ticks{display:flex;justify-content:space-between;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--mute-2);letter-spacing:.04em}
-
-.calc-breakdown .h{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:10px}
-.calc-row{display:grid;grid-template-columns:1fr auto;gap:18px;padding:9px 0;font-family:var(--sans);font-size:13.5px;color:var(--ink-3);align-items:baseline;border-bottom:1px dotted var(--line)}
-.calc-row:last-child{border-bottom:0}
-.calc-row.hl{color:var(--ink);font-weight:500}
-.calc-row .v{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--ink);font-feature-settings:"tnum"}
-.calc-row.hl .v{color:var(--accent)}
-
-/* Secondary stats row */
-.calc-secondary{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:28px;padding-top:28px;border-top:1px solid var(--line)}
-.calc-s{text-align:center}
-.calc-s .v{font-family:var(--serif);font-size:34px;font-weight:400;letter-spacing:-.025em;line-height:1;color:var(--ink);font-feature-settings:"tnum"}
-.calc-s .v .u{font-family:var(--sans);font-size:14px;color:var(--mute);font-weight:400;font-style:italic;margin-left:4px;letter-spacing:-.005em}
-.calc-s .l{font-family:var(--mono);font-size:10.5px;color:var(--mute);margin-top:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
-
-.hero-cta{margin-top:40px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center}
-.hero-trust{margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:center}
+/* ============ HERO · outcome-framed, one big visual ============ */
+.hero{padding:80px 0 100px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;left:50%;top:-80px;transform:translateX(-50%);width:1000px;height:400px;z-index:-1;pointer-events:none;background:radial-gradient(500px 220px at 50% 40%,rgba(181,92,55,.09),transparent 70%);filter:blur(24px)}
+.hero-copy{max-width:820px;margin:0 auto;text-align:center}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(44px,6vw,84px);line-height:1;letter-spacing:-.032em;margin:0 0 22px;color:var(--ink);text-wrap:balance}
+.hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
+.hero-sub{font-family:var(--sans);font-size:18px;line-height:1.5;color:var(--ink-3);max-width:600px;margin:0 auto 36px;font-weight:450;letter-spacing:-.005em;text-wrap:pretty}
+.hero-sub b{color:var(--ink);font-weight:500}
+.hero-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.hero-trust{margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
 .hero-trust b{color:var(--ink);font-weight:500}
 
-/* Hero screenshot — centered, anchored */
-.hero-shot{margin:68px auto 0;max-width:1180px}
-.hero-shot .real-shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-xl);background:#fff}
-.hero-shot .real-shot img{display:block;width:100%;height:auto}
+.hero-shot{margin:72px auto 0;max-width:1160px}
+.real-shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-xl);background:#fff;position:relative}
+.real-shot img{display:block;width:100%;height:auto}
 
-/* ============ AI IN ACTION ============ */
-.ai-sec{padding:120px 0;border-top:1px solid var(--line-soft);background:var(--bg-2)}
-.ai-head{max-width:740px;margin:0 auto 56px;text-align:center}
-.ai-head .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:16px;display:inline-block}
-.ai-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.6vw,56px);line-height:1.02;letter-spacing:-.028em;margin:0 0 18px;color:var(--ink);text-wrap:balance}
-.ai-head h2 em{font-style:italic;color:var(--accent);font-weight:300}
-.ai-head p{font-family:var(--sans);font-size:16px;color:var(--ink-3);line-height:1.55;max-width:560px;margin:0 auto}
+/* ============ LOGO STRIP ============ */
+.logos{padding:64px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.logos-lead{text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);margin-bottom:28px;font-weight:500}
+.logos-strip{display:flex;justify-content:center;align-items:center;gap:56px;flex-wrap:wrap;opacity:.72}
+.logos-strip .logo{font-family:var(--serif);font-size:19px;font-weight:400;letter-spacing:-.015em;color:var(--ink-2)}
+.logos-strip .logo.mono{font-family:var(--mono);font-size:14px;letter-spacing:-.015em;font-weight:500}
+.logos-strip .logo.italic{font-style:italic}
 
-.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.ai-card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:28px 30px;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
-.ai-card:hover{border-color:var(--ink-3);transform:translateY(-2px);box-shadow:var(--shadow)}
-.ai-card .ai-n{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:22px}
+/* ============ SIGNATURE MOVE · PRODUCT CAROUSEL ============ */
+.carousel-sec{padding:120px 0;border-bottom:1px solid var(--line-soft)}
+.carousel-head{max-width:820px;margin:0 auto 56px;text-align:center}
+.carousel-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.8vw,60px);line-height:1.04;letter-spacing:-.03em;margin:0 0 18px;text-wrap:balance}
+.carousel-head h2 em{font-style:italic;color:var(--accent);font-weight:300}
+.carousel-head p{font-family:var(--sans);font-size:16.5px;color:var(--ink-3);line-height:1.55;max-width:540px;margin:0 auto;letter-spacing:-.005em}
 
-/* Demo block inside each card */
-.ai-demo{display:flex;flex-direction:column;gap:10px;flex:1;margin-bottom:18px}
+.carousel{position:relative;max-width:1200px;margin:0 auto}
+.carousel-frame{position:relative;aspect-ratio:1600/1000;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-xl);background:#fff}
+.carousel-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .7s ease}
+.carousel-frame img.on{opacity:1}
 
-/* 01 · transaction code */
-.ai-step{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-family:var(--sans);font-size:13px}
-.ai-step .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:4px;display:block}
-.ai-step .txt{color:var(--ink-2);font-size:13px}
-.ai-step.think{background:linear-gradient(180deg,#FBF9FF,#F6F3FF);border-color:rgba(139,92,246,.2)}
-.ai-step.think .lab{color:#7C3AED}
-.ai-step.think .txt{color:var(--ink-2);font-style:italic}
-.ai-step.out{border-color:var(--accent);background:var(--accent-soft)}
-.ai-step.out .lab{color:var(--accent)}
-.ai-step .row{margin-top:8px;display:grid;grid-template-columns:42px 1fr auto;gap:8px;padding:8px 10px;background:#fff;border:1px solid var(--line);border-radius:6px;font-family:var(--sans);font-size:12px;color:var(--ink);align-items:center}
-.ai-step .row .t{font-family:var(--mono);font-size:10px;color:var(--mute)}
-.ai-step .row .v{font-weight:500;letter-spacing:-.005em;line-height:1.2}
-.ai-step .row .v .m{font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:400}
-.ai-step .row.posted{border-color:var(--accent)}
-.ai-step .row .tag{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:3px;background:var(--accent);color:#fff;letter-spacing:.08em;text-transform:uppercase}
-.ai-arrow{text-align:center;color:var(--mute-2);font-size:14px;line-height:1;margin:-2px 0}
+.carousel-caption{display:flex;align-items:center;justify-content:space-between;margin-top:22px;gap:20px;flex-wrap:wrap}
+.carousel-cap-left{display:flex;align-items:baseline;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.carousel-cap-left .num{color:var(--accent);font-weight:600}
+.carousel-cap-left .title{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink);letter-spacing:-.008em;text-transform:none;font-weight:400}
+.carousel-cap-left .desc{color:var(--ink-3);font-family:var(--sans);text-transform:none;letter-spacing:-.002em;font-size:13.5px;font-weight:400}
+.carousel-dots{display:flex;gap:8px}
+.carousel-dot{width:28px;height:2px;background:var(--line);border:0;cursor:pointer;padding:0;transition:background .2s}
+.carousel-dot.on{background:var(--ink)}
+.carousel-dot:hover{background:var(--mute)}
+.carousel-progress{position:absolute;bottom:0;left:0;height:2px;background:var(--accent);transition:width linear}
 
-/* 02 · Ask Zen chat */
-.ai-chat{display:flex;gap:10px;align-items:flex-start}
-.ai-chat .av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-family:var(--sans);font-size:10px;font-weight:600;color:var(--ink);background:var(--bg-3);flex-shrink:0}
-.ai-chat .av.ai{background:linear-gradient(135deg,#8B5CF6,#EC4899);color:#fff}
-.ai-chat .bub{font-family:var(--sans);font-size:13px;line-height:1.5;padding:10px 14px;border-radius:12px;letter-spacing:-.005em;max-width:85%}
-.ai-chat.q .bub{background:var(--bg-2);color:var(--ink-2);border-top-left-radius:4px}
-.ai-chat.a .bub{background:linear-gradient(180deg,#FBF9FF,#fff);border:1px solid rgba(139,92,246,.18);border-top-left-radius:4px;color:var(--ink-2)}
-.ai-chat.a .bub b{color:var(--ink);font-weight:500}
-.ai-chat.a .bub .cites{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
-.ai-chat.a .bub .cites span{font-size:10px;padding:2px 6px;background:#fff;border:1px solid #e5e7eb;border-radius:4px;color:var(--mute);font-family:var(--mono);letter-spacing:.02em}
-
-/* 03 · Reconciliation */
-.ai-recon{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
-.ai-recon .rr{display:grid;grid-template-columns:1fr 70px 90px;gap:10px;padding:8px 10px;background:#fff;border-radius:6px;font-family:var(--sans);font-size:12px;color:var(--ink-2);align-items:center;border:1px solid var(--line)}
-.ai-recon .rr .am{font-family:var(--mono);font-weight:500;text-align:right}
-.ai-recon .rr .m{font-family:var(--mono);font-size:10px;letter-spacing:.04em;font-weight:600;text-align:right}
-.ai-recon .rr .m.ok{color:#7C3AED}
-.ai-recon .rr .m.war{color:var(--accent)}
-.ai-recon .rr.flag{background:var(--accent-soft);border-color:rgba(181,92,55,.2)}
-.ai-note{margin-top:10px;padding:8px 12px;background:linear-gradient(180deg,#FBF9FF,#F6F3FF);border:1px solid rgba(139,92,246,.18);border-radius:8px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
-.ai-note b{color:#7C3AED;font-weight:600}
-
-/* 04 · Variance narrative */
-.ai-narrative{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:16px 18px;font-family:var(--sans)}
-.nn-head{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:1px dotted var(--line)}
-.nn-head span{color:var(--accent);font-weight:600}
-.ai-narrative p{font-size:13px;line-height:1.6;color:var(--ink-2);margin:0 0 8px}
-.ai-narrative p:last-child{margin:0}
-.ai-narrative p b{color:var(--ink);font-weight:500}
-
-.ai-why{padding-top:16px;border-top:1px dotted var(--line);font-family:var(--sans);font-size:12.5px;color:var(--mute);line-height:1.5;letter-spacing:-.005em}
-
-/* ============ PRODUCT SCREENSHOT + CALLOUTS ============ */
-.product{padding:100px 0;border-top:1px solid var(--line-soft)}
-.product-head{max-width:680px;margin:0 auto 48px;text-align:center}
-.product-head .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:16px;display:inline-block}
-.product-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,52px);line-height:1.02;letter-spacing:-.028em;margin:0;color:var(--ink);text-wrap:balance}
-.product-head h2 em{font-style:italic;color:var(--accent);font-weight:300}
-.product-frame{position:relative;max-width:1200px;margin:0 auto}
-.product-frame .real-shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-xl);background:#fff}
-.product-frame .real-shot img{display:block;width:100%;height:auto}
-
-/* Callout pins on the product screenshot */
-.pin{position:absolute;z-index:3;font-family:var(--mono);font-size:11px;background:var(--ink);color:#fff;padding:8px 13px;border-radius:8px;letter-spacing:-.005em;line-height:1.4;max-width:220px;box-shadow:0 4px 16px rgba(10,10,10,.15)}
-.pin::after{content:"";position:absolute;width:10px;height:10px;background:var(--ink);transform:rotate(45deg)}
-.pin b{color:var(--accent);font-weight:500}
-.pin.tl{left:-40px;top:22%}
-.pin.tl::after{right:-5px;top:16px}
-.pin.tr{right:-40px;top:18%}
-.pin.tr::after{left:-5px;top:16px}
-.pin.br{right:8%;bottom:-24px}
-.pin.br::after{left:30px;top:-5px}
-
-/* ============ FEATURE STRIP ============ */
-.feats{padding:100px 0;border-top:1px solid var(--line-soft)}
-.feats-head{max-width:680px;margin:0 auto 56px;text-align:center}
-.feats-head .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:16px;display:inline-block}
-.feats-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,52px);line-height:1.02;letter-spacing:-.028em;margin:0;color:var(--ink);text-wrap:balance}
+/* ============ 6 FEATURE CARDS ============ */
+.feats{padding:120px 0;background:var(--bg-2);border-bottom:1px solid var(--line-soft)}
+.feats-head{max-width:720px;margin:0 auto 56px;text-align:center}
+.feats-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.8vw,56px);line-height:1.04;letter-spacing:-.03em;margin:0 0 18px;text-wrap:balance}
 .feats-head h2 em{font-style:italic;color:var(--accent);font-weight:300}
+.feats-head p{font-family:var(--sans);font-size:16.5px;color:var(--ink-3);line-height:1.55;max-width:520px;margin:0 auto}
 .feats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.feat-card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;min-height:240px;transition:border-color .2s,transform .2s}
-.feat-card:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow)}
-.feat-card .fc-n{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
-.feat-card h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.018em;line-height:1.18;margin:0 0 10px;color:var(--ink)}
-.feat-card h3 em{font-style:italic;color:var(--ink-3);font-weight:400}
-.feat-card p{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--ink-3);margin:0 0 18px}
-.feat-card .fc-foot{margin-top:auto;padding-top:14px;border-top:1px dotted var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
-.feat-card .fc-foot b{color:var(--ink);font-weight:500}
+.fc{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:32px 28px 28px;display:flex;flex-direction:column;min-height:220px;transition:border-color .2s,transform .2s}
+.fc:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow)}
+.fc .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:16px}
+.fc h3{font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:-.018em;line-height:1.18;margin:0 0 10px;color:var(--ink)}
+.fc h3 em{font-style:italic;color:var(--ink-3);font-weight:400}
+.fc p{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--ink-3);margin:0;flex:1}
+.fc .stat{margin-top:20px;padding-top:16px;border-top:1px dotted var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:space-between}
+.fc .stat b{color:var(--ink);font-weight:500}
 
-/* ============ HOW TO START ============ */
-.start{padding:120px 0;background:var(--bg-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
-.start-head{max-width:680px;margin:0 auto 56px;text-align:center}
-.start-head .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:16px;display:inline-block}
-.start-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,52px);line-height:1.02;letter-spacing:-.028em;margin:0;color:var(--ink);text-wrap:balance}
-.start-head h2 em{font-style:italic;color:var(--accent);font-weight:300}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.step{padding:44px 32px;border-right:1px solid var(--line);position:relative}
-.step:last-child{border-right:0}
-.step .n{font-family:var(--mono);font-size:44px;font-weight:300;letter-spacing:-.03em;color:var(--accent);font-feature-settings:"tnum";line-height:1}
-.step h3{font-family:var(--serif);font-weight:400;font-size:24px;letter-spacing:-.02em;line-height:1.15;margin:20px 0 12px;color:var(--ink)}
-.step h3 em{font-style:italic;color:var(--ink-3);font-weight:400}
-.step p{font-family:var(--sans);font-size:14.5px;line-height:1.55;color:var(--ink-3);margin:0}
-.step .time{margin-top:20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);padding-top:16px;border-top:1px dotted var(--line)}
-.step .time b{color:var(--accent);font-weight:600}
+/* ============ TESTIMONIAL · Pilot-style ============ */
+.testimonial{padding:140px 0;text-align:center}
+.testimonial blockquote{margin:0 auto;font-family:var(--serif);font-weight:300;font-size:clamp(24px,2.9vw,38px);line-height:1.35;letter-spacing:-.018em;color:var(--ink);font-style:italic;max-width:920px;text-wrap:balance}
+.testimonial blockquote b{font-weight:500;color:var(--accent);font-style:italic}
+.testimonial .who{margin-top:40px;display:flex;align-items:center;justify-content:center;gap:16px}
+.testimonial .av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#c9b79a,#8a6e42);color:#fff;display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:16px;letter-spacing:.02em}
+.testimonial .meta{text-align:left}
+.testimonial .n{font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:-.005em;color:var(--ink)}
+.testimonial .r{font-family:var(--sans);font-size:13.5px;color:var(--mute);margin-top:2px;font-style:italic}
 
-/* ============ PROOF + PRICE BAND ============ */
-.pband{padding:120px 0;text-align:center}
-.pband .headline{font-family:var(--serif);font-weight:300;font-size:clamp(36px,5vw,64px);line-height:1.08;letter-spacing:-.028em;margin:0 auto 16px;max-width:820px;color:var(--ink);text-wrap:balance}
-.pband .headline em{font-style:italic;color:var(--accent);font-weight:300}
-.pband .sub{font-family:var(--sans);font-size:17px;color:var(--ink-3);max-width:560px;margin:0 auto 44px;line-height:1.5}
-.pband-row{display:flex;justify-content:center;gap:72px;padding:40px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 auto;max-width:760px;flex-wrap:wrap}
-.pband-stat .v{font-family:var(--serif);font-weight:300;font-size:54px;letter-spacing:-.03em;color:var(--ink);font-feature-settings:"tnum";line-height:1;display:inline-flex;align-items:baseline}
-.pband-stat .v .dollar{font-size:.5em;color:var(--mute);font-style:italic;margin-right:2px}
-.pband-stat .v .u{font-family:var(--sans);font-style:italic;font-size:16px;color:var(--mute);font-weight:400;margin-left:4px;letter-spacing:-.005em}
-.pband-stat .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:10px;font-weight:500}
+/* ============ STATS STRIP ============ */
+.stats{padding:60px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg-2)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:960px;margin:0 auto}
+.stat-i{text-align:center}
+.stat-i .v{font-family:var(--serif);font-weight:300;font-size:44px;letter-spacing:-.025em;color:var(--ink);font-feature-settings:"tnum";line-height:1}
+.stat-i .v .u{font-family:var(--sans);font-style:italic;font-size:14px;color:var(--mute);font-weight:400;margin-left:4px}
+.stat-i .l{font-family:var(--mono);font-size:10.5px;color:var(--mute);margin-top:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
 
-/* ============ COMPACT VALUE STRIP ============ */
-.vs{padding:80px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg)}
-.vs-card{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center;padding:36px 44px;background:var(--bg-2);border:1px solid var(--line);border-radius:18px}
-.vs-copy .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
-.vs-copy h3{font-family:var(--serif);font-weight:400;font-size:26px;letter-spacing:-.02em;line-height:1.15;margin:0 0 12px}
-.vs-copy h3 em{font-style:italic;color:var(--accent);font-weight:400}
-.vs-copy p{font-family:var(--sans);font-size:14px;color:var(--ink-3);line-height:1.5;margin:0 0 16px}
-.vs-input{display:flex;align-items:baseline;gap:10px;font-family:var(--mono);font-size:11.5px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
-.vs-input span b{color:var(--ink);font-family:var(--serif);font-weight:400;font-size:26px;font-style:italic;letter-spacing:-.02em;text-transform:none}
-#vsSlider{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:var(--line);border-radius:2px;outline:none}
-#vsSlider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);border:3px solid var(--bg-2);cursor:pointer}
-#vsSlider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--bg-2);cursor:pointer}
-.vs-out{text-align:left}
-.vs-out .big{font-family:var(--serif);font-weight:300;font-size:64px;letter-spacing:-.03em;color:var(--ink);line-height:1;font-feature-settings:"tnum"}
-.vs-out .u{font-family:var(--sans);font-style:italic;font-size:14px;color:var(--mute);font-weight:400;margin-left:4px}
-.vs-out .sub{margin-top:8px;font-family:var(--sans);font-size:13.5px;color:var(--ink-3)}
-.vs-out .sub b{color:var(--ink);font-weight:500}
+/* ============ PRICING · invoice block ============ */
+.pricing{padding:140px 0;text-align:center;position:relative}
+.pricing h2{font-family:var(--serif);font-weight:300;font-size:clamp(40px,5.4vw,72px);line-height:1;letter-spacing:-.032em;margin:0 0 18px;color:var(--ink);text-wrap:balance}
+.pricing h2 em{font-style:italic;color:var(--accent);font-weight:300}
+.pricing-sub{font-family:var(--sans);font-size:17px;color:var(--ink-3);max-width:520px;margin:0 auto 60px;line-height:1.5}
 
-/* ============ SIGNUP CTA ============ */
-.signup{padding:140px 0;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);border-top:1px solid var(--line-soft)}
-.signup h2{font-family:var(--serif);font-weight:300;font-size:clamp(40px,6vw,80px);line-height:1;letter-spacing:-.035em;margin:0 0 18px;color:var(--ink);text-wrap:balance;max-width:820px;margin-left:auto;margin-right:auto}
+.invoice{max-width:820px;margin:0 auto;background:var(--bg);border:1.5px solid var(--ink);position:relative;padding:56px 64px 48px;text-align:left;
+  background-image:linear-gradient(rgba(10,10,10,.02) 1px, transparent 1px);
+  background-size:100% 28px;
+  background-position:0 28px}
+.invoice::before{content:"";position:absolute;left:48px;top:0;bottom:0;width:1px;background:rgba(181,92,55,.16)}
+.inv-h{display:flex;justify-content:space-between;padding-bottom:20px;border-bottom:1.5px solid var(--ink);margin-bottom:26px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.inv-h b{color:var(--ink);font-weight:600}
+.inv-title{font-family:var(--serif);font-weight:300;font-size:34px;letter-spacing:-.022em;line-height:1.1;margin:0 0 6px}
+.inv-title em{font-style:italic;color:var(--accent);font-weight:300}
+.inv-sub{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--mute);margin-bottom:30px}
+.li{display:grid;grid-template-columns:60px 1fr auto;gap:18px;padding:11px 0;border-bottom:1px dotted var(--line);align-items:baseline;font-family:var(--serif)}
+.li .ln{font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.08em;font-weight:500}
+.li .desc{font-size:15px;display:flex;align-items:baseline;gap:10px}
+.li .desc .note{font-family:var(--serif);font-style:italic;color:var(--mute);font-size:13px;font-weight:400}
+.li .desc .dots{flex:1;border-bottom:1.5px dotted var(--line);align-self:end;transform:translateY(-5px);margin:0 4px;min-width:20px}
+.li .v{font-family:var(--mono);font-weight:500;font-size:14px}
+.li .v.zero{color:var(--mute)}
+.li-total{display:grid;grid-template-columns:60px 1fr auto;gap:18px;padding:22px 0 6px;margin-top:12px;border-top:2px solid var(--ink);align-items:baseline}
+.li-total .ln{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.li-total .l{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);font-weight:600}
+.li-total .v{font-family:var(--serif);font-weight:300;font-size:60px;letter-spacing:-.035em;line-height:1;font-feature-settings:"tnum"}
+.li-total .v .u{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--mute);font-weight:400;margin-left:4px}
+
+.inv-foot{margin-top:28px;padding-top:18px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase}
+.inv-foot b{color:var(--ink);font-weight:500}
+
+/* The PAID stamp — thunks in on scroll */
+.paid-stamp{position:absolute;right:-18px;top:-26px;transform:rotate(8deg) scale(.6);padding:12px 22px 10px;border:3px solid var(--accent);color:var(--accent);font-family:var(--mono);font-weight:700;text-align:center;background:rgba(181,92,55,.04);line-height:1.05;letter-spacing:.18em;border-radius:3px;opacity:0;transition:opacity .5s ease .3s,transform .7s cubic-bezier(.2,.9,.3,1.4) .3s;box-shadow:0 6px 24px -4px rgba(181,92,55,.3)}
+.paid-stamp.in{opacity:.92;transform:rotate(8deg) scale(1)}
+.paid-stamp .p1{font-size:22px;display:block;letter-spacing:.22em;margin-bottom:2px}
+.paid-stamp .p2{font-size:9px;display:block;border-top:1.5px solid var(--accent);padding-top:3px;margin-top:3px;letter-spacing:.18em}
+
+.pricing-actions{margin-top:44px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.pricing-note{text-align:center;font-family:var(--serif);font-style:italic;font-size:14px;color:var(--mute);margin-top:20px}
+.pricing-note b{color:var(--ink);font-weight:500;font-style:normal}
+
+/* ============ SIGNUP ============ */
+.signup{padding:140px 0;text-align:center;background:var(--bg-2);border-top:1px solid var(--line-soft)}
+.signup h2{font-family:var(--serif);font-weight:300;font-size:clamp(40px,5.4vw,72px);line-height:1;letter-spacing:-.032em;margin:0 0 18px;text-wrap:balance;max-width:780px;margin-left:auto;margin-right:auto}
 .signup h2 em{font-style:italic;color:var(--accent);font-weight:300}
-.signup p{font-family:var(--sans);font-size:18px;color:var(--ink-3);max-width:500px;margin:0 auto 40px;line-height:1.5}
-.signup-form{display:flex;gap:10px;justify-content:center;max-width:560px;margin:0 auto;flex-wrap:wrap}
-.signup-form input{flex:1;min-width:260px;padding:15px 22px;font-family:var(--sans);font-size:15px;border:1.5px solid var(--line);border-radius:999px;background:var(--bg);color:var(--ink);letter-spacing:-.005em;transition:border-color .15s}
+.signup p{font-family:var(--sans);font-size:17px;color:var(--ink-3);max-width:480px;margin:0 auto 36px;line-height:1.5}
+.signup-form{display:flex;gap:10px;justify-content:center;max-width:520px;margin:0 auto;flex-wrap:wrap}
+.signup-form input{flex:1;min-width:240px;padding:14px 22px;font-family:var(--sans);font-size:15px;border:1.5px solid var(--line);border-radius:999px;background:var(--bg);color:var(--ink);letter-spacing:-.005em;transition:border-color .15s}
 .signup-form input:focus{outline:none;border-color:var(--ink)}
 .signup-form input::placeholder{color:var(--mute-2)}
-.signup-form .btn.big{padding:15px 26px}
-.signup-meta{margin-top:26px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.signup-meta{margin-top:24px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
 .signup-meta b{color:var(--ink);font-weight:500}
 
 /* ============ FOOTER ============ */
 footer{padding:40px 0;border-top:1px solid var(--line);background:var(--bg)}
-.foot-in{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);gap:24px;flex-wrap:wrap}
+.foot-in{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);gap:20px;flex-wrap:wrap}
 .foot-in .brand{font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:-.018em;text-transform:none;color:var(--ink)}
-.foot-in a{color:var(--mute)}
 .foot-in a:hover{color:var(--accent)}
 .foot-links{display:flex;gap:22px}
 
@@ -296,19 +218,15 @@ footer{padding:40px 0;border-top:1px solid var(--line);background:var(--bg)}
   .wrap,.nav-in{padding:0 20px}
   .nav-links{display:none}
   .hero{padding:48px 0 60px}
-  .ai-grid{grid-template-columns:1fr;gap:14px}
+  .carousel-sec,.feats,.testimonial,.pricing,.signup{padding:70px 0}
   .feats-grid{grid-template-columns:1fr;gap:12px}
-  .vs-card{grid-template-columns:1fr;gap:28px;padding:28px 24px}
-  .vs-out .big{font-size:48px}
-  .product{padding:60px 0}
-  .pin{display:none}
-  .steps{grid-template-columns:1fr;border-top:0}
-  .step{border-right:0;border-top:1px solid var(--line);padding:28px 20px}
-  .start{padding:60px 0}
-  .pband{padding:60px 0}
-  .pband-row{gap:32px;padding:24px 0}
-  .signup{padding:70px 0}
+  .stats-row{grid-template-columns:1fr 1fr;gap:32px}
+  .invoice{padding:32px 24px}
+  .li{grid-template-columns:50px 1fr auto;gap:12px}
+  .paid-stamp{right:8px;top:-16px}
+  .paid-stamp .p1{font-size:16px}
   .signup-form input{min-width:auto;width:100%}
+  .logos-strip{gap:28px}
 }
 </style>
 </head>
@@ -319,8 +237,8 @@ footer{padding:40px 0;border-top:1px solid var(--line);background:var(--bg)}
     <div class="brand">Zenday<em>.</em></div>
     <div class="nav-links">
       <a href="#product">Product</a>
-      <a href="#start">How to start</a>
-      <a href="#signup">Sign up</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
     </div>
     <div class="nav-cta">
       <a class="btn g" href="#">Sign in</a>
@@ -329,229 +247,211 @@ footer{padding:40px 0;border-top:1px solid var(--line);background:var(--bg)}
   </div>
 </nav>
 
-<!-- ============ HERO · clear value prop ============ -->
+<!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-kick">An AI staff accountant for firms</div>
-    <h1>An AI accountant, <em>per client.</em><br/>It does the books. You review judgment.</h1>
-    <p class="hero-sub">Assign Zenday to a client. It reads the bank feed, codes transactions, reconciles accounts, chases documents, and closes the month — continuously. Your firm runs the roster in minutes a day.</p>
-    <div class="hero-cta">
-      <a class="btn p big" href="#signup">Start with one client free <span class="arr">→</span></a>
-      <a class="btn o big" href="#ai">Watch Zenday work</a>
+    <div class="hero-copy">
+      <h1>Your clients hired you for<br/>advice. <em>Not data entry.</em></h1>
+      <p class="hero-sub">Zenday is an AI staff accountant your firm assigns per client. It <b>codes transactions, reconciles accounts, chases documents, and closes the month</b> — continuously. Your team runs the roster in minutes.</p>
+      <div class="hero-cta">
+        <a class="btn p big" href="#signup">Start with one client free <span class="arr">→</span></a>
+        <a class="btn o big" href="#product">See the product</a>
+      </div>
+      <div class="hero-trust">
+        <span><b>$15</b> per client / mo</span>
+        <span><b>14 firms</b> in private beta</span>
+        <span><b>QBO · Xero</b> native</span>
+      </div>
     </div>
-    <div class="hero-trust"><b>$15</b> per client / mo · <b>14 firms</b> in private beta · <b>QBO · Xero</b> native · <b>SOC 2</b> in progress</div>
-
     <div class="hero-shot">
       <div class="real-shot">
-        <img src="prototype/scene-001.jpg" alt="Zenday dashboard — every client on one screen" />
+        <img src="prototype/scene-001.jpg" alt="Zenday client dashboard — every client on one screen" />
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ WATCH ZENDAY WORK · AI IN ACTION ============ -->
-<section class="ai-sec" id="ai">
+<!-- ============ LOGO STRIP ============ -->
+<section class="logos">
   <div class="wrap">
-    <div class="ai-head">
-      <div class="kick">What the AI does all day</div>
-      <h2>Four things Zenday does <em>while you're on a client call.</em></h2>
-      <p>Real moments from real firms in the beta. No mockups — these are the actions Zenday takes without being asked.</p>
-    </div>
-
-    <div class="ai-grid">
-
-      <!-- 01 · Code transaction -->
-      <div class="ai-card">
-        <div class="ai-n">01 · Codes a transaction</div>
-        <div class="ai-demo">
-          <div class="ai-step in"><span class="lab">Input</span><span class="txt">Bank feed · 10:55 AM</span>
-            <div class="row"><span class="t">10:55</span><span class="v">DoorDash<br/><span class="m">amex ending 5004 · $87.50</span></span></div>
-          </div>
-          <div class="ai-arrow">↓</div>
-          <div class="ai-step think"><span class="lab">Zenday AI</span><span class="txt">Reads vendor, checks 18 months of history, applies chart of accounts</span></div>
-          <div class="ai-arrow">↓</div>
-          <div class="ai-step out"><span class="lab">Posted</span><span class="txt">Meals &amp; entertainment · 94% confidence · JE-2264</span>
-            <div class="row posted"><span class="t">10:55</span><span class="v">DoorDash<br/><span class="m">Meals · 94%</span></span><span class="tag">Posted</span></div>
-          </div>
-        </div>
-        <div class="ai-why">Auto-posts above 95% confidence. Below threshold → review queue with the reasoning attached.</div>
-      </div>
-
-      <!-- 02 · Ask Zen · answer question -->
-      <div class="ai-card">
-        <div class="ai-n">02 · Answers your question</div>
-        <div class="ai-demo">
-          <div class="ai-chat q"><span class="av">SM</span><div class="bub">What changed for AppSphere this month?</div></div>
-          <div class="ai-chat a"><span class="av ai">✦</span><div class="bub"><b>Revenue up 18% MoM</b> on the App Store payout. OpEx up $2.4K from Firebase plan change on Mar 14. New vendor: Amplitude ($390/mo) — first occurrence, held for review.<div class="cites"><span>App Store</span><span>Firebase</span><span>Amplitude</span></div></div></div>
-        </div>
-        <div class="ai-why">Full context per client — every transaction, email, and reconciliation. Answers come with source citations, not hallucinations.</div>
-      </div>
-
-      <!-- 03 · Reconciliation matching -->
-      <div class="ai-card">
-        <div class="ai-n">03 · Matches reconciliation</div>
-        <div class="ai-demo">
-          <div class="ai-recon">
-            <div class="rr"><span>Customer Payment · Invoice #4521</span><span class="am">$5,000</span><span class="m ok">✓ AI Matched</span></div>
-            <div class="rr"><span>Client Retainer · Acme Corp</span><span class="am">$8,500</span><span class="m ok">✓ AI Matched</span></div>
-            <div class="rr"><span>Monthly Service Charge</span><span class="am">−$45</span><span class="m ok">✓ AI Matched</span></div>
-            <div class="rr flag"><span>Wire · unmatched</span><span class="am">$2,450</span><span class="m war">⚠ Needs review</span></div>
-          </div>
-          <div class="ai-note">Zenday · <b>3 matched · 1 held</b> · timing difference</div>
-        </div>
-        <div class="ai-why">Bank, card, AP, AR, payroll — continuous match with variance flags. Only the ambiguous items reach your desk.</div>
-      </div>
-
-      <!-- 04 · Variance narrative -->
-      <div class="ai-card">
-        <div class="ai-n">04 · Writes the variance narrative</div>
-        <div class="ai-demo">
-          <div class="ai-narrative">
-            <div class="nn-head">March 2026 · Acme Design Co. · <span>draft · awaiting sign-off</span></div>
-            <p>Revenue up <b>22% YoY</b> to $384,200 — best March on record, driven by two new retainer engagements. Operating expenses up <b>18% MoM</b>, attributable to $8.4K in new contractor spend (Upwork × 3 designers on the Bayview project).</p>
-            <p>Runway dropped from <b>16 → 14 months</b>. Suggest pricing review on the two largest retainer contracts in Q2.</p>
-          </div>
-        </div>
-        <div class="ai-why">Plain English, not boilerplate. Drafted on the first business day of the month — your team reviews, edits, signs.</div>
-      </div>
+    <div class="logos-lead">Works with the systems your firm already runs</div>
+    <div class="logos-strip">
+      <span class="logo">QuickBooks</span>
+      <span class="logo italic">Xero</span>
+      <span class="logo mono">Plaid</span>
+      <span class="logo">Ramp</span>
+      <span class="logo">Stripe</span>
+      <span class="logo">Bill.com</span>
+      <span class="logo mono">Gusto</span>
+      <span class="logo italic">HubDoc</span>
     </div>
   </div>
 </section>
 
-<!-- ============ PRODUCT SCREENSHOT + CALLOUTS ============ -->
-<section class="product" id="product">
+<!-- ============ PRODUCT CAROUSEL · signature move ============ -->
+<section class="carousel-sec" id="product">
   <div class="wrap">
-    <div class="product-head">
+    <div class="carousel-head">
       <div class="kick">The product</div>
-      <h2>One screen. <em>Every client. Always current.</em></h2>
+      <h2>One system. <em>Six surfaces.</em></h2>
+      <p>Every screen your firm needs — dashboard, bank feed, Ask Zen AI, reconciliation, report review, close — on one continuously-updating platform.</p>
     </div>
-    <div class="product-frame">
-      <div class="real-shot">
-        <img src="prototype/scene-001.jpg" alt="Zenday client dashboard — Inbox / Tasks / Bank / Alerts / Team per client" />
+    <div class="carousel" id="carousel">
+      <div class="carousel-frame">
+        <img class="on" data-i="0" src="prototype/scene-001.jpg" alt="Client dashboard" />
+        <img data-i="1" src="prototype/scene-002.jpg" alt="Client drilldown" />
+        <img data-i="2" src="prototype/t-016.jpg" alt="Bank feed with Ask Zen" />
+        <img data-i="3" src="prototype/t-032.jpg" alt="Reconciliation" />
+        <img data-i="4" src="prototype/t-024.jpg" alt="AI Matched reconciliation detail" />
+        <img data-i="5" src="prototype/scene-008.jpg" alt="Report review" />
+        <div class="carousel-progress" id="carouselProgress"></div>
       </div>
-      <div class="pin tl"><b>199 transactions auto-coded</b> last week · 97% auto-posted · no human touched them</div>
-      <div class="pin tr"><b>Red = needs your eye.</b> Open only the rows with alerts. ~5 min a day across the whole firm.</div>
-      <div class="pin br"><b>Month-end on day 1.</b> P&amp;L, BS, CF, AP/AR aging — drafted with variance narrative.</div>
+      <div class="carousel-caption">
+        <div class="carousel-cap-left">
+          <span class="num" id="carNum">01 · 06</span>
+          <span class="title" id="carTitle">Client dashboard</span>
+          <span class="desc" id="carDesc">— every client on one screen, Inbox · Tasks · Bank · Alerts</span>
+        </div>
+        <div class="carousel-dots" id="carDots">
+          <button class="carousel-dot on" data-i="0" aria-label="Slide 1"></button>
+          <button class="carousel-dot" data-i="1" aria-label="Slide 2"></button>
+          <button class="carousel-dot" data-i="2" aria-label="Slide 3"></button>
+          <button class="carousel-dot" data-i="3" aria-label="Slide 4"></button>
+          <button class="carousel-dot" data-i="4" aria-label="Slide 5"></button>
+          <button class="carousel-dot" data-i="5" aria-label="Slide 6"></button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FEATURE STRIP ============ -->
-<section class="feats">
+<!-- ============ 6 FEATURE CARDS ============ -->
+<section class="feats" id="features">
   <div class="wrap">
     <div class="feats-head">
-      <div class="kick">What Zenday does</div>
-      <h2>Six surfaces. <em>One continuous close.</em></h2>
+      <div class="kick" style="justify-content:center">Features</div>
+      <h2>Everything your firm needs. <em>Nothing it doesn't.</em></h2>
+      <p>Purpose-built for small and mid-sized accounting firms on QuickBooks Online or Xero. Simple clients, continuous books.</p>
     </div>
     <div class="feats-grid">
-      <div class="feat-card">
-        <div class="fc-n">01 · Client dashboard</div>
+      <div class="fc">
+        <div class="n">01 · Client dashboard</div>
         <h3>Every client, <em>one screen.</em></h3>
-        <p>Inbox, tasks, bank feed, and alerts per client. Open any row for the full drilldown.</p>
-        <div class="fc-foot"><span>Current as of</span><b>every minute</b></div>
+        <p>Inbox, tasks, bank feed, and alerts per client. Open any row inline for the full drilldown across emails, tasks, bookkeeping, reports.</p>
+        <div class="stat"><span>Updated</span><b>Real-time</b></div>
       </div>
-      <div class="feat-card">
-        <div class="fc-n">02 · Ask Zen · AI</div>
-        <h3>Ask anything, <em>about any client.</em></h3>
-        <p>Context-aware AI with full history. Cited answers, drafted emails, queued tasks.</p>
-        <div class="fc-foot"><span>Responds in</span><b>&lt; 2 sec</b></div>
+      <div class="fc">
+        <div class="n">02 · Ask Zen · AI</div>
+        <h3>Ask anything, <em>any client.</em></h3>
+        <p>Full context per client — every transaction, email, and reconciliation. Answers with source citations. Drafts the next email or task.</p>
+        <div class="stat"><span>Responds</span><b>&lt; 2 sec</b></div>
       </div>
-      <div class="feat-card">
-        <div class="fc-n">03 · AI bookkeeping</div>
+      <div class="fc">
+        <div class="n">03 · AI bookkeeping</div>
         <h3>Coded the moment <em>they clear.</em></h3>
-        <p>Direct Plaid feed, confidence-scored categorization, per-client learned rules.</p>
-        <div class="fc-foot"><span>Auto-post rate</span><b>97%</b></div>
+        <p>Direct Plaid feed. Vendor recognition, confidence-scored categorization, per-client learned rules that persist.</p>
+        <div class="stat"><span>Auto-post rate</span><b>97%</b></div>
       </div>
-      <div class="feat-card">
-        <div class="fc-n">04 · Reconciliation</div>
+      <div class="fc">
+        <div class="n">04 · Reconciliation</div>
         <h3>Every account, <em>matched.</em></h3>
-        <p>Bank, credit card, AP, AR, payroll — continuously reconciled with variance flags.</p>
-        <div class="fc-foot"><span>Flagged anomalies</span><b>9 types</b></div>
+        <p>Bank, credit card, AP, AR, payroll — continuously matched with variance flags and nine anomaly types.</p>
+        <div class="stat"><span>Alert types</span><b>9</b></div>
       </div>
-      <div class="feat-card">
-        <div class="fc-n">05 · Month-end close</div>
+      <div class="fc">
+        <div class="n">05 · Month-end close</div>
         <h3>P&amp;L, BS, CF — <em>day one.</em></h3>
-        <p>Books already closed when the month ends. Variance narrative drafted alongside.</p>
-        <div class="fc-foot"><span>Delivery</span><b>First business day</b></div>
+        <p>Because the books are continuously reconciled, month-end is already done. Variance narrative drafted alongside.</p>
+        <div class="stat"><span>Delivered</span><b>Day 1</b></div>
       </div>
-      <div class="feat-card">
-        <div class="fc-n">06 · Audit trail</div>
+      <div class="fc">
+        <div class="n">06 · Audit trail</div>
         <h3>Every action, <em>reversible.</em></h3>
-        <p>Reasoning, confidence, model version, source — logged for every entry, forever.</p>
-        <div class="fc-foot"><span>Traceability</span><b>100%</b></div>
+        <p>Reasoning, confidence, source, model version — per entry, per client, forever. Reversible with one click.</p>
+        <div class="stat"><span>Traceability</span><b>100%</b></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ HOW YOU START IN 5 MINUTES ============ -->
-<section class="start" id="start">
+<!-- ============ TESTIMONIAL ============ -->
+<section class="testimonial">
+  <div class="wrap-n">
+    <blockquote>"We pulled in forty clients in six weeks. Zenday handled <b>ninety-seven per cent</b> of the coding without us touching it. My senior accountants spend their days on advisory now — which is what we were selling all along."</blockquote>
+    <div class="who">
+      <div class="av">MV</div>
+      <div class="meta">
+        <div class="n">Manav V. · Managing Partner</div>
+        <div class="r">Cordova &amp; Partners · Toronto · 210 clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS STRIP ============ -->
+<section class="stats">
   <div class="wrap">
-    <div class="start-head">
-      <div class="kick">Getting started</div>
-      <h2>From sign-up to saving, <em>in five minutes.</em></h2>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="n">01</div>
-        <h3>Connect QBO <em>&amp; the bank feed.</em></h3>
-        <p>OAuth to QuickBooks (or Xero) and link a client's bank via Plaid. Zenday reads eighteen months of history to learn vendors and patterns.</p>
-        <div class="time">Typical time · <b>~2 minutes</b></div>
-      </div>
-      <div class="step">
-        <div class="n">02</div>
-        <h3>Assign Zenday <em>to one client.</em></h3>
-        <p>Pick any real client. Zenday starts coding transactions as they clear, reconciling accounts, and drafting questions — continuously.</p>
-        <div class="time">Typical time · <b>~1 minute</b></div>
-      </div>
-      <div class="step">
-        <div class="n">03</div>
-        <h3>Review <em>in the morning.</em></h3>
-        <p>Open the roster. Zenday shows what it coded, what it reconciled, what it chased. Approve exceptions with one key. Go back to advisory.</p>
-        <div class="time">Daily · <b>~5 minutes</b></div>
-      </div>
+    <div class="stats-row">
+      <div class="stat-i"><div class="v">14</div><div class="l">Firms in beta</div></div>
+      <div class="stat-i"><div class="v">3,400<span class="u">+</span></div><div class="l">Client-months run</div></div>
+      <div class="stat-i"><div class="v">97<span class="u">%</span></div><div class="l">Auto-post rate</div></div>
+      <div class="stat-i"><div class="v">Day 1</div><div class="l">Month-end delivery</div></div>
     </div>
   </div>
 </section>
 
-<!-- ============ PROOF + PRICE BAND ============ -->
-<section class="pband">
-  <div class="wrap">
-    <div class="headline">Fourteen firms saved <em>$2.3M this quarter.</em></div>
-    <p class="sub">Private beta. Real firms. Real savings. The first client is free for thirty days — no credit card, no onboarding call.</p>
-    <div class="pband-row">
-      <div class="pband-stat"><div class="v"><span class="dollar">$</span>15<span class="u">/client/mo</span></div><div class="l">Per client · all in</div></div>
-      <div class="pband-stat"><div class="v">14</div><div class="l">Firms in beta</div></div>
-      <div class="pband-stat"><div class="v">97<span class="u">%</span></div><div class="l">Auto-post rate</div></div>
+<!-- ============ PRICING · invoice block ============ -->
+<section class="pricing" id="pricing">
+  <div class="wrap-n">
+    <div class="kick" style="margin-bottom:20px">Pricing</div>
+    <h2>$15. <em>Per client. Per month.</em></h2>
+    <p class="pricing-sub">Priced the way your firm invoices — simply, itemised, nothing hidden. First client is free for thirty days. No credit card.</p>
+
+    <div class="invoice" id="invoice">
+      <div class="paid-stamp" id="paidStamp">
+        <span class="p1">Paid</span>
+        <span class="p2">$15 · per client / mo</span>
+      </div>
+      <div class="inv-h">
+        <span><b>Invoice № ZD-2026-04</b></span>
+        <span>Firm plan · monthly</span>
+      </div>
+      <div class="inv-title">The standard <em>invoice.</em></div>
+      <div class="inv-sub">Everything the product does — all integrations, unlimited team seats.</div>
+
+      <div class="li"><span class="ln">Line 01</span><span class="desc"><span>AI staff accountant, per client</span><span class="dots"></span><span class="note">codes · reconciles · closes</span></span><span class="v">$15.00</span></div>
+      <div class="li"><span class="ln">Line 02</span><span class="desc"><span>Team seats</span><span class="dots"></span><span class="note">unlimited</span></span><span class="v zero">$0.00</span></div>
+      <div class="li"><span class="ln">Line 03</span><span class="desc"><span>Integrations</span><span class="dots"></span><span class="note">QBO · Xero · Plaid</span></span><span class="v zero">$0.00</span></div>
+      <div class="li"><span class="ln">Line 04</span><span class="desc"><span>Setup &amp; onboarding</span><span class="dots"></span><span class="note">self-serve</span></span><span class="v zero">$0.00</span></div>
+      <div class="li"><span class="ln">Line 05</span><span class="desc"><span>Transaction caps</span><span class="dots"></span><span class="note">none, any volume</span></span><span class="v zero">$0.00</span></div>
+      <div class="li"><span class="ln">Line 06</span><span class="desc"><span>Audit trail · reversible</span><span class="dots"></span><span class="note">reasoning per entry</span></span><span class="v zero">$0.00</span></div>
+
+      <div class="li-total">
+        <span class="ln">Total</span>
+        <span class="l">Per client · monthly</span>
+        <span class="v">$15<span class="u">/ mo</span></span>
+      </div>
+
+      <div class="inv-foot">
+        <span>Rev 2026.04 · Firm plan</span>
+        <span><b>First client free</b> · 30 days</span>
+        <span>SOC 2 · In progress</span>
+      </div>
     </div>
+
+    <div class="pricing-actions">
+      <a class="btn p big" href="#signup">Start with one client free <span class="arr">→</span></a>
+      <a class="btn o big" href="#">Book a demo</a>
+    </div>
+    <div class="pricing-note">Billed on the first of the following month. <b>Cancel anytime.</b></div>
   </div>
 </section>
 
-<!-- ============ COMPACT VALUE STRIP ============ -->
-<section class="vs">
-  <div class="wrap">
-    <div class="vs-card">
-      <div class="vs-copy">
-        <div class="k">Your firm · your math</div>
-        <h3>For a firm your size, <em>what's it worth?</em></h3>
-        <p>Slide your client count. See monthly savings against a typical $400/client labour stack. Zenday is $15/client, all in.</p>
-        <div class="vs-input"><span>Clients on your roster</span><span><b id="vsClients">40</b></span></div>
-        <input type="range" min="5" max="120" value="40" id="vsSlider" />
-      </div>
-      <div class="vs-out">
-        <div class="big" id="vsSave">$15,400</div>
-        <span class="u">saved per month</span>
-        <div class="sub">That's <b id="vsYear">$184,800</b> a year · and roughly 10 hours/week returned to advisory.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SIGN UP ============ -->
+<!-- ============ SIGNUP ============ -->
 <section class="signup" id="signup">
   <div class="wrap-n">
     <h2>Start with <em>one client.</em><br/>Free for thirty days.</h2>
-    <p>Drop your email. We'll send the onboarding link — connect QBO + a bank feed, assign Zenday, and let it run the next thirty days on a real engagement.</p>
+    <p>Drop your email. We'll send the onboarding link — connect QBO and a bank feed, assign Zenday, let it run the next thirty days on a real engagement.</p>
     <form class="signup-form" onsubmit="event.preventDefault();this.querySelector('input').value='';alert('Thanks — we will be in touch.');">
       <input type="email" placeholder="you@yourfirm.com" required aria-label="Your email" />
       <button type="submit" class="btn p big">Start free <span class="arr">→</span></button>
@@ -564,6 +464,7 @@ footer{padding:40px 0;border-top:1px solid var(--line);background:var(--bg)}
   </div>
 </section>
 
+<!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
     <div class="foot-in">
@@ -575,22 +476,86 @@ footer{padding:40px 0;border-top:1px solid var(--line);background:var(--bg)}
 </footer>
 
 <script>
-/* Compact value strip calculator */
-const slider=document.getElementById('vsSlider');
-if(slider){
-  const cOut=document.getElementById('vsClients');
-  const sOut=document.getElementById('vsSave');
-  const yOut=document.getElementById('vsYear');
-  const fmt=n=>n.toLocaleString('en-US',{maximumFractionDigits:0});
-  const recalc=()=>{
-    const c=parseInt(slider.value);
-    if(cOut) cOut.textContent=c;
-    if(sOut) sOut.innerHTML='$'+fmt(c*385);
-    if(yOut) yOut.innerHTML='$'+fmt(c*385*12);
-  };
-  slider.addEventListener('input',recalc);
-  recalc();
-}
+/* ---------- Product carousel ---------- */
+(function(){
+  const imgs=document.querySelectorAll('.carousel-frame img');
+  const dots=document.querySelectorAll('.carousel-dot');
+  const numEl=document.getElementById('carNum');
+  const titleEl=document.getElementById('carTitle');
+  const descEl=document.getElementById('carDesc');
+  const progress=document.getElementById('carouselProgress');
+  if(!imgs.length) return;
+
+  const slides=[
+    {title:'Client dashboard', desc:'— every client on one screen, Inbox · Tasks · Bank · Alerts'},
+    {title:'Client drilldown', desc:'— inline expansion: Recent Emails, Tasks, Bookkeeping, Reports'},
+    {title:'Bank feed · Ask Zen', desc:'— AI categorises transactions as they clear, with source panel'},
+    {title:'Reconciliation', desc:'— every account, status + variance + assignee, continuously'},
+    {title:'AI matching', desc:'— bank to ledger, flagged timing differences for human review'},
+    {title:'Report review', desc:'— Reviewed · Done · In Review workflow with assignee + date'}
+  ];
+
+  let i=0;
+  const DURATION=5000;
+  let timer=null;
+  let progressStart=Date.now();
+
+  function show(n){
+    i=(n+slides.length)%slides.length;
+    imgs.forEach(img=>img.classList.remove('on'));
+    dots.forEach(d=>d.classList.remove('on'));
+    const targetImg=document.querySelector('.carousel-frame img[data-i="'+i+'"]');
+    const targetDot=document.querySelector('.carousel-dot[data-i="'+i+'"]');
+    if(targetImg) targetImg.classList.add('on');
+    if(targetDot) targetDot.classList.add('on');
+    numEl.textContent=String(i+1).padStart(2,'0')+' · 06';
+    titleEl.textContent=slides[i].title;
+    descEl.textContent=slides[i].desc;
+    resetProgress();
+  }
+
+  function resetProgress(){
+    progress.style.transition='none';
+    progress.style.width='0%';
+    requestAnimationFrame(()=>{
+      progress.style.transition='width '+DURATION+'ms linear';
+      progress.style.width='100%';
+    });
+    progressStart=Date.now();
+  }
+
+  function tick(){
+    show(i+1);
+  }
+  function start(){ if(timer) clearInterval(timer); timer=setInterval(tick,DURATION); resetProgress(); }
+  function pause(){ if(timer){clearInterval(timer);timer=null;} progress.style.transition='none'; }
+
+  dots.forEach(d=>d.addEventListener('click',()=>{ show(parseInt(d.dataset.i)); start(); }));
+  const car=document.getElementById('carousel');
+  car.addEventListener('mouseenter',pause);
+  car.addEventListener('mouseleave',start);
+
+  // Only auto-advance when in view
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) start(); else pause(); });
+    },{threshold:.3});
+    io.observe(car);
+  } else { start(); }
+})();
+
+/* ---------- Paid stamp thunks in on scroll ---------- */
+(function(){
+  const stamp=document.getElementById('paidStamp');
+  const inv=document.getElementById('invoice');
+  if(!stamp||!inv) return;
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting){ setTimeout(()=>stamp.classList.add('in'),420); io.unobserve(e.target);} });
+    },{threshold:.35});
+    io.observe(inv);
+  } else { stamp.classList.add('in'); }
+})();
 </script>
 </body>
 </html>
