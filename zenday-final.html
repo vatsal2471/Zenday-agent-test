@@ -23,17 +23,17 @@
   --white-3:#E9E5DC;
   --panel:#F5F2E8;
   --panel-rule:#DDD8C8;
-  --dark:#0B0A08;
-  --dark-2:#151412;
-  --dark-3:#1F1E1A;
+  --dark:#080808;
+  --dark-2:#0E0E0E;
+  --dark-3:#1A1A1A;
   --ink:#111110;
   --ink-2:#2A2926;
   --ink-3:#4E4C46;
   --ink-soft:rgba(17,17,16,.72);
   --ink-mute:rgba(17,17,16,.46);
-  --light:#E8E4D8;
-  --light-2:#C8C4B6;
-  --light-mute:#8A8678;
+  --light:#F5F5F2;
+  --light-2:#D8D8D2;
+  --light-mute:#9A9A92;
   --mute:#7A776E;
   --line:#DAD5C6;
   --line-dark:#2A2824;
@@ -67,7 +67,7 @@ a{color:inherit;text-decoration:none}
 /* Serif display headlines */
 .hd{font-family:var(--serif);font-weight:500;letter-spacing:-.026em;line-height:1.04;margin:0;text-wrap:balance}
 .hd em{font-style:italic;color:var(--accent);font-weight:400}
-.hd.xl{font-size:clamp(44px,6vw,76px)}
+.hd.xl{font-size:clamp(52px,7.4vw,96px)}
 .hd.lg{font-size:clamp(34px,4.4vw,52px)}
 .hd.md{font-size:clamp(28px,3.2vw,40px)}
 
@@ -159,7 +159,7 @@ nav{position:sticky;top:0;z-index:60;background:rgba(250,250,248,.85);backdrop-f
 .logo-row span.it{font-style:italic}
 
 /* ============ FEATURE SECTION — split layout (Filed pattern) ============ */
-.feat{padding:140px 0;position:relative}
+.feat{padding:160px 0;position:relative}
 .feat-split{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:center;max-width:1200px;margin:0 auto;padding:0 40px}
 .feat-split.rev{grid-template-columns:7fr 5fr}
 .feat-split.rev .fc{order:2}
@@ -202,6 +202,15 @@ nav{position:sticky;top:0;z-index:60;background:rgba(250,250,248,.85);backdrop-f
 .test .n{font-family:var(--sans);font-weight:500;font-size:14px;color:var(--ink)}
 .test .r{font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
 .test-stamp{margin-top:28px}
+
+/* ============ SIGNATURE GREEN BAND (Filed's move) ============ */
+.green-band{background:#1B4332;color:#D8F3DC;padding:80px 0;text-align:center;position:relative;overflow:hidden}
+.green-band::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 300px at 50% 50%, rgba(216,243,220,.08), transparent 70%);pointer-events:none}
+.green-band .inner{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 40px}
+.green-band .num{font-family:var(--serif);font-weight:500;font-size:clamp(80px,12vw,160px);line-height:.9;letter-spacing:-.04em;color:#fff;display:inline-flex;align-items:baseline}
+.green-band .num .u{font-family:var(--serif);font-style:italic;font-size:.28em;color:#D8F3DC;margin-left:.06em;font-weight:400}
+.green-band .caption{font-family:var(--serif);font-size:clamp(20px,2.4vw,28px);font-style:italic;font-weight:400;color:#D8F3DC;line-height:1.35;margin-top:24px;letter-spacing:-.012em;text-wrap:balance}
+.green-band .caption b{color:#fff;font-weight:500;font-style:italic}
 
 /* ============ EVERYTHING STRIP ============ */
 .everything{padding:120px 0;background:var(--white-2);border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
@@ -314,15 +323,6 @@ footer{padding:40px 0;border-top:1px dashed var(--line);background:var(--white)}
     <p class="sub rv d2">Zenday is an AI staff accountant your firm assigns per client. It <b>codes transactions, reconciles accounts, chases documents, and closes the month</b> — continuously.</p>
     <div class="hero-cta rv d3">
       <a class="btn p big" href="#signup">Start with one client free <span class="arr">→</span></a>
-      <a class="btn o big" href="#product">See the product</a>
-    </div>
-    <div class="hero-trust rv d4">
-      <span class="dl"><b>$15</b><span class="dots"></span>per client / mo</span>
-      <span class="dl"><b>14 firms</b><span class="dots"></span>in beta</span>
-      <span class="dl"><b>QBO · Xero</b><span class="dots"></span>native</span>
-    </div>
-    <div class="hero-stamp rv d4">
-      <span class="stamp">Private Beta · 14 Firms Enrolled</span>
     </div>
   </div>
 </section>
@@ -356,13 +356,8 @@ footer{padding:40px 0;border-top:1px dashed var(--line);background:var(--white)}
         <div class="bullet"><span><b>Confidence-gated</b> — auto-post above 95%</span></div>
         <div class="bullet"><span><b>Per-client learning</b> — corrections become permanent rules</span></div>
       </div>
-      <div class="stat-dl">
-        <span class="dl"><b>97%</b><span class="dots"></span>auto-post rate</span>
-        <span class="dl"><b>&lt; 30s</b><span class="dots"></span>clear to posted</span>
-      </div>
     </div>
     <div class="fv rv d2">
-      <span class="stamp sm feat-stamp" style="transform:rotate(5deg)">97% Auto</span>
       <div class="doc">
         <div style="display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--panel-rule);margin-bottom:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:500"><span>Bank feed · continuous</span><span style="color:var(--accent)">● live</span></div>
         <div style="display:grid;grid-template-columns:50px 1fr auto auto;gap:10px;padding:10px 8px;border-bottom:1px dotted var(--panel-rule);font-size:13px;align-items:center"><span style="font-family:var(--mono);font-size:10.5px;color:var(--mute)">11:42</span><div><span style="font-weight:500">Adobe Creative Cloud</span><br/><span style="font-family:var(--mono);font-size:10px;color:var(--green)">Software · 99%</span></div><span style="font-family:var(--mono);font-size:12px;font-weight:500">$59.99</span><span style="font-family:var(--mono);font-size:9px;padding:2px 6px;background:var(--green-soft);color:var(--green);border-radius:3px;font-weight:600;letter-spacing:.06em;text-transform:uppercase">Posted</span></div>
@@ -387,10 +382,6 @@ footer{padding:40px 0;border-top:1px dashed var(--line);background:var(--white)}
         <div class="bullet"><span><b>Context-aware</b> — knows which client, what's pending</span></div>
         <div class="bullet"><span><b>Drafts the next action</b> for you to approve</span></div>
       </div>
-      <div class="stat-dl">
-        <span class="dl"><b>&lt; 2 sec</b><span class="dots"></span>response time</span>
-        <span class="dl"><b>12 modes</b><span class="dots"></span>context-aware</span>
-      </div>
     </div>
     <div class="fv rv d2">
       <div class="prod-shot">
@@ -412,13 +403,8 @@ footer{padding:40px 0;border-top:1px dashed var(--line);background:var(--white)}
         <div class="bullet"><span><b>Real-time variance</b> — caught, not discovered</span></div>
         <div class="bullet"><span><b>Only exceptions</b> reach your desk</span></div>
       </div>
-      <div class="stat-dl">
-        <span class="dl"><b>10 accounts</b><span class="dots"></span>continuously</span>
-        <span class="dl"><b>1 variance</b><span class="dots"></span>flagged today</span>
-      </div>
     </div>
     <div class="fv rv d2">
-      <span class="stamp sm feat-stamp green" style="transform:rotate(-3deg)">Matched ✓</span>
       <div class="prod-shot" style="border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.06), 0 16px 40px -10px rgba(0,0,0,.1)">
         <img src="prototype/t-032.jpg" alt="Reconciliation across all accounts" />
       </div>
@@ -440,17 +426,20 @@ footer{padding:40px 0;border-top:1px dashed var(--line);background:var(--white)}
         <div class="bullet"><span><b>Variance narrative</b> in plain English</span></div>
         <div class="bullet"><span><b>Review workflow</b> — Reviewed / Done / In Review</span></div>
       </div>
-      <div class="stat-dl">
-        <span class="dl"><b>Day 1</b><span class="dots"></span>month-end delivery</span>
-        <span class="dl"><b>5 reports</b><span class="dots"></span>auto-drafted</span>
-      </div>
     </div>
     <div class="fv rv d2">
-      <span class="stamp sm feat-stamp" style="transform:rotate(4deg)">Day 1 · Ready</span>
       <div class="prod-shot">
         <img src="prototype/scene-008.jpg" alt="Report review workflow" />
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ SIGNATURE GREEN BAND ============ -->
+<section class="green-band">
+  <div class="inner">
+    <div class="num rv">97<span class="u">%</span></div>
+    <div class="caption rv d1">of transactions <b>auto-posted</b> across the beta — no human touched them, full audit trail on every entry.</div>
   </div>
 </section>
 
@@ -533,11 +522,10 @@ footer{padding:40px 0;border-top:1px dashed var(--line);background:var(--white)}
       <input type="email" placeholder="you@yourfirm.com" required />
       <button type="submit" class="btn p big">Start free <span class="arr">→</span></button>
     </form>
-    <div class="signup-stamp rv d4"><span class="stamp">Free · 30 Days · No Credit Card</span></div>
-    <div class="signup-dl rv d4">
-      <span class="dl"><b>No credit card</b><span class="dots"></span>required</span>
-      <span class="dl"><b>No onboarding call</b><span class="dots"></span>self-serve</span>
-      <span class="dl"><b>Cancel</b><span class="dots"></span>anytime</span>
+    <div class="rv d4" style="margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:center;gap:24px;flex-wrap:wrap">
+      <span><b style="color:var(--ink);font-weight:500">No credit card</b></span>
+      <span><b style="color:var(--ink);font-weight:500">No onboarding call</b></span>
+      <span><b style="color:var(--ink);font-weight:500">Cancel anytime</b></span>
     </div>
   </div>
 </section>
@@ -547,10 +535,7 @@ footer{padding:40px 0;border-top:1px dashed var(--line);background:var(--white)}
   <div class="foot-in">
     <div class="brand">Zenday<em>.</em></div>
     <div class="foot-links"><a href="#">Security</a><a href="#">Changelog</a><a href="#">Contact</a></div>
-    <div class="foot-dl">
-      <span class="dl">Rev<span class="dots"></span>2026.04</span>
-      <span class="dl">SOC 2<span class="dots"></span>in progress</span>
-    </div>
+    <span>© 2026 · SOC 2 in progress</span>
   </div>
 </footer>
 
