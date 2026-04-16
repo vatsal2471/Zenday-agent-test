@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Zenday — The AI staff accountant, per client.</title>
+<meta name="description" content="An AI staff accountant your firm assigns per client. Codes, reconciles, chases, closes — continuously. $15/client/month." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;450;500;600&display=swap" rel="stylesheet" />
+<style>
+/* =============================================================
+   ZENDAY · FINAL
+   Design system: Financial Statement + Console (Computer + Accounting).
+   Stamps, dotted leaders, ruled paper, § numbers flow everywhere.
+   Palette: near-white + near-black + one warm copper accent.
+   Layout: Filed/Light/Quanta — white hero, dark sections, split features.
+   ============================================================= */
+
+:root{
+  --white:#FAFAF8;
+  --white-2:#F3F1EC;
+  --white-3:#E9E5DC;
+  --panel:#F5F2E8;
+  --panel-rule:#DDD8C8;
+  --dark:#0B0A08;
+  --dark-2:#151412;
+  --dark-3:#1F1E1A;
+  --ink:#111110;
+  --ink-2:#2A2926;
+  --ink-3:#4E4C46;
+  --ink-soft:rgba(17,17,16,.72);
+  --ink-mute:rgba(17,17,16,.46);
+  --light:#E8E4D8;
+  --light-2:#C8C4B6;
+  --light-mute:#8A8678;
+  --mute:#7A776E;
+  --line:#DAD5C6;
+  --line-dark:#2A2824;
+  --accent:#C4653A;
+  --accent-2:#A8502A;
+  --accent-soft:#F5E0D2;
+  --green:#3D8B5A;
+  --green-soft:#D8EDDF;
+  --purple:#8B5CF6;
+  --purple-2:#A78BFA;
+  --serif:'IBM Plex Serif', Georgia, serif;
+  --sans:'Inter', -apple-system, system-ui, sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--white);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-size:15.5px;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ink);color:var(--white)}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+.narrow{max-width:880px;margin:0 auto;padding:0 40px}
+
+/* ============ DESIGN SYSTEM PRIMITIVES ============ */
+
+/* § Kicker — used on every section */
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:500;display:inline-flex;align-items:center;gap:8px;margin-bottom:24px}
+.kick::before{content:"§";font-family:var(--serif);font-style:italic;font-weight:500;font-size:14px}
+.dark .kick{color:var(--accent)}
+
+/* Serif display headlines */
+.hd{font-family:var(--serif);font-weight:500;letter-spacing:-.026em;line-height:1.04;margin:0;text-wrap:balance}
+.hd em{font-style:italic;color:var(--accent);font-weight:400}
+.hd.xl{font-size:clamp(44px,6vw,76px)}
+.hd.lg{font-size:clamp(34px,4.4vw,52px)}
+.hd.md{font-size:clamp(28px,3.2vw,40px)}
+
+/* Sub text */
+.sub{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink-soft);max-width:540px;margin:18px 0 0;letter-spacing:-.005em}
+.sub b{color:var(--ink);font-weight:500}
+.dark .sub{color:var(--light-2)}
+.dark .sub b{color:var(--light)}
+
+/* Dotted leader — the signature financial-statement element */
+.dl{display:flex;align-items:baseline;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--mute)}
+.dl .dots{flex:1;border-bottom:1.5px dotted var(--line);transform:translateY(-3px);min-width:16px}
+.dl b{color:var(--ink);font-weight:500}
+.dark .dl{color:var(--light-mute)}
+.dark .dl .dots{border-bottom-color:var(--line-dark)}
+.dark .dl b{color:var(--light)}
+
+/* Stamp — the signature motif. Used 4-5x across the page */
+.stamp{display:inline-block;padding:6px 12px;border:2px solid var(--accent);color:var(--accent);font-family:var(--mono);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;transform:rotate(-4deg);border-radius:2px;background:rgba(196,101,58,.04);line-height:1.2;white-space:nowrap}
+.stamp.sm{padding:4px 8px;font-size:9px;border-width:1.5px}
+.stamp.green{border-color:var(--green);color:var(--green);background:rgba(61,139,90,.04)}
+
+/* Ruled paper bg — applied to document panels on light sections */
+.ruled{background-image:linear-gradient(rgba(17,17,16,.03) 1px, transparent 1px);background-size:100% 26px;background-position:0 26px}
+.ruled::before{content:"";position:absolute;left:52px;top:0;bottom:0;width:1px;background:rgba(196,101,58,.14);pointer-events:none}
+
+/* Dashed section divider */
+.dash-div{border:0;border-top:1.5px dashed var(--line);margin:0}
+.dark .dash-div{border-top-color:var(--line-dark)}
+
+/* Dark section base */
+.dark{background:var(--dark);color:var(--light)}
+.dark .hd{color:var(--light)}
+.dark .hd em{color:var(--accent)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;font-size:13.5px;font-weight:500;letter-spacing:-.005em;border:1.5px solid transparent;cursor:pointer;border-radius:6px;transition:all .18s;font-family:var(--sans)}
+.btn:hover{transform:translateY(-1px)}
+.btn.p{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.btn.p:hover{background:var(--ink-2)}
+.btn.o{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.o:hover{border-color:var(--ink)}
+.btn.big{padding:13px 24px;font-size:14px}
+.dark .btn.p{background:var(--white);color:var(--ink);border-color:var(--white)}
+.dark .btn.p:hover{background:var(--white-2)}
+.dark .btn.o{color:var(--light);border-color:var(--line-dark)}
+.dark .btn.o:hover{border-color:var(--light)}
+.arr{display:inline-block;transition:transform .2s}
+.btn:hover .arr{transform:translateX(3px)}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+.rv.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}.d4{transition-delay:.24s}
+
+/* ============ NAV ============ */
+nav{position:sticky;top:0;z-index:60;background:rgba(250,250,248,.85);backdrop-filter:blur(12px) saturate(160%);border-bottom:1px dashed var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto;padding:0 40px}
+.brand{font-family:var(--serif);font-weight:500;font-size:21px;letter-spacing:-.02em}
+.brand em{font-style:italic;color:var(--accent)}
+.nav-l{display:flex;gap:28px;font-size:13px;color:var(--ink-2);font-weight:450}
+.nav-l a:hover{color:var(--accent)}
+.nav-r{display:flex;gap:8px}
+
+/* ============ HERO (white, centered, institutional — Filed/Light) ============ */
+.hero{padding:80px 0 48px;text-align:center;position:relative}
+.hero .sub{margin:18px auto 0;text-align:center}
+.hero-cta{margin-top:36px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* Hero trust row — dotted leaders */
+.hero-trust{margin-top:36px;display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
+.hero-trust .dl{font-size:11.5px}
+
+/* Hero stamp */
+.hero-stamp{margin-top:32px;display:flex;justify-content:center}
+
+/* Hero product shot on dark band (Light/Quanta move) */
+.hero-dark{background:var(--dark);padding:80px 0 100px;margin-top:80px;position:relative;overflow:hidden}
+.hero-dark::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(232,228,216,.03) 1px, transparent 1px);background-size:28px 28px;pointer-events:none;mask-image:radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%)}
+.hero-shot{max-width:1100px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
+.hero-shot img{display:block;width:100%;border-radius:10px;border:1px solid var(--line-dark);box-shadow:0 4px 8px rgba(0,0,0,.3), 0 40px 80px -20px rgba(0,0,0,.5)}
+
+/* Logo strip */
+.logos{padding:48px 0;border-bottom:1px dashed var(--line)}
+.logos-lead{text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);margin-bottom:24px;font-weight:500}
+.logo-row{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;align-items:center;opacity:.65}
+.logo-row span{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--ink-2);letter-spacing:-.015em}
+.logo-row span.mono{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:-.01em}
+.logo-row span.it{font-style:italic}
+
+/* ============ FEATURE SECTION — split layout (Filed pattern) ============ */
+.feat{padding:140px 0;position:relative}
+.feat-split{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:center;max-width:1200px;margin:0 auto;padding:0 40px}
+.feat-split.rev{grid-template-columns:7fr 5fr}
+.feat-split.rev .fc{order:2}
+.feat-split.rev .fv{order:1}
+
+.fc .bullets{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.fc .bullet{font-size:14.5px;color:var(--ink-soft);line-height:1.5;display:flex;gap:12px}
+.fc .bullet::before{content:"—";color:var(--accent);flex-shrink:0;font-family:var(--serif)}
+.fc .bullet b{color:var(--ink);font-weight:500}
+.dark .fc .bullet{color:var(--light-2)}
+.dark .fc .bullet b{color:var(--light)}
+.dark .fc .bullet::before{color:var(--accent)}
+
+/* Feature stat chip — dotted leader style */
+.fc .stat-dl{margin-top:24px;padding:12px 16px;background:rgba(17,17,16,.04);border-radius:6px;display:flex;flex-direction:column;gap:6px}
+.dark .fc .stat-dl{background:rgba(232,228,216,.06)}
+
+/* Feature visual — document panel with ruled paper */
+.fv{position:relative}
+.fv .doc{background:var(--panel);color:var(--ink);border:1px solid var(--panel-rule);border-radius:10px;padding:24px 28px;position:relative;overflow:hidden;
+  background-image:linear-gradient(rgba(17,17,16,.035) 1px, transparent 1px);background-size:100% 26px;background-position:0 26px;
+  box-shadow:0 1px 2px rgba(0,0,0,.06), 0 16px 40px -10px rgba(0,0,0,.1)}
+.fv .doc::before{content:"";position:absolute;left:40px;top:0;bottom:0;width:1px;background:rgba(196,101,58,.12);pointer-events:none}
+.dark .fv .doc{box-shadow:0 2px 4px rgba(0,0,0,.3), 0 30px 60px -10px rgba(0,0,0,.5)}
+
+/* Feature stamp badge (small, corner) */
+.feat-stamp{position:absolute;right:-10px;top:-14px;z-index:2}
+
+/* ============ PRODUCT TABLE ON DARK (Quanta move) ============ */
+.prod-shot{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line-dark);box-shadow:0 4px 8px rgba(0,0,0,.3), 0 40px 80px -20px rgba(0,0,0,.5)}
+.prod-shot img{display:block;width:100%;height:auto}
+
+/* ============ TESTIMONIAL — light with stamp ============ */
+.test{padding:120px 0;text-align:center;position:relative}
+.test blockquote{margin:0 auto;font-family:var(--serif);font-weight:400;font-size:clamp(24px,3vw,36px);line-height:1.32;letter-spacing:-.018em;color:var(--ink);font-style:italic;max-width:880px;text-wrap:balance}
+.test blockquote b{font-weight:500;color:var(--accent);font-style:italic}
+.test .who{margin-top:40px;display:inline-flex;align-items:center;gap:14px}
+.test .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#c9b79a,#8a6e42);color:#fff;display:grid;place-items:center;font-family:var(--sans);font-weight:600;font-size:14px}
+.test .meta{text-align:left}
+.test .n{font-family:var(--sans);font-weight:500;font-size:14px;color:var(--ink)}
+.test .r{font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.test-stamp{margin-top:28px}
+
+/* ============ EVERYTHING STRIP ============ */
+.everything{padding:120px 0;background:var(--white-2);border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1200px;margin:0 auto;padding:0 40px}
+.ev{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:26px 24px;display:flex;flex-direction:column;min-height:210px;transition:border-color .2s,transform .2s}
+.ev:hover{border-color:var(--ink);transform:translateY(-2px)}
+.ev .kick{margin-bottom:14px}
+.ev h3{font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:-.016em;line-height:1.18;margin:0 0 10px}
+.ev h3 em{font-style:italic;color:var(--ink-3);font-weight:400}
+.ev p{font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin:0;flex:1}
+.ev .dl{margin-top:18px;padding-top:14px;border-top:1px dotted var(--line)}
+
+/* ============ PRICING — the PEAK of the financial statement aesthetic ============ */
+.pricing-sec{padding:140px 0;background:var(--dark);color:var(--light);text-align:center;position:relative;overflow:hidden}
+.pricing-sec::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(232,228,216,.025) 1px, transparent 1px);background-size:28px 28px;pointer-events:none}
+.pricing-sec > *{position:relative;z-index:1}
+
+.invoice{max-width:740px;margin:56px auto 0;background:var(--panel);color:var(--ink);border:1px solid var(--panel-rule);position:relative;padding:44px 52px 36px;text-align:left;border-radius:6px;
+  background-image:linear-gradient(rgba(17,17,16,.035) 1px, transparent 1px);background-size:100% 26px;background-position:0 26px}
+.invoice::before{content:"";position:absolute;left:40px;top:0;bottom:0;width:1px;background:rgba(196,101,58,.16)}
+.inv-h{display:flex;justify-content:space-between;padding-bottom:16px;border-bottom:1.5px solid var(--ink);margin-bottom:22px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.inv-h b{color:var(--ink);font-weight:600}
+.inv-title{font-family:var(--serif);font-weight:500;font-size:28px;letter-spacing:-.02em;margin:0 0 4px}
+.inv-title em{font-style:italic;color:var(--accent);font-weight:400}
+.inv-sub{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--mute);margin-bottom:24px}
+.li{display:grid;grid-template-columns:52px 1fr auto;gap:14px;padding:9px 0;border-bottom:1px dotted var(--panel-rule);align-items:baseline;font-family:var(--serif);font-size:14px}
+.li .ln{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.08em;font-weight:500}
+.li .desc{display:flex;align-items:baseline;gap:8px}
+.li .desc .note{font-style:italic;color:var(--mute);font-size:12px}
+.li .desc .dots{flex:1;border-bottom:1.5px dotted var(--panel-rule);align-self:end;transform:translateY(-5px);margin:0 4px;min-width:16px}
+.li .v{font-family:var(--mono);font-weight:500;font-size:13px}
+.li .v.zero{color:var(--mute)}
+.li-total{display:grid;grid-template-columns:52px 1fr auto;gap:14px;padding:18px 0 4px;margin-top:8px;border-top:2px solid var(--ink);align-items:baseline}
+.li-total .ln{font-family:var(--mono);font-size:10.5px;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.li-total .l{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.li-total .v{font-family:var(--serif);font-weight:500;font-size:52px;letter-spacing:-.035em;line-height:1;font-feature-settings:"tnum"}
+.li-total .v .u{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--mute);font-weight:400;margin-left:4px}
+.inv-foot{margin-top:22px;padding-top:14px;border-top:1px dashed var(--panel-rule);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase}
+.inv-foot b{color:var(--ink);font-weight:500}
+
+/* Paid stamp on invoice */
+.paid-stamp{position:absolute;right:-14px;top:-20px;transform:rotate(7deg) scale(.5);padding:10px 18px 8px;border:3px solid var(--accent);color:var(--accent);font-family:var(--mono);font-weight:700;text-align:center;background:rgba(196,101,58,.04);line-height:1.05;letter-spacing:.18em;border-radius:2px;opacity:0;transition:opacity .5s ease .3s,transform .7s cubic-bezier(.2,.9,.3,1.4) .3s;box-shadow:0 4px 20px -4px rgba(196,101,58,.4)}
+.paid-stamp.in{opacity:.92;transform:rotate(7deg) scale(1)}
+.paid-stamp .p1{font-size:18px;display:block;letter-spacing:.22em;margin-bottom:1px}
+.paid-stamp .p2{font-size:8.5px;display:block;border-top:1.5px solid var(--accent);padding-top:2px;margin-top:2px;letter-spacing:.18em}
+
+.pricing-cta{margin-top:40px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+
+/* ============ SIGNUP — dark with stamp ============ */
+.signup{padding:120px 0;text-align:center;border-top:1px dashed var(--line)}
+.signup .sub{margin:18px auto 0;text-align:center}
+.signup-form{display:flex;gap:10px;justify-content:center;max-width:500px;margin:32px auto 0;flex-wrap:wrap}
+.signup-form input{flex:1;min-width:220px;padding:13px 20px;font-family:var(--sans);font-size:14.5px;border:1.5px solid var(--line);border-radius:6px;background:var(--white);color:var(--ink)}
+.signup-form input:focus{outline:none;border-color:var(--ink)}
+.signup-form input::placeholder{color:var(--mute)}
+.signup-stamp{margin-top:28px}
+.signup-dl{margin-top:20px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.signup-dl .dl{font-size:11px}
+
+/* ============ FOOTER ============ */
+footer{padding:40px 0;border-top:1px dashed var(--line);background:var(--white)}
+.foot-in{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;max-width:1200px;margin:0 auto;padding:0 40px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.foot-in .brand{font-family:var(--serif);font-weight:500;font-size:17px;letter-spacing:-.02em;text-transform:none;color:var(--ink)}
+.foot-links{display:flex;gap:20px}
+.foot-links a:hover{color:var(--accent)}
+.foot-dl{display:flex;gap:24px}
+.foot-dl .dl{font-size:10.5px}
+
+@media (max-width:900px){
+  .wrap,.narrow,.nav-in,.feat-split{padding:0 22px}
+  .nav-l{display:none}
+  .feat-split{grid-template-columns:1fr;gap:40px}
+  .feat-split.rev .fc{order:1}.feat-split.rev .fv{order:2}
+  .hero{padding:48px 0 32px}
+  .hero-dark{padding:48px 0 60px;margin-top:48px}
+  .feat{padding:80px 0}
+  .ev-grid{grid-template-columns:1fr;padding:0 22px;gap:12px}
+  .test,.pricing-sec,.signup{padding:80px 0}
+  .invoice{padding:28px 22px;margin-top:40px}
+  .li{grid-template-columns:44px 1fr auto;gap:10px}
+  .li-total .v{font-size:38px}
+  .paid-stamp{right:6px;top:-12px}
+  .hero-trust{gap:16px}
+  .hero-shot{padding:0 22px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="brand">Zenday<em>.</em></div>
+    <div class="nav-l">
+      <a href="#product">Product</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <div class="nav-r">
+      <a class="btn o" href="#">Sign in</a>
+      <a class="btn p" href="#signup">Start free <span class="arr">→</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO (white, centered — Filed/Light pattern) ============ -->
+<section class="hero">
+  <div class="narrow">
+    <div class="kick rv">AI for accounting firms · Private beta</div>
+    <h1 class="hd xl rv d1">The AI staff accountant,<br/><em>per client.</em></h1>
+    <p class="sub rv d2">Zenday is an AI staff accountant your firm assigns per client. It <b>codes transactions, reconciles accounts, chases documents, and closes the month</b> — continuously.</p>
+    <div class="hero-cta rv d3">
+      <a class="btn p big" href="#signup">Start with one client free <span class="arr">→</span></a>
+      <a class="btn o big" href="#product">See the product</a>
+    </div>
+    <div class="hero-trust rv d4">
+      <span class="dl"><b>$15</b><span class="dots"></span>per client / mo</span>
+      <span class="dl"><b>14 firms</b><span class="dots"></span>in beta</span>
+      <span class="dl"><b>QBO · Xero</b><span class="dots"></span>native</span>
+    </div>
+    <div class="hero-stamp rv d4">
+      <span class="stamp">Private Beta · 14 Firms Enrolled</span>
+    </div>
+  </div>
+</section>
+
+<!-- Logo strip -->
+<section class="logos">
+  <div class="wrap">
+    <div class="logos-lead">Works with</div>
+    <div class="logo-row">
+      <span>QuickBooks</span><span class="it">Xero</span><span class="mono">Plaid</span><span>Ramp</span><span>Stripe</span><span>Bill.com</span><span class="mono">Gusto</span>
+    </div>
+  </div>
+</section>
+
+<!-- Hero dark band — real product screenshot (Quanta/Light move) -->
+<section class="hero-dark" id="product">
+  <div class="hero-shot rv">
+    <img src="prototype/scene-001.jpg" alt="Zenday client dashboard" />
+  </div>
+</section>
+
+<!-- ============ § 01 · BOOKKEEPING (split — copy left, doc panel right) ============ -->
+<section class="feat" id="bookkeeping">
+  <div class="feat-split">
+    <div class="fc rv">
+      <div class="kick">01 · Bookkeeping</div>
+      <h2 class="hd lg">Every transaction, coded <em>the moment it clears.</em></h2>
+      <p class="sub" style="margin-top:16px">Direct Plaid feed. Zenday reads the vendor, applies your chart of accounts, and posts — with a confidence score and audit trail attached.</p>
+      <div class="bullets">
+        <div class="bullet"><span><b>Under 30 seconds</b> from clear to posted</span></div>
+        <div class="bullet"><span><b>Confidence-gated</b> — auto-post above 95%</span></div>
+        <div class="bullet"><span><b>Per-client learning</b> — corrections become permanent rules</span></div>
+      </div>
+      <div class="stat-dl">
+        <span class="dl"><b>97%</b><span class="dots"></span>auto-post rate</span>
+        <span class="dl"><b>&lt; 30s</b><span class="dots"></span>clear to posted</span>
+      </div>
+    </div>
+    <div class="fv rv d2">
+      <span class="stamp sm feat-stamp" style="transform:rotate(5deg)">97% Auto</span>
+      <div class="doc">
+        <div style="display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--panel-rule);margin-bottom:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:500"><span>Bank feed · continuous</span><span style="color:var(--accent)">● live</span></div>
+        <div style="display:grid;grid-template-columns:50px 1fr auto auto;gap:10px;padding:10px 8px;border-bottom:1px dotted var(--panel-rule);font-size:13px;align-items:center"><span style="font-family:var(--mono);font-size:10.5px;color:var(--mute)">11:42</span><div><span style="font-weight:500">Adobe Creative Cloud</span><br/><span style="font-family:var(--mono);font-size:10px;color:var(--green)">Software · 99%</span></div><span style="font-family:var(--mono);font-size:12px;font-weight:500">$59.99</span><span style="font-family:var(--mono);font-size:9px;padding:2px 6px;background:var(--green-soft);color:var(--green);border-radius:3px;font-weight:600;letter-spacing:.06em;text-transform:uppercase">Posted</span></div>
+        <div style="display:grid;grid-template-columns:50px 1fr auto auto;gap:10px;padding:10px 8px;border-bottom:1px dotted var(--panel-rule);font-size:13px;align-items:center"><span style="font-family:var(--mono);font-size:10.5px;color:var(--mute)">10:55</span><div><span style="font-weight:500">DoorDash</span><br/><span style="font-family:var(--mono);font-size:10px;color:var(--green)">Meals · 94%</span></div><span style="font-family:var(--mono);font-size:12px;font-weight:500">$87.50</span><span style="font-family:var(--mono);font-size:9px;padding:2px 6px;background:var(--green-soft);color:var(--green);border-radius:3px;font-weight:600;letter-spacing:.06em;text-transform:uppercase">Posted</span></div>
+        <div style="display:grid;grid-template-columns:50px 1fr auto auto;gap:10px;padding:10px 8px;border-bottom:1px dotted var(--panel-rule);font-size:13px;align-items:center;background:var(--accent-soft);border-radius:4px"><span style="font-family:var(--mono);font-size:10.5px;color:var(--mute)">10:21</span><div><span style="font-weight:500">Wire · ACH Transfer</span><br/><span style="font-family:var(--mono);font-size:10px;color:var(--accent)">No vendor match · 34%</span></div><span style="font-family:var(--mono);font-size:12px;font-weight:500">$15,000</span><span style="font-family:var(--mono);font-size:9px;padding:2px 6px;background:var(--accent-soft);color:var(--accent);border:1px solid rgba(196,101,58,.3);border-radius:3px;font-weight:600;letter-spacing:.06em;text-transform:uppercase">Review</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="dash-div" />
+
+<!-- ============ § 02 · ASK ZEN (dark section — reversed split) ============ -->
+<section class="feat dark" id="zen">
+  <div class="feat-split rev">
+    <div class="fc rv">
+      <div class="kick">02 · Ask Zen · AI</div>
+      <h2 class="hd lg">An AI partner <em>who's read every book.</em></h2>
+      <p class="sub" style="margin-top:16px">Ask anything about any client. Zenday has full context — every transaction, reconciliation, email, and document — with source citations.</p>
+      <div class="bullets">
+        <div class="bullet"><span><b>Cited answers</b> — every claim links to source</span></div>
+        <div class="bullet"><span><b>Context-aware</b> — knows which client, what's pending</span></div>
+        <div class="bullet"><span><b>Drafts the next action</b> for you to approve</span></div>
+      </div>
+      <div class="stat-dl">
+        <span class="dl"><b>&lt; 2 sec</b><span class="dots"></span>response time</span>
+        <span class="dl"><b>12 modes</b><span class="dots"></span>context-aware</span>
+      </div>
+    </div>
+    <div class="fv rv d2">
+      <div class="prod-shot">
+        <img src="prototype/t-016.jpg" alt="Ask Zen AI categorizing transactions" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ § 03 · RECONCILIATION (light, split) ============ -->
+<section class="feat" id="recon">
+  <div class="feat-split">
+    <div class="fc rv">
+      <div class="kick">03 · Reconciliation</div>
+      <h2 class="hd lg">Every account, <em>matched continuously.</em></h2>
+      <p class="sub" style="margin-top:16px">Bank, credit card, AP, AR, payroll — reconciled as transactions clear, not at month-end. Variance flagged in real time.</p>
+      <div class="bullets">
+        <div class="bullet"><span><b>9 anomaly types</b> watched automatically</span></div>
+        <div class="bullet"><span><b>Real-time variance</b> — caught, not discovered</span></div>
+        <div class="bullet"><span><b>Only exceptions</b> reach your desk</span></div>
+      </div>
+      <div class="stat-dl">
+        <span class="dl"><b>10 accounts</b><span class="dots"></span>continuously</span>
+        <span class="dl"><b>1 variance</b><span class="dots"></span>flagged today</span>
+      </div>
+    </div>
+    <div class="fv rv d2">
+      <span class="stamp sm feat-stamp green" style="transform:rotate(-3deg)">Matched ✓</span>
+      <div class="prod-shot" style="border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.06), 0 16px 40px -10px rgba(0,0,0,.1)">
+        <img src="prototype/t-032.jpg" alt="Reconciliation across all accounts" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="dash-div" />
+
+<!-- ============ § 04 · CLOSE (dark, reversed) ============ -->
+<section class="feat dark" id="close">
+  <div class="feat-split rev">
+    <div class="fc rv">
+      <div class="kick">04 · Month-end close</div>
+      <h2 class="hd lg">The close, <em>on day one.</em></h2>
+      <p class="sub" style="margin-top:16px">Because the books are reconciled continuously, month-end is already done. Zenday drafts the P&L, balance sheet, and cash flow with a variance narrative.</p>
+      <div class="bullets">
+        <div class="bullet"><span><b>Day 1 delivery</b> — not day 10</span></div>
+        <div class="bullet"><span><b>Variance narrative</b> in plain English</span></div>
+        <div class="bullet"><span><b>Review workflow</b> — Reviewed / Done / In Review</span></div>
+      </div>
+      <div class="stat-dl">
+        <span class="dl"><b>Day 1</b><span class="dots"></span>month-end delivery</span>
+        <span class="dl"><b>5 reports</b><span class="dots"></span>auto-drafted</span>
+      </div>
+    </div>
+    <div class="fv rv d2">
+      <span class="stamp sm feat-stamp" style="transform:rotate(4deg)">Day 1 · Ready</span>
+      <div class="prod-shot">
+        <img src="prototype/scene-008.jpg" alt="Report review workflow" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVERYTHING A FIRM NEEDS ============ -->
+<section class="everything" id="features">
+  <div class="narrow" style="text-align:center;margin-bottom:48px">
+    <div class="kick rv" style="justify-content:center">Everything a firm needs</div>
+    <h2 class="hd md rv d1">Nothing <em>you don't.</em></h2>
+  </div>
+  <div class="ev-grid">
+    <div class="ev rv"><div class="kick">01 · Dashboard</div><h3>Every client, <em>one screen.</em></h3><p>Inbox, tasks, bank feed, alerts per client. Open any row for full drilldown.</p><span class="dl"><b>Updated</b><span class="dots"></span>real-time</span></div>
+    <div class="ev rv d1"><div class="kick">02 · Email &amp; chase</div><h3>Missing receipts, <em>already asked.</em></h3><p>Contextual chase emails drafted. You approve, it sends. Escalating cadence.</p><span class="dl"><b>Cadence</b><span class="dots"></span>3 / 7 / 14 days</span></div>
+    <div class="ev rv d2"><div class="kick">03 · Tasks</div><h3>Per-client, <em>prioritised.</em></h3><p>Overdue flagged. Recurring auto-scheduled. Every task traces to the reason.</p><span class="dl"><b>Overdue</b><span class="dots"></span>flagged</span></div>
+    <div class="ev rv"><div class="kick">04 · Receipt OCR</div><h3>Upload. <em>Matched.</em></h3><p>Vision AI reads any receipt and matches it to the transaction automatically.</p><span class="dl"><b>Format</b><span class="dots"></span>photo · PDF · email</span></div>
+    <div class="ev rv d1"><div class="kick">05 · Reports</div><h3>Reports ready, <em>you sign off.</em></h3><p>P&L, BS, CF, AP/AR aging — drafted day one with status workflow.</p><span class="dl"><b>Workflow</b><span class="dots"></span>day 1</span></div>
+    <div class="ev rv d2"><div class="kick">06 · Audit trail</div><h3>Every action, <em>reversible.</em></h3><p>Reasoning, confidence, source, model — per entry, forever. One-click undo.</p><span class="dl"><b>Traceable</b><span class="dots"></span>100%</span></div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIAL (with stamp) ============ -->
+<section class="test">
+  <div class="narrow">
+    <blockquote class="rv">"We pulled in forty clients in six weeks. Zenday handled <b>ninety-seven per cent</b> of the coding without us touching it. My senior accountants spend their days on advisory now — which is what we were selling all along."</blockquote>
+    <div class="who rv d1">
+      <div class="av">MV</div>
+      <div class="meta">
+        <div class="n">Manav V. · Managing Partner</div>
+        <div class="r">Cordova &amp; Partners · Toronto · 210 clients</div>
+      </div>
+    </div>
+    <div class="test-stamp rv d2"><span class="stamp green">Verified ✓</span></div>
+  </div>
+</section>
+
+<hr class="dash-div" />
+
+<!-- ============ PRICING — the peak of the financial-statement aesthetic ============ -->
+<section class="pricing-sec" id="pricing">
+  <div class="narrow">
+    <div class="kick rv" style="justify-content:center">05 · Pricing</div>
+    <h2 class="hd lg rv d1" style="text-align:center">$15. <em>Per client. Per month.</em></h2>
+    <p class="sub rv d2" style="text-align:center;margin-left:auto;margin-right:auto">Priced the way your firm invoices — simply, itemised, nothing hidden. First client free for thirty days.</p>
+  </div>
+  <div class="wrap rv d3">
+    <div class="invoice" id="invoice">
+      <div class="paid-stamp" id="paidStamp">
+        <span class="p1">Paid</span>
+        <span class="p2">$15 · per client / mo</span>
+      </div>
+      <div class="inv-h"><span><b>Invoice № ZD-2026-04</b></span><span>Firm plan · monthly</span></div>
+      <div class="inv-title">The standard <em>invoice.</em></div>
+      <div class="inv-sub">Everything the product does — all integrations, unlimited team seats.</div>
+      <div class="li"><span class="ln">Line 01</span><span class="desc"><span>AI staff accountant, per client</span><span class="dots"></span><span class="note">codes · reconciles · closes</span></span><span class="v">$15.00</span></div>
+      <div class="li"><span class="ln">Line 02</span><span class="desc"><span>Team seats</span><span class="dots"></span><span class="note">unlimited</span></span><span class="v zero">$0.00</span></div>
+      <div class="li"><span class="ln">Line 03</span><span class="desc"><span>Integrations</span><span class="dots"></span><span class="note">QBO · Xero · Plaid</span></span><span class="v zero">$0.00</span></div>
+      <div class="li"><span class="ln">Line 04</span><span class="desc"><span>Setup &amp; onboarding</span><span class="dots"></span><span class="note">self-serve</span></span><span class="v zero">$0.00</span></div>
+      <div class="li"><span class="ln">Line 05</span><span class="desc"><span>Transaction caps</span><span class="dots"></span><span class="note">none</span></span><span class="v zero">$0.00</span></div>
+      <div class="li"><span class="ln">Line 06</span><span class="desc"><span>Audit trail</span><span class="dots"></span><span class="note">per entry</span></span><span class="v zero">$0.00</span></div>
+      <div class="li-total">
+        <span class="ln">Total</span>
+        <span class="l">Per client · monthly</span>
+        <span class="v">$15<span class="u">/ mo</span></span>
+      </div>
+      <div class="inv-foot"><span>Rev 2026.04</span><span><b>First client free</b> · 30 days</span><span>SOC 2 · In progress</span></div>
+    </div>
+  </div>
+  <div class="pricing-cta rv">
+    <a class="btn p big" href="#signup" style="background:var(--white);color:var(--ink);border-color:var(--white)">Start with one client free <span class="arr">→</span></a>
+    <a class="btn o big" href="#" style="color:var(--light);border-color:var(--line-dark)">Book a demo</a>
+  </div>
+</section>
+
+<!-- ============ SIGNUP (white, with stamp) ============ -->
+<section class="signup" id="signup">
+  <div class="narrow">
+    <div class="kick rv" style="justify-content:center">Get started</div>
+    <h2 class="hd md rv d1">Start with <em>one client.</em><br/>Free for thirty days.</h2>
+    <p class="sub rv d2" style="text-align:center;margin-left:auto;margin-right:auto">Drop your email — we'll send the onboarding link. Connect QBO and a bank feed, assign Zenday, let it run.</p>
+    <form class="signup-form rv d3" onsubmit="event.preventDefault();this.querySelector('input').value='';alert('Thanks — check your inbox.');">
+      <input type="email" placeholder="you@yourfirm.com" required />
+      <button type="submit" class="btn p big">Start free <span class="arr">→</span></button>
+    </form>
+    <div class="signup-stamp rv d4"><span class="stamp">Free · 30 Days · No Credit Card</span></div>
+    <div class="signup-dl rv d4">
+      <span class="dl"><b>No credit card</b><span class="dots"></span>required</span>
+      <span class="dl"><b>No onboarding call</b><span class="dots"></span>self-serve</span>
+      <span class="dl"><b>Cancel</b><span class="dots"></span>anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-in">
+    <div class="brand">Zenday<em>.</em></div>
+    <div class="foot-links"><a href="#">Security</a><a href="#">Changelog</a><a href="#">Contact</a></div>
+    <div class="foot-dl">
+      <span class="dl">Rev<span class="dots"></span>2026.04</span>
+      <span class="dl">SOC 2<span class="dots"></span>in progress</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Reveal */
+(function(){const els=document.querySelectorAll('.rv');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('on'));return}const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});els.forEach(e=>io.observe(e))})();
+
+/* Stamp thunk on pricing */
+(function(){const s=document.getElementById('paidStamp'),i=document.getElementById('invoice');if(!s||!i)return;if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>s.classList.add('in'),420);io.unobserve(e.target)}})},{threshold:.35});io.observe(i)}else s.classList.add('in')})();
+</script>
+</body>
+</html>
