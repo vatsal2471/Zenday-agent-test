@@ -212,6 +212,56 @@ nav.top{position:sticky;top:0;z-index:60;background:rgba(245,239,228,.82);backdr
 .narrative h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.4vw,44px);line-height:1.25;letter-spacing:-.018em;margin:0;max-width:760px;color:var(--ink);text-wrap:pretty}
 .narrative h2 em{font-style:italic;color:var(--ink-3);font-weight:400}
 
+/* ============ STICKY PRODUCT TOUR ============ */
+.tour{padding:120px 0 160px;position:relative;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.tour-head{max-width:760px;margin:0 auto 60px;text-align:center;padding:0 40px}
+.tour-head .kicker{justify-content:center}
+.tour-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.6vw,56px);line-height:1.02;letter-spacing:-.028em;margin:0 0 16px;text-wrap:balance}
+.tour-head h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.tour-head p{font-family:var(--sans);font-size:16.5px;line-height:1.55;color:var(--ink-soft);max-width:540px;margin:0 auto;letter-spacing:-.005em}
+
+.tour-layout{max-width:1240px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:flex-start}
+
+.tour-copy{display:flex;flex-direction:column;gap:140px;padding:60px 0 80px}
+.tour-block{transition:opacity .6s ease}
+.tour-block.dim{opacity:.35}
+.tour-block .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.tour-block .n::before{content:"§";font-family:var(--serif);font-style:italic;font-weight:500;font-size:14px}
+.tour-block h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.8vw,42px);line-height:1.05;letter-spacing:-.024em;margin:0 0 16px;color:var(--ink);text-wrap:balance}
+.tour-block h3 em{font-style:italic;color:var(--accent);font-weight:400}
+.tour-block p{font-family:var(--sans);font-size:16px;line-height:1.55;color:var(--ink-soft);margin:0 0 20px;max-width:440px;letter-spacing:-.005em}
+.tour-block p b{color:var(--ink);font-weight:500}
+.tour-block .bullets{display:flex;flex-direction:column;gap:10px}
+.tour-block .bullet{display:flex;gap:12px;align-items:flex-start;font-family:var(--sans);font-size:14px;color:var(--ink-soft);line-height:1.45}
+.tour-block .bullet::before{content:"";display:inline-block;width:18px;height:1.5px;background:var(--accent);margin-top:9px;flex-shrink:0}
+.tour-block .bullet b{color:var(--ink);font-weight:500}
+.tour-block .tour-chip{display:inline-flex;align-items:center;gap:6px;margin-top:22px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:500;padding:5px 12px;background:rgba(18,16,16,.04);border-radius:999px}
+.tour-block .tour-chip b{color:var(--accent);font-weight:600}
+
+.tour-sticky-wrap{position:relative;min-height:100%}
+.tour-sticky{position:sticky;top:96px;display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 140px)}
+.tour-stage{position:relative;width:100%;max-width:560px;min-height:520px}
+.tour-stage .frame{position:absolute;inset:0;opacity:0;transition:opacity .7s ease,transform .7s ease;transform:translateY(12px)}
+.tour-stage .frame.on{opacity:1;transform:translateY(0)}
+
+/* ============ EVERYTHING STRIP (6 cards) ============ */
+.everything{padding:140px 0;background:var(--cream-2);position:relative;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.everything-head{max-width:720px;margin:0 auto 56px;text-align:center;padding:0 40px}
+.everything-head .kicker{justify-content:center}
+.everything-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.2vw,52px);line-height:1.04;letter-spacing:-.026em;margin:0 0 14px;text-wrap:balance}
+.everything-head h2 em{font-style:italic;color:var(--accent);font-weight:400}
+.everything-head p{font-family:var(--sans);font-size:16px;line-height:1.55;color:var(--ink-soft);max-width:520px;margin:0 auto;letter-spacing:-.005em}
+.everything-grid{max-width:1240px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ev{background:#FFFFFE;border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;min-height:220px;transition:border-color .2s,transform .2s;position:relative;overflow:hidden}
+.ev:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow-card)}
+.ev .ev-n{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.ev .ev-n::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.ev h3{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.018em;line-height:1.15;margin:0 0 10px;color:var(--ink)}
+.ev h3 em{font-style:italic;color:var(--ink-3);font-weight:400}
+.ev p{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--ink-soft);margin:0;flex:1}
+.ev .ev-foot{margin-top:20px;padding-top:14px;border-top:1px dotted var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);display:flex;justify-content:space-between}
+.ev .ev-foot b{color:var(--ink);font-weight:500}
+
 /* ============ BOOKKEEPING LIVE CARD (light section) ============ */
 .live-book{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0;box-shadow:var(--shadow-card-lg);overflow:hidden}
 .feat.dark .live-book{background:var(--cream);box-shadow:var(--shadow-dark)}
@@ -402,6 +452,18 @@ footer{padding:36px 0;background:var(--ink);border-top:1px solid rgba(245,239,22
   .narrative{padding:70px 0}
   .narrative-in{padding:0 22px}
   .recon-wrap{padding:18px 0 0}
+  .tour{padding:70px 0}
+  .tour-head{padding:0 22px}
+  .tour-layout{grid-template-columns:1fr;gap:24px;padding:0 22px}
+  .tour-copy{gap:40px;padding:0}
+  .tour-block,.tour-block.dim{opacity:1}
+  .tour-sticky{position:static;min-height:auto}
+  .tour-stage{min-height:auto;max-width:none}
+  .tour-stage .frame{position:relative;opacity:1;transform:none;display:none}
+  .tour-stage .frame.on{display:block}
+  .everything{padding:70px 0}
+  .everything-head{padding:0 22px}
+  .everything-grid{grid-template-columns:1fr;gap:12px;padding:0 22px}
   .close-card .cg{grid-template-columns:1fr}
   .invoice{padding:28px 22px}
   .li{grid-template-columns:44px 1fr auto;gap:10px}
@@ -483,134 +545,161 @@ footer{padding:36px 0;background:var(--ink);border-top:1px solid rgba(245,239,22
   </div>
 </section>
 
-<!-- ============ § 01 · BOOKKEEPING (split — copy left, card right) ============ -->
-<section class="feat" id="book">
-  <div class="feat-split">
-    <div class="split-copy reveal">
-      <div class="kicker">§ 01 · Bookkeeping</div>
-      <h2>Every transaction, coded <em>the moment it clears.</em></h2>
-      <p class="lead">Direct Plaid feed. Zenday reads the vendor, applies your chart of accounts, and posts — with a confidence score and audit trail attached.</p>
-      <div class="bullets">
-        <div class="bullet"><span><b>Under 30 seconds</b> from clear to posted</span></div>
-        <div class="bullet"><span><b>Confidence-gated</b> auto-post above 95%, review queue below</span></div>
-        <div class="bullet"><span><b>Per-client learning</b> — corrections become permanent rules</span></div>
-      </div>
-      <div class="stat-chip"><b>97%</b> · auto-post rate across the beta</div>
-    </div>
-    <div class="split-card reveal d2">
-      <div class="live-book" id="liveBook">
-        <div class="lb-h">
-          <div class="t">Bank feed · continuous</div>
-          <div class="meta"><span>Today · 147 posted</span><span class="live">live</span></div>
+<!-- ============ STICKY PRODUCT TOUR ============ -->
+<section class="tour" id="tour">
+  <div class="tour-head reveal">
+    <div class="kicker">The product</div>
+    <h2>Four things Zenday does, <em>continuously.</em></h2>
+    <p>Scroll through the surfaces. The card on the right shows what Zenday actually delivers on each one.</p>
+  </div>
+  <div class="tour-layout">
+    <div class="tour-copy">
+
+      <div class="tour-block" data-step="0">
+        <div class="n">01 · Bookkeeping</div>
+        <h3>Every transaction, coded <em>the moment it clears.</em></h3>
+        <p>Direct Plaid feed. Zenday reads the vendor, applies your chart of accounts, and posts with a confidence score and audit trail.</p>
+        <div class="bullets">
+          <div class="bullet"><span><b>Under 30 seconds</b> from clear to posted</span></div>
+          <div class="bullet"><span><b>Confidence-gated</b> — auto-post above 95%</span></div>
+          <div class="bullet"><span><b>Per-client learning</b> — corrections become rules</span></div>
         </div>
-        <div class="lb-row" data-w="99%" style="--w:99%"><span class="t">11:42</span><div class="v">Adobe Creative Cloud<small class="cat">Software subscriptions</small></div><span class="a">$59.99</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">99%</span></span></div>
-        <div class="lb-row" data-w="94%" style="--w:94%"><span class="t">10:55</span><div class="v">DoorDash<small class="cat">Meals &amp; entertainment</small></div><span class="a">$87.50</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">94%</span></span></div>
-        <div class="lb-row" data-w="98%" style="--w:98%"><span class="t">09:22</span><div class="v">Stripe payout<small class="cat">Revenue · Invoice #4188</small></div><span class="a">$8,400.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">98%</span></span></div>
-        <div class="lb-row flag" data-w="34%" style="--w:34%"><span class="t">10:21</span><div class="v">Wire · ACH Transfer<small class="cat">No vendor match</small></div><span class="a">$15,000.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">34%</span></span></div>
+        <div class="tour-chip"><b>97%</b> · auto-post rate across the beta</div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============ BIG STAT · 97% ============ -->
-<section class="stat-moment">
-  <div class="inner">
-    <div class="kicker reveal">§ The proof</div>
-    <div class="n reveal d1"><span id="bigStat1">0</span><span class="u">%</span></div>
-    <div class="caption reveal d2">of transactions <b>auto-posted</b> across the beta — no human touched them, full audit trail on every entry.</div>
-  </div>
-</section>
-
-<!-- ============ § 02 · ASK ZEN (dark, split — card left, copy right) ============ -->
-<section class="feat zen dark" id="zen">
-  <div class="feat-split rev">
-    <div class="split-copy reveal">
-      <div class="kicker">§ 02 · Ask Zen · AI</div>
-      <h2>An AI partner <em>who's read every book.</em></h2>
-      <p class="lead">Ask anything about any client. Zenday has full context — every transaction, reconciliation, email, and document — and answers with the source citations attached.</p>
-      <div class="bullets">
-        <div class="bullet"><span><b>Cited answers</b> — every claim links back to source</span></div>
-        <div class="bullet"><span><b>Context-aware</b> — knows which client, what's pending</span></div>
-        <div class="bullet"><span><b>Drafts the next action</b> — email, task, or entry</span></div>
-      </div>
-    </div>
-    <div class="split-card reveal d2">
-      <div class="card-zen">
-        <div class="zen-h"><div class="zen-dot"></div><div class="t"><b>Ask Zen</b> · AppSphere Mobile</div></div>
-        <div class="zen-thread" id="zenThread">
-          <div class="zen-msg u" data-step="0"><div class="av">SM</div><div class="bub">What changed for AppSphere this month?</div></div>
-          <div class="zen-msg a" data-step="1"><div class="av">✦</div><div class="bub"><b>Revenue up 18% MoM</b> on the App Store payout. OpEx up <b>$2,400</b> from Firebase plan change on Mar 14. New vendor: Amplitude ($390/mo) — first occurrence, held for review.<div class="cites"><span>App Store</span><span>Firebase</span><span>Amplitude</span><span>P&amp;L</span></div></div></div>
-          <div class="zen-msg u" data-step="2"><div class="av">SM</div><div class="bub">Draft a note to the client about Amplitude.</div></div>
-          <div class="zen-msg a" data-step="3"><div class="av">✦</div><div class="bub" id="zenDraft"><span class="typing-dots"><span></span><span></span><span></span></span> <em style="color:rgba(251,249,244,.7);font-size:12.5px">drafting…</em></div></div>
+      <div class="tour-block" data-step="1">
+        <div class="n">02 · Ask Zen · AI</div>
+        <h3>An AI partner <em>who's read every book.</em></h3>
+        <p>Ask anything about any client. Zenday has full context — every transaction, reconciliation, email, and document — with source citations.</p>
+        <div class="bullets">
+          <div class="bullet"><span><b>Cited answers</b> — every claim links to source</span></div>
+          <div class="bullet"><span><b>Context-aware</b> per client</span></div>
+          <div class="bullet"><span><b>Drafts the next action</b> for you to approve</span></div>
         </div>
+        <div class="tour-chip"><b>&lt; 2 sec</b> · average response time</div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============ § 03 · RECONCILIATION (split — copy left, stacked card right) ============ -->
-<section class="feat" id="recon">
-  <div class="feat-split">
-    <div class="split-copy reveal">
-      <div class="kicker">§ 03 · Reconciliation</div>
-      <h2>Every account, <em>matched continuously.</em></h2>
-      <p class="lead">Bank, credit card, AP, AR, payroll — reconciled as transactions clear, not at month-end. Variance flagged in real time.</p>
-      <div class="bullets">
-        <div class="bullet"><span><b>9 anomaly types</b> watched automatically</span></div>
-        <div class="bullet"><span><b>Real-time variance</b> — not discovered month-end</span></div>
-        <div class="bullet"><span><b>One held for review</b> — the rest just reconcile</span></div>
+      <div class="tour-block" data-step="2">
+        <div class="n">03 · Reconciliation</div>
+        <h3>Every account, <em>matched continuously.</em></h3>
+        <p>Bank, credit card, AP, AR, payroll — reconciled as transactions clear, not at month-end. Variance flagged in real time.</p>
+        <div class="bullets">
+          <div class="bullet"><span><b>9 anomaly types</b> watched automatically</span></div>
+          <div class="bullet"><span><b>Real-time variance</b> — caught, not discovered</span></div>
+          <div class="bullet"><span><b>Only exceptions</b> reach your desk</span></div>
+        </div>
+        <div class="tour-chip"><b>10 accounts</b> · 1 variance today</div>
       </div>
-      <div class="stat-chip"><b>10 accounts</b> · 1 variance today</div>
+
+      <div class="tour-block" data-step="3">
+        <div class="n">04 · Month-end close</div>
+        <h3>The close, <em>on day one.</em></h3>
+        <p>Because the books are reconciled continuously, month-end is already done. Zenday drafts the P&amp;L, balance sheet, and cash flow with a variance narrative.</p>
+        <div class="bullets">
+          <div class="bullet"><span><b>Day 1 delivery</b> — not day 10</span></div>
+          <div class="bullet"><span><b>Plain-English narrative</b> drafted alongside</span></div>
+          <div class="bullet"><span><b>Review workflow</b> — Reviewed / Done / In Review</span></div>
+        </div>
+        <div class="tour-chip"><b>Day 1</b> · month-end arrives closed</div>
+      </div>
+
     </div>
-    <div class="split-card reveal d2">
-      <div class="recon-wrap">
-        <div class="recon-stack s1"></div>
-        <div class="recon-stack s2"></div>
-        <div class="recon-main">
-          <div class="rh">
-            <div class="t">Reconciliations · AppSphere Mobile</div>
-            <div class="meta">10 accounts · <b>1 variance</b></div>
+
+    <div class="tour-sticky-wrap">
+      <div class="tour-sticky">
+        <div class="tour-stage">
+
+          <!-- Frame 0 · Bookkeeping -->
+          <div class="frame on" data-i="0">
+            <div class="live-book">
+              <div class="lb-h">
+                <div class="t">Bank feed · continuous</div>
+                <div class="meta"><span>Today · 147 posted</span><span class="live">live</span></div>
+              </div>
+              <div class="lb-row on" style="--w:99%"><span class="t">11:42</span><div class="v">Adobe Creative Cloud<small class="cat">Software subscriptions</small></div><span class="a">$59.99</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">99%</span></span></div>
+              <div class="lb-row on" style="--w:94%"><span class="t">10:55</span><div class="v">DoorDash<small class="cat">Meals &amp; entertainment</small></div><span class="a">$87.50</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">94%</span></span></div>
+              <div class="lb-row on" style="--w:98%"><span class="t">09:22</span><div class="v">Stripe payout<small class="cat">Revenue · Invoice #4188</small></div><span class="a">$8,400.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">98%</span></span></div>
+              <div class="lb-row flag on" style="--w:34%"><span class="t">10:21</span><div class="v">Wire · ACH Transfer<small class="cat">No vendor match</small></div><span class="a">$15,000.00</span><span class="conf"><span class="conf-bar"></span><span class="conf-n">34%</span></span></div>
+            </div>
           </div>
-          <div class="r-row"><div class="n">Business Checking<small>****5437</small></div><span class="b">$126,309.84</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
-          <div class="r-row"><div class="n">Business Savings<small>****8217</small></div><span class="b">$53,965.72</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
-          <div class="r-row"><div class="n">Amex Business<small>****5004</small></div><span class="b">$2,858.73</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
-          <div class="r-row"><div class="n">Accounts Payable<small>(2000)</small></div><span class="b">$34,250.00</span><span class="ty">AP</span><span class="s ok">✓</span></div>
-          <div class="r-row"><div class="n">Payroll Clearing<small>(2150)</small></div><span class="b">$2,526.20</span><span class="ty">Payroll</span><span class="s w">⚠</span></div>
+
+          <!-- Frame 1 · Ask Zen -->
+          <div class="frame" data-i="1">
+            <div class="card-zen">
+              <div class="zen-h"><div class="zen-dot"></div><div class="t"><b>Ask Zen</b> · AppSphere Mobile</div></div>
+              <div class="zen-thread">
+                <div class="zen-msg u on"><div class="av">SM</div><div class="bub">What changed for AppSphere this month?</div></div>
+                <div class="zen-msg a on"><div class="av">✦</div><div class="bub"><b>Revenue up 18% MoM</b> on the App Store payout. OpEx up <b>$2,400</b> from Firebase plan change Mar 14. New vendor: Amplitude ($390/mo) — held for review.<div class="cites"><span>App Store</span><span>Firebase</span><span>Amplitude</span><span>P&amp;L</span></div></div></div>
+                <div class="zen-msg u on"><div class="av">SM</div><div class="bub">Draft a note to the client about Amplitude.</div></div>
+                <div class="zen-msg a on"><div class="av">✦</div><div class="bub"><b>Drafted.</b> "Hi Sarah — noticed the Amplitude charge on Mar 14. Looks like a new analytics subscription. Classify as Software?"</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frame 2 · Reconciliation -->
+          <div class="frame" data-i="2">
+            <div class="recon-wrap">
+              <div class="recon-stack s1"></div>
+              <div class="recon-stack s2"></div>
+              <div class="recon-main">
+                <div class="rh">
+                  <div class="t">Reconciliations · AppSphere</div>
+                  <div class="meta">10 accounts · <b>1 variance</b></div>
+                </div>
+                <div class="r-row"><div class="n">Business Checking<small>****5437</small></div><span class="b">$126,309.84</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
+                <div class="r-row"><div class="n">Business Savings<small>****8217</small></div><span class="b">$53,965.72</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
+                <div class="r-row"><div class="n">Amex Business<small>****5004</small></div><span class="b">$2,858.73</span><span class="ty">Bank</span><span class="s ok">✓</span></div>
+                <div class="r-row"><div class="n">Accounts Payable<small>(2000)</small></div><span class="b">$34,250.00</span><span class="ty">AP</span><span class="s ok">✓</span></div>
+                <div class="r-row"><div class="n">Payroll Clearing<small>(2150)</small></div><span class="b">$2,526.20</span><span class="ty">Payroll</span><span class="s w">⚠</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frame 3 · Close -->
+          <div class="frame" data-i="3">
+            <div class="close-card" style="max-width:none;margin:0;color:var(--ink)">
+              <div class="ch">
+                <div class="t">March 2026 · P&amp;L<small>Acme Design Co. · closed Apr 1</small></div>
+                <div class="tag">Day 1 · Ready</div>
+              </div>
+              <div class="cg">
+                <div>
+                  <div class="pl-r"><span>Revenue</span><span class="v">$384,200</span></div>
+                  <div class="pl-r neg"><span>Cost of Goods Sold</span><span class="v">(118,450)</span></div>
+                  <div class="pl-r"><span>Gross Profit</span><span class="v">$265,750</span></div>
+                  <div class="pl-r neg"><span>Operating Expenses</span><span class="v">(142,800)</span></div>
+                  <div class="pl-r total"><span>Net Income</span><span class="v">$122,950</span></div>
+                </div>
+                <div class="nar">
+                  <div class="nar-h">Variance narrative · drafted</div>
+                  <p>Revenue up <b>22% YoY</b> — best March on record.</p>
+                  <p>OpEx up <b>18% MoM</b> from new contractor spend.</p>
+                  <p>Runway <b>16 → 14 months</b>. Pricing review recommended.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ BIG STAT · Day 1 (dark) + close card ============ -->
-<section class="stat-moment dark" id="close">
-  <div class="inner">
-    <div class="kicker reveal">§ 04 · Month-end close</div>
-    <div class="n reveal d1">Day<span id="bigStat2">0</span></div>
-    <div class="caption reveal d2">the close is <b>already done</b> — P&amp;L, balance sheet, cash flow, drafted with a plain-English variance narrative.</div>
+<!-- ============ EVERYTHING A FIRM NEEDS ============ -->
+<section class="everything" id="features">
+  <div class="everything-head reveal">
+    <div class="kicker">Everything a firm needs</div>
+    <h2>Nothing <em>you don't.</em></h2>
+    <p>Purpose-built for small and mid-sized accounting firms on QuickBooks Online or Xero. The surfaces your firm runs — now continuous.</p>
   </div>
-  <div class="feat-card reveal d3" style="max-width:760px">
-    <div class="close-card">
-      <div class="ch">
-        <div class="t">March 2026 · P&amp;L<small>Acme Design Co. · closed Apr 1, 06:14</small></div>
-        <div class="tag">Day 1 · Ready</div>
-      </div>
-      <div class="cg">
-        <div>
-          <div class="pl-r"><span>Revenue</span><span class="v">$384,200</span></div>
-          <div class="pl-r neg"><span>Cost of Goods Sold</span><span class="v">(118,450)</span></div>
-          <div class="pl-r"><span>Gross Profit</span><span class="v">$265,750</span></div>
-          <div class="pl-r neg"><span>Operating Expenses</span><span class="v">(142,800)</span></div>
-          <div class="pl-r total"><span>Net Income</span><span class="v">$122,950</span></div>
-        </div>
-        <div class="nar">
-          <div class="nar-h">Variance narrative · drafted</div>
-          <p>Revenue up <b>22% YoY</b> — best March on record, two new retainers.</p>
-          <p>OpEx up <b>18% MoM</b> from $8.4K new contractor spend.</p>
-          <p>Runway <b>16 → 14 months</b>. Pricing review recommended in Q2.</p>
-        </div>
-      </div>
-    </div>
+  <div class="everything-grid">
+    <div class="ev reveal"><div class="ev-n">01 · Client dashboard</div><h3>Every client, <em>one screen.</em></h3><p>Inbox, tasks, bank feed, and alerts per client. Open any row for the full drilldown.</p><div class="ev-foot"><span>Updated</span><b>Real-time</b></div></div>
+    <div class="ev reveal d1"><div class="ev-n">02 · Email &amp; chase</div><h3>Missing receipts, <em>already asked.</em></h3><p>Contextual chase emails drafted — you approve, it sends. Escalating cadence day 3 / 7 / 14.</p><div class="ev-foot"><span>Drafts</span><b>Contextual</b></div></div>
+    <div class="ev reveal d2"><div class="ev-n">03 · Tasks</div><h3>Per-client, <em>prioritised.</em></h3><p>Overdue flagged. Recurring auto-scheduled. Every task traces to the client and the reason.</p><div class="ev-foot"><span>Overdue</span><b>Flagged</b></div></div>
+    <div class="ev reveal"><div class="ev-n">04 · Receipt OCR</div><h3>Upload. <em>Matched.</em></h3><p>Vision AI reads any receipt — photo, PDF, email — and matches it to the transaction automatically.</p><div class="ev-foot"><span>Works on</span><b>Any format</b></div></div>
+    <div class="ev reveal d1"><div class="ev-n">05 · Report review</div><h3>Reports ready, <em>you sign off.</em></h3><p>P&amp;L, BS, CF, AP/AR aging — drafted day one with Reviewed / Done / In Review workflow.</p><div class="ev-foot"><span>Workflow</span><b>Day 1</b></div></div>
+    <div class="ev reveal d2"><div class="ev-n">06 · Audit trail</div><h3>Every action, <em>reversible.</em></h3><p>Reasoning, confidence, source, model version — per entry, forever. One-click reversible.</p><div class="ev-foot"><span>Traceable</span><b>100%</b></div></div>
   </div>
 </section>
 
@@ -766,6 +855,28 @@ footer{padding:36px 0;background:var(--ink);border-top:1px solid rgba(245,239,22
     },{threshold:.5});
     io.observe(el);
   });
+})();
+
+/* ---------- Sticky product tour · swap frame on active block ---------- */
+(function(){
+  const blocks=document.querySelectorAll('.tour-block');
+  const frames=document.querySelectorAll('.tour-stage .frame');
+  if(!blocks.length||!frames.length) return;
+  function activate(step){
+    blocks.forEach(b=>b.classList.toggle('dim',parseInt(b.dataset.step)!==step));
+    frames.forEach(f=>f.classList.toggle('on',parseInt(f.dataset.i)===step));
+  }
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const step=parseInt(e.target.dataset.step);
+        activate(step);
+      }
+    })
+  },{threshold:[.45,.6],rootMargin:'-30% 0px -30% 0px'});
+  blocks.forEach(b=>io.observe(b));
+  // initial: first active, rest dim
+  blocks.forEach((b,i)=>b.classList.toggle('dim',i!==0));
 })();
 
 /* ---------- Paid stamp thunk ---------- */
